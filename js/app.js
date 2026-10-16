@@ -374,7 +374,8 @@ document.getElementById('compass').addEventListener('click', () => {
 });
 
 // ---------- layer toggles ----------
-const layerState = { buildings: true, labels: true, roadLabels: true, trees: true, traffic: true, satellite: false, shadows: true };
+// defaults: satellite imagery as the ground; no trees, trains/cars, building or road names (all can be switched on in the panel)
+const layerState = { buildings: true, labels: false, roadLabels: false, trees: false, traffic: false, satellite: true, shadows: true };
 function applyLayers() {
   layers.buildings.visible = layerState.buildings;
   layers.labels.visible = layerState.buildings && layerState.labels;
@@ -501,6 +502,7 @@ addEventListener('resize', () => {
 flyTo(campusCentre[0], campusCentre[1], 1150, 52, THREE.MathUtils.degToRad(-35));
 tween.t = 0.999;
 applyLayers();
+if (layerState.satellite) ensureSatellite();
 renderer.setAnimationLoop(null);
 loop();
 document.getElementById('loading').classList.add('done');

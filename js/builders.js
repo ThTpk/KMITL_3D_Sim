@@ -3,9 +3,10 @@ import * as THREE from 'three';
 import { buildECC, ECC_OUTLINE } from './models/ecc.js';
 import { buildE12, E12_OUTLINE } from './models/e12.js';
 import { buildThep, THEP_OUTLINE } from './models/thep.js';
+import { buildPres, PRES_OUTLINE } from './models/pres.js';
 
 // Buildings modelled by hand from the Street View / satellite survey (overrides.json "model")
-const MODELS = { ecc: { build: buildECC, outline: ECC_OUTLINE }, e12: { build: buildE12, outline: E12_OUTLINE }, thep: { build: buildThep, outline: THEP_OUTLINE } };
+const MODELS = { ecc: { build: buildECC, outline: ECC_OUTLINE }, e12: { build: buildE12, outline: E12_OUTLINE }, thep: { build: buildThep, outline: THEP_OUTLINE }, pres: { build: buildPres, outline: PRES_OUTLINE } };
 
 // ---------- small helpers ----------
 export function hash(n) {
