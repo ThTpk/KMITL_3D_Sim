@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KMITL 3D Campus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app"></div>
+
+  <header id="topbar" class="panel">
+    <div class="brand">
+      <span class="logo">KMITL</span>
+      <div>
+        <div class="title">แบบจำลอง 3 มิติ สจล.</div>
+        <div class="subtitle">King Mongkut's Institute of Technology Ladkrabang</div>
+      </div>
+    </div>
+    <div class="search">
+      <input id="search" type="search" placeholder="ค้นหาอาคาร / สถานที่…" autocomplete="off" />
+      <ul id="results" hidden></ul>
+    </div>
+  </header>
+
+  <aside id="info" class="panel" hidden>
+    <button id="info-close" class="icon-btn" title="ปิด">✕</button>
+    <div id="info-body"></div>
+  </aside>
+
+  <section id="controls" class="panel">
+    <div class="row views">
+      <button data-view="overview">ภาพรวม</button>
+      <button data-view="top">มุมบน</button>
+      <button data-view="front">ฝั่งถนนฉลองกรุง</button>
+      <button data-view="orbit" id="orbit-btn">หมุนอัตโนมัติ</button>
+    </div>
+    <div class="row toggles">
+      <label><input type="checkbox" data-layer="buildings" checked /> อาคาร</label>
+      <label><input type="checkbox" data-layer="labels" checked /> ชื่ออาคาร</label>
+      <label><input type="checkbox" data-layer="roadLabels" checked /> ชื่อถนน</label>
+      <label><input type="checkbox" data-layer="trees" checked /> ต้นไม้</label>
+      <label><input type="checkbox" data-layer="satellite" /> ภาพดาวเทียม</label>
+      <label><input type="checkbox" data-layer="shadows" checked /> เงา</label>
+    </div>
+    <div class="row time">
+      <span>🕒</span>
+      <input id="time" type="range" min="5" max="23" step="0.25" value="15.5" />
+      <span id="time-label">15:30</span>
+    </div>
+  </section>
+
+  <div id="legend" class="panel">
+    <div><i style="background:#e6e1d6"></i>อาคารเรียน/สำนักงาน</div>
+    <div><i style="background:#efd9bd"></i>หอพัก/ที่พัก</div>
+    <div><i style="background:#ff7a1a"></i>เขตสถาบัน</div>
+  </div>
+
+  <div id="tooltip" hidden></div>
+  <div id="compass" class="panel" title="หันทิศเหนือ"><span>N</span></div>
+  <div id="loading"><div class="spinner"></div><div>กำลังสร้างแบบจำลอง…</div></div>
+  <footer id="attrib">
+    ข้อมูลอาคารและถนน © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> (ODbL)
+    <span id="sat-attrib" hidden> · ภาพดาวเทียม © Esri, Maxar, Earthstar Geographics</span>
+  </footer>
+
+  <script src="data/kmitl_data.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
