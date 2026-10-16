@@ -388,6 +388,8 @@ function applyLayers() {
   sun.castShadow = layerState.shadows;
   if (!layerState.buildings) closeInfo();
 }
+// the panel always starts from layerState (browsers may restore old checkbox states on reload)
+document.querySelectorAll('[data-layer]').forEach((cb) => { cb.checked = !!layerState[cb.dataset.layer]; });
 document.querySelectorAll('[data-layer]').forEach((cb) => cb.addEventListener('change', () => {
   layerState[cb.dataset.layer] = cb.checked;
   if (cb.dataset.layer === 'satellite' && cb.checked) ensureSatellite();
