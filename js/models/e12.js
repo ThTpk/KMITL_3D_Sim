@@ -8,9 +8,11 @@
 //   tower slab   x -650..-563   z 10.9..35   12 floors, salmon concrete, deep floor bands, ribbon windows
 //                                             with recessed AC balconies; gold banner panel on the west wing
 //   core         x -614.3..-601.7, projects 1.3 m north, rises above the roof, slit windows, blue sign
-//   east stair   x -563..-557   one floor lower, set back
+//   east stair   x -563..-557   one floor lower (north half); stair towers at both south corners rise above
+//                                the roof; west end wall rises as a fin at its north end
 //   podium       x -647..-575   z 35..87.5   3 storeys under four red hipped roofs round a small court;
-//                                             south front on raked columns over a tall undercroft, lettering
+//                                             south front (and the SE pavilion's east side) on square piers
+//                                             over a tall undercroft, lettering
 import * as THREE from 'three';
 import { Acc, onFace, glassTex, brickTex, textTex } from './ecc.js';
 
@@ -48,20 +50,8 @@ function hipRoof(A, m, x0, x1, z0, z1, y, h, o = 0.9) {
   }
   A.quad('soffit', c[0], c[1], c[2], c[3]); // underside of the eaves
 }
-// slanted box: bottom rectangle centred at (xb, zb), top centred at (xt, zt), size sx * sz
-function rake(A, m, xb, zb, xt, zt, y0, y1, sx, sz) {
-  const P = (x, y, z, i, j) => [x + (i - 0.5) * sx, y, z + (j - 0.5) * sz];
-  const b = [P(xb, y0, zb, 0, 0), P(xb, y0, zb, 1, 0), P(xb, y0, zb, 1, 1), P(xb, y0, zb, 0, 1)];
-  const t = [P(xt, y1, zt, 0, 0), P(xt, y1, zt, 1, 0), P(xt, y1, zt, 1, 1), P(xt, y1, zt, 0, 1)];
-  const ref = [(xb + xt) / 2, (y0 + y1) / 2, (zb + zt) / 2];
-  for (let i = 0; i < 4; i++) {
-    const j = (i + 1) % 4;
-    triOut(A, m, b[i], b[j], t[j], ref); triOut(A, m, b[i], t[j], t[i], ref);
-  }
-}
-
 // one face of the tower slab: deep salmon floor bands, ribbon of dark windows with recessed AC balconies
-function slabFace(A, f, { skip = [], banner = null } = {}) {
+function slabFace(A, f, { skip = [], banner = null, louvre = false } = {}) {
   const inSkip = (a0, a1) => skip.some(([s0, s1]) => a1 > s0 && a0 < s1);
   // ground floor: recessed dark glazing behind square piers
   onFace(A, 'shade', f, f.a0, f.a1, 0.3, G, -2.4, -2.38);
@@ -75,7 +65,9 @@ function slabFace(A, f, { skip = [], banner = null } = {}) {
       let i = 0;
       for (let a = a0 + 0.5; a + 4.0 <= a1; a += 4.4, i++) {
         if (banner && k >= banner.k0 && a + 4 > banner.a0 && a < banner.a1) continue;
-        if ((i + k) % 4 === 3) {                                          // recessed balcony with an AC unit
+        if (louvre && (i + k) % 3 === 1) {                                // light louvre screen over the window
+          onFace(A, 'louvre', f, a + 0.3, a + 3.7, y + 1.3, top - 0.45, 0.05, 0.12);
+        } else if (!louvre && (i + k) % 4 === 3) {                        // recessed balcony with an AC unit
           onFace(A, 'rail', f, a + 0.2, a + 3.8, y + 1.15, y + 1.9, 0.5, 0.55);
           onFace(A, 'ac', f, a + 0.6, a + 1.5, y + 1.15, y + 1.85, 0.05, 0.6);
         } else {
@@ -86,6 +78,60 @@ function slabFace(A, f, { skip = [], banner = null } = {}) {
   }
   onFace(A, 'band', f, f.a0, f.a1, ROOF - 0.35, ROOF + 1.2, 0, 0.5); // parapet band
   if (banner) onFace(A, 'gold', f, banner.a0, banner.a1, lvY(banner.k0) - 0.2, lvY(12) + 2.2, 0.8, 0.9);
+}
+// box on face f like onFace, keeping its underside (ceilings)
+function fbox(A, m, f, a0, a1, y0, y1, d0, d1) {
+  const p0 = f.at + f.out * d0, p1 = f.at + f.out * d1;
+  if (f.ax === 'z') A.box(m, a0, a1, y0, y1, p0, p1, false);
+  else A.box(m, p0, p1, y0, y1, a0, a1, false);
+}
+// podium frontage (south fronts, east side of the SE pavilion): a deep open hall on a raised plinth
+// behind wide square piers, steps and low balustrades between them, ribbed ceiling, interior columns;
+// above: cantilevered band, brick panels alternating with deep-set windows between fins, lettered fascia.
+// f.at is the front line; the upper wall stands 0.9 m behind it, the hall's back wall UD behind.
+const UD = 12, PL = 1.0;
+function front(A, f, HP) {
+  const { a0: x0, a1: x1 } = f;
+  fbox(A, 'soffit', f, x0, x1, 6.9, 7.0, -UD, 0);                        // hall ceiling
+  for (let a = x0 + 2.5; a < x1 - 1; a += 3.2) onFace(A, 'soffit', f, a, a + 0.35, 6.3, 6.9, -UD + 0.4, 0); // ribs
+  for (let d = 2.5; d < UD; d += 3.2) onFace(A, 'soffit', f, x0, x1, 6.5, 6.9, -d - 0.3, -d);
+  onFace(A, 'glass', f, x0 + 1, x1 - 1, PL + 0.4, 6.2, -UD, -UD + 0.05);  // glazed back wall of the hall
+  onFace(A, 'paving', f, x0, x1, 0, PL, -UD, 0);                           // raised plinth
+  for (let a = x0 + 6; a < x1 - 4; a += 8) for (const d of [4.5, 8.5]) onFace(A, 'wall', f, a - 0.35, a + 0.35, PL, 6.9, -d - 0.35, -d + 0.35); // hall columns
+  onFace(A, 'band', f, x0, x1, 7.0, 8.4, -0.9, 0.6);
+  const m = Math.round((x1 - x0) / 4.8), mw = (x1 - x0) / m;
+  for (let i = 0; i < m; i++) {
+    const a0 = x0 + i * mw + 0.35, a1 = x0 + (i + 1) * mw - 0.35;
+    if (i % 2 === 0) onFace(A, 'brick', f, a0, a1, 8.4, HP - 0.9, -0.9, 0.04);
+    else onFace(A, 'glass', f, a0 + 0.3, a1 - 0.3, 9.0, HP - 1.6, -0.9, -0.85);
+  }
+  for (let i = 0; i <= m; i++) onFace(A, 'band', f, x0 + i * mw - 0.35, x0 + i * mw + 0.35, 8.4, HP - 0.9, -0.9, 0.5); // fins
+  onFace(A, 'band', f, x0, x1, HP - 0.9, HP + 0.6, -0.9, 0.6);            // fascia with the lettering
+  // wide square piers; steps up to the hall in alternate bays, low balustrade walls in the others
+  const n = Math.round((x1 - x0) / 9.5), bw = (x1 - x0) / n;
+  for (let i = 0; i <= n; i++) {
+    const a = Math.min(x1 - 0.9, Math.max(x0 + 0.9, x0 + i * bw));
+    onFace(A, 'wall', f, a - 0.9, a + 0.9, 0, 7.0, -1.8, 0);
+    if (i === n) break;
+    const b0 = a + 0.9, b1 = Math.min(x1, x0 + (i + 1) * bw) - 0.9;
+    if (i % 2 === 0) for (let k = 0; k < 4; k++) onFace(A, 'paving', f, b0, b1, 0, PL - k * 0.25, 0, 0.4 * (k + 1));
+    else {
+      onFace(A, 'band', f, b0, b1, PL, PL + 0.15, -0.25, 0);
+      onFace(A, 'band', f, b0, b1, PL + 0.75, PL + 0.95, -0.25, 0);
+      for (let a2 = b0 + 1.2; a2 < b1 - 0.5; a2 += 2.0) onFace(A, 'band', f, a2, a2 + 0.2, PL, PL + 0.8, -0.2, -0.05);
+    }
+  }
+}
+// stair tower with slit windows down its edges, one floor above the roof
+function stairTower(A, x0, x1, z0, z1, top, faces) {
+  A.box('core', x0, x1, 0, top, z0, z1);
+  for (const [f, a0, a1] of faces) for (const a of [a0 + 0.5, a1 - 1.4]) onFace(A, 'glass', f, a, a + 0.9, G, top - 1.5, 0, 0.05);
+  A.box('roofLight', x0 + 0.2, x1 - 0.2, top, top + 0.12, z0 + 0.2, z1 - 0.2);
+}
+// parapet wall round a pavilion roof
+function parapetRing(A, x0, x1, z0, z1, y, h, t = 0.3) {
+  A.box('wall', x0, x1, y, y + h, z0, z0 + t); A.box('wall', x0, x1, y, y + h, z1 - t, z1);
+  A.box('wall', x0, x0 + t, y, y + h, z0, z1); A.box('wall', x1 - t, x1, y, y + h, z0, z1);
 }
 function spans(a0, a1, skip) {
   const out = [];
@@ -110,8 +156,12 @@ export function buildE12(owner) {
   const A = new Acc();
   const SL = [-650, -563, 10.9, 35];        // tower slab
   const CO = [-614.3, -601.7, 9.6];          // core x range, north face
-  const ES = [-563, -557, 12.4, 33.5];       // east stair bay
+  const ES = [-563, -557, 12.4, 24];         // east stair bay (north half), one floor lower
+  const SE = [-570, -557, 26, 37.5];         // south-east stair tower, rises above the roof
+  const SW = [-652, -639, 26, 37.5];         // south-west stair tower, same
   const CT = ROOF + 6.3;                     // core top
+  const ST = ROOF + 3.8;                     // stair tower tops
+  const HPOD = 14.0;                         // podium parapet
 
   // ===== tower slab =====
   A.box('wall', SL[0], SL[1], G, ROOF, SL[2], SL[3]);
@@ -120,7 +170,7 @@ export function buildE12(owner) {
   const N = { ax: 'z', at: SL[2], out: -1, a0: SL[0], a1: SL[1] };
   const S = { ax: 'z', at: SL[3], out: 1, a0: SL[0], a1: SL[1] };
   slabFace(A, N, { skip: [[CO[0] - 0.4, CO[1] + 0.4]], banner: { a0: -637.5, a1: -629.5, k0: 9 } });
-  slabFace(A, S);
+  slabFace(A, S, { skip: [[SW[0], SW[1] + 0.4], [CO[0] - 0.4, CO[1] + 0.4], [SE[0] - 0.4, SL[1]]], louvre: true });
   // plain end walls with a slit window by the north face
   for (const [x, out] of [[SL[0], -1], [ES[1], 1]]) {
     const f = { ax: 'x', at: x, out, a0: SL[2], a1: SL[3] };
@@ -128,19 +178,25 @@ export function buildE12(owner) {
     onFace(A, 'band', f, SL[2], SL[3], G - 0.4, G + 0.2, 0, 0.2);
   }
   onFace(A, 'band', { ax: 'x', at: SL[0], out: -1 }, SL[2], SL[3], ROOF - 0.35, ROOF + 1.2, 0, 0.3);
-  // east stair bay, one floor lower and set back, slit windows on both long faces
+  A.box('core', SL[0] - 0.6, SL[0] + 0.4, 0, ROOF + 3.0, SL[2] - 0.8, 21);  // west end fin, above the roof
+  // east stair bay, one floor lower, slit window facing north
   A.box('wall', ES[0], ES[1], 0, lvY(12), ES[2], ES[3]);
-  for (const [z, out] of [[ES[2], -1], [ES[3], 1]]) onFace(A, 'glass', { ax: 'z', at: z, out }, -561.5, -560.3, G + 1, lvY(12) - 1.5, 0, 0.05);
+  onFace(A, 'glass', { ax: 'z', at: ES[2], out: -1 }, -561.5, -560.3, G + 1, lvY(12) - 1.5, 0, 0.05);
   A.box('roofLight', ES[0], ES[1] - 0.2, lvY(12), lvY(12) + 0.12, ES[2] + 0.2, ES[3] - 0.2);
+  // stair towers at the two south corners (seen from the SE entrance road and the NW)
+  stairTower(A, SE[0], SE[1], SE[2], SE[3], ST, [[{ ax: 'z', at: SE[3], out: 1 }, SE[0], SE[1]], [{ ax: 'x', at: SE[0], out: -1 }, SL[3], SE[3]], [{ ax: 'x', at: SE[1], out: 1 }, SE[2], SE[3]]]);
+  stairTower(A, SW[0], SW[1], SW[2], SW[3], ST, [[{ ax: 'z', at: SW[3], out: 1 }, SW[0], SW[1]], [{ ax: 'x', at: SW[1], out: 1 }, SL[3], SW[3]]]);
+  onFace(A, 'glass', { ax: 'x', at: SW[0], out: -1 }, 30.6, 33.0, G, ST - 1.5, 0, 0.05);       // tall glazed strip facing west
+  for (let k = 2; k <= 13; k++) onFace(A, 'band', { ax: 'x', at: SW[0], out: -1 }, 30.6, 33.0, lvY(k) - 0.15, lvY(k) + 0.15, 0, 0.1);
 
-  // ===== core: projects from the north face and rises above the roof =====
-  A.box('core', CO[0], CO[1], 0, CT, CO[2], 20);
-  A.box('core', CO[0], CO[1], ROOF, CT - 0.8, 20, 27);
+  // ===== core: projects from both long faces and rises above the roof =====
+  A.box('core', CO[0], CO[1], 0, CT, CO[2], SL[3] + 1.3);           // runs through to the south face
   const CF = { ax: 'z', at: CO[2], out: -1 };
   for (const a of [CO[0] + 0.6, CO[1] - 1.5]) onFace(A, 'glass', CF, a, a + 0.9, G + 0.5, CT - 3.2, 0, 0.05); // edge slits
   for (let k = 2; k <= 12; k++) onFace(A, 'glass', CF, -609.1, -606.9, lvY(k) + 1.3, lvY(k) + 2.7, 0, 0.05);
   for (const a of [CO[0] + 2.2, CO[1] - 3.0]) onFace(A, 'wall', CF, a, a + 0.8, G, CT - 3.2, 0, 0.25);     // fins
-  A.box('roofLight', CO[0] + 0.2, CO[1] - 0.2, CT, CT + 0.12, CO[2] + 0.2, 19.8);
+  A.box('roofLight', CO[0] + 0.2, CO[1] - 0.2, CT, CT + 0.12, CO[2] + 0.2, SL[3] + 1.1);
+  for (const a of [CO[0] + 0.6, CO[1] - 1.5]) onFace(A, 'glass', { ax: 'z', at: SL[3] + 1.3, out: 1 }, a, a + 0.9, HPOD + 1, CT - 2, 0, 0.05);
 
   // ===== roof =====
   A.box('roofLight', SL[0] + 0.3, SL[1] - 0.3, ROOF, ROOF + 0.12, SL[2] + 0.3, SL[3] - 0.3);
@@ -150,56 +206,48 @@ export function buildE12(owner) {
   A.cyl('rail', -621, 15.5, 0.1, ROOF, ROOF + 1.6, 6);
 
   // ===== podium: four pavilions under red hipped roofs round a small court =====
-  const HP = 14.0;
+  const HP = HPOD;
   const PAV = [[-647, -622.5, 35, 59], [-602, -575, 35, 59], [-643, -614, 59, 87.5], [-609, -579, 59, 87.5]];
   for (const [x0, x1, z0, z1] of PAV) {
-    const under = z1 === 87.5; // south pavilions stand over the undercroft
-    A.box('wall', x0, x1, under ? 7.0 : 0, HP, z0, z1);
-    if (under) A.box('wall', x0, x1, 0, 7.0, z0, z1 - 5.4);
-    hipRoof(A, 'roofRed', x0, x1, z0, z1, HP, Math.min(x1 - x0, z1 - z0) * 0.15);
+    const under = z1 === 87.5, east = under && x1 === -579; // fronts over the undercroft: south, and east on the SE pavilion
+    A.box('wall', x0, east ? x1 - 0.9 : x1, under ? 7.0 : 0, HP, z0, under ? z1 - 0.9 : z1);
+    if (under) A.box('wall', x0, east ? x1 - UD : x1, 0, 7.0, z0, z1 - UD);
+    hipRoof(A, 'roofRed', x0, x1, z0, z1, HP - 0.3, Math.min(x1 - x0, z1 - z0) * 0.08, -0.6); // low, behind the parapet
+    parapetRing(A, x0, x1, z0, z1, HP, 1.5);
     const faces = [
       { ax: 'x', at: x0, out: -1, a0: z0, a1: z1 }, { ax: 'x', at: x1, out: 1, a0: z0, a1: z1 },
       { ax: 'z', at: z0, out: -1, a0: x0, a1: x1 },
     ];
     for (const f of faces) {
       if (f.ax === 'z' && f.at === 35) continue; // against the tower
-      for (const [y0, y1] of [[1.0, 3.2], [4.6, 6.6], [8.4, 10.4]]) for (let a = f.a0 + 1.2; a + 2.6 <= f.a1 - 0.8; a += 3.6) onFace(A, 'glass', f, a, a + 2.6, y0, y1, 0, 0.05);
-      for (const y of [3.8, 7.4, 11.2]) onFace(A, 'band', f, f.a0, f.a1, y - 0.3, y + 0.5, 0, 0.45);
-      onFace(A, 'brick', f, f.a0 + 0.6, f.a1 - 0.6, 11.7, HP - 0.4, 0, 0.04);
+      if (east && f.ax === 'x' && f.out === 1) continue;
+      // on the south pavilions the sides stop where the open hall (below 7 m) and the front set-back begin
+      const lo = under && f.ax === 'x' ? z1 - UD : f.a1, hi = under && f.ax === 'x' ? z1 - 0.9 : f.a1;
+      for (const [y0, y1] of [[1.0, 3.2], [4.6, 6.6], [8.4, 10.4]]) {
+        const e = y1 < 7 ? lo : hi;
+        for (let a = f.a0 + 1.2; a + 2.6 <= e - 0.8; a += 3.6) onFace(A, 'glass', f, a, a + 2.6, y0, y1, 0, 0.05);
+      }
+      for (const y of [3.8, 7.4, 11.2]) onFace(A, 'band', f, f.a0, y < 7 ? lo : hi, y - 0.3, y + 0.5, 0, 0.45);
+      onFace(A, 'brick', f, f.a0 + 0.6, hi - 0.6, 11.7, HP - 0.4, 0, 0.04);
     }
   }
   // flat link roofs between the pavilions, entrance hall on the axis, lawn court
   A.box('wall', -622.5, -602, 0, 11.0, 35, 39);
   A.box('roofLight', -622.5, -602, 11.0, 11.12, 35, 39);
-  A.box('wall', -614, -609, 0, HP - 1, 59, 87.5);
+  A.box('wall', -614, -609, 7.0, HP - 1, 59, 87.5);
+  A.box('wall', -614, -609, 0, 7.0, 59, 87.5 - UD);
+  A.box('soffit', -614, -609, 6.9, 7.0, 87.5 - UD, 87.5, false);
+  A.box('paving', -614, -609, 0, PL, 87.5 - UD, 87.5);
+  onFace(A, 'glass', { ax: 'z', at: 87.5, out: 1 }, -613.6, -609.4, 8.0, HP - 1.8, 0, 0.05);
   A.box('roofLight', -614.2, -608.8, HP - 1, HP - 0.88, 58.8, 87.5);
   A.box('lawn', -622.5, -602, 0.02, 0.1, 39, 59);
   A.box('wall', -622.5, -614, 0, 7.4, 58, 59); A.box('wall', -609, -602, 0, 7.4, 58, 59);
 
-  // south front: tall undercroft behind raked columns, cantilevered band, brick panels with lettering
   const ZS = 87.5;
-  for (const [x0, x1] of [[-643, -614], [-609, -579]]) {
-    const F = { ax: 'z', at: ZS, out: 1 };
-    A.box('soffit', x0, x1, 6.9, 7.0, ZS - 5.4, ZS, false);       // coffered ceiling of the undercroft
-    for (let x = x0 + 2.5; x < x1 - 1; x += 3.2) A.box('soffit', x, x + 0.35, 6.4, 7.0, ZS - 5, ZS);
-    onFace(A, 'glass', { ax: 'z', at: ZS - 5.4, out: 1 }, x0 + 1, x1 - 1, 0.8, 6.2, 0, 0.05);
-    // over-the-undercroft levels set out to the front line
-    onFace(A, 'band', F, x0, x1, 7.0, 8.4, 0, 0.6);
-    onFace(A, 'glass', F, x0 + 0.6, x1 - 0.6, 8.4, 10.6, 0, 0.05);
-    onFace(A, 'band', F, x0, x1, 10.6, 11.6, 0, 0.9);
-    onFace(A, 'brick', F, x0 + 0.6, x1 - 0.6, 11.6, HP - 0.5, 0, 0.04);
-    onFace(A, 'band', F, x0, x1, HP - 0.5, HP + 0.3, 0, 0.6);
-    // A-shaped pairs of raked columns
-    const n = Math.round((x1 - x0) / 9.5), bw = (x1 - x0) / n;
-    for (let i = 0; i <= n; i++) {
-      const xc = x0 + i * bw;
-      if (i < n) { rake(A, 'wall', xc + 1.2, ZS - 0.6, xc + bw / 2 - 0.6, ZS - 0.5, 0, 7.0, 0.9, 0.9); rake(A, 'wall', xc + bw - 1.2, ZS - 0.6, xc + bw / 2 + 0.6, ZS - 0.5, 0, 7.0, 0.9, 0.9); }
-      A.box('wall', xc - 0.5, xc + 0.5, 0, 7.0, ZS - 1.0, ZS);
-    }
-  }
+  front(A, { ax: 'z', at: ZS, out: 1, a0: -643, a1: -614 }, HP);
+  front(A, { ax: 'z', at: ZS, out: 1, a0: -609, a1: -579 }, HP);
+  front(A, { ax: 'x', at: -579, out: 1, a0: 59, a1: ZS }, HP);
   // entrance steps and the plinth along the front
-  for (let s = 0; s < 4; s++) A.box('paving', -616, -606, 0, 0.9 - s * 0.22, ZS - 5, ZS + 0.4 + s * 0.45);
-  A.box('paving', -643, -579, 0, 0.5, ZS - 5, ZS);
 
   // ===== materials & meshes =====
   const gDay = glassTex(false), gNight = glassTex(true), brick = brickTex();
@@ -210,6 +258,7 @@ export function buildE12(owner) {
     core: std({ color: '#efc6ac' }),
     shade: std({ color: '#a8887a' }),
     recess: std({ color: '#e2b49b' }),
+    louvre: std({ color: '#d4d6d3', roughness: 0.6, metalness: 0.2 }),
     glass: std({ color: '#3d5470', map: gDay, roughness: 0.35, emissive: new THREE.Color('#ffc978'), emissiveMap: gNight, emissiveIntensity: 0 }),
     rail: std({ color: '#6c6f72', roughness: 0.5, metalness: 0.4 }),
     ac: std({ color: '#e4e4e0' }),
@@ -259,9 +308,9 @@ export function buildE12(owner) {
   };
   const zn = CO[2] - 0.06;
   sign(signTex(), [[CO[1] - 0.6, CT - 3.0, zn], [CO[0] + 0.6, CT - 3.0, zn], [CO[0] + 0.6, CT - 0.4, zn], [CO[1] - 0.6, CT - 0.4, zn]]);
-  const zs = ZS + 0.92;
-  sign(textTex('FACULTY OF ENGINEERING', { color: '#3a3532', h: 140 }), [[-605, 10.65, zs], [-583, 10.65, zs], [-583, 11.55, zs], [-605, 11.55, zs]]);
-  sign(textTex('คณะวิศวกรรมศาสตร์', { color: '#3a3532', h: 140 }), [[-639, 10.6, zs], [-618, 10.6, zs], [-618, 11.6, zs], [-639, 11.6, zs]]);
+  const zs = ZS + 0.62;
+  sign(textTex('FACULTY OF ENGINEERING', { color: '#3a3532', h: 140 }), [[-605, HP - 0.75, zs], [-583, HP - 0.75, zs], [-583, HP + 0.45, zs], [-605, HP + 0.45, zs]]);
+  sign(textTex('คณะวิศวกรรมศาสตร์', { color: '#3a3532', h: 140 }), [[-639, HP - 0.75, zs], [-618, HP - 0.75, zs], [-618, HP + 0.45, zs], [-639, HP + 0.45, zs]]);
   return { meshes, top: CT + 2 };
 }
 
