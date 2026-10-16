@@ -3,7 +3,7 @@
 // x -146 and -112, photo sphere at the entrance walkway), the plaza to the north (car panos at x -163 and -144),
 // plus Esri World Imagery for the plan and roofs. Photos were only looked at; everything here is procedural.
 // East end and the east wing's north colonnade from car panos supplied by the user (north plaza, east car park).
-// Not seen in any photo (trees / no coverage): the west end wall - kept plain.
+// West end from a pano at the plaza's west end (also supplied by the user).
 //
 // Built axis-aligned around the OSM centroid, then turned -0.8° onto the OSM outline. x = east, z = south.
 //   west wing    x -179..-135.3   2 storeys (9.4 m): white frame, square piers every ~6.4 m, deep floor bands,
@@ -80,11 +80,19 @@ export function buildThep(owner) {
     wingFace(A, { ax: 'z', at: zb, out: -1, a0: x0, a1: x1 }, { lintel: x0 === WW[0] ? [4, 5] : [] });
     wingFace(A, { ax: 'z', at: Z1, out: 1, a0: x0, a1: x1 });
     if (!east) {
-      // west end wall (not seen in any photo): plain, bands carried round, one window column per floor
+      // west end (seen from the plaza's west end): orange-brick end wall framed in white at the corners and top,
+      // a covered walk at level-2 height running west along the north edge towards the canteen, with a low wall
       const f = { ax: 'x', at: x0, out: -1 };
       onFace(A, 'wall', f, Z0, Z1, 0, HW, -0.6, 0);
-      onFace(A, 'wall', f, Z0, Z1, G - 0.75, Y2 + 0.75, 0, 0.15);
-      for (const [y0, y1] of [[0.7, G - 0.75], [Y2 + 0.75, ROOFW - 0.55]]) onFace(A, 'glass', f, -228.5, -224, y0, y1, 0, 0.05);
+      onFace(A, 'brick', f, Z0 + 1.2, Z1 - 1.2, 0.5, ROOFW - 0.3, 0, 0.05);
+      onFace(A, 'wall', f, Z0, Z1, ROOFW - 0.3, HW, 0, 0.25);
+      for (const [z0, z1] of [[Z0, Z0 + 1.2], [Z1 - 1.2, Z1]]) onFace(A, 'wall', f, z0, z1, 0, HW, 0, 0.25);
+      const CW = [x0 - 14, x0], CZ = [Z0, Z0 + 5];
+      A.box('wall', CW[0], CW[1], Y2 - 0.3, Y2 + 0.1, CZ[0], CZ[1]);                  // canopy slab
+      A.box('wall', CW[0], CW[1], Y2 + 0.1, Y2 + 0.5, CZ[0], CZ[0] + 0.4);           // edge upstand
+      for (let x = CW[0] + 0.5; x < CW[1] - 1; x += 4.6) for (const z of [CZ[0] + 0.4, CZ[1] - 0.4]) A.box('wall', x - 0.3, x + 0.3, 0, Y2 - 0.3, z - 0.3, z + 0.3);
+      A.box('wall', CW[0], CW[1], 0, 0.9, CZ[0], CZ[0] + 0.3);                      // low wall along the pond
+      A.box('plinth', CW[0], CW[1], 0, 0.3, CZ[0], CZ[1]);
     }
   }
   // east wing, north side: double-height colonnade of tall square columns under a deep fascia, with the
