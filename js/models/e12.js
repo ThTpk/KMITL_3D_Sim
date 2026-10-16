@@ -11,6 +11,7 @@
 //   east stair   x -563..-557   one floor lower (north half); stair towers at both south corners rise above
 //                                the roof; west end wall rises as a fin at its north end
 //   podium       x -647..-575   z 35..87.5   3 storeys under four red hipped roofs round a small court;
+//                                             a service road runs under the two north pavilions (z 41.5..50)
 //                                             south front (and the SE pavilion's east side) on square piers
 //                                             over a tall undercroft, lettering
 import * as THREE from 'three';
@@ -207,11 +208,30 @@ export function buildE12(owner) {
 
   // ===== podium: four pavilions under red hipped roofs round a small court =====
   const HP = HPOD;
+  const DT = [41.5, 50], DH = 5.1; // service road through both north pavilions and the court (OSM service way), clearance
   const PAV = [[-647, -622.5, 35, 59], [-602, -575, 35, 59], [-643, -614, 59, 87.5], [-609, -579, 59, 87.5]];
   for (const [x0, x1, z0, z1] of PAV) {
     const under = z1 === 87.5, east = under && x1 === -579; // fronts over the undercroft: south, and east on the SE pavilion
-    A.box('wall', x0, east ? x1 - 0.9 : x1, under ? 7.0 : 0, HP, z0, under ? z1 - 0.9 : z1);
+    const north = z0 === 35;                                  // north pavilions bridge the service road
+    A.box('wall', x0, east ? x1 - 0.9 : x1, under ? 7.0 : north ? DH : 0, HP, z0, under ? z1 - 0.9 : z1);
     if (under) A.box('wall', x0, east ? x1 - UD : x1, 0, 7.0, z0, z1 - UD);
+    if (north) {
+      // open below DH along the outer side (piers) and through the lane; glazed lobbies either side of the lane
+      const out = x0 === -647 ? -1 : 1, xo = out < 0 ? x0 : x1, lx0 = out < 0 ? x0 + 1.6 : x0, lx1 = out < 0 ? x1 : x1 - 1.6;
+      A.box('soffit', x0, x1, DH - 0.12, DH, z0, z1, false);
+      A.box('wall', lx0, lx1, 0, DH - 0.12, z0, DT[0] - 0.5);
+      A.box('wall', lx0, lx1, 0, DH - 0.12, DT[1] + 0.5, z1);
+      for (const [z, o] of [[DT[0] - 0.5, 1], [DT[1] + 0.5, -1]]) onFace(A, 'glass', { ax: 'z', at: z, out: o }, lx0 + 0.8, lx1 - 0.8, 0.4, DH - 0.6, 0, 0.05);
+      const fo = { ax: 'x', at: out < 0 ? lx0 : lx1, out };
+      for (const [a0, a1] of [[z0 + 0.8, DT[0] - 1.3], [DT[1] + 1.3, z1 - 0.8]]) onFace(A, 'glass', fo, a0, a1, 0.4, DH - 0.6, 0, 0.05);
+      for (const z of [z0 + 0.5, DT[0] - 0.6, DT[1] + 0.6, z1 - 0.5]) A.box('wall', out < 0 ? xo : xo - 1.0, out < 0 ? xo + 1.0 : xo, 0, DH, z - 0.5, z + 0.5);
+      // bridge face over the road: band, brick panels with paired slit windows, top band
+      const fb = { ax: 'x', at: xo, out };
+      onFace(A, 'band', fb, z0, z1, DH, DH + 1.4, 0, 0.5);
+      onFace(A, 'brick', fb, z0 + 0.6, z1 - 0.6, DH + 1.4, HP - 1.4, 0, 0.04);
+      for (let z = z0 + 3.2; z + 2.4 < z1 - 1; z += 5.4) for (const dz of [0, 1.4]) onFace(A, 'glass', fb, z + dz, z + dz + 0.8, DH + 2.0, HP - 2.0, 0, 0.06);
+      onFace(A, 'band', fb, z0, z1, HP - 1.4, HP + 0.6, 0, 0.5);
+    }
     hipRoof(A, 'roofRed', x0, x1, z0, z1, HP - 0.3, Math.min(x1 - x0, z1 - z0) * 0.08, -0.6); // low, behind the parapet
     parapetRing(A, x0, x1, z0, z1, HP, 1.5);
     const faces = [
@@ -221,13 +241,15 @@ export function buildE12(owner) {
     for (const f of faces) {
       if (f.ax === 'z' && f.at === 35) continue; // against the tower
       if (east && f.ax === 'x' && f.out === 1) continue;
+      if (north && f.ax === 'x' && f.at === (x0 === -647 ? x0 : x1)) continue; // bridge face, done above
       // on the south pavilions the sides stop where the open hall (below 7 m) and the front set-back begin
       const lo = under && f.ax === 'x' ? z1 - UD : f.a1, hi = under && f.ax === 'x' ? z1 - 0.9 : f.a1;
       for (const [y0, y1] of [[1.0, 3.2], [4.6, 6.6], [8.4, 10.4]]) {
+        if (north && y0 < DH + 0.5) continue;
         const e = y1 < 7 ? lo : hi;
         for (let a = f.a0 + 1.2; a + 2.6 <= e - 0.8; a += 3.6) onFace(A, 'glass', f, a, a + 2.6, y0, y1, 0, 0.05);
       }
-      for (const y of [3.8, 7.4, 11.2]) onFace(A, 'band', f, f.a0, y < 7 ? lo : hi, y - 0.3, y + 0.5, 0, 0.45);
+      for (const y of north ? [DH + 0.3, 7.4, 11.2] : [3.8, 7.4, 11.2]) onFace(A, 'band', f, f.a0, y < 7 ? lo : hi, y - 0.3, y + 0.5, 0, 0.45);
       onFace(A, 'brick', f, f.a0 + 0.6, hi - 0.6, 11.7, HP - 0.4, 0, 0.04);
     }
   }
@@ -240,7 +262,9 @@ export function buildE12(owner) {
   A.box('paving', -614, -609, 0, PL, 87.5 - UD, 87.5);
   onFace(A, 'glass', { ax: 'z', at: 87.5, out: 1 }, -613.6, -609.4, 8.0, HP - 1.8, 0, 0.05);
   A.box('roofLight', -614.2, -608.8, HP - 1, HP - 0.88, 58.8, 87.5);
-  A.box('lawn', -622.5, -602, 0.02, 0.1, 39, 59);
+  A.box('lawn', -622.5, -602, 0.02, 0.1, DT[1] + 0.5, 59);
+  A.box('lawn', -622.5, -602, 0.02, 0.1, 39, DT[0] - 0.5);
+  A.box('paving', -622.5, -602, 0.02, 0.12, DT[0] - 0.5, DT[1] + 0.5);
   A.box('wall', -622.5, -614, 0, 7.4, 58, 59); A.box('wall', -609, -602, 0, 7.4, 58, 59);
 
   const ZS = 87.5;
