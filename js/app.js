@@ -6,6 +6,7 @@ import {
   buildBuildings, buildAreas, buildWater, buildRoads, buildRails, buildTrees, buildCampusOutline,
   highlightGeometry, pointInRing,
 } from './builders.js';
+import { buildTraffic } from './traffic.js';
 
 const DATA = window.KMITL_DATA;
 const [LAT0, LON0] = DATA.origin;
@@ -86,7 +87,9 @@ layers.roads = buildRoads(DATA);
 layers.rails = buildRails(DATA);
 layers.campus = buildCampusOutline(DATA);
 layers.trees = buildTrees(DATA, DATA.buildings);
-for (const k of ['areas', 'water', 'roads', 'rails', 'campus', 'buildings', 'trees']) scene.add(layers[k]);
+const traffic = buildTraffic(DATA);
+layers.traffic = traffic.group;
+for (const k of ['areas', 'water', 'roads', 'rails', 'campus', 'buildings', 'trees', 'traffic']) scene.add(layers[k]);
 console.log(`world built in ${(performance.now() - t0).toFixed(0)} ms – ${buildingMeta.length} buildings, ${layers.trees.userData.count} trees`);
 
 // ---------- labels ----------
@@ -371,12 +374,13 @@ document.getElementById('compass').addEventListener('click', () => {
 });
 
 // ---------- layer toggles ----------
-const layerState = { buildings: true, labels: true, roadLabels: true, trees: true, satellite: false, shadows: true };
+const layerState = { buildings: true, labels: true, roadLabels: true, trees: true, traffic: true, satellite: false, shadows: true };
 function applyLayers() {
   layers.buildings.visible = layerState.buildings;
   layers.labels.visible = layerState.buildings && layerState.labels;
   layers.roadLabels.visible = layerState.roadLabels;
   layers.trees.visible = layerState.trees;
+  layers.traffic.visible = layerState.traffic;
   layers.areas.visible = !layerState.satellite;
   if (satMesh) satMesh.visible = layerState.satellite;
   document.getElementById('sat-attrib').hidden = !layerState.satellite;
@@ -419,6 +423,7 @@ function setTime(h) {
   scene.fog.color.set(day > 0.3 ? '#cfd9e3' : new THREE.Color('#cfd9e3').lerp(nightBg, 1 - day / 0.3));
   windowGlow = THREE.MathUtils.clamp((8 - elev) / 10, 0, 1);
   buildingMeshes.forEach((m) => { if (m.material.emissiveMap) m.material.emissiveIntensity = windowGlow * 1.6; });
+  traffic.setNight(windowGlow);
 }
 timeInput.addEventListener('input', () => setTime(+timeInput.value));
 setTime(+timeInput.value);
@@ -467,6 +472,7 @@ let frame = 0;
 function loop(manual = false) {
   const dt = manual ? 0.1 : Math.min(0.1, clock.getDelta());
   stepTween(dt);
+  if (layers.traffic.visible) traffic.update(dt);
   if (orbiting && !tween) controls.target.lerp(new THREE.Vector3(campusCentre[0], 0, campusCentre[1]), 0.01);
   controls.update();
   // keep the shadow frustum centred on what we're looking at
@@ -499,4 +505,4 @@ renderer.setAnimationLoop(null);
 loop();
 document.getElementById('loading').classList.add('done');
 // debugging hook: advance n frames synchronously (useful when the tab is in the background)
-window.__kmitl = { scene, camera, controls, buildingMeta, select, flyTo, setTime, step: (n = 20) => { for (let i = 0; i < n; i++) loop(true); } };
+window.__kmitl = { scene, camera, controls, buildingMeta, select, flyTo, setTime, traffic, step: (n = 20) => { for (let i = 0; i < n; i++) loop(true); } };

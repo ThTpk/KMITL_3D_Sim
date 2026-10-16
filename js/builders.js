@@ -1,5 +1,9 @@
 // Geometry builders: turn the compact OSM-derived data into merged three.js meshes.
 import * as THREE from 'three';
+import { buildECC, ECC_OUTLINE } from './models/ecc.js';
+
+// Buildings modelled by hand from the Street View / satellite survey (overrides.json "model")
+const MODELS = { ecc: { build: buildECC, outline: ECC_OUTLINE } };
 
 // ---------- small helpers ----------
 export function hash(n) {
@@ -332,6 +336,7 @@ function addPitchedRoof(soup, ring, base, shape, col, owner, roofH) {
 export function buildBuildings(list) {
   const walls = new Soup(true), roofs = new Soup(false);
   const meta = [];
+  const custom = [];
   // skip outlines that are fully described by building:part
   const parts = list.filter((b) => b.pt);
   const skip = new Set();
@@ -340,9 +345,21 @@ export function buildBuildings(list) {
     if (parts.some((p) => pointInRing(p.c[0], p.c[1], b.o))) skip.add(b);
   }
   list.forEach((b) => {
-    if (skip.has(b)) return;
+    if (skip.has(b) || b.hide) return; // hide: footprint already covered by a hand-built model
     const idx = meta.length;
     const H = buildingHeights(b);
+    const M = MODELS[b.model];
+    if (M) {
+      // replace the OSM outline with the surveyed one (highlight, label, tree clearance, area)
+      b.o = M.outline; delete b.h;
+      const pts = openRing(b.o);
+      b.c = [pts.reduce((s, p) => s + p[0], 0) / pts.length, pts.reduce((s, p) => s + p[1], 0) / pts.length].map((v) => Math.round(v * 10) / 10);
+      b.a = Math.round(Math.abs(ringOutwardSign(b.o)) / 2);
+      const built = M.build(idx, b);
+      custom.push(...built.meshes);
+      meta.push({ b, H, fac: 'custom', top: built.top });
+      return;
+    }
     const r = hash(b.id);
     const style = H.style;
     const wallCol = C(b.col || pick(PALETTE[style], r));
@@ -459,7 +476,7 @@ export function buildBuildings(list) {
   const roofMesh = new THREE.Mesh(roofs.geometry(), new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.9, side: THREE.DoubleSide, shadowSide: THREE.FrontSide }));
   roofMesh.castShadow = roofMesh.receiveShadow = true;
   roofMesh.userData.kind = 'building';
-  return { meshes: [...wallMeshes, roofMesh], meta };
+  return { meshes: [...wallMeshes, roofMesh, ...custom], meta };
 }
 
 function ringOutwardSign(ring) {
@@ -619,10 +636,10 @@ const ROAD_COL = {
   tertiary: '#6f7378', tertiary_link: '#73777c', unclassified: '#777a7f', residential: '#777a7f', service: '#7f8286', living_street: '#7f8286',
   pedestrian: '#cfc6b6', footway: '#d2c8b5', path: '#c4b79e', cycleway: '#b4645a', steps: '#bdb2a0', track: '#a99c80',
 };
-const ROAD_Y = { motorway: 0.34, trunk: 0.34, primary: 0.32, secondary: 0.3, tertiary: 0.28, motorway_link: 0.27, primary_link: 0.27, secondary_link: 0.27, tertiary_link: 0.27, residential: 0.24, unclassified: 0.24, living_street: 0.22, service: 0.2, pedestrian: 0.18, track: 0.16, footway: 0.15, path: 0.15, cycleway: 0.16, steps: 0.15 };
+export const ROAD_Y = { motorway: 0.34, trunk: 0.34, primary: 0.32, secondary: 0.3, tertiary: 0.28, motorway_link: 0.27, primary_link: 0.27, secondary_link: 0.27, tertiary_link: 0.27, residential: 0.24, unclassified: 0.24, living_street: 0.22, service: 0.2, pedestrian: 0.18, track: 0.16, footway: 0.15, path: 0.15, cycleway: 0.16, steps: 0.15 };
 const MAJOR = new Set(['motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'primary_link', 'secondary_link', 'motorway_link']);
 
-function elevationFn(r, L, base) {
+export function elevationFn(r, L, base) {
   if (!r.br && !(r.ly > 0)) return () => base;
   const H = L < 60 ? 1.0 : Math.max(1, r.ly || 1) * 6.5;
   const ramp = Math.min(90, L / 3);
