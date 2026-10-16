@@ -10,9 +10,10 @@
 //   north wing  x -294.9..-239.4 z -159.8..-145.3 10 floors (~35 m), set back behind the podium, balcony bands
 //   NE tower    x -239.4..-224.6 z -163.2..-145.3 floors 5-9 on round columns above the canopy
 //   south wing  x -300..-237.3   z -133.5..-117.4 10 floors, white bands wrapping a rounded SE end;
-//               lower brick-panel block x -314.9..-300 at its west end
-//   yard block  x -300..-287     tall, closes the open yard from the west road; blue glass strip
-//   court       z -145.3..-133.5: open yard (west), yard block, low workshops to the lobby
+//               west end on the road: deep balcony stack over a 2-storey brick base, shutter + ramp
+//   yard block  x -300..-287     full height, closes the open yard from the west road; blue glass strip
+//               (position fixed from Street View on the west road + its white roof on the satellite)
+//   court       z -145.3..-133.5: open yard x -314..-300, yard block, low workshops to the lobby
 //   entrance    curved white canopy (name lettering + blue glass ribbon) on round columns, facing east
 import * as THREE from 'three';
 
@@ -87,9 +88,9 @@ class Acc {
     const P = (t, x) => [x, y + Math.sin(t) * r * squash, zc - Math.cos(t) * r];
     for (let i = 0; i < seg; i++) {
       const t0 = (i / seg) * Math.PI, t1 = ((i + 1) / seg) * Math.PI;
-      this.quad(m, P(t0, x0), P(t0, x1), P(t1, x1), P(t1, x0));
-      this.tri(m, [x1, y, zc], P(t1, x1), P(t0, x1));
-      this.tri(m, [x0, y, zc], P(t0, x0), P(t1, x0));
+      this.quad(m, P(t1, x0), P(t1, x1), P(t0, x1), P(t0, x0));
+      this.tri(m, [x1, y, zc], P(t0, x1), P(t1, x1));
+      this.tri(m, [x0, y, zc], P(t1, x0), P(t0, x0));
     }
   }
 }
@@ -288,8 +289,7 @@ export function buildECC(owner) {
   const NW = [-294.9, -239.4, -159.8, -145.3];             // north wing tower (set back behind the podium)
   const NE = [-239.4, -224.6, -163.2, -145.3];             // NE tower (above the canopy)
   const SW = [-300, -237.3, -133.5, -117.4, { se: 7 }];    // south wing tower with rounded SE end
-  const SL = [-314.9, -300, -133.5, -117.4], HSL = 17.5;   // lower west end of the south wing (brick panels)
-  const CB = [-300, -287, WB[3], SW[2]];                   // tall block closing the yard (blue glass strip)
+  const CB = [-300, -287, NW[3], SW[2]];                   // tall block closing the yard (blue glass strip)
   const [c0, c1] = [8.0, 15.0];                            // canopy soffit / top (measured at the entrance and from the NE)
   const NEtop = lvY(10) + 0.3;                             // NE tower roof, one floor below the main roof
   const UP = L(5, 10);                                     // tower floors above the podium
@@ -300,7 +300,6 @@ export function buildECC(owner) {
   A.box('white', NW[0], NW[1], 0, ROOF, NW[2], NW[3]);
   A.box('white', NE[0], NE[1], c1, NEtop, NE[2], NE[3]);
   A.prism('white', rrect(SW[0], SW[1], SW[2], SW[3], SW[4]), 0, ROOF);
-  A.box('white', SL[0], SL[1], 0, HSL, SL[2], SL[3]);
   A.box('white', CB[0], CB[1], 0, ROOF, CB[2], CB[3]);
 
   // ===== west block: white frame, big brick panels, HV lab on the road =====
@@ -352,13 +351,18 @@ export function buildECC(owner) {
   // ===== NE tower and south wing: deep white bands all round =====
   ringBands(A, [...NE, {}], L(5, 9), 1.0, { base: false, roofY: NEtop });
   ringBands(A, SW, L(3, 10), 1.4);
-  // lower west end: white frame with brick panels like the west block
-  const rowsSL = [0.6, 6.2, 11.4, 15.8];
-  panelGrid(A, { ax: 'x', at: SL[0], out: -1, a0: SL[2], a1: SL[3], skip: (i, j) => i === 1 && j === 0 }, rowsSL, 8.0);
-  panelGrid(A, { ax: 'z', at: SL[3], out: 1, a0: SL[0], a1: SL[1] }, rowsSL, 7.4);
-  panelGrid(A, { ax: 'z', at: SL[2], out: -1, a0: SL[0], a1: SL[1] }, rowsSL, 7.4);
-  for (const f of [{ ax: 'x', at: SL[0], out: -1, a0: SL[2], a1: SL[3] }, { ax: 'z', at: SL[3], out: 1, a0: SL[0], a1: SL[1] }]) onFace(A, 'white', f, f.a0, f.a1, HSL - 0.5, HSL + 0.6, 0, 0.2);
-  A.box('shutter', SL[0] - 0.1, SL[0], 0, 3.8, -126.5, -122.5);
+  // west end: deep balconies stacked up the road face, over the brick base with a roller shutter and ramp
+  const SWW = { ax: 'x', at: SW[0], out: -1, a0: -130.2, a1: SW[3] };
+  for (const k of L(3, 10)) {
+    const y = lvY(k);
+    onFace(A, 'white', SWW, SWW.a0, SWW.a1, y - 0.25, y + 0.5, 0, 2.8);
+    onFace(A, 'grille', SWW, SWW.a0, SWW.a1, y + 0.5, y + 0.95, 2.7, 2.76);
+    onFace(A, 'white', SWW, SWW.a0, SWW.a1, y + 0.95, y + 1.1, 2.6, 2.8);
+    onFace(A, 'white', SWW, SWW.a0, SWW.a0 + 0.3, y + 0.5, y + 1.1, 1.4, 2.8); // side cheek
+  }
+  onFace(A, 'shutter', SWW, -125.6, -121.4, 0.9, 4.6, 0, 0.12);
+  A.box('paving', SW[0] - 9, SW[0], 0, 0.9, -126.4, -120.6);              // ramp up to the shutter
+  for (const z of [-126.6, -120.4]) A.box('white', SW[0] - 9, SW[0], 0, 1.3, z - 0.2, z);
   for (const x of [-282, -266]) A.box('shutter', x, x + 3.4, 0, 3.6, SW[3], SW[3] + 0.1);
 
   // ===== court (seen from the west road: open yard closed by a tall block, low workshops beyond) =====
@@ -422,12 +426,12 @@ export function buildECC(owner) {
 
   // ===== roofs (colours from the satellite image) =====
   A.box('roofWhite', WB[0] + 0.2, -309.8, HWB, HWB + 0.12, WB[2] + 0.2, WB[3] - 0.2);
-  A.box('roofLight', -309.8, WB[1] - 0.2, HWB, HWB + 0.12, WB[2] + 0.2, WB[3] - 0.2);
+  A.box('roofNavy', -309.8, WB[1] - 0.2, HWB, HWB + 0.12, WB[2] + 0.2, -158.8);   // north half navy like the podium
+  A.box('roofLight', -309.8, WB[1] - 0.2, HWB, HWB + 0.12, -158.8, WB[3] - 0.2);
   A.box('roofNavy', PD[0], PD[1] - 0.2, HPD, HPD + 0.12, PD[2] + 0.2, PD[3]);
   A.box('roofLight', NW[0], NW[1] - 0.2, ROOF, ROOF + 0.12, NW[2] + 0.2, NW[3] - 0.2);
   A.prism('roofWhite', rrect(SW[0], SW[1], SW[2], SW[3], SW[4], -0.2), ROOF, ROOF + 0.12, { sides: false });
-  A.box('roofWhite', SL[0] + 0.2, SL[1], HSL, HSL + 0.12, SL[2] + 0.2, SL[3] - 0.2);
-  A.box('roofWhite', NE[0] + 0.2, NE[1] - 0.2, NEtop, NEtop + 0.12, NE[2] + 0.2, NE[3] - 0.2);
+    A.box('roofWhite', NE[0] + 0.2, NE[1] - 0.2, NEtop, NEtop + 0.12, NE[2] + 0.2, NE[3] - 0.2);
   const parapet = (x0, x1, z0, z1, y, h = 1.0, t = 0.25) => {
     A.box('white', x0, x1, y, y + h, z0, z0 + t); A.box('white', x0, x1, y, y + h, z1 - t, z1);
     A.box('white', x0, x0 + t, y, y + h, z0, z1); A.box('white', x1 - t, x1, y, y + h, z0, z1);
@@ -442,7 +446,7 @@ export function buildECC(owner) {
   A.box('white', -283, -278, ROOF, ROOF + 2.4, -158.5, -154);
   A.box('tank', -250, -246, ROOF, ROOF + 2.0, -158.5, -155.5);
   A.box('white', -252, -245, ROOF, ROOF + 2.6, -130, -124);
-  for (const [x, z, h, y] of [[-244, -121, 4.6, ROOF], [-241, -128, 4.0, ROOF], [-226.5, -147.5, 4.8, NEtop], [-237.5, -161.5, 3.6, NEtop], [-300, -128, 3.4, ROOF]]) {
+  for (const [x, z, h, y] of [[-244, -121, 4.6, ROOF], [-241, -128, 4.0, ROOF], [-226.5, -147.5, 4.8, NEtop], [-237.5, -161.5, 3.6, NEtop], [-296.5, -128, 3.4, ROOF]]) {
     A.cyl('rail', x, z, 0.07, y, y + h, 6);
     A.box('ac', x - 0.25, x + 0.25, y + h - 1.6, y + h - 0.6, z - 0.12, z + 0.12);
   }
@@ -507,8 +511,9 @@ export function buildECC(owner) {
 
 // Overall ground outline (used for highlight, label position, tree clearance)
 export const ECC_OUTLINE = (() => {
+  const SWX = -302.8; // south wing west balconies
   const ell = Array.from({ length: 6 }, (_, i) => { const t = ((i + 1) / 6) * (Math.PI / 2); return [-237 + 13.3 * Math.cos(t), -135 + 12.3 * Math.sin(t)]; });
   const se = arc(-244.3, -124.4, 7, 0, Math.PI / 2, 4);
-  const ring = [[-314, -169.5], [-231.3, -169.5], [-231.3, -163.2], [-223.7, -163.2], [-223.7, -135], ...ell, ...se, [-314.9, -117.4], [-314.9, -133.5], [-314, -133.5]];
+  const ring = [[-314, -169.5], [-231.3, -169.5], [-231.3, -163.2], [-223.7, -163.2], [-223.7, -135], ...ell, ...se, [SWX, -117.4], [SWX, -133.5], [-314, -133.5]];
   return [...ring, ring[0]];
 })();
