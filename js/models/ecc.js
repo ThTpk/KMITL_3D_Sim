@@ -25,7 +25,7 @@ const lvY = (k) => LV[Math.min(k, 11) - 1];
 const ROOF = 38.8; // roof slab; parapet to ~39.8
 
 // ---------- geometry accumulator (one bucket per material) ----------
-class Acc {
+export class Acc {
   constructor() { this.b = {}; }
   bucket(m) { return (this.b[m] ||= { p: [], n: [], uv: [] }); }
   tri(m, a, b, c) {
@@ -101,7 +101,7 @@ const arc = (cx, cz, r, a0, a1, n) => Array.from({ length: n + 1 }, (_, i) => {
 });
 
 // ---------- textures (procedural canvas) ----------
-function canvasTex(w, h, draw, rx, ry) {
+export function canvasTex(w, h, draw, rx, ry) {
   const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
   draw(cv.getContext('2d'), w, h);
   const t = new THREE.CanvasTexture(cv);
@@ -110,7 +110,7 @@ function canvasTex(w, h, draw, rx, ry) {
   return t;
 }
 // orange-brick facing tiles with light joints (2.4 m square)
-const brickTex = () => canvasTex(256, 256, (g, w, h) => {
+export const brickTex = () => canvasTex(256, 256, (g, w, h) => {
   g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
   const rows = 32, cols = 10;
   for (let j = 0; j < rows; j++) for (let i = -1; i < cols; i++) {
@@ -121,7 +121,7 @@ const brickTex = () => canvasTex(256, 256, (g, w, h) => {
   }
 }, 2.4, 2.4);
 // window glass: mullions by day, random lit rooms at night (cells 2 m x 3.8 m)
-function glassTex(night) {
+export function glassTex(night) {
   return canvasTex(512, 512, (g, w, h) => {
     g.fillStyle = night ? '#000' : '#ffffff'; g.fillRect(0, 0, w, h);
     let s = 7;
@@ -137,7 +137,7 @@ function glassTex(night) {
     }
   }, 16, 15.2);
 }
-function textTex(text, { w = 2048, h = 160, color = '#5d5b57', bg = null, font = 'IBM Plex Sans Thai', weight = 600 } = {}) {
+export function textTex(text, { w = 2048, h = 160, color = '#5d5b57', bg = null, font = 'IBM Plex Sans Thai', weight = 600 } = {}) {
   const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
   const g = cv.getContext('2d');
   if (bg) { g.fillStyle = bg; g.fillRect(0, 0, w, h); }
@@ -153,7 +153,7 @@ function textTex(text, { w = 2048, h = 160, color = '#5d5b57', bg = null, font =
 // ---------- facade helpers ----------
 // Faces are described by an axis-aligned wall line; `out` is the outward unit step (±1) along the normal axis.
 // face = { ax: 'z' | 'x', at: plane coord, out: ±1, a0, a1 } where a0..a1 runs along the wall.
-function onFace(acc, m, f, a0, a1, y0, y1, d0, d1) {
+export function onFace(acc, m, f, a0, a1, y0, y1, d0, d1) {
   // box on face f from depth d0..d1 measured outward from the wall plane
   const p0 = f.at + f.out * d0, p1 = f.at + f.out * d1;
   if (f.ax === 'z') acc.box(m, a0, a1, y0, y1, p0, p1);

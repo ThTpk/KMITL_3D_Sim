@@ -1,9 +1,10 @@
 // Geometry builders: turn the compact OSM-derived data into merged three.js meshes.
 import * as THREE from 'three';
 import { buildECC, ECC_OUTLINE } from './models/ecc.js';
+import { buildE12, E12_OUTLINE } from './models/e12.js';
 
 // Buildings modelled by hand from the Street View / satellite survey (overrides.json "model")
-const MODELS = { ecc: { build: buildECC, outline: ECC_OUTLINE } };
+const MODELS = { ecc: { build: buildECC, outline: ECC_OUTLINE }, e12: { build: buildE12, outline: E12_OUTLINE } };
 
 // ---------- small helpers ----------
 export function hash(n) {
