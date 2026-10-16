@@ -374,8 +374,8 @@ document.getElementById('compass').addEventListener('click', () => {
 });
 
 // ---------- layer toggles ----------
-// defaults: satellite imagery as the ground; no trees, trains/cars, building or road names (all can be switched on in the panel)
-const layerState = { buildings: true, labels: false, roadLabels: false, trees: false, traffic: false, satellite: true, shadows: true };
+// defaults: only buildings and shadows; everything else can be switched on in the panel
+const layerState = { buildings: true, labels: false, roadLabels: false, trees: false, traffic: false, satellite: false, shadows: true };
 function applyLayers() {
   layers.buildings.visible = layerState.buildings;
   layers.labels.visible = layerState.buildings && layerState.labels;
