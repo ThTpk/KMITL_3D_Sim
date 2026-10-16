@@ -2,12 +2,15 @@
 // Surveyed 2026-10-17 from Google Street View and photo spheres: the art street to the south (car panos at
 // x -146 and -112, photo sphere at the entrance walkway), the plaza to the north (car panos at x -163 and -144),
 // plus Esri World Imagery for the plan and roofs. Photos were only looked at; everything here is procedural.
-// Not seen in any photo (trees / no coverage): the east and west end walls - kept plain.
+// East end and the east wing's north colonnade from car panos supplied by the user (north plaza, east car park).
+// Not seen in any photo (trees / no coverage): the west end wall - kept plain.
 //
 // Built axis-aligned around the OSM centroid, then turned -0.8° onto the OSM outline. x = east, z = south.
 //   west wing    x -179..-135.3   2 storeys (9.4 m): white frame, square piers every ~6.4 m, deep floor bands,
 //                                 4-pane window groups, solid parapet; roof with long E-W skylight strips
-//   east wing    x -112.3..-63.5  same frame; roof with N-S ridged (sawtooth) skylights
+//   east wing    x -112.3..-63.5  same frame on the south; on the north a double-height colonnade under a deep
+//                                 fascia (corridor behind); east end: brick panel with the name over a low canopy;
+//                                 roof with N-S ridged (sawtooth) skylights
 //   centre       x -141.2..-112.3 entrance between orange-brick towers, set back to z -219.7 behind a forecourt:
 //                                 open ground floor on columns, level-2 balcony, lettered level-3 band, KMITL sign;
 //                                 north half 2 storeys on columns with brick stair towers above the roof and a
@@ -69,19 +72,54 @@ export function buildThep(owner) {
   const HW = ROOFW + PAR;                                    // wing parapet top 9.4
 
   // ===== wings =====
+  const PD = 5;                                              // depth of the east wing's north colonnade
   for (const [x0, x1] of [WW, EW]) {
-    A.box('wall', x0 + 0.6, x1 - 0.6, 0, ROOFW, Z0 + 0.6, Z1 - 0.6);           // body behind the frame
+    const east = x0 === EW[0], zb = east ? Z0 + PD : Z0;     // east wing: north wall stands behind the colonnade
+    A.box('wall', x0 + 0.6, x1 - 0.6, 0, ROOFW, zb + 0.6, Z1 - 0.6);            // body behind the frame
     A.box('roof', x0 + 0.3, x1 - 0.3, ROOFW, ROOFW + 0.1, Z0 + 0.3, Z1 - 0.3);
-    wingFace(A, { ax: 'z', at: Z0, out: -1, a0: x0, a1: x1 }, { lintel: x0 === WW[0] ? [4, 5] : [] });
+    wingFace(A, { ax: 'z', at: zb, out: -1, a0: x0, a1: x1 }, { lintel: x0 === WW[0] ? [4, 5] : [] });
     wingFace(A, { ax: 'z', at: Z1, out: 1, a0: x0, a1: x1 });
-    // end walls (not seen in any photo): plain, bands carried round, one window column per floor
-    for (const [x, out] of [[x0, -1], [x1, 1]]) {
-      if ((x === WW[1]) || (x === EW[0])) continue;                            // against the centre
-      const f = { ax: 'x', at: x, out };
+    if (!east) {
+      // west end wall (not seen in any photo): plain, bands carried round, one window column per floor
+      const f = { ax: 'x', at: x0, out: -1 };
       onFace(A, 'wall', f, Z0, Z1, 0, HW, -0.6, 0);
       onFace(A, 'wall', f, Z0, Z1, G - 0.75, Y2 + 0.75, 0, 0.15);
       for (const [y0, y1] of [[0.7, G - 0.75], [Y2 + 0.75, ROOFW - 0.55]]) onFace(A, 'glass', f, -228.5, -224, y0, y1, 0, 0.05);
     }
+  }
+  // east wing, north side: double-height colonnade of tall square columns under a deep fascia, with the
+  // level-2 corridor (slab + railing) running along the recessed wall behind it
+  {
+    const n = Math.round((EW[1] - EW[0]) / 6.1), bw = (EW[1] - EW[0]) / n;
+    for (let i = 0; i <= n; i++) {
+      const x = Math.min(EW[1] - 0.7, Math.max(EW[0] + 0.7, EW[0] + i * bw));
+      A.box('wall', x - 0.7, x + 0.7, 0, ROOFW, Z0, Z0 + 1.4);
+    }
+    A.box('wall', EW[0], EW[1], ROOFW - 0.9, HW, Z0, Z0 + 1.4);                  // fascia beam
+    A.box('soffit', EW[0], EW[1], ROOFW - 0.3, ROOFW, Z0 + 1.4, Z0 + PD, false); // portico ceiling
+    for (let x = EW[0] + 3; x < EW[1]; x += 6.1) A.box('soffit', x - 0.25, x + 0.25, ROOFW - 0.9, ROOFW - 0.3, Z0 + 1.4, Z0 + PD);
+    A.box('wall', EW[0], EW[1], Y2 - 0.2, Y2 + 0.25, Z0 + PD - 2.2, Z0 + PD);    // corridor slab
+    A.box('rail', EW[0], EW[1], Y2 + 0.25, Y2 + 1.2, Z0 + PD - 2.2, Z0 + PD - 2.12);
+    A.box('plinth', EW[0], EW[1], 0, 0.5, Z0, Z0 + PD);
+  }
+  // east end (seen from the car park): white frame round a big orange-brick panel with the building name,
+  // brick ground floor with windows behind a low canopy on columns that carries on south as a covered walk
+  {
+    const X = EW[1], f = { ax: 'x', at: X, out: 1 };
+    onFace(A, 'wall', f, Z0, Z1, 0, HW, -0.6, 0);                                  // end wall, flush with the frame
+    onFace(A, 'brick', f, Z0 + PD + 0.8, Z1 - 0.8, Y2 + 0.6, ROOFW - 0.3, 0, 0.05);
+    onFace(A, 'wall', f, Z0, Z1, ROOFW - 0.3, HW, 0, 0.25);                       // top fascia
+    onFace(A, 'wall', f, Z0 + PD, Z0 + PD + 0.8, 0, HW, 0, 0.25);                  // frame edges
+    onFace(A, 'wall', f, Z1 - 0.8, Z1, 0, HW, 0, 0.25);
+    onFace(A, 'brick', f, Z0 + PD + 0.8, Z1 - 0.8, 0.5, 3.4, 0, 0.05);             // brick ground floor
+    for (let z = Z0 + PD + 2; z + 3 < Z1 - 1; z += 4.6) onFace(A, 'glass', f, z, z + 3, 1.1, 2.9, 0.05, 0.1);
+    A.box('wall', X, X + 4, Y2 - 0.3, Y2 + 0.1, Z0 + PD, -199);                      // canopy slab at level-2 height
+    A.box('wall', X + 3.6, X + 4, Y2 + 0.1, Y2 + 0.5, Z0 + PD, -199);              // its edge upstand
+    for (let z = Z0 + PD + 1; z <= -199.5; z += 5.2) A.box('wall', X + 3.2, X + 3.7, 0, Y2 - 0.3, z - 0.25, z + 0.25);
+    A.box('plinth', X, X + 4, 0, 0.3, Z0 + PD, -199);
+    // the colonnade turns the corner at the north end of the east face
+    for (const z of [Z0 + PD - 0.7]) A.box('wall', X - 1.4, X, 0, ROOFW, z - 0.7, z + 0.7);
+    A.box('wall', X - 1.4, X, ROOFW - 0.9, HW, Z0, Z0 + PD);
   }
   // roofs from the satellite: long E-W skylight strips on the west wing, N-S ridges on the east wing
   for (const z of [-236.5, -229.5, -222.5, -215.5]) A.box('skylight', WW[0] + 2, WW[1] - 2, ROOFW + 0.1, ROOFW + 0.9, z - 1.2, z + 1.2);
@@ -187,6 +225,8 @@ export function buildThep(owner) {
     g.computeVertexNormals();
     add(g, new THREE.MeshStandardMaterial({ map: tex, transparent: true, alphaTest: 0.3, roughness: 0.8 }));
   };
+  const xe = EW[1] + 0.08, ze0 = Z0 + PD + 3, ze1 = Z1 - 3;
+  sign(textTex('ศูนย์เรียนรวมสมเด็จพระเทพฯ', { color: '#efe7da', h: 140 }), [[xe, Y2 + 2.0, ze1], [xe, Y2 + 2.0, ze0], [xe, Y2 + 3.1, ze0], [xe, Y2 + 3.1, ze1]]);
   const zs = ZN + 0.42;
   sign(textTex('อาคารเรียนรวม สมเด็จพระเทพฯ', { color: '#5a4a40', h: 140 }), [[-130.8, ROOFW + 0.75, zs], [-117.5, ROOFW + 0.75, zs], [-117.5, ROOFW + 1.65, zs], [-130.8, ROOFW + 1.65, zs]]);
   sign(textTex('KMITL', { color: '#ffffff', bg: '#e2661f', w: 512, h: 160, weight: 700 }), [[-126.6, H3 + 0.7, ZN + 0.02], [-121.6, H3 + 0.7, ZN + 0.02], [-121.6, H3 + 2.2, ZN + 0.02], [-126.6, H3 + 2.2, ZN + 0.02]]);
