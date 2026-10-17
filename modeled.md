@@ -4,7 +4,7 @@
 
 สำรวจเมื่อ 2026-10-16 ถึงปัจจุบัน ภาพจาก Google Street View / Google Maps / ภาพดาวเทียม ใช้เป็นข้อมูลอ้างอิงในการขึ้นรูปเท่านั้น ไม่ได้แสดงในหน้าเว็บ รูปทรงทั้งหมดสร้างด้วยโค้ด
 
-## สรุปโมเดลเฉพาะ (92 หลัง)
+## สรุปโมเดลเฉพาะ (93 หลัง)
 
 | # | อาคาร | ไฟล์โมเดล | ชั้น | สูง (ม.) | OSM id |
 |---|---|---|---|---|---|
@@ -81,25 +81,26 @@
 | 71 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
 | 72 | [CMKL University](#cmkl) | `js/models/cmkl.js` | 10 | 38.9 | 784091346 |
 | 73 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
-| 74 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
-| 75 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
-| 76 | [7-Eleven](#seven) | `js/models/small.js` |  |  | 1138469403 |
-| 77 | [คาเฟ่ อเมซอน](#amazon) | `js/models/small.js` |  |  | 1138988422 |
-| 78 | [หอพักนักศึกษา อาคาร 9](#dorm9) | `js/models/dorms.js` | 10 | 36.2 | 1206348756 |
-| 79 | [อาคารนวัตกรรมการเรียนรู้](#innov) | `js/models/innov.js` | 4 | 14.7 | 1561993799 |
-| 80 | [สโมสรนักศึกษา คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี](#kruclub) | `js/models/small.js` |  |  | 1564107227 |
-| 81 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
-| 82 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
-| 83 | [KMITL Kosen Dormitory](#dormks) | `js/models/dorms.js` | 5 | 22.9 | 516204078 |
-| 84 | [สมาคมศิษย์เก่า](#alumni) | `js/models/mid.js` | 2 | 13.7 | 516204080 |
-| 85 | [โรงอาหารถิ่นชงโค](#tincan) | `js/models/small.js` |  |  | 1049724130 |
-| 86 | [KMITL Dormitory](#dormk) | `js/models/dorms.js` | 5 | 22.9 | 1116753937 |
-| 87 | [หอพักนักศึกษา อาคาร 10](#dorm10) | `js/models/dorms.js` | 10 | 36.2 | 1206348757 |
-| 88 | [หอพักนักศึกษา อาคาร 12](#dorm12) | `js/models/dorms.js` | 10 | 36.2 | 1206348759 |
-| 89 | [โรงอาหาร คณะเทคโนโลยีสารสนเทศ](#itcan) | `js/models/itcan.js` | 2 | 10.4 | 314205127 |
-| 90 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
-| 91 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
-| 92 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
+| 74 | [อินทนิล](#inthanin) | `js/models/small.js` |  |  | 1136346802 |
+| 75 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
+| 76 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
+| 77 | [7-Eleven](#seven) | `js/models/small.js` |  |  | 1138469403 |
+| 78 | [คาเฟ่ อเมซอน](#amazon) | `js/models/small.js` |  |  | 1138988422 |
+| 79 | [หอพักนักศึกษา อาคาร 9](#dorm9) | `js/models/dorms.js` | 10 | 36.2 | 1206348756 |
+| 80 | [อาคารนวัตกรรมการเรียนรู้](#innov) | `js/models/innov.js` | 4 | 14.7 | 1561993799 |
+| 81 | [สโมสรนักศึกษา คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี](#kruclub) | `js/models/small.js` |  |  | 1564107227 |
+| 82 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
+| 83 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
+| 84 | [KMITL Kosen Dormitory](#dormks) | `js/models/dorms.js` | 5 | 22.9 | 516204078 |
+| 85 | [สมาคมศิษย์เก่า](#alumni) | `js/models/mid.js` | 2 | 13.7 | 516204080 |
+| 86 | [โรงอาหารถิ่นชงโค](#tincan) | `js/models/small.js` |  |  | 1049724130 |
+| 87 | [KMITL Dormitory](#dormk) | `js/models/dorms.js` | 5 | 22.9 | 1116753937 |
+| 88 | [หอพักนักศึกษา อาคาร 10](#dorm10) | `js/models/dorms.js` | 10 | 36.2 | 1206348757 |
+| 89 | [หอพักนักศึกษา อาคาร 12](#dorm12) | `js/models/dorms.js` | 10 | 36.2 | 1206348759 |
+| 90 | [โรงอาหาร คณะเทคโนโลยีสารสนเทศ](#itcan) | `js/models/itcan.js` | 2 | 10.4 | 314205127 |
+| 91 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
+| 92 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
+| 93 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
 
 รูปทรง OSM ที่ซ่อนไว้เพราะเป็นส่วนของโมเดลเฉพาะ (`hide`): 1138463195, 1138463197, 1138463209, 1138463210
 
@@ -706,6 +707,14 @@
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the main block with solar arrays on its roof, the stepped seating along its south side, the low south wing, the stairs at the east end) and a 360° photo at the north gate (the north face from the drop-off, looking up). Every Street View car pano here predates the school (it shows a pond on the site).
 - ลักษณะอาคารที่บันทึก: โรงเรียนสาธิตนานาชาติ (KMIDS): ชั้นล่างสีเทาเข้มร่นเข้า ชั้น 2 ผนังอิฐแดงหน้าต่างกรอบขาวบนเสาเหลี่ยม / ชั้นบน 4 ชั้นผนังกระจกหลังโครงสีขาวพับไปมา ขอบพื้นแต่ละชั้นเป็นฟันปลาและค้ำเฉียงเชื่อมชั้นต่อชั้นเป็นลายข้าวหลามตัด / หลังคาเหล็กบางยื่นรอบด้าน ลาดสูงขึ้นทางทิศเหนือ ป้าย KMIDS สีทองที่เชิงชาย แผงโซลาร์บนหลังคา / หลังคาคลุมที่ส่งผู้โดยสารด้านตะวันตกเฉียงเหนือบนเสาเหล็กเอียง / ด้านใต้อัฒจันทร์ขั้นบันไดลงสวน อาคารเตี้ย 2 ชั้น / บันไดด้านตะวันออก
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): for the lean). ground floor dark grey, set back; second floor red brick with white-framed windows on square columns four upper floors of glass behind a folded white frame: every slab edge zig-zags out and in, and diagonal struts join the points of one floor to the next, so the face reads as a lattice of diamonds thin steel roof overhanging on all sides, rising to the north, with the gold KMIDS sign on its fascia; solar panel rows on top north-west: a deep canopy over the drop-off on slanted steel columns south: stepped seating down to the garden, a low two-storey wing x -189..-146, z -333..-324
+
+## อินทนิล <a id="inthanin"></a>
+
+- OSM id: 1136346802 · ไฟล์: `js/models/small.js` · ชั้น:  · สูง:  ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps เท่านั้น (ภาพ Street View ถ่ายก่อนสร้างร้าน)
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
+- ลักษณะอาคารที่บันทึก: อินทนิล: ร้านกาแฟชั้นเดียว หน้ากระจก หลังคาแบน แถบสีเขียวที่ชายคา
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
 
 ## ตึก A <a id="tka"></a>
 
