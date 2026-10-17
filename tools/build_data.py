@@ -197,6 +197,10 @@ def main():
                     b["ly"] = t["layer"]
                 if e["id"] in overrides:
                     b.update(overrides[e["id"]])
+                if b.get("pitch"):
+                    # mis-tagged as a building in OSM: draw it as an open sports surface instead
+                    sport.append({"o": outer, "h": holes, "k": b["pitch"], "lk": "pitch", "n": b.get("n")})
+                    continue
                 buildings.append(b)
             continue
 
