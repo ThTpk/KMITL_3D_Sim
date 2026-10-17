@@ -4,7 +4,7 @@
 
 สำรวจเมื่อ 2026-10-16 ถึงปัจจุบัน ภาพจาก Google Street View / Google Maps / ภาพดาวเทียม ใช้เป็นข้อมูลอ้างอิงในการขึ้นรูปเท่านั้น ไม่ได้แสดงในหน้าเว็บ รูปทรงทั้งหมดสร้างด้วยโค้ด
 
-## สรุปโมเดลเฉพาะ (82 หลัง)
+## สรุปโมเดลเฉพาะ (87 หลัง)
 
 | # | อาคาร | ไฟล์โมเดล | ชั้น | สูง (ม.) | OSM id |
 |---|---|---|---|---|---|
@@ -60,36 +60,41 @@
 | 50 | [ตึก วท.](#witt) | `js/models/witt.js` | 2 | 9.2 | 265596518 |
 | 51 | [A-Building](#abld) | `js/models/abld.js` | 6 | 21.8 | 292807567 |
 | 52 | [อาคารเฉลิมพระเกียรติ 55 พรรษา สมเด็จพระเทพฯ](#t55) | `js/models/t55.js` | 8 | 30 | 309556942 |
-| 53 | [ตึก ECC](#ecc) | `js/models/ecc.js` | 10 | 39.5 | 309557571 |
-| 54 | [โรงอาหาร ตึกพระเทพฯ](#thepcan) | `js/models/mid.js` |  | 8.7 | 309919518 |
-| 55 | [อาคารเรียนรวม สมเด็จพระเทพฯ](#thep) | `js/models/thep.js` | 2 | 9.4 | 309919519 |
-| 56 | [คณะทันตแพทยศาสตร์](#dent) | `js/models/dent.js` | 5 | 22.2 | 501351775 |
-| 57 | [ภาคอัตโนมัติ](#automation) | `js/models/mid.js` | 4 | 16 | 516204094 |
-| 58 | [ภาคไฟฟ้าและพลังงานไฟฟ้า](#elec) | `js/models/elec.js` | 2 | 11.6 | 516204095 |
-| 59 | [ธนาคารและไปรษณีย์](#bank) | `js/models/mid.js` | 1 | 4.3 | 516204096 |
-| 60 | [นาโน](#nano) | `js/models/mid.js` | 2 | 9 | 516204097 |
-| 61 | [คลินิกเวชกรรม สจล.](#clinic) | `js/models/mid.js` | 2 | 9.6 | 516204098 |
-| 62 | [อาคารจอมไตร](#jomtrai) | `js/models/jomtrai.js` | 3 | 13.4 | 516308731 |
-| 63 | [สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#pres) | `js/models/pres.js` | 10 | 38.8 | 516308733 |
-| 64 | [อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช](#royal) | `js/models/royal.js` | 1 | 22 | 516308734 |
-| 65 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
-| 66 | [CMKL University](#cmkl) | `js/models/cmkl.js` | 10 | 38.9 | 784091346 |
-| 67 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
-| 68 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
-| 69 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
-| 70 | [หอพักนักศึกษา อาคาร 9](#dorm9) | `js/models/dorms.js` | 10 | 36.2 | 1206348756 |
-| 71 | [อาคารนวัตกรรมการเรียนรู้](#innov) | `js/models/innov.js` | 4 | 14.7 | 1561993799 |
-| 72 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
-| 73 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
-| 74 | [KMITL Kosen Dormitory](#dormks) | `js/models/dorms.js` | 5 | 22.9 | 516204078 |
-| 75 | [สมาคมศิษย์เก่า](#alumni) | `js/models/mid.js` | 2 | 13.7 | 516204080 |
-| 76 | [KMITL Dormitory](#dormk) | `js/models/dorms.js` | 5 | 22.9 | 1116753937 |
-| 77 | [หอพักนักศึกษา อาคาร 10](#dorm10) | `js/models/dorms.js` | 10 | 36.2 | 1206348757 |
-| 78 | [หอพักนักศึกษา อาคาร 12](#dorm12) | `js/models/dorms.js` | 10 | 36.2 | 1206348759 |
-| 79 | [โรงอาหาร คณะเทคโนโลยีสารสนเทศ](#itcan) | `js/models/itcan.js` | 2 | 10.4 | 314205127 |
-| 80 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
-| 81 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
-| 82 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
+| 53 | [โรงอาหาร ตึก L](#lcan) | `js/models/small.js` |  |  | 309557500 |
+| 54 | [ตึก ECC](#ecc) | `js/models/ecc.js` | 10 | 39.5 | 309557571 |
+| 55 | [โรงอาหาร ตึกพระเทพฯ](#thepcan) | `js/models/mid.js` |  | 8.7 | 309919518 |
+| 56 | [อาคารเรียนรวม สมเด็จพระเทพฯ](#thep) | `js/models/thep.js` | 2 | 9.4 | 309919519 |
+| 57 | [คณะทันตแพทยศาสตร์](#dent) | `js/models/dent.js` | 5 | 22.2 | 501351775 |
+| 58 | [สโมสรนักศึกษา คณะวิศวกรรมศาสตร์](#engclub) | `js/models/small.js` | 1 |  | 516204084 |
+| 59 | [ภาคอัตโนมัติ](#automation) | `js/models/mid.js` | 4 | 16 | 516204094 |
+| 60 | [ภาคไฟฟ้าและพลังงานไฟฟ้า](#elec) | `js/models/elec.js` | 2 | 11.6 | 516204095 |
+| 61 | [ธนาคารและไปรษณีย์](#bank) | `js/models/mid.js` | 1 | 4.3 | 516204096 |
+| 62 | [นาโน](#nano) | `js/models/mid.js` | 2 | 9 | 516204097 |
+| 63 | [คลินิกเวชกรรม สจล.](#clinic) | `js/models/mid.js` | 2 | 9.6 | 516204098 |
+| 64 | [อาคารจอมไตร](#jomtrai) | `js/models/jomtrai.js` | 3 | 13.4 | 516308731 |
+| 65 | [สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#pres) | `js/models/pres.js` | 10 | 38.8 | 516308733 |
+| 66 | [อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช](#royal) | `js/models/royal.js` | 1 | 22 | 516308734 |
+| 67 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
+| 68 | [CMKL University](#cmkl) | `js/models/cmkl.js` | 10 | 38.9 | 784091346 |
+| 69 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
+| 70 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
+| 71 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
+| 72 | [7-Eleven](#seven) | `js/models/small.js` |  |  | 1138469403 |
+| 73 | [คาเฟ่ อเมซอน](#amazon) | `js/models/small.js` |  |  | 1138988422 |
+| 74 | [หอพักนักศึกษา อาคาร 9](#dorm9) | `js/models/dorms.js` | 10 | 36.2 | 1206348756 |
+| 75 | [อาคารนวัตกรรมการเรียนรู้](#innov) | `js/models/innov.js` | 4 | 14.7 | 1561993799 |
+| 76 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
+| 77 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
+| 78 | [KMITL Kosen Dormitory](#dormks) | `js/models/dorms.js` | 5 | 22.9 | 516204078 |
+| 79 | [สมาคมศิษย์เก่า](#alumni) | `js/models/mid.js` | 2 | 13.7 | 516204080 |
+| 80 | [โรงอาหารถิ่นชงโค](#tincan) | `js/models/small.js` |  |  | 1049724130 |
+| 81 | [KMITL Dormitory](#dormk) | `js/models/dorms.js` | 5 | 22.9 | 1116753937 |
+| 82 | [หอพักนักศึกษา อาคาร 10](#dorm10) | `js/models/dorms.js` | 10 | 36.2 | 1206348757 |
+| 83 | [หอพักนักศึกษา อาคาร 12](#dorm12) | `js/models/dorms.js` | 10 | 36.2 | 1206348759 |
+| 84 | [โรงอาหาร คณะเทคโนโลยีสารสนเทศ](#itcan) | `js/models/itcan.js` | 2 | 10.4 | 314205127 |
+| 85 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
+| 86 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
+| 87 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
 
 รูปทรง OSM ที่ซ่อนไว้เพราะเป็นส่วนของโมเดลเฉพาะ (`hide`): 1138463195, 1138463197, 1138463209, 1138463210
 
@@ -521,6 +526,14 @@
 - ลักษณะอาคารที่บันทึก: อาคารเฉลิมพระเกียรติ 55 พรรษา: อาคาร 8 ชั้นผนังฉาบสีเทาอมฟ้า / ชั้นล่างโล่งหลังเสาเหลี่ยมสีขาว บันไดและราวด้านหน้า ผนังทางเข้าแผงสีส้มแดง แถบกันสาดสีขาว / ชั้นบนแถบพื้นสีขาวลึก หน้าต่างกรอบขาวกับคอยล์ร้อนแอร์ ระเบียงร่นที่มุม แถบสีส้มใต้ชั้น 3 ขอบหลังคาสีขาว / หลังคาครึ่งเหนือปูแผงโซลาร์ ครึ่งใต้มีงานระบบ / อาคารเตี้ยด้านตะวันออก / ลานจอดรถด้านใต้
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): eight storeys of light blue-grey render; the ground floor open behind square white columns with steps and a rail across the front, red-orange panels on the entrance walls; a white canopy band over it upper floors: deep white floor bands, white-framed windows with AC units, recessed balconies at the corners; an orange stripe along the bottom of the third floor; a white roof edge north part of the roof with solar panels, plant on the south part; low annex on the east side
 
+## โรงอาหาร ตึก L <a id="lcan"></a>
+
+- OSM id: 309557500 · ไฟล์: `js/models/small.js` · ชั้น:  · สูง:  ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps + Street View ถนนด้านตะวันออก
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
+- ลักษณะอาคารที่บันทึก: โรงอาหารตึก L: ชั้นเดียวเปิดโล่งบนเสา หลังคาโลหะ ห้องครัวสีครีม
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys clad in blue-green glass; ลานเชียร์: an open hall of steel posts under a broad roof
+
 ## ตึก ECC <a id="ecc"></a>
 
 *ECC Building*
@@ -554,6 +567,16 @@
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (a five-storey block with solar panels over its whole roof, a lower wing on the south with a grid of small roof lights, a forecourt on the south) and Google Street View from the roads on the east, south and west sides.
 - ลักษณะอาคารที่บันทึก: คณะทันตแพทยศาสตร์: อาคารขาวแนวนอน ชั้นล่างกระจก แผงสีม่วง หลังคากันสาดโค้งที่ทางเข้า
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): main block x 222..275 / z -388..-365: five storeys of white render, rows of windows in white frames with thin sunshade hoods, a stair tower stepping up on the east end south wing x 222..265 / z -365..-345: two storeys with a glazed ground floor, purple panels and a curved canopy over the entrance steps
+
+## สโมสรนักศึกษา คณะวิศวกรรมศาสตร์ <a id="engclub"></a>
+
+*Student Engineering Clubs*
+
+- OSM id: 516204084 · ไฟล์: `js/models/small.js` · ชั้น: 1 · สูง:  ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps + Street View ถนนด้านเหนือและลานด้านตะวันออก
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
+- ลักษณะอาคารที่บันทึก: สโมสรนักศึกษาคณะวิศวกรรมศาสตร์: 2 ชั้นคอนกรีตสีขาวเก่า หลังคาแบน
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys clad in blue-green glass; ลานเชียร์: an open hall of steel posts under a broad roof
 
 ## ภาคอัตโนมัติ <a id="automation"></a>
 
@@ -663,6 +686,24 @@
 - ลักษณะอาคารที่บันทึก: อาคารมหาวิทยาลัย: อาคาร 2 ชั้นระหว่างสำนักงานอธิการบดีกับตึก A / ชั้นล่างกระจกร่นหลังเสากลมสีขาว ใต้แถบชายคาบานเกล็ดสีเทา / ชั้นบนอิฐแดงในกรอบเสาและพื้นสีขาว ระเบียงมีคอยล์ร้อนแอร์ที่มุมตะวันออกเฉียงเหนือ / หลังคาปิรามิดแปดเหลี่ยมสีขาวเทาครึ่งเหนือ หลังคาแบนครึ่งใต้ / ซุ้มทางเข้าด้านใต้หลังคาฟันปลาสีขาว แผ่นโปร่งแสงสีเขียว / ทางเดินมีหลังคาเชื่อมไปอาคารสำนักงานอธิการบดี
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): body x -30..-9.3, z -306.6..-267: ground floor glazed, set back behind round white columns under a grey louvred soffit band; upper storey red brick in a white frame of columns and floor slabs, balcony with AC units at the north-east corner; white roof edge north half: low eight-sided pyramid roof, light grey; south half: flat roof, dark porch x -28.8..-17, z -267..-257: white zig-zag canopy with a green translucent roof on white columns, steps; covered link x -29.8..-9.3, z -316.5..-306.6: flat roof on columns to the President building
 
+## 7-Eleven <a id="seven"></a>
+
+- OSM id: 1138469403 · ไฟล์: `js/models/small.js` · ชั้น:  · สูง:  ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps + Street View ถนนด้านตะวันออก
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
+- ลักษณะอาคารที่บันทึก: 7-Eleven: ร้านชั้นเดียวสีขาว หน้าร้านกระจก แถบสีส้ม เขียว แดงที่ชายคา
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys clad in blue-green glass; ลานเชียร์: an open hall of steel posts under a broad roof
+
+## คาเฟ่ อเมซอน <a id="amazon"></a>
+
+*Café Amazon*
+
+- OSM id: 1138988422 · ไฟล์: `js/models/small.js` · ชั้น:  · สูง:  ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps เท่านั้น (ภาพ Street View ถ่ายก่อนสร้างร้าน)
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
+- ลักษณะอาคารที่บันทึก: คาเฟ่อเมซอน: ร้านชั้นเดียว หน้ากระจก หลังคาแบน แถบสีเขียวที่ชายคา
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys clad in blue-green glass; ลานเชียร์: an open hall of steel posts under a broad roof
+
 ## หอพักนักศึกษา อาคาร 9 <a id="dorm9"></a>
 
 - OSM id: 1206348756 · ไฟล์: `js/models/dorms.js` · ชั้น: 10 · สูง: 36.2 ม.
@@ -712,6 +753,14 @@
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks round each one.
 - ลักษณะอาคารที่บันทึก: สมาคมศิษย์เก่า: 2 ชั้น แผงหน้าอาคารสีขาวลึกมีชื่อสมาคมสีแดง (ไทยและอังกฤษ) ชั้นล่างกระจกหลังเสาขาวเรียว กันสาดหน้าประตู / ปิรามิดกระจกกลางหลังคา
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: a broad open hall on white columns under a light roof with solar panels, a red-brick service core, beside a pond นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side คลินิกเวชกรรม: a two-storey brick-faced block behind a tall white frame of slender square columns carrying a deep roof slab; a low wing with a long covered drop-off ภาคอัตโนมัติ: four storeys, white walls with cream floor bands and panels of grey louvres
+
+## โรงอาหารถิ่นชงโค <a id="tincan"></a>
+
+- OSM id: 1049724130 · ไฟล์: `js/models/small.js` · ชั้น:  · สูง:  ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคาโลหะ) + Street View ถนนด้านตะวันตก
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
+- ลักษณะอาคารที่บันทึก: โรงอาหารถิ่นชงโค: ชั้นเดียว ผนังครีม หลังคาโลหะลอนชายคาลึก
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys clad in blue-green glass; ลานเชียร์: an open hall of steel posts under a broad roof
 
 ## KMITL Dormitory <a id="dormk"></a>
 
