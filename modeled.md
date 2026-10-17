@@ -4,7 +4,7 @@
 
 สำรวจเมื่อ 2026-10-16 ถึงปัจจุบัน ภาพจาก Google Street View / Google Maps / ภาพดาวเทียม ใช้เป็นข้อมูลอ้างอิงในการขึ้นรูปเท่านั้น ไม่ได้แสดงในหน้าเว็บ รูปทรงทั้งหมดสร้างด้วยโค้ด
 
-## สรุปโมเดลเฉพาะ (67 หลัง)
+## สรุปโมเดลเฉพาะ (72 หลัง)
 
 | # | อาคาร | ไฟล์โมเดล | ชั้น | สูง (ม.) | OSM id |
 |---|---|---|---|---|---|
@@ -21,60 +21,65 @@
 | 11 | [shop ไม้](#shopwood1) | `js/models/shops.js` | 2 | 9 | 1243388146 |
 | 12 | [shop Textile](#shoptextile) | `js/models/shops.js` | 2 | 9 | 1243388147 |
 | 13 | [shop ดำ](#shopblack) | `js/models/shops.js` | 2 | 9 | 1491133180 |
-| 14 | [shop furniture](#shopfurn2) | `js/models/shops.js` | 2 | 9 | 1491133191 |
-| 15 | [ยิมเล็ก](#gym) | `js/models/engw.js` |  | 13.5 | 190886418 |
-| 16 | [ภาควิชาวิศวกรรมวัดและควบคุม](#control) | `js/models/deps.js` | 3 | 12.5 | 190889047 |
-| 17 | [เครื่องกล workshop](#workshopw) | `js/models/deps.js` | 2 | 8.4 | 190889049 |
-| 18 | [ภาควิชาวิศวกรรมเครื่องกล](#mech) | `js/models/engw.js` | 4 | 17.2 | 190889051 |
-| 19 | [เครื่องกล workshop](#workshope) | `js/models/deps.js` | 2 | 8.4 | 190889053 |
-| 20 | [โรงอาหาร 3 (C)](#canc) | `js/models/engw.js` | 2 | 10.8 | 190890100 |
-| 21 | [อาคารเรียนรวม คณะวิศวกรรมศาสตร์ (12 ชั้น)](#e12) | `js/models/e12.js` | 12 | 47.5 | 516204086 |
-| 22 | [ภาคอุตสาหการ](#indus) | `js/models/engw.js` | 3 | 14.5 | 516204087 |
-| 23 | [อัฒจันทร์ สนามกีฬากลาง](#stad) | `js/models/stad.js` | 3 | 17 | 1138463206 |
-| 24 | [หอพักนักศึกษา อาคาร 11](#dorm11) | `js/models/dorms.js` | 10 | 36.2 | 1206348758 |
-| 25 | [สำนักหอสมุดกลาง อาคารเฉลิมพระเกียรติ](#lib) | `js/models/lib.js` | 6 | 21 | 190697423 |
-| 26 | [หอประชุมวิศวะ](#eaud) | `js/models/eaud.js` | 2 | 17.4 | 190868497 |
-| 27 | [หอประชุมวิศวะ](#ewing) | `js/models/ewing.js` | 2 | 11.3 | 190868498 |
-| 28 | [ตึกโทรคมนาคม](#tel) | `js/models/tel.js` | 4 | 14.8 | 190868528 |
-| 29 | [ตึกบี](#bbld) | `js/models/bbld.js` | 4 | 13.6 | 190870224 |
-| 30 | [โรงอาหาร A คณะวิศวกรรมศาสตร์](#cana) | `js/models/cana.js` | 1 | 8.6 | 190880523 |
-| 31 | [หอประชุมจุฬาภรณ์วลับลักษณ์](#chaud) | `js/models/chaud.js` | 3 | 15.8 | 265574872 |
-| 32 | [จุฬาภรณ์วลัยลักษณ์ 2](#chula2) | `js/models/chula2.js` | 6 | 23.4 | 265574874 |
-| 33 | [ตึกปฏิบัติการณ์หลังใหม่](#newlab) | `js/models/newlab.js` | 10 | 38 | 265588799 |
-| 34 | [โรงอาหาร คณะวิทยาศาสตร์](#scican) | `js/models/scican.js` |  | 9.5 | 265596517 |
-| 35 | [ตึก วท.](#witt) | `js/models/witt.js` | 2 | 9.2 | 265596518 |
-| 36 | [A-Building](#abld) | `js/models/abld.js` | 6 | 21.8 | 292807567 |
-| 37 | [อาคารเฉลิมพระเกียรติ 55 พรรษา สมเด็จพระเทพฯ](#t55) | `js/models/t55.js` | 8 | 30 | 309556942 |
-| 38 | [ตึก ECC](#ecc) | `js/models/ecc.js` | 10 | 39.5 | 309557571 |
-| 39 | [โรงอาหาร ตึกพระเทพฯ](#thepcan) | `js/models/mid.js` |  | 8.7 | 309919518 |
-| 40 | [อาคารเรียนรวม สมเด็จพระเทพฯ](#thep) | `js/models/thep.js` | 2 | 9.4 | 309919519 |
-| 41 | [คณะทันตแพทยศาสตร์](#dent) | `js/models/dent.js` | 5 | 22.2 | 501351775 |
-| 42 | [ภาคอัตโนมัติ](#automation) | `js/models/mid.js` | 4 | 16 | 516204094 |
-| 43 | [ภาคไฟฟ้าและพลังงานไฟฟ้า](#elec) | `js/models/elec.js` | 2 | 11.6 | 516204095 |
-| 44 | [ธนาคารและไปรษณีย์](#bank) | `js/models/mid.js` | 1 | 4.3 | 516204096 |
-| 45 | [นาโน](#nano) | `js/models/mid.js` | 2 | 9 | 516204097 |
-| 46 | [คลินิกเวชกรรม สจล.](#clinic) | `js/models/mid.js` | 2 | 9.6 | 516204098 |
-| 47 | [อาคารจอมไตร](#jomtrai) | `js/models/jomtrai.js` | 3 | 13.4 | 516308731 |
-| 48 | [สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#pres) | `js/models/pres.js` | 10 | 38.8 | 516308733 |
-| 49 | [อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช](#royal) | `js/models/royal.js` | 1 | 22 | 516308734 |
-| 50 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
-| 51 | [CMKL University](#cmkl) | `js/models/cmkl.js` | 10 | 38.9 | 784091346 |
-| 52 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
-| 53 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
-| 54 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
-| 55 | [หอพักนักศึกษา อาคาร 9](#dorm9) | `js/models/dorms.js` | 10 | 36.2 | 1206348756 |
-| 56 | [อาคารนวัตกรรมการเรียนรู้](#innov) | `js/models/innov.js` | 4 | 14.7 | 1561993799 |
-| 57 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
-| 58 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
-| 59 | [KMITL Kosen Dormitory](#dormks) | `js/models/dorms.js` | 5 | 22.9 | 516204078 |
-| 60 | [สมาคมศิษย์เก่า](#alumni) | `js/models/mid.js` | 2 | 13.7 | 516204080 |
-| 61 | [KMITL Dormitory](#dormk) | `js/models/dorms.js` | 5 | 22.9 | 1116753937 |
-| 62 | [หอพักนักศึกษา อาคาร 10](#dorm10) | `js/models/dorms.js` | 10 | 36.2 | 1206348757 |
-| 63 | [หอพักนักศึกษา อาคาร 12](#dorm12) | `js/models/dorms.js` | 10 | 36.2 | 1206348759 |
-| 64 | [โรงอาหาร คณะเทคโนโลยีสารสนเทศ](#itcan) | `js/models/itcan.js` | 2 | 10.4 | 314205127 |
-| 65 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
-| 66 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
-| 67 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
+| 14 | [shop furniture](#shopfurn1) | `js/models/shops.js` | 2 | 9 | 1491133181 |
+| 15 | [shop ส้ม](#shoporange) | `js/models/shops.js` | 2 | 9 | 1491133182 |
+| 16 | [shop ส้มเล็ก](#shoporanges) | `js/models/shops.js` | 1 | 6 | 1491133188 |
+| 17 | [shop ceramic](#shopceramic1) | `js/models/shops.js` | 1 | 6 | 1491133189 |
+| 18 | [shop furniture](#shopfurn3) | `js/models/shops.js` | 1 | 6 | 1491133190 |
+| 19 | [shop furniture](#shopfurn2) | `js/models/shops.js` | 2 | 9 | 1491133191 |
+| 20 | [ยิมเล็ก](#gym) | `js/models/engw.js` |  | 13.5 | 190886418 |
+| 21 | [ภาควิชาวิศวกรรมวัดและควบคุม](#control) | `js/models/deps.js` | 3 | 12.5 | 190889047 |
+| 22 | [เครื่องกล workshop](#workshopw) | `js/models/deps.js` | 2 | 8.4 | 190889049 |
+| 23 | [ภาควิชาวิศวกรรมเครื่องกล](#mech) | `js/models/engw.js` | 4 | 17.2 | 190889051 |
+| 24 | [เครื่องกล workshop](#workshope) | `js/models/deps.js` | 2 | 8.4 | 190889053 |
+| 25 | [โรงอาหาร 3 (C)](#canc) | `js/models/engw.js` | 2 | 10.8 | 190890100 |
+| 26 | [อาคารเรียนรวม คณะวิศวกรรมศาสตร์ (12 ชั้น)](#e12) | `js/models/e12.js` | 12 | 47.5 | 516204086 |
+| 27 | [ภาคอุตสาหการ](#indus) | `js/models/engw.js` | 3 | 14.5 | 516204087 |
+| 28 | [อัฒจันทร์ สนามกีฬากลาง](#stad) | `js/models/stad.js` | 3 | 17 | 1138463206 |
+| 29 | [หอพักนักศึกษา อาคาร 11](#dorm11) | `js/models/dorms.js` | 10 | 36.2 | 1206348758 |
+| 30 | [สำนักหอสมุดกลาง อาคารเฉลิมพระเกียรติ](#lib) | `js/models/lib.js` | 6 | 21 | 190697423 |
+| 31 | [หอประชุมวิศวะ](#eaud) | `js/models/eaud.js` | 2 | 17.4 | 190868497 |
+| 32 | [หอประชุมวิศวะ](#ewing) | `js/models/ewing.js` | 2 | 11.3 | 190868498 |
+| 33 | [ตึกโทรคมนาคม](#tel) | `js/models/tel.js` | 4 | 14.8 | 190868528 |
+| 34 | [ตึกบี](#bbld) | `js/models/bbld.js` | 4 | 13.6 | 190870224 |
+| 35 | [โรงอาหาร A คณะวิศวกรรมศาสตร์](#cana) | `js/models/cana.js` | 1 | 8.6 | 190880523 |
+| 36 | [หอประชุมจุฬาภรณ์วลับลักษณ์](#chaud) | `js/models/chaud.js` | 3 | 15.8 | 265574872 |
+| 37 | [จุฬาภรณ์วลัยลักษณ์ 2](#chula2) | `js/models/chula2.js` | 6 | 23.4 | 265574874 |
+| 38 | [ตึกปฏิบัติการณ์หลังใหม่](#newlab) | `js/models/newlab.js` | 10 | 38 | 265588799 |
+| 39 | [โรงอาหาร คณะวิทยาศาสตร์](#scican) | `js/models/scican.js` |  | 9.5 | 265596517 |
+| 40 | [ตึก วท.](#witt) | `js/models/witt.js` | 2 | 9.2 | 265596518 |
+| 41 | [A-Building](#abld) | `js/models/abld.js` | 6 | 21.8 | 292807567 |
+| 42 | [อาคารเฉลิมพระเกียรติ 55 พรรษา สมเด็จพระเทพฯ](#t55) | `js/models/t55.js` | 8 | 30 | 309556942 |
+| 43 | [ตึก ECC](#ecc) | `js/models/ecc.js` | 10 | 39.5 | 309557571 |
+| 44 | [โรงอาหาร ตึกพระเทพฯ](#thepcan) | `js/models/mid.js` |  | 8.7 | 309919518 |
+| 45 | [อาคารเรียนรวม สมเด็จพระเทพฯ](#thep) | `js/models/thep.js` | 2 | 9.4 | 309919519 |
+| 46 | [คณะทันตแพทยศาสตร์](#dent) | `js/models/dent.js` | 5 | 22.2 | 501351775 |
+| 47 | [ภาคอัตโนมัติ](#automation) | `js/models/mid.js` | 4 | 16 | 516204094 |
+| 48 | [ภาคไฟฟ้าและพลังงานไฟฟ้า](#elec) | `js/models/elec.js` | 2 | 11.6 | 516204095 |
+| 49 | [ธนาคารและไปรษณีย์](#bank) | `js/models/mid.js` | 1 | 4.3 | 516204096 |
+| 50 | [นาโน](#nano) | `js/models/mid.js` | 2 | 9 | 516204097 |
+| 51 | [คลินิกเวชกรรม สจล.](#clinic) | `js/models/mid.js` | 2 | 9.6 | 516204098 |
+| 52 | [อาคารจอมไตร](#jomtrai) | `js/models/jomtrai.js` | 3 | 13.4 | 516308731 |
+| 53 | [สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#pres) | `js/models/pres.js` | 10 | 38.8 | 516308733 |
+| 54 | [อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช](#royal) | `js/models/royal.js` | 1 | 22 | 516308734 |
+| 55 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
+| 56 | [CMKL University](#cmkl) | `js/models/cmkl.js` | 10 | 38.9 | 784091346 |
+| 57 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
+| 58 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
+| 59 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
+| 60 | [หอพักนักศึกษา อาคาร 9](#dorm9) | `js/models/dorms.js` | 10 | 36.2 | 1206348756 |
+| 61 | [อาคารนวัตกรรมการเรียนรู้](#innov) | `js/models/innov.js` | 4 | 14.7 | 1561993799 |
+| 62 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
+| 63 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
+| 64 | [KMITL Kosen Dormitory](#dormks) | `js/models/dorms.js` | 5 | 22.9 | 516204078 |
+| 65 | [สมาคมศิษย์เก่า](#alumni) | `js/models/mid.js` | 2 | 13.7 | 516204080 |
+| 66 | [KMITL Dormitory](#dormk) | `js/models/dorms.js` | 5 | 22.9 | 1116753937 |
+| 67 | [หอพักนักศึกษา อาคาร 10](#dorm10) | `js/models/dorms.js` | 10 | 36.2 | 1206348757 |
+| 68 | [หอพักนักศึกษา อาคาร 12](#dorm12) | `js/models/dorms.js` | 10 | 36.2 | 1206348759 |
+| 69 | [โรงอาหาร คณะเทคโนโลยีสารสนเทศ](#itcan) | `js/models/itcan.js` | 2 | 10.4 | 314205127 |
+| 70 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
+| 71 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
+| 72 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
 
 รูปทรง OSM ที่ซ่อนไว้เพราะเป็นส่วนของโมเดลเฉพาะ (`hide`): 1138463195, 1138463197, 1138463209, 1138463210
 
@@ -179,6 +184,46 @@
 ## shop ดำ <a id="shopblack"></a>
 
 - OSM id: 1491133180 · ไฟล์: `js/models/shops.js` · ชั้น: 2 · สูง: 9 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps เท่านั้น (หลังคาโลหะจั่ว ช่องแสงหลังคา) ไม่มีภาพ Street View ในลานโรงงาน
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery only: light metal gabled roofs with ridges running east-west and rows of roof lights, two brown roofs, and two open steel frames at the south end. No Street View reaches the yard, so walls and heights are a plain reading of the roofs (taller sheds for the two-level ones in OSM).
+- ลักษณะอาคารที่บันทึก: โรงงานฝึกปฏิบัติ: ผนังครีม หน้าต่างแถบสูง ประตูม้วน หลังคาโลหะจั่วสีเทาอ่อนมีช่องแสง
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): cream walls with a band of high windows and roller doors; light grey corrugated gabled roofs; the steel shops at the south end are open frames of grey steel with part of the roof sheeted
+
+## shop furniture <a id="shopfurn1"></a>
+
+- OSM id: 1491133181 · ไฟล์: `js/models/shops.js` · ชั้น: 2 · สูง: 9 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps เท่านั้น (หลังคาโลหะจั่ว ช่องแสงหลังคา) ไม่มีภาพ Street View ในลานโรงงาน
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery only: light metal gabled roofs with ridges running east-west and rows of roof lights, two brown roofs, and two open steel frames at the south end. No Street View reaches the yard, so walls and heights are a plain reading of the roofs (taller sheds for the two-level ones in OSM).
+- ลักษณะอาคารที่บันทึก: โรงงานฝึกปฏิบัติ: ผนังครีม หน้าต่างแถบสูง ประตูม้วน หลังคาโลหะจั่วสีเทาอ่อนมีช่องแสง
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): cream walls with a band of high windows and roller doors; light grey corrugated gabled roofs; the steel shops at the south end are open frames of grey steel with part of the roof sheeted
+
+## shop ส้ม <a id="shoporange"></a>
+
+- OSM id: 1491133182 · ไฟล์: `js/models/shops.js` · ชั้น: 2 · สูง: 9 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps เท่านั้น (หลังคาโลหะจั่ว ช่องแสงหลังคา) ไม่มีภาพ Street View ในลานโรงงาน
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery only: light metal gabled roofs with ridges running east-west and rows of roof lights, two brown roofs, and two open steel frames at the south end. No Street View reaches the yard, so walls and heights are a plain reading of the roofs (taller sheds for the two-level ones in OSM).
+- ลักษณะอาคารที่บันทึก: โรงงานฝึกปฏิบัติ: ผนังครีม หน้าต่างแถบสูง ประตูม้วน หลังคาโลหะจั่วสีเทาอ่อนมีช่องแสง
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): cream walls with a band of high windows and roller doors; light grey corrugated gabled roofs; the steel shops at the south end are open frames of grey steel with part of the roof sheeted
+
+## shop ส้มเล็ก <a id="shoporanges"></a>
+
+- OSM id: 1491133188 · ไฟล์: `js/models/shops.js` · ชั้น: 1 · สูง: 6 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps เท่านั้น (หลังคาโลหะจั่ว ช่องแสงหลังคา) ไม่มีภาพ Street View ในลานโรงงาน
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery only: light metal gabled roofs with ridges running east-west and rows of roof lights, two brown roofs, and two open steel frames at the south end. No Street View reaches the yard, so walls and heights are a plain reading of the roofs (taller sheds for the two-level ones in OSM).
+- ลักษณะอาคารที่บันทึก: โรงงานฝึกปฏิบัติ: ผนังครีม หน้าต่างแถบสูง ประตูม้วน หลังคาโลหะจั่วสีเทาอ่อนมีช่องแสง
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): cream walls with a band of high windows and roller doors; light grey corrugated gabled roofs; the steel shops at the south end are open frames of grey steel with part of the roof sheeted
+
+## shop ceramic <a id="shopceramic1"></a>
+
+- OSM id: 1491133189 · ไฟล์: `js/models/shops.js` · ชั้น: 1 · สูง: 6 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps เท่านั้น (หลังคาโลหะจั่ว ช่องแสงหลังคา) ไม่มีภาพ Street View ในลานโรงงาน
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery only: light metal gabled roofs with ridges running east-west and rows of roof lights, two brown roofs, and two open steel frames at the south end. No Street View reaches the yard, so walls and heights are a plain reading of the roofs (taller sheds for the two-level ones in OSM).
+- ลักษณะอาคารที่บันทึก: โรงงานฝึกปฏิบัติ: ผนังครีม หน้าต่างแถบสูง ประตูม้วน หลังคาโลหะจั่วสีเทาอ่อนมีช่องแสง
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): cream walls with a band of high windows and roller doors; light grey corrugated gabled roofs; the steel shops at the south end are open frames of grey steel with part of the roof sheeted
+
+## shop furniture <a id="shopfurn3"></a>
+
+- OSM id: 1491133190 · ไฟล์: `js/models/shops.js` · ชั้น: 1 · สูง: 6 ม.
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps เท่านั้น (หลังคาโลหะจั่ว ช่องแสงหลังคา) ไม่มีภาพ Street View ในลานโรงงาน
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery only: light metal gabled roofs with ridges running east-west and rows of roof lights, two brown roofs, and two open steel frames at the south end. No Street View reaches the yard, so walls and heights are a plain reading of the roofs (taller sheds for the two-level ones in OSM).
 - ลักษณะอาคารที่บันทึก: โรงงานฝึกปฏิบัติ: ผนังครีม หน้าต่างแถบสูง ประตูม้วน หลังคาโลหะจั่วสีเทาอ่อนมีช่องแสง
