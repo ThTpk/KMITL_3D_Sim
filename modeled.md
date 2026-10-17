@@ -1,0 +1,248 @@
+# อาคารที่สำรวจเพื่อสร้างโมเดล
+
+สร้างจาก `data/overrides.json`, `data/kmitl_data.js` และคำอธิบายหัวไฟล์ `js/models/*.js` ด้วย `python tools/build_lists.py` — แก้ข้อมูลต้นทางแล้วรันใหม่ อย่าแก้ไฟล์นี้ด้วยมือ
+
+สำรวจเมื่อ 2026-10-16 ถึงปัจจุบัน ภาพจาก Google Street View / Google Maps / ภาพดาวเทียม ใช้เป็นข้อมูลอ้างอิงในการขึ้นรูปเท่านั้น ไม่ได้แสดงในหน้าเว็บ รูปทรงทั้งหมดสร้างด้วยโค้ด
+
+## สรุปโมเดลเฉพาะ (22 หลัง)
+
+| # | อาคาร | ไฟล์โมเดล | ชั้น | สูง (ม.) | OSM id |
+|---|---|---|---|---|---|
+| 1 | [หอประชุมเจ้าพระยาสุรวงษ์ไวยวัฒน์ (วร บุนนาค)](#hall) | `js/models/hall.js` | 3 | 25 | 190697575 |
+| 2 | [SIIE - Faculty Of Engineering, International Program](#siie) | `js/models/siie.js` | 8 | 30.9 | 516204082 |
+| 3 | [ภาคโยธา](#civil) | `js/models/civil.js` | 2 | 10.3 | 516204085 |
+| 4 | [อาคารเรียนรวม คณะวิศวกรรมศาสตร์ (12 ชั้น)](#e12) | `js/models/e12.js` | 12 | 47.5 | 516204086 |
+| 5 | [อัฒจันทร์ สนามกีฬากลาง](#stad) | `js/models/stad.js` | 3 | 17 | 1138463206 |
+| 6 | [หอประชุมวิศวะ](#eaud) | `js/models/eaud.js` | 2 | 17.4 | 190868497 |
+| 7 | [หอประชุมวิศวะ](#ewing) | `js/models/ewing.js` | 2 | 11.3 | 190868498 |
+| 8 | [ตึกโทรคมนาคม](#tel) | `js/models/tel.js` | 4 | 14.8 | 190868528 |
+| 9 | [ตึกบี](#bbld) | `js/models/bbld.js` | 4 | 13.6 | 190870224 |
+| 10 | [โรงอาหาร A คณะวิศวกรรมศาสตร์](#cana) | `js/models/cana.js` | 1 | 8.6 | 190880523 |
+| 11 | [A-Building](#abld) | `js/models/abld.js` | 6 | 21.8 | 292807567 |
+| 12 | [อาคารเฉลิมพระเกียรติ 55 พรรษา สมเด็จพระเทพฯ](#t55) | `js/models/t55.js` | 8 | 30 | 309556942 |
+| 13 | [ตึก ECC](#ecc) | `js/models/ecc.js` | 10 | 39.5 | 309557571 |
+| 14 | [อาคารเรียนรวม สมเด็จพระเทพฯ](#thep) | `js/models/thep.js` | 2 | 9.4 | 309919519 |
+| 15 | [ภาคไฟฟ้าและพลังงานไฟฟ้า](#elec) | `js/models/elec.js` | 2 | 11.6 | 516204095 |
+| 16 | [สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#pres) | `js/models/pres.js` | 10 | 38.8 | 516308733 |
+| 17 | [อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช](#royal) | `js/models/royal.js` | 1 | 22 | 516308734 |
+| 18 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
+| 19 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
+| 20 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
+| 21 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
+| 22 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
+
+รูปทรง OSM ที่ซ่อนไว้เพราะเป็นส่วนของโมเดลเฉพาะ (`hide`): 1138463195, 1138463197, 1138463209, 1138463210
+
+## หอประชุมเจ้าพระยาสุรวงษ์ไวยวัฒน์ (วร บุนนาค) <a id="hall"></a>
+
+*Chao Phya Surawongwaiwat (Worn Bunnag) Convention Hall*
+
+- OSM id: 190697575 · ไฟล์: `js/models/hall.js` · ชั้น: 3 · สูง: 25 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผังและหลังคา) + Street View: ภาพ 360 องศาจากลานจอดรถหน้าอาคาร บันไดทางเข้าระยะใกล้ มุมตะวันตกเฉียงใต้ ด้านตะวันตก ถนนด้านเหนือ มุมตะวันออกเฉียงเหนือ ถนนด้านตะวันออก
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plan, roof shapes; the OSM outline is coarse and shifted, the imagery lines up with the mapped roads) and Google Street View: a 360° photo from the car park 47 m south of the front (whole south face), the entrance steps close up, the south-west corner, the west end beside the steel carport, the north face from the north road, the north-east corner and the east service road.
+- ลักษณะอาคารที่บันทึก: หอประชุมเจ้าพระยาสุรวงษ์ฯ: โถงประชุมใหญ่กล่องสีขาวสูง หลังคาโค้งประทุนแนวตะวันออก-ตะวันตก ปูแผงโซลาร์ / ด้านหน้า (ใต้): หลังคาปีกยื่นยาว 4 ช่วง ชายคาแอ่นลงกลางช่วงและเชิดขึ้นที่มุมทั้งสองข้าง เสาสีขาวสูงมีค้ำเหล็กรูปตัว V ผนังกระจกสองชั้นแถบขาวด้านบน ป้ายชื่ออาคารสีน้ำเงินบนแผงขาว ตราสัญลักษณ์ด้านบน ยกพื้นมีบันได / ปลายทั้งสองข้างอิฐแดงกรอบหน้าต่างขาว แถบพื้นสีขาว / ด้านเหนือ: ชั้นล่างผนังขาวมีหน้าต่างและช่องระบายอากาศ ชั้นบนระเบียงร่น เสาอิฐแดงสูง / ปีกตะวันตกเฉียงเหนือ: ผนังขาวหน้าต่างแถบยาว หลังคาแบนยื่น หอป้ายอิฐ 'KMITL Convention Hall' / ด้านตะวันออก: อาคารบริการสองชั้นสีขาว ที่จอดขนของชั้นล่าง ทางลาดลงชั้นใต้ดิน / ด้านตะวันตก: หลังคาโครงเหล็กคลุมที่จอดรถ
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): main hall  x 90..192, z 95..149: tall plain white box under a barrel roof (ridge east-west at z 122) south front x 69..214, z 151..190: foyer block under a wing roof in four bays whose eave sags between the seams and sweeps up at both outer corners; tall white columns with V struts carry the overhang; two-storey glass wall with a white band above; the hall's name on a white board, emblem above; both ends in red brick with white-framed windows and white floor bands north strip x 60..190, z 87..95: white ground floor (windows, louvres), recessed balconies, brick piers north-west wing x 48..78, z 94..137: white, ribbon windows, flat overhanging roof, brick name tower east annex x 190..198: two-storey white service block with a roof terrace, loading bays below west carport x 48..70.5, z 153..170: light steel roof on slanted posts all large roofs are covered in solar panels
+
+## SIIE - Faculty Of Engineering, International Program <a id="siie"></a>
+
+- OSM id: 516204082 · ไฟล์: `js/models/siie.js` · ชั้น: 8 · สูง: 30.9 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคาสองส่วนกับแกนบันได) + Street View ถนนด้านใต้: ระยะใกล้ที่ปลายตะวันตก (บันได ทางลาด ชั้นล่างโล่ง) และห่าง 22 ม. จากปลายตะวันออก (ด้านสกัดทั้งด้าน ความสูงจากจำนวนชั้น) ด้านเหนือไม่มีภาพจากถนน
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (two roof halves either side of a stair core) and Google Street View on the road along the south face: close up at the west end (entrance steps, car-park ramp, open ground floor) and from 22 m beyond the east end (whole east elevation and the south face in perspective; height from the floor count, about 30 m). The north face is not visible from any road and follows the end walls.
+- ลักษณะอาคารที่บันทึก: SIIE: อาคาร 8 ชั้น ชั้นล่างสูงโล่งหลังเสาเหลี่ยมสีขาว บันไดกว้างขึ้นจากถนน ทางลาดลงที่จอดรถฝั่งตะวันตก / ด้านใต้: แผ่นพื้นขอบขาว แผงบังแดดแนวตั้งสีน้ำตาลเข้มหน้ากระจก ชั้น 2-3 ระเบียงโล่งมีราว แผงจีบสีขาวที่ฐานฝั่งตะวันออก / ด้านสกัดและด้านเหนือ: ผนังสีเบจในกรอบสีขาว (แถบพื้นทุกชั้น แถบมุม) หน้าต่างเจาะเล็ก / แกนบันไดสีขาวสูงเหนือหลังคาเล็กน้อย เสาล่อฟ้า
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): ground floor 5 m, open behind square white columns, with broad steps up from the road and a car-park ramp at the west; seven floors of 3.55 m above south face: white floor slabs, dark-brown vertical louvre screens in front of the glass, lighter open balconies with rails on floors 2-3, a white pleated panel at the base of the east part ends and north: beige walls in a white frame (floor bands, corner strips), small punched windows stair/lift core at x -292..-281 a little above the roof, lightning mast
+
+## ภาคโยธา <a id="civil"></a>
+
+- OSM id: 516204085 · ไฟล์: `js/models/civil.js` · ชั้น: 2 · สูง: 10.3 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผังและหลังคาทุกหลัง) + Street View ถนนด้านเหนือ (มองตะวันตกเฉียงใต้ ใต้ ตะวันออกเฉียงใต้) ลานกลางและโรงปฏิบัติการด้านตะวันตกและใต้ไม่มีภาพจากถนน
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plan and roofs) and Google Street View from the road along the north side (one car pano, looking south-west, south and south-east). The courtyard and the west and south halls are not visible from any road; they follow the roofs and the north wing.
+- ลักษณะอาคารที่บันทึก: ภาคโยธา: กลุ่มอาคารเตี้ยรอบลานต้นไม้ / ปีกเหนือ 2 ชั้น ผนังครีมระหว่างเสาอิฐส้ม ประตูม้วนสีเขียวชั้นล่าง บันไดเปิดปลายตะวันออก แถบเชิงชายสีเทา หลังคาปั้นหยาสีแดง / ถัดไปทางตะวันออก อาคาร 2 ชั้นสีครีมมีป้ายภาควิชา หลังคาจั่วสีเทา และโรงปฏิบัติการหลังคาจั่วเหล็กสีอ่อน / โรงปฏิบัติการชั้นเดียวด้านตะวันตกและด้านใต้ หลังคาเหล็กลอนจั่ว / อาคารเล็กหลังคาแบนสองหลังข้างลาน
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): north wing  x -419..-395, z 89..108: two storeys, cream walls between orange-brick piers, green roller shutters on the ground floor, an open stair at the east end, grey fascia band, red hipped roof north-east  x -395..-381, z 89..111: two storeys, cream walls with the department sign, grey gable roof x -381..-365, z 90..109: workshop, light metal gable roof west hall   x -441..-424, z 105..152 and south hall x -418..-370, z 125..140: single-storey workshops, light corrugated metal gable roofs two small flat-roofed blocks off the courtyard
+
+## อาคารเรียนรวม คณะวิศวกรรมศาสตร์ (12 ชั้น) <a id="e12"></a>
+
+*Engineering Classroom Complex (12th)*
+
+- OSM id: 516204086 · ไฟล์: `js/models/e12.js` · ชั้น: 12 · สูง: 47.5 ม.
+- แหล่งภาพอ้างอิง: Street View ฝั่งเหนือทางรถไฟ + ทางเข้าด้านใต้ + ภาพดาวเทียม Esri
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-16: Google Street View from the road north of the railway (whole north face) and from the south entrance under the podium, Esri World Imagery for the plan and roof colours.
+- ลักษณะอาคารที่บันทึก: อาคารเรียนรวม 12 ชั้น: ตึกสูงคอนกรีตสีครีมอมชมพู พื้นยื่นเป็นแนวนอนลึก หน้าต่างแถบยาวสีน้ำเงินเข้มสลับระเบียงแอร์ / แกนบันไดกลางทะลุสองด้าน สูงเหนือหลังคา มีช่องแสงแนวตั้งและป้าย 'วิศวลาดกระบัง' สีน้ำเงิน / หอบันไดสูงที่มุมใต้ทั้งสองข้าง (ฝั่งตะวันตกมีแถบกระจกยาวตลอดความสูง) ด้านใต้หน้าต่างสลับแผงบังแดดสีเทาอ่อน / ด้านใต้: อาคาร 3 ชั้นหลังคาปั้นหยาสีแดงซ่อนหลังเชิงผนัง 4 หลังล้อมลานเล็ก โถงใต้ถุนลึกบนเสาเหลี่ยมแนวตั้ง ยกพื้นมีบันไดและราวกันตก ชั้นบนแผงอิฐสลับหน้าต่างลึก ป้าย FACULTY OF ENGINEERING / ถนนซอยลอดใต้อาคารสองหลังฝั่งเหนือ (ติดตึกสูง) ผ่านลานกลาง ด้านบนทางลอดเป็นแผงอิฐกับหน้าต่างแคบคู่
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): tower slab   x -650..-563   z 10.9..35   12 floors, salmon concrete, deep floor bands, ribbon windows with recessed AC balconies; gold banner panel on the west wing core         x -614.3..-601.7, projects 1.3 m north, rises above the roof, slit windows, blue sign east stair   x -563..-557   one floor lower (north half); stair towers at both south corners rise above the roof; west end wall rises as a fin at its north end podium       x -647..-575   z 35..87.5   3 storeys under four red hipped roofs round a small court; a service road runs under the two north pavilions (z 41.5..50) south front (and the SE pavilion's east side) on square piers over a tall undercroft, lettering
+
+## อัฒจันทร์ สนามกีฬากลาง <a id="stad"></a>
+
+- OSM id: 1138463206 · ไฟล์: `js/models/stad.js` · ชั้น: 3 · สูง: 17 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผังอัฒจันทร์ แผงโซลาร์ คันดิน ทางเดิน) + Street View บนลู่วิ่งฝั่งตะวันตก (มองอัฒจันทร์ มองข้ามสนาม มองตามลู่วิ่งไปทางเหนือ) ตำแหน่งเสาไฟประมาณจากภาพ
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (curved grandstand plan, solar panels on its roof, the banks and their radial stair paths, the gates) and a Google Street View pano on the west straight of the track (looking west at the grandstand, east across the pitch, north along the track).
+- ลักษณะอาคารที่บันทึก: สนามกีฬากลาง: อัฒจันทร์ฝั่งตะวันตกผังโค้ง ฐานทาสีส้มมีหน้าต่างเล็กและคอยล์แอร์ ราวสีขาว ที่นั่งไล่ระดับสีแดงอมน้ำตาล หลังคายื่นบนคานเอียง ห้องสื่อมวลชนใต้หลังคากลางอัฒจันทร์ แผงโซลาร์บนหลังคา ซุ้มประธานหลังคาเขียวกับบันได ที่พักนักกีฬาสีน้ำเงินสองหลัง / รอบลู่วิ่งเป็นคันดินหญ้าเตี้ยมีทางเดินบันไดแนวรัศมี ประตูทางเข้าเหนือ-ใต้ / เสาไฟสนามโครงเหล็กถัก 4 ต้น ป้ายคะแนนด้านเหนือ
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): grandstand: curved in plan, about 105 m long and 20 m deep; orange-painted podium with small windows and AC units behind a white rail; raked red-brown seating; a cantilevered roof on raking beams over the back columns, a press box under the roof in the middle, solar panels on the roof; a central VIP stand with a green canopy and stairs, two blue dugouts at the track edge banks: low grassed embankment round the rest of the oval four lattice floodlight towers; a scoreboard on the north bank
+
+## หอประชุมวิศวะ <a id="eaud"></a>
+
+- OSM id: 190868497 · ไฟล์: `js/models/eaud.js` · ชั้น: 2 · สูง: 17.4 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผัง หลังคา ลานบันได) + Street View จากลานมุมตะวันตกเฉียงใต้ (มองเหนือ ตะวันออกเฉียงเหนือ ตะวันออก ความสูงผนังจากมุมเงย) + ลานอนุสาวรีย์ด้านตะวันตก (ด้านตะวันตก: กระจกชั้นล่างใต้แถบกันสาดบาง) ด้านเหนือและตะวันออกมีปีกอาคารข้างเคียงและต้นไม้บัง
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (square plan, low hipped roof with a raised strip along the north-east diagonal, the round steps at the south-west corner) and Google Street View from the plaza at the south-west corner (looking north, north-east and east; wall height from the viewing angle, about 13 m). The other faces are behind the neighbouring wing and trees and follow the same pattern.
+- ลักษณะอาคารที่บันทึก: หอประชุมวิศวะ: อาคารกล่องอิฐแดงโชว์แนวสูง ขอบบนสีขาว มีช่องลึกใกล้มุมด้านบน / ชั้นล่างผนังกระจกกรอบขาวร่นเข้าใต้กันสาดแผ่นพื้นสีขาวที่โอบมุมตะวันตกเฉียงใต้ เสากลมสีขาว / ธงชาติเรียงบนเสาธงยื่นจากผนังด้านตะวันตกและใต้ / ลานขั้นบันไดครึ่งวงกลมที่มุมตะวันตกเฉียงใต้ / หลังคาทรงปิรามิดลาดต่ำซ่อนหลังเชิงผนัง มีสันยกตามแนวทแยงจากมุมตะวันออกเฉียงเหนือ
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): a tall box of exposed red brick with a white coping; two deep slots near the top of each corner ground floor glazed on the west and south: a deep white canopy on round columns along the south that turns the south-west corner, a thin white band over the rest of the west glazing (seen from the statue plaza west of the hall); Thai flags on outrigger poles on both faces near the corner semicircular stepped platform at the south-west corner roof: low concrete pyramid behind the parapet, a raised strip from the north-east corner past the apex
+
+## หอประชุมวิศวะ <a id="ewing"></a>
+
+- OSM id: 190868498 · ไฟล์: `js/models/ewing.js` · ชั้น: 2 · สูง: 11.3 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผัง ส่วนสูง ช่องแสง) + Street View จากลานอนุสาวรีย์ (มองเหนือ ตะวันออกเฉียงเหนือ ตะวันออก)
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the OSM outline matches it once the imagery's lean is allowed for; the taller north block with its skylight grid; the raised hall roof on the south) and Google Street View from the statue plaza (looking north-north-west, north-east and east).
+- ลักษณะอาคารที่บันทึก: ปีกอาคารรอบหอประชุมวิศวะ: อาคาร 2 ชั้นอิฐสีชมพูอมส้ม แถบพื้นชั้นบนและขอบบนสีขาว ชั้นล่างหน้าต่างกว้างกรอบขาว ชั้นบนหน้าต่างแคบสูง / ส่วนเหนือสูง 3 ชั้น มีช่องแสงบนหลังคาเป็นตาราง / ห้องประชุมด้านใต้หลังคาสูงกว่าเล็กน้อย / ลานอนุสาวรีย์ด้านใต้
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): two storeys of salmon-pink brick, a white band at the upper floor and a white coping ground floor: wide windows in white frames, glazed entrances; upper floor: tall narrow windows north block (x -140..-120, z 5..21) one storey higher, a grid of skylights on its roof a slightly taller meeting-hall roof on the south (x -125.5..-106, z 36..48)
+
+## ตึกโทรคมนาคม <a id="tel"></a>
+
+- OSM id: 190868528 · ไฟล์: `js/models/tel.js` · ชั้น: 4 · สูง: 14.8 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผัง หลังคา ตำแหน่งหอเสา) + Street View: ถนนลานจอดรถด้านใต้ (มองผ่านต้นไม้) ทางเดินมีหลังคาด้านเหนือและตะวันตก ถนนซอยฉลองกรุง 1 ด้านเหนือ (หอเสาและความสูงจากมุมมอง) ภาพ Street View รอบอาคารมีน้อยและต้นไม้บังมาก
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plan, roofs, tower position) and Google Street View. Street View coverage here is thin and mostly under covered walkways: the south face was read through trees from the parking road, the ground floor of the north face across the pond, and the tower from Soi Chalong Krung 1 north of the site (its height from the viewing angle, about 46 m to the top platform's mast).
+- ลักษณะอาคารที่บันทึก: ตึกโทรคมนาคม: อาคาร 4 ชั้นทาสีน้ำเงินทั้งหลัง กันสาดยื่นทุกชั้นด้านยาว / ด้านใต้: หน้าต่างแถบยาวกรอบขาว มีคอยล์ร้อนแอร์ หอบันไดปลายตะวันออก / ด้านเหนือ: หน้าต่างเจาะเป็นช่องกับคอยล์ร้อนแอร์ / เชิงผนังรอบหลังคาสีครีม หลังคาแบนช่วงตะวันตก หลังคาเหล็กจั่วลาดต่ำช่วงที่เหลือ / หอเสาโทรคมนาคมคอนกรีตทาสีแดงสลับขาว สูงราว 46 ม. ตั้งบนฐานกลมบนหลังคาฝั่งตะวันตก มีชานกลมสีขาวสองชั้นพร้อมราว จานสายอากาศ เสาอากาศแผง และเสาล่อฟ้า
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): south for the imagery's lean; the OSM outline is offset). four storeys, painted royal blue, a cantilevered ledge at every floor on the long faces south face: ribbon windows in white frames with AC units, stair tower at the east end north face: punched windows with AC units cream parapet all round; flat roof over the west bay, low gabled metal roof over the rest red-and-white banded concrete telecom tower rising from a round drum on the west roof, two white platforms with rails near the top, a dish and panel antennas, lightning mast
+
+## ตึกบี <a id="bbld"></a>
+
+- OSM id: 190870224 · ไฟล์: `js/models/bbld.js` · ชั้น: 4 · สูง: 13.6 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผังส่วนต่างๆ หลังคา ช่องแสง แผงโซลาร์) + Street View: ถนนลานจอดรถด้านใต้ (ความสูงจากมุมเงย) ภาพ 360 องศาหน้าห้องบรรยายและบันได ด้านตะวันออกมีทางเดินมีหลังคาบัง ด้านเหนือมีต้นไม้บัง
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the parts of the plan and their roofs: the west block's translucent skylight, the solar panels, the lower north strip, the theatre block on the south) and Google Street View: the south face from the parking road (about 22 m away; height from the viewing angle, about 13.5 m) and a 360° photo on the same road in front of the theatre block and its steps. The east side is behind a covered walkway and the north side behind trees; they follow the same pattern.
+- ลักษณะอาคารที่บันทึก: ตึกบี: อาคาร 4 ชั้น โครงคอนกรีตเปลือยสีเทาอ่อน ชั้นบนหน้าต่างแถบยาวเหนือแผงอิฐแดง ชั้นล่างผนังฉาบสีเทาอมฟ้า มีแถบบล็อกช่องลมและคอยล์ร้อนแอร์ / หลังคาแบนสีเข้ม มีหลังคาโปร่งแสงเป็นสันบนปีกตะวันตก แผงโซลาร์บนปีกตะวันออก / ด้านเหนือส่วน 3 ชั้นกับส่วนหน้า 1 ชั้น / ห้องบรรยายด้านใต้ยกบนเสาลอย ท้องพื้นลาดเอียง ผนังอิฐหน้าต่างเล็ก แผ่นหลังคาสีขาวยื่น ลานยกพื้นกับบันไดกว้างลงถนน เสามีตัวอักษร B
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): west block   x -324.5..-293, z 27..60.4   four storeys, translucent ridged skylight on the roof east block   x -293..-247.5, z 31..51.4   four storeys, solar panels on the roof north strip  x -293..-251,   z 18..31     three storeys; a one-storey front x -293..-255, z 9.7..18 theatre      x -293..-271.3, z 51.4..68.2 raised on pilotis over a podium with wide steps to the road, raked underside, brick walls with small windows, white overhanging roof slab Facades: exposed light-grey concrete frame; upper floors with ribbon windows over red-brick spandrels; ground floor rendered, with a band of breeze blocks and AC units.
+
+## โรงอาหาร A คณะวิศวกรรมศาสตร์ <a id="cana"></a>
+
+*Engineering A-Dining Hall*
+
+- OSM id: 190880523 · ไฟล์: `js/models/cana.js` · ชั้น: 1 · สูง: 8.6 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคา 3 ส่วนและส่วนต่อด้านใต้) + Street View: ถนนมุมตะวันออกเฉียงเหนือ ภาพ 360 องศาที่ทางเข้าด้านเหนือ ด้านตะวันตกและใต้มีอาคารและต้นไม้บัง
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (three roofs: a white west block, a grey central hall that reaches further north as the entrance, a white east hall, and a low annex on the south) and Google Street View: the north-east corner and east side from the road (a car pano about 25 m away) and a 360° photo at the north entrance (looking into the hall). The west and south sides are behind other buildings and trees and follow the same pattern.
+- ลักษณะอาคารที่บันทึก: โรงอาหาร A คณะวิศวะ: อาคารชั้นเดียวยกพื้นสูง ด้านข้างเปิดโล่งมีผนังเตี้ยสีขาว เสาเหลี่ยมสีขาว ชายคายื่นลึก หลังคาเหล็กลาดต่ำสีเทาอ่อน / มุมตะวันออกเฉียงเหนือเป็นห้องทึบสีชมพูอ่อนมีตะแกรงเหล็ก บันไดขึ้นจากถนน / กลางอาคาร: ทางเข้าด้านเหนือใต้แผ่นพื้นยื่นลึกบนเสากลม โถงสูงหลังคาจั่วลาดต่ำ / ปีกตะวันตกผนังสีครีมมีหน้าต่าง หลังคาแบนสีขาว / ส่วนบริการเตี้ยด้านใต้
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): east hall   x -245.5..-224.5, z 96..117: one storey on a 1.2 m plinth, open sides with a low white parapet, square white columns, deep white eaves, low light-grey metal roof; an enclosed pink block with a steel grille at the north-east corner, steps up from the road centre      x -257..-245.5, z 89.5..120: taller hall; at the north a deep white slab on round columns over the entrance steps, behind it a high open hall with a low gabled roof west block  x -273..-257, z 96..122: cream walls with windows, flat white roof south annex x -246..-232, z 117..126: low service block
+
+## A-Building <a id="abld"></a>
+
+- OSM id: 292807567 · ไฟล์: `js/models/abld.js` · ชั้น: 6 · สูง: 21.8 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผัง หลังคา หอบันไดด้านใต้) + Street View: ถนนด้านเหนือสองจุด (ด้านหน้าและทางเข้า) ถนนด้านตะวันออก (ด้านสกัดและความสูงจากมุมเงย) ด้านใต้ไม่มีภาพ Street View ทำจากภาพดาวเทียม
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plan, roof, the three towers on the south side) and Google Street View: the north face and the entrance from Engineering Avenue (two points, 20 m and 35 m away) and the east end from the east road (its height from the viewing angle, about 21.5 m). No Street View reaches the south side (pond and trees); it is modelled from the imagery only.
+- ลักษณะอาคารที่บันทึก: A-Building: อาคาร 6 ชั้น ด้านยาวสีเหลืองมัสตาร์ด กันสาดคอนกรีตสีเทายื่นทุกชั้น หน้าต่างแถบยาวระหว่างเสาสีเหลือง เชิงหลังคาสีเทาหนา / ด้านสกัดผนังสีครีมเรียบ แถบแนวตั้งสีม่วงอ่อน ชื่อคณะวิศวกรรมศาสตร์ที่มุมบนด้านตะวันออก / ด้านเหนือ: หลังคาคลุมทางเข้าสีม่วงอ่อนบนเสาสีม่วง มีเสาธงบนหลังคา โรงจอดรถโครงเหล็กสีเหลืองหลังคาสีน้ำเงินสองข้าง / ด้านใต้: หอบันได/ลิฟต์สีครีม 3 หอ สูงเหนือหลังคา
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): six storeys; long faces in mustard yellow with a grey concrete ledge at every floor, ribbon windows between yellow piers, a heavy grey roof fascia ends: plain cream walls with a lavender vertical strip, the faculty name near the top of the east end north: lavender porte-cochère on lavender columns with flags, blue-roofed steel carports either side south: three cream stair/lift towers rising above the roof, the middle one widest
+
+## อาคารเฉลิมพระเกียรติ 55 พรรษา สมเด็จพระเทพฯ <a id="t55"></a>
+
+- OSM id: 309556942 · ไฟล์: `js/models/t55.js` · ชั้น: 8 · สูง: 30 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผัง แผงโซลาร์ อาคารเตี้ยด้านตะวันออก) + Street View ถนนทางใต้ของลานจอดรถ (ด้านใต้ทั้งด้าน ระยะกว้างและซูม)
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the block, solar panels on the north part of the roof, plant on the south part, a low annex along the east side, the car park to the south) and Google Street View from the road south of the car park (the whole south front, wide and zoomed).
+- ลักษณะอาคารที่บันทึก: อาคารเฉลิมพระเกียรติ 55 พรรษา: อาคาร 8 ชั้นผนังฉาบสีเทาอมฟ้า / ชั้นล่างโล่งหลังเสาเหลี่ยมสีขาว บันไดและราวด้านหน้า ผนังทางเข้าแผงสีส้มแดง แถบกันสาดสีขาว / ชั้นบนแถบพื้นสีขาวลึก หน้าต่างกรอบขาวกับคอยล์ร้อนแอร์ ระเบียงร่นที่มุม แถบสีส้มใต้ชั้น 3 ขอบหลังคาสีขาว / หลังคาครึ่งเหนือปูแผงโซลาร์ ครึ่งใต้มีงานระบบ / อาคารเตี้ยด้านตะวันออก / ลานจอดรถด้านใต้
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): eight storeys of light blue-grey render; the ground floor open behind square white columns with steps and a rail across the front, red-orange panels on the entrance walls; a white canopy band over it upper floors: deep white floor bands, white-framed windows with AC units, recessed balconies at the corners; an orange stripe along the bottom of the third floor; a white roof edge north part of the roof with solar panels, plant on the south part; low annex on the east side
+
+## ตึก ECC <a id="ecc"></a>
+
+*ECC Building*
+
+- OSM id: 309557571 · ไฟล์: `js/models/ecc.js` · ชั้น: 10 · สูง: 39.5 ม.
+- แหล่งภาพอ้างอิง: Street View เดินรอบอาคาร + ภาพมุมไกล + ภาพดาวเทียม Esri
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-16: Google Street View walk-around (east entrance, north car park, west road, south path, far views from the north car park / NE / SE) for facades, Esri World Imagery for the plan and roof colours.
+- ลักษณะอาคารที่บันทึก: อาคาร ECC (ปฏิบัติการรวมวิศวกรรมศาสตร์ 2): สองปีก 10 ชั้น มีลานกลาง / ด้านหน้า (ตะวันออก) หลังคาคานโค้งสีขาวมีชื่ออาคาร แถบกระจกสีน้ำเงิน ตั้งบนเสากลมสูง 2 ชั้น พร้อมบันไดทางขึ้น / หัวมุมทั้งสองเป็นหอสูงมีพื้นระเบียงยื่นเป็นขั้นบันได / ด้านเหนือ: ฐาน 4 ชั้นกระเบื้องอิฐส้มสลับแถบขาว ชั้นบนระเบียงยาวสีขาว / ปีกใต้: ระเบียงแนวนอนสีขาวซ้อนกันทุกชั้น / ด้านตะวันตก: ห้องปฏิบัติการไฟฟ้าแรงสูง โครงขาวช่องอิฐ ป้ายสีส้ม / หลังคา: ปีกเหนือสีน้ำเงินเข้ม/ฟ้าอ่อน ปีกใต้สีขาว
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): Plan (from the satellite roofs, checked against Street View distances; OSM building parts 1138463209/1138463210): west block  x -314..-294.9   z -169.2..-144.9 HV lab, 21.5 m, white frame with large brick panels podium      x -294.9..-231.3 z -169.5..-159.8 3 storeys (14.8 m), brick + white bands, AC units on a plinth north wing  x -294.9..-239.4 z -159.8..-145.3 10 floors (~35 m), set back behind the podium, balcony bands NE tower    x -239.4..-224.6 z -163.2..-145.3 floors 5-9 on round columns above the canopy south wing  x -300..-237.3   z -133.5..-117.4 10 floors, white bands wrapping a rounded SE end; west end on the road: deep balcony stack over a 2-storey brick base, shutter + ramp yard block  x -300..-287     full height, closes the open yard from the west road; blue glass strip (position fixed from Street View on the west road + its white roof on the satellite) court       z -145.3..-133.5: open yard x -314..-300, yard block, low workshops to the lobby entrance    curved white canopy (name lettering + blue glass ribbon) on round columns, facing east
+
+## อาคารเรียนรวม สมเด็จพระเทพฯ <a id="thep"></a>
+
+- OSM id: 309919519 · ไฟล์: `js/models/thep.js` · ชั้น: 2 · สูง: 9.4 ม.
+- แหล่งภาพอ้างอิง: Street View ถนนศิลปะด้านใต้ + ลานด้านเหนือ + ภาพ 360 องศา + ภาพดาวเทียม Esri ด้านตะวันออกและตะวันตกจากลิงก์ที่ผู้ใช้ส่งมา
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Street View and photo spheres: the art street to the south (car panos at x -146 and -112, photo sphere at the entrance walkway), the plaza to the north (car panos at x -163 and -144), plus Esri World Imagery for the plan and roofs.
+- ลักษณะอาคารที่บันทึก: อาคารเรียนรวมสมเด็จพระเทพฯ: ปีกตะวันออก-ตะวันตก 2 ชั้น โครงเสาคานสีขาว เสาเหลี่ยมยื่นทุก ~6.4 ม. พื้นยื่นหนา หน้าต่างกลุ่ม 4 บาน มีสระน้ำและน้ำพุทั้งด้านเหนือและใต้ / กลางอาคาร: ทางเข้าใต้ลานหน้า ระหว่างหอบันไดอิฐส้ม ชั้นล่างโล่งบนเสา ระเบียงชั้น 2 แถบตัวอักษรชั้น 3 ป้าย KMITL / ด้านเหนือ: หออิฐสูงเหนือหลังคา ทางเชื่อมลอยฟ้าชั้น 2 ไปตึก A / ปีกตะวันออกด้านเหนือ: ระเบียงเสาสูงสองชั้นใต้คานหนา ทางเดินชั้น 2 อยู่ด้านใน / ด้านตะวันออก: แผงอิฐส้มชื่ออาคาร หลังคาทางเดินคลุมบนเสาต่อไปทางใต้ ชั้นล่างผนังอิฐ / ด้านตะวันตก: ผนังอิฐส้มกรอบขาว ทางเดินมีหลังคาระดับชั้น 2 บนเสาต่อไปทางโรงอาหาร / หลังคา: ปีกตะวันตกแถบช่องแสงยาว ปีกตะวันออกช่องแสงฟันเลื่อย
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): west wing    x -179..-135.3   2 storeys (9.4 m): white frame, square piers every ~6.4 m, deep floor bands, 4-pane window groups, solid parapet; roof with long E-W skylight strips east wing    x -112.3..-63.5  same frame on the south; on the north a double-height colonnade under a deep fascia (corridor behind); east end: brick panel with the name over a low canopy; roof with N-S ridged (sawtooth) skylights centre       x -141.2..-112.3 entrance between orange-brick towers, set back to z -219.7 behind a forecourt: open ground floor on columns, level-2 balcony, lettered level-3 band, KMITL sign; north half 2 storeys on columns with brick stair towers above the roof and a level-2 skybridge to ตึก A across the plaza ponds on both long sides come from the OSM water layer
+
+## ภาคไฟฟ้าและพลังงานไฟฟ้า <a id="elec"></a>
+
+- OSM id: 516204095 · ไฟล์: `js/models/elec.js` · ชั้น: 2 · สูง: 11.6 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผัง หลังคา ทรงกระบอก) + Street View 7 ภาพที่ผู้ใช้ส่ง (ด้านใต้จากถนนด้านใต้ ด้านตะวันตกจากที่จอดรถ ส่วนเหนือและทรงกระบอกจากถนนด้านตะวันตก มุมตะวันออกเฉียงใต้และอาคารสีเขียวจากด้านตะวันออก) + ภาพเก่าจากถนนด้านตะวันตก
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plan, roofs, the round drum) and Google Street View: seven views supplied by the user from the roads and car park round it - the south face from the south road, the west face from the carport, the north block and the drum from the west road (two points), the south-east corner and the green hall from the east - plus an older car pano on the west road.
+- ลักษณะอาคารที่บันทึก: ภาคไฟฟ้าและพลังงานไฟฟ้า / ส่วนตะวันตกเฉียงใต้: ชั้นล่างผนังสีครีมร่นหลังเสาเหลี่ยมสีเหลืองครีมบนชานยกพื้น มีบันไดทางเข้าและป้ายชื่อภาควิชา ชั้นบนสีขาวยื่นออก ครีบแนวตั้งลึกเป็นแถบด้านใต้ ด้านตะวันตกหน้าต่างยื่นเอียง 3 บาน หน้าต่างสามเหลี่ยม บนหลังคากล่องบานเกล็ดสีเทาลดหลั่นเป็นขั้น ทรงกระบอกบันไดที่มุม / ส่วนเหนือ: อาคาร 2 ชั้นหุ้มแผ่นโลหะสีเทา แถบบานเกล็ด หลังคาจั่วลาดต่ำ / ส่วนตะวันออกเฉียงใต้: อาคารชั้นเดียวทาสีเขียวสด แถบลายทแยงสีส้มสลับขาว
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): south-west block x -205..-175, z -127..-102: ground floor cream, set back behind yellow-cream square columns on a raised verandah, windows and AC units, entrance steps at the east end of the south face, the department name on the fascia upper storey white and overhanging, a band of deep vertical fins across the south face west face: three projecting angled bay windows, a strip of small windows, a triangular window roof: a stepped grey louvred clerestory box with a metal edge; round stair drum at the north-west north block x -204..-180, z -168..-138: two-storey grey metal-clad hall, louvre bands, low gable roof core x -185..-175, z -140..-127 (white) and a single-storey link along the west x -210..-204 south-east hall x -175..-142, z -132..-115: single storey, painted bright green, a band of orange and white diagonal stripes, glazed doors, low metal roof behind the parapet
+
+## สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง <a id="pres"></a>
+
+*KMITL President Building*
+
+- OSM id: 516308733 · ไฟล์: `js/models/pres.js` · ชั้น: 10 · สูง: 38.8 ม.
+- แหล่งภาพอ้างอิง: Street View ถนนด้านเหนือ (ใกล้-ไกล ถึงฝั่งทางหลวง) ถนนด้านตะวันออก ตะวันตก มุมตะวันตกเฉียงเหนือ + ภาพดาวเทียม Esri ด้านใต้มีต้นไม้บัง
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Street View, picking wide views with few trees: the north face from the service road (36 m), the canal road (70 m) and across the highway (106 m); the porte-cochère close up; the east end from the east road and from the south-east; the west end from the west road; the north-west corner. The south face is screened by a garden and a neighbouring building - modelled from partial views only. Esri World Imagery for the roof.
+- ลักษณะอาคารที่บันทึก: สำนักงานอธิการบดี: อาคาร 10 ชั้น / ด้านเหนือ (ทางเข้า): ฝั่งตะวันออกกรอบตารางขาว แกนบันไดกระจกสีเข้ม ช่วงระเบียงลูกกรงบล็อกช่องลมสีขาวสลับแผงสีส้ม ครีบสีน้ำเงิน ฝั่งตะวันตกตารางขาวลึกกับแผงกรอบขนาดใหญ่ / หลังคา: ชื่อสถาบันตัวอักษรสีน้ำเงินบนเชิงผนัง ห้องหลังคาสีส้มมีตราสัญลักษณ์ / ทางเข้ามีหลังคาคลุมรถหุ้มแผงสีส้มบนเสากลมสีขาว / ด้านตะวันออก: แผงอิฐในกรอบตารางขาว / ด้านตะวันตก: อิฐ ระเบียง และแกนกระจกสูงเหนือหลังคา / ด้านใต้: ระเบียงแนวนอนต่อเนื่อง
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): north face (east → west): white window grid | dark glazed stair core | balcony bay with white breeze-block balustrades and orange spandrels | thin blue fin | deep white egg-crate grid with a large framed panel roof parapet with the institute's name in blue; orange penthouse with the emblem over the core porte-cochère: orange-clad canopy on round white columns in front of the west half, name on its fascia east end: brick panels in a white grid, few windows; west end: brick bays, balcony bays, central glazed core rising above the roof; south face: continuous balcony slabs with rails
+
+## อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช <a id="royal"></a>
+
+- OSM id: 516308734 · ไฟล์: `js/models/royal.js` · ชั้น: 1 · สูง: 22 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผัง ลานยกพื้น ลานพระจอม ลานวงกลม) + Street View จากขอบลานพระจอมด้านใต้ (2 มุมที่ผู้ใช้ส่ง) + ภาพ 360 องศาบนแท่นอนุสาวรีย์ + ภาพถ่ายอนุสาวรีย์และด้านหน้าอาคารจาก trueplookpanya ที่ผู้ใช้ส่ง
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the U-shaped plan, the raised courtyard, the plaza, the loop road and the round court to the south), Google Street View from the south edge of the plaza (two views supplied by the user), a 360° photo on the monument platform, and a published photo of the monument and hall front supplied by the user.
+- ลักษณะอาคารที่บันทึก: หอพระราชประวัติฯ: หมู่อาคารทรงไทยผังรูปตัว U / ปีกตะวันตกและตะวันออกเป็นอาคารสองชั้นจั่วคู่หันหน้าทิศใต้ หลังคาเทาซ้อนสองชั้น ปั้นลมสีแดงเลือดหมู หน้าบันสีขาวมีหน้าต่างโค้งแหลมสีแดง กรอบหน้าต่างสีแดง / ลานกลางยกพื้นเป็นฐานสีขาว ราวลูกกรงด้านหน้า ประตูสีแดง หน้าต่างกลม บันไดสองข้าง ซุ้มประตูและอาคารประธานประดับสีทอง / ลานหน้าสีขาวมีบันไดลง / ลานพระจอมพื้นหินสีเทา ล้อมด้วยทางปูอิฐสีส้มและแนวพุ่มไม้ ลานวงกลมด้านใต้ / พระบรมราชานุสาวรีย์: แท่นหินอ่อนสีชมพูบนฐานขั้นบันได แผ่นจารึก รูปหล่อสำริดยืนข้างเครื่องสูง พานพุ่มสำริดสองข้าง เรือถวายเครื่องสักการะ ราวลูกกรงโค้งด้านหลัง ช้างสำริดบนแท่นสองข้าง เสาไฟโคมกลมสีขาว
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): wings        west x 33..53, east x 78..99: two Thai halls side by side, two storeys, white walls with maroon window frames, gables facing south with maroon bargeboards, white gable panels and a red arched gable window; grey roofs, two tiers; rear halls x 42.5..50.5 and 80..88 courtyard    x 51..79, z -379..-353.5: a white podium 3.8 m high, terracotta paving on top, a balustrade along the front, red doors and a round window in the front wall, two stairs up gate         a small gold-trimmed Thai pavilion on the podium at the centre of the front court pavilion and the main north hall (x 56..76, z -396..-379) stand on the podium, gold trim terrace      white, x 55..78, z -353.5..-344, steps down to the path ลานพระจอม    grey stone plaza x 57..76.5, z -329..-308 inside a terracotta-paved U and hedges; a round court (pink paving in a grey ring) to the south, centre 67.3, -289.8 monument     facing south at 66.6, -322: stepped platform, pink marble pedestal with a dark plaque, side blocks with bronze lotus-bud urns, the bronze standing statue beside a draped tiered stand, a bronze boat-shaped offering tray, a curved marble balustrade behind, bronze elephants on pedestals at both ends, two lamp posts with clusters of white globes
+
+## คณะแพทยศาสตร์ <a id="med"></a>
+
+- OSM id: 592798785 · ไฟล์: `js/models/med.js` · ชั้น: 3 · สูง: 14.2 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผังกากบาท แผงโซลาร์ ลานด้านใต้) + Street View ถนนด้านเหนือ (ด้านหน้า ระยะใกล้และซูม)
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (a cross-shaped plan of a central block with three wings, solar panels over most of the roof, the entrance court to the south) and Google Street View from the road along the north side (the north front, near and zoomed).
+- ลักษณะอาคารที่บันทึก: คณะแพทยศาสตร์ (ป้าย PTEC): อาคาร 3 ชั้นผังรูปกากบาท ผนังฉาบสีขาวกับแผงกระเบื้องอิฐสีส้มแดงที่ชั้นล่างและใต้หน้าต่างชั้นบน หน้าต่างแถบยาว / ด้านหน้าทิศเหนือ หอบันไดกระจกตรงกลาง แผงผนังกระจกสูงข้างกัน ป้าย PTEC ที่มุมตะวันออกเฉียงเหนือ / หลังคาแบนปูแผงโซลาร์เกือบเต็ม / ลานทางเข้าด้านใต้
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): three storeys, white render with orange-red brick-tile panels: brick at ground level between white piers, a white middle band, brick again under the top-floor windows; strip windows of small grey panes a glazed stair tower in the centre of the north front, rising above the roof the PTEC sign on the parapet west of the tower; flat roof with solar panels behind a white parapet entrance court to the south with a small porch block
+
+## โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง <a id="kmids"></a>
+
+*King Mongkut's Institute of Technology Ladkrabang International Demonstration School*
+
+- OSM id: 1008793634 · ไฟล์: `js/models/kmids.js` · ชั้น: 6 · สูง: 25.4 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผัง แผงโซลาร์ ขั้นบันไดด้านใต้ อาคารเตี้ย) + ภาพ 360 องศาที่ประตูทางเข้าด้านเหนือ (ด้านเหนือ มองเงยขึ้น) ภาพ Street View จากถนนถ่ายก่อนสร้างโรงเรียน
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the main block with solar arrays on its roof, the stepped seating along its south side, the low south wing, the stairs at the east end) and a 360° photo at the north gate (the north face from the drop-off, looking up). Every Street View car pano here predates the school (it shows a pond on the site).
+- ลักษณะอาคารที่บันทึก: โรงเรียนสาธิตนานาชาติ (KMIDS): ชั้นล่างสีเทาเข้มร่นเข้า ชั้น 2 ผนังอิฐแดงหน้าต่างกรอบขาวบนเสาเหลี่ยม / ชั้นบน 4 ชั้นผนังกระจกหลังโครงสีขาวพับไปมา ขอบพื้นแต่ละชั้นเป็นฟันปลาและค้ำเฉียงเชื่อมชั้นต่อชั้นเป็นลายข้าวหลามตัด / หลังคาเหล็กบางยื่นรอบด้าน ลาดสูงขึ้นทางทิศเหนือ ป้าย KMIDS สีทองที่เชิงชาย แผงโซลาร์บนหลังคา / หลังคาคลุมที่ส่งผู้โดยสารด้านตะวันตกเฉียงเหนือบนเสาเหล็กเอียง / ด้านใต้อัฒจันทร์ขั้นบันไดลงสวน อาคารเตี้ย 2 ชั้น / บันไดด้านตะวันออก
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): for the lean). ground floor dark grey, set back; second floor red brick with white-framed windows on square columns four upper floors of glass behind a folded white frame: every slab edge zig-zags out and in, and diagonal struts join the points of one floor to the next, so the face reads as a lattice of diamonds thin steel roof overhanging on all sides, rising to the north, with the gold KMIDS sign on its fascia; solar panel rows on top north-west: a deep canopy over the drop-off on slanted steel columns south: stepped seating down to the garden, a low two-storey wing x -189..-146, z -333..-324
+
+## ตึก A <a id="tka"></a>
+
+- OSM id: 1137554506 · ไฟล์: `js/models/tka.js` · ชั้น: 5 · สูง: 21.2 ม.
+- แหล่งภาพอ้างอิง: Google Maps (ชื่อ ตึก A) + ภาพดาวเทียม Google Maps (ความยาว โถงกลาง หอบันได แผงโซลาร์) + Street View: ลานสวนด้านใต้ (มองเหนือ ตะวันออกเฉียงเหนือ ตะวันตกเฉียงเหนือ) สวนด้านเหนือปลายตะวันออก ชื่อภาษาไทยใน OSM ของเส้นนี้ผิด (ซ้ำกับอาคารเรียนรวมฯ)
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (length, the central entrance block with two stair towers on the north, solar panels on both wings) and Google Street View: the south face from the garden plaza in front of it (looking north, north-east and north-west) and the north face from the garden at its east end.
+- ลักษณะอาคารที่บันทึก: ตึก A: อาคารยาว 5 ชั้น คอนกรีตสีครีม / ด้านใต้: ทางเดินเปิดทุกชั้นหลังราวกันตกทึบลึก หน้าต่างบานเกล็ดสีเข้มกับประตูห้องเรียน เสาเล็กริมทางเดิน ชั้นล่างบนฐานยกมีคันหญ้า / ด้านเหนือ: หน้าต่างกรอบขาวเป็นกลุ่มใต้แผงบังแดดบาง คอยล์ร้อนแอร์ เสาเหลี่ยม / ด้านสกัด: แถบอิฐส้มตลอดความสูง / กลางอาคาร: โถงทางเข้า ด้านใต้เป็นกระจกรับสะพานเชื่อมชั้น 2 จากอาคารเรียนรวมสมเด็จพระเทพฯ หอบันไดสองหอยื่นด้านเหนือสูงเหนือหลังคา / หลังคา: แผงโซลาร์เป็นแถวทั้งสองปีก
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): five storeys (ground 4.2 m, upper floors 3.5 m), cream concrete south: open corridors on every floor behind deep solid balustrades, dark louvred windows and doors behind them, thin columns at the corridor edge; the ground floor on a plinth with a grass bank north: groups of white-framed windows under thin concrete sunshades, AC units, square piers ends: orange-brick strip the full height of the wall centre x -140..-113: entrance block, glazed on the south where the skybridge arrives, two stair towers standing out on the north and rising above the roof roof: rows of solar panels on both wings
+
+## อาคารมหาวิทยาลัย <a id="uni"></a>
+
+- OSM id: 1138463196 · ไฟล์: `js/models/uni.js` · ชั้น: 2 · สูง: 13.2 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคาปิรามิด หลังคาแบน ซุ้ม ทางเชื่อม) + Street View 3 ภาพที่ผู้ใช้ส่ง (แยกด้านตะวันออกเฉียงใต้ ถนนด้านตะวันออกระยะใกล้ สวนด้านตะวันตก)
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (an eight-sided white pyramid roof over the north half, a flat roof over the south half, the link and the porch) and three Google Street View angles supplied by the user: from the junction south-east of it, from the road along its east side (close up), and from the garden to the west.
+- ลักษณะอาคารที่บันทึก: อาคารมหาวิทยาลัย: อาคาร 2 ชั้นระหว่างสำนักงานอธิการบดีกับตึก A / ชั้นล่างกระจกร่นหลังเสากลมสีขาว ใต้แถบชายคาบานเกล็ดสีเทา / ชั้นบนอิฐแดงในกรอบเสาและพื้นสีขาว ระเบียงมีคอยล์ร้อนแอร์ที่มุมตะวันออกเฉียงเหนือ / หลังคาปิรามิดแปดเหลี่ยมสีขาวเทาครึ่งเหนือ หลังคาแบนครึ่งใต้ / ซุ้มทางเข้าด้านใต้หลังคาฟันปลาสีขาว แผ่นโปร่งแสงสีเขียว / ทางเดินมีหลังคาเชื่อมไปอาคารสำนักงานอธิการบดี
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): body x -30..-9.3, z -306.6..-267: ground floor glazed, set back behind round white columns under a grey louvred soffit band; upper storey red brick in a white frame of columns and floor slabs, balcony with AC units at the north-east corner; white roof edge north half: low eight-sided pyramid roof, light grey; south half: flat roof, dark porch x -28.8..-17, z -267..-257: white zig-zag canopy with a green translucent roof on white columns, steps; covered link x -29.8..-9.3, z -316.5..-306.6: flat roof on columns to the President building
+
+## Lita cafe & roaster - KMITL <a id="lita"></a>
+
+- OSM id: 1564107231 · ไฟล์: `js/models/lita.js` · ชั้น: 1 · สูง: 4.8 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps เท่านั้น (ตำแหน่งตามหมุด Google Maps) ภาพ Street View ของสวนนี้ถ่ายก่อนมีร้าน จึงไม่มีภาพผนังและความสูง
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery only: every Street View capture of this garden predates the cafe (it shows open lawn here), so the walls and height are not photographed; they are a plain reading of the roof shape (glass walls under a low shell roof), to be revisited if photos appear. The OSM outline is a rough rectangle overlapping ตึก A; the outline below follows the imagery.
+- ลักษณะอาคารที่บันทึก: Lita cafe & roaster: ศาลาเล็กในสวนทางเหนือของตึก A หลังคาเปลือกโค้งรูปไข่สีเทาอ่อน กว้างทางเหนือ มีช่องเปิดวงรีสีเข้มใกล้ปลายเหนือ ผนังกระจกใต้ชายคา / ส่วนบริการหลังคาแบนที่ปลายใต้ / ลานไม้สีครีมครึ่งวงกลมด้านตะวันออก
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): egg-shaped shell roof, smooth light grey, widest at the north (x -93.7..-84.9, z -299.8..-288.5), with a dark oval opening near its north end; glazed walls under the eaves a lower flat-roofed service block at the south tip, against the garden wall of ตึก A a cream semicircular deck to the east
+
+## อาคารที่สำรวจแต่ยังไม่มีโมเดลเฉพาะ (19 หลัง)
+
+บันทึกสี จำนวนชั้น รูปหลังคา และรูปแบบหน้าอาคารใน `data/overrides.json` แต่ใช้รูปทรงอัตโนมัติจาก OSM
+
+| # | อาคาร | ชั้น | แหล่งภาพ | ลักษณะที่บันทึก | OSM id |
+|---|---|---|---|---|---|
+| 1 | อาคารปฏิบัติการรวมวิศวกรรม 1 | 6 | Street View | อาคารปฏิบัติการวิศวกรรม 1: ผนังขาวเทา หน้าต่างแถบยาวทุกชั้น | 190886412 |
+| 2 | อาคารเรียนรวมสถาปัตย์ | 3 | Street View | คณะสถาปัตยกรรมศาสตร์: ผนังขาว แถบแนวตั้งสีส้ม ใต้ถุนโล่งมีเสา | 516204090 |
+| 3 | ภาควิชาวิศวกรรมเครื่องกล | 4 | Street View | ภาควิชาวิศวกรรมเครื่องกล: ผนังขาว ฐานผนังอิฐแดง หน้าต่างกรอบไม้สีเข้มบานใหญ่ | 190889051 |
+| 4 | หอพักนักศึกษา อาคาร 11 | 10 | Google Maps photos | หอพักนักศึกษาอาคาร 9–12: อาคารยาว 10 ชั้นสีขาว ระเบียงทางเดินเป็นแถบแนวนอน ผนังหัว-ท้ายและบันไดอิฐส้ม | 1206348758 |
+| 5 | สำนักหอสมุดกลาง อาคารเฉลิมพระเกียรติ | 6 | Street View | หอสมุดกลาง: ผนังครีม แผงบังแดดแนวตั้งสีเทาเต็มช่องหน้าต่าง แถบคานสีขาว | 190697423 |
+| 6 | จุฬาภรณ์วลัยลักษณ์ 2 | 8 | Google Maps photos | อาคารคณะวิทยาศาสตร์ (จุฬาภรณ์วลัยลักษณ์): ตารางคอนกรีตสีขาว ระเบียงทุกชั้น ป้ายแถบสีน้ำเงินด้านบน ใต้ถุนมีเสา (OSM ระบุ 4 ชั้น แต่ภาพจริงสูงราว 8 ชั้น) | 265574874 |
+| 7 | ตึกปฏิบัติการณ์หลังใหม่ | 9 | Street View | อาคารสูงสีขาวล้วน กรอบบังแดดลึกเป็นตาราง ใต้ถุนมีเสากลม | 265588799 |
+| 8 | คณะทันตแพทยศาสตร์ | 4 | Google Maps photos | คณะทันตแพทยศาสตร์: อาคารขาวแนวนอน ชั้นล่างกระจก แผงสีม่วง หลังคากันสาดโค้งที่ทางเข้า | 501351775 |
+| 9 | อาคารจอมไตร | 3 | Street View | อาคารคอนกรีตสีเทาอ่อน ชายคาแนวนอนลึก | 516308731 |
+| 10 | CMKL University | 7 | Street View | CMKL University: อาคารกระจกสีเขียวอมฟ้า | 784091346 |
+| 11 | หอพักนักศึกษา อาคาร 9 | 10 | Google Maps photos | หอพักนักศึกษาอาคาร 9–12: อาคารยาว 10 ชั้นสีขาว ระเบียงทางเดินเป็นแถบแนวนอน ผนังหัว-ท้ายและบันไดอิฐส้ม | 1206348756 |
+| 12 | อาคารนวัตกรรมการเรียนรู้ | 5 | Google Maps photos | อาคารนวัตกรรมการเรียนรู้: เสากลมสีขาว กระจกสีเข้ม มีโครงหลังคาเหล็กเปิดโล่งด้านบน บันไดกว้างหน้าอาคาร | 1561993799 |
+| 13 | คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง | 5 | Street View | คณะเทคโนโลยีสารสนเทศ: ผนังกระจกสีฟ้า สลับแถบพื้นสีขาว ขอบหลังคาโค้ง | 314204881 |
+| 14 | KMITL Dormitory | 5 | Street View | หอพัก สจล.: ผนังขาว เสาเอ็นสีน้ำตาลแดง หลังคาปั้นหยากระเบื้องส้มแดง | 1116753937 |
+| 15 | หอพักนักศึกษา อาคาร 10 | 10 | Google Maps photos | หอพักนักศึกษาอาคาร 9–12: อาคารยาว 10 ชั้นสีขาว ระเบียงทางเดินเป็นแถบแนวนอน ผนังหัว-ท้ายและบันไดอิฐส้ม | 1206348757 |
+| 16 | หอพักนักศึกษา อาคาร 12 | 10 | Google Maps photos | หอพักนักศึกษาอาคาร 9–12: อาคารยาว 10 ชั้นสีขาว ระเบียงทางเดินเป็นแถบแนวนอน ผนังหัว-ท้ายและบันไดอิฐส้ม | 1206348759 |
+| 17 | KOSEN-KMITL | 5 | Google Maps photos | KOSEN-KMITL: ผนังแผงสีกรมท่าเทาเข้ม ครีบแนวตั้งเอียง หน้าต่างกระจกสูง ภายในมีโถงสูงหลายชั้น | 1322811831 |
+| 18 | อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร | 4 | Street View | คณะเทคโนโลยีการเกษตร: พื้นยื่นแนวนอนสีครีม หน้าต่างถอยร่น หอบันไดอิฐแดง | 2573865 |
+| 19 | จุฬาภรณ์วลัยลักษณ์ 1 | 6 | Street View | ผนังขาวแนวนอนเป็นขั้น ฐานอาคารอิฐสีเทา ทางเข้ามีเสากลม | 3568617 |
