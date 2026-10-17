@@ -325,7 +325,9 @@ function select(idx, fly) {
   if (b.sv) rows.push([`รูปลักษณ์ (สำรวจจาก ${b.src || 'Street View'})`, b.sv]);
   if (b.st) rows.push(['ถนน', b.st]);
   if (b.op) rows.push(['เวลาทำการ', b.op]);
-  rows.push(['OSM id', `<a href="https://www.openstreetmap.org/${osmType}/${b.id}" target="_blank" rel="noopener">${osmType}/${b.id}</a>`]);
+  // t: 'x' = not in OpenStreetMap (outline added in overrides.json)
+  if (b.t === 'x') rows.push(['ที่มา', 'ไม่มีใน OpenStreetMap (เพิ่มจากการสำรวจ)']);
+  else rows.push(['OSM id', `<a href="https://www.openstreetmap.org/${osmType}/${b.id}" target="_blank" rel="noopener">${osmType}/${b.id}</a>`]);
   infoBody.innerHTML = `
     ${b.img ? `<img class="ref-img" src="${esc(b.img)}" alt="">` : ''}
     <h2>${esc(name)}</h2>

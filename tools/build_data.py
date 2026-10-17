@@ -144,6 +144,14 @@ def main():
     if ov_path.exists():
         overrides = {int(k): v for k, v in json.loads(ov_path.read_text(encoding="utf-8")).items() if not k.startswith("_")}
 
+    # buildings missing from OSM: overrides entries with their own outline "ll" ([lon, lat] pairs) and a negative id
+    for k, v in overrides.items():
+        if k < 0 and v.get("ll"):
+            outer = close_ring([proj(lat, lon) for lon, lat in v["ll"]])
+            b = {"id": k, "t": "x", "o": outer, "c": centroid(outer), "a": round(abs(area(outer))), "bt": v.get("bt", "yes")}
+            b.update({kk: vv for kk, vv in v.items() if kk != "ll"})
+            buildings.append(b)
+
     for e in els:
         t = e.get("tags", {})
         typ = e["type"]
