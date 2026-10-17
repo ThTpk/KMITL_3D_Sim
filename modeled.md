@@ -4,7 +4,7 @@
 
 สำรวจเมื่อ 2026-10-16 ถึงปัจจุบัน ภาพจาก Google Street View / Google Maps / ภาพดาวเทียม ใช้เป็นข้อมูลอ้างอิงในการขึ้นรูปเท่านั้น ไม่ได้แสดงในหน้าเว็บ รูปทรงทั้งหมดสร้างด้วยโค้ด
 
-## สรุปโมเดลเฉพาะ (52 หลัง)
+## สรุปโมเดลเฉพาะ (57 หลัง)
 
 | # | อาคาร | ไฟล์โมเดล | ชั้น | สูง (ม.) | OSM id |
 |---|---|---|---|---|---|
@@ -37,29 +37,34 @@
 | 27 | [A-Building](#abld) | `js/models/abld.js` | 6 | 21.8 | 292807567 |
 | 28 | [อาคารเฉลิมพระเกียรติ 55 พรรษา สมเด็จพระเทพฯ](#t55) | `js/models/t55.js` | 8 | 30 | 309556942 |
 | 29 | [ตึก ECC](#ecc) | `js/models/ecc.js` | 10 | 39.5 | 309557571 |
-| 30 | [อาคารเรียนรวม สมเด็จพระเทพฯ](#thep) | `js/models/thep.js` | 2 | 9.4 | 309919519 |
-| 31 | [คณะทันตแพทยศาสตร์](#dent) | `js/models/dent.js` | 5 | 22.2 | 501351775 |
-| 32 | [ภาคไฟฟ้าและพลังงานไฟฟ้า](#elec) | `js/models/elec.js` | 2 | 11.6 | 516204095 |
-| 33 | [อาคารจอมไตร](#jomtrai) | `js/models/jomtrai.js` | 3 | 13.4 | 516308731 |
-| 34 | [สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#pres) | `js/models/pres.js` | 10 | 38.8 | 516308733 |
-| 35 | [อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช](#royal) | `js/models/royal.js` | 1 | 22 | 516308734 |
-| 36 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
-| 37 | [CMKL University](#cmkl) | `js/models/cmkl.js` | 10 | 38.9 | 784091346 |
-| 38 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
-| 39 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
-| 40 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
-| 41 | [หอพักนักศึกษา อาคาร 9](#dorm9) | `js/models/dorms.js` | 10 | 36.2 | 1206348756 |
-| 42 | [อาคารนวัตกรรมการเรียนรู้](#innov) | `js/models/innov.js` | 4 | 14.7 | 1561993799 |
-| 43 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
-| 44 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
-| 45 | [KMITL Kosen Dormitory](#dormks) | `js/models/dorms.js` | 5 | 22.9 | 516204078 |
-| 46 | [KMITL Dormitory](#dormk) | `js/models/dorms.js` | 5 | 22.9 | 1116753937 |
-| 47 | [หอพักนักศึกษา อาคาร 10](#dorm10) | `js/models/dorms.js` | 10 | 36.2 | 1206348757 |
-| 48 | [หอพักนักศึกษา อาคาร 12](#dorm12) | `js/models/dorms.js` | 10 | 36.2 | 1206348759 |
-| 49 | [โรงอาหาร คณะเทคโนโลยีสารสนเทศ](#itcan) | `js/models/itcan.js` | 2 | 10.4 | 314205127 |
-| 50 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
-| 51 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
-| 52 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
+| 30 | [โรงอาหาร ตึกพระเทพฯ](#thepcan) | `js/models/mid.js` |  | 8.7 | 309919518 |
+| 31 | [อาคารเรียนรวม สมเด็จพระเทพฯ](#thep) | `js/models/thep.js` | 2 | 9.4 | 309919519 |
+| 32 | [คณะทันตแพทยศาสตร์](#dent) | `js/models/dent.js` | 5 | 22.2 | 501351775 |
+| 33 | [ภาคไฟฟ้าและพลังงานไฟฟ้า](#elec) | `js/models/elec.js` | 2 | 11.6 | 516204095 |
+| 34 | [ธนาคารและไปรษณีย์](#bank) | `js/models/mid.js` | 1 | 4.3 | 516204096 |
+| 35 | [นาโน](#nano) | `js/models/mid.js` | 2 | 9 | 516204097 |
+| 36 | [คลินิกเวชกรรม สจล.](#clinic) | `js/models/mid.js` | 2 | 9.6 | 516204098 |
+| 37 | [อาคารจอมไตร](#jomtrai) | `js/models/jomtrai.js` | 3 | 13.4 | 516308731 |
+| 38 | [สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#pres) | `js/models/pres.js` | 10 | 38.8 | 516308733 |
+| 39 | [อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช](#royal) | `js/models/royal.js` | 1 | 22 | 516308734 |
+| 40 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
+| 41 | [CMKL University](#cmkl) | `js/models/cmkl.js` | 10 | 38.9 | 784091346 |
+| 42 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
+| 43 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
+| 44 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
+| 45 | [หอพักนักศึกษา อาคาร 9](#dorm9) | `js/models/dorms.js` | 10 | 36.2 | 1206348756 |
+| 46 | [อาคารนวัตกรรมการเรียนรู้](#innov) | `js/models/innov.js` | 4 | 14.7 | 1561993799 |
+| 47 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
+| 48 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
+| 49 | [KMITL Kosen Dormitory](#dormks) | `js/models/dorms.js` | 5 | 22.9 | 516204078 |
+| 50 | [สมาคมศิษย์เก่า](#alumni) | `js/models/mid.js` | 2 | 13.7 | 516204080 |
+| 51 | [KMITL Dormitory](#dormk) | `js/models/dorms.js` | 5 | 22.9 | 1116753937 |
+| 52 | [หอพักนักศึกษา อาคาร 10](#dorm10) | `js/models/dorms.js` | 10 | 36.2 | 1206348757 |
+| 53 | [หอพักนักศึกษา อาคาร 12](#dorm12) | `js/models/dorms.js` | 10 | 36.2 | 1206348759 |
+| 54 | [โรงอาหาร คณะเทคโนโลยีสารสนเทศ](#itcan) | `js/models/itcan.js` | 2 | 10.4 | 314205127 |
+| 55 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
+| 56 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
+| 57 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
 
 รูปทรง OSM ที่ซ่อนไว้เพราะเป็นส่วนของโมเดลเฉพาะ (`hide`): 1138463195, 1138463197, 1138463209, 1138463210
 
@@ -307,6 +312,14 @@
 - ลักษณะอาคารที่บันทึก: อาคาร ECC (ปฏิบัติการรวมวิศวกรรมศาสตร์ 2): สองปีก 10 ชั้น มีลานกลาง / ด้านหน้า (ตะวันออก) หลังคาคานโค้งสีขาวมีชื่ออาคาร แถบกระจกสีน้ำเงิน ตั้งบนเสากลมสูง 2 ชั้น พร้อมบันไดทางขึ้น / หัวมุมทั้งสองเป็นหอสูงมีพื้นระเบียงยื่นเป็นขั้นบันได / ด้านเหนือ: ฐาน 4 ชั้นกระเบื้องอิฐส้มสลับแถบขาว ชั้นบนระเบียงยาวสีขาว / ปีกใต้: ระเบียงแนวนอนสีขาวซ้อนกันทุกชั้น / ด้านตะวันตก: ห้องปฏิบัติการไฟฟ้าแรงสูง โครงขาวช่องอิฐ ป้ายสีส้ม / หลังคา: ปีกเหนือสีน้ำเงินเข้ม/ฟ้าอ่อน ปีกใต้สีขาว
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): Plan (from the satellite roofs, checked against Street View distances; OSM building parts 1138463209/1138463210): west block  x -314..-294.9   z -169.2..-144.9 HV lab, 21.5 m, white frame with large brick panels podium      x -294.9..-231.3 z -169.5..-159.8 3 storeys (14.8 m), brick + white bands, AC units on a plinth north wing  x -294.9..-239.4 z -159.8..-145.3 10 floors (~35 m), set back behind the podium, balcony bands NE tower    x -239.4..-224.6 z -163.2..-145.3 floors 5-9 on round columns above the canopy south wing  x -300..-237.3   z -133.5..-117.4 10 floors, white bands wrapping a rounded SE end; west end on the road: deep balcony stack over a 2-storey brick base, shutter + ramp yard block  x -300..-287     full height, closes the open yard from the west road; blue glass strip (position fixed from Street View on the west road + its white roof on the satellite) court       z -145.3..-133.5: open yard x -314..-300, yard block, low workshops to the lobby entrance    curved white canopy (name lettering + blue glass ribbon) on round columns, facing east
 
+## โรงอาหาร ตึกพระเทพฯ <a id="thepcan"></a>
+
+- OSM id: 309919518 · ไฟล์: `js/models/mid.js` · ชั้น:  · สูง: 8.7 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคาแผงโซลาร์) + Street View ทางเดินริมสระ
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks round each one.
+- ลักษณะอาคารที่บันทึก: โรงอาหารตึกพระเทพฯ: โถงเปิดโล่งบนเสาขาว หลังคาเบามีแผงโซลาร์ แกนบริการอิฐแดง ริมสระน้ำ
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: a broad open hall on white columns under a light roof with solar panels, a red-brick service core, beside a pond นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side คลินิกเวชกรรม: a two-storey brick-faced block behind a tall white frame of slender square columns carrying a deep roof slab; a low wing with a long covered drop-off ภาคอัตโนมัติ: four storeys, white walls with cream floor bands and panels of grey louvres
+
 ## อาคารเรียนรวม สมเด็จพระเทพฯ <a id="thep"></a>
 
 - OSM id: 309919519 · ไฟล์: `js/models/thep.js` · ชั้น: 2 · สูง: 9.4 ม.
@@ -330,6 +343,30 @@
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plan, roofs, the round drum) and Google Street View: seven views supplied by the user from the roads and car park round it - the south face from the south road, the west face from the carport, the north block and the drum from the west road (two points), the south-east corner and the green hall from the east - plus an older car pano on the west road.
 - ลักษณะอาคารที่บันทึก: ภาคไฟฟ้าและพลังงานไฟฟ้า / ส่วนตะวันตกเฉียงใต้: ชั้นล่างผนังสีครีมร่นหลังเสาเหลี่ยมสีเหลืองครีมบนชานยกพื้น มีบันไดทางเข้าและป้ายชื่อภาควิชา ชั้นบนสีขาวยื่นออก ครีบแนวตั้งลึกเป็นแถบด้านใต้ ด้านตะวันตกหน้าต่างยื่นเอียง 3 บาน หน้าต่างสามเหลี่ยม บนหลังคากล่องบานเกล็ดสีเทาลดหลั่นเป็นขั้น ทรงกระบอกบันไดที่มุม / ส่วนเหนือ: อาคาร 2 ชั้นหุ้มแผ่นโลหะสีเทา แถบบานเกล็ด หลังคาจั่วลาดต่ำ / ส่วนตะวันออกเฉียงใต้: อาคารชั้นเดียวทาสีเขียวสด แถบลายทแยงสีส้มสลับขาว
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): south-west block x -205..-175, z -127..-102: ground floor cream, set back behind yellow-cream square columns on a raised verandah, windows and AC units, entrance steps at the east end of the south face, the department name on the fascia upper storey white and overhanging, a band of deep vertical fins across the south face west face: three projecting angled bay windows, a strip of small windows, a triangular window roof: a stepped grey louvred clerestory box with a metal edge; round stair drum at the north-west north block x -204..-180, z -168..-138: two-storey grey metal-clad hall, louvre bands, low gable roof core x -185..-175, z -140..-127 (white) and a single-storey link along the west x -210..-204 south-east hall x -175..-142, z -132..-115: single storey, painted bright green, a band of orange and white diagonal stripes, glazed doors, low metal roof behind the parapet
+
+## ธนาคารและไปรษณีย์ <a id="bank"></a>
+
+- OSM id: 516204096 · ไฟล์: `js/models/mid.js` · ชั้น: 1 · สูง: 4.3 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคายาวแคบ) + Street View ทางเดินมีหลังคา
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks round each one.
+- ลักษณะอาคารที่บันทึก: ธนาคารและไปรษณีย์: แถวร้านค้าชั้นเดียวยาว หลังคาคอนกรีตแบน ทางเดินมีหลังคาด้านตะวันออก
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: a broad open hall on white columns under a light roof with solar panels, a red-brick service core, beside a pond นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side คลินิกเวชกรรม: a two-storey brick-faced block behind a tall white frame of slender square columns carrying a deep roof slab; a low wing with a long covered drop-off ภาคอัตโนมัติ: four storeys, white walls with cream floor bands and panels of grey louvres
+
+## นาโน <a id="nano"></a>
+
+- OSM id: 516204097 · ไฟล์: `js/models/mid.js` · ชั้น: 2 · สูง: 9 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (สองส่วน แผงโซลาร์) + Street View ถนนด้านเหนือและด้านตะวันตก
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks round each one.
+- ลักษณะอาคารที่บันทึก: นาโน: 2 ชั้นอิฐแดงแถบพื้นขาว กระจกสีเขียว ซุ้มทางเข้าโค้ง
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: a broad open hall on white columns under a light roof with solar panels, a red-brick service core, beside a pond นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side คลินิกเวชกรรม: a two-storey brick-faced block behind a tall white frame of slender square columns carrying a deep roof slab; a low wing with a long covered drop-off ภาคอัตโนมัติ: four storeys, white walls with cream floor bands and panels of grey louvres
+
+## คลินิกเวชกรรม สจล. <a id="clinic"></a>
+
+- OSM id: 516204098 · ไฟล์: `js/models/mid.js` · ชั้น: 2 · สูง: 9.6 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคาเทาเข้มขอบขาว) + Street View ลานจอดรถด้านเหนือและด้านตะวันออก
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks round each one.
+- ลักษณะอาคารที่บันทึก: คลินิกเวชกรรม: อาคาร 2 ชั้นผิวอิฐหลังโครงเสาเหลี่ยมขาวเรียวสูงรับแผ่นหลังคาลึก ปีกเตี้ยกับหลังคาที่ส่งผู้โดยสารยาว
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: a broad open hall on white columns under a light roof with solar panels, a red-brick service core, beside a pond นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side คลินิกเวชกรรม: a two-storey brick-faced block behind a tall white frame of slender square columns carrying a deep roof slab; a low wing with a long covered drop-off ภาคอัตโนมัติ: four storeys, white walls with cream floor bands and panels of grey louvres
 
 ## อาคารจอมไตร <a id="jomtrai"></a>
 
@@ -440,6 +477,14 @@
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans, solar panels on the tall blocks, red tiled hipped roofs on the low ones; the tall roofs lean about 6 m north in the imagery and were moved south), photos on Google Maps (the tall blocks), and Google Street View from the road along the east side and the road to the south. Street View here predates the four tall blocks, which follow the photos and the imagery.
 - ลักษณะอาคารที่บันทึก: หอพัก Kosen สจล.: 5 ชั้น ผนังขาว ระเบียงทุกห้องกั้นด้วยอิฐช่องลมสีส้ม ผนังหัว-ท้ายอิฐ / หลังคาปั้นหยากระเบื้องแดง
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): หอพักนักศึกษา อาคาร 9-12: long ten-storey slabs of white render, the open corridors on one long side drawn as continuous white parapet bands, rooms with windows and AC units on the other; orange-brick end walls and stair towers rising above the roof; solar panels over the roof KMITL Dormitory and KMITL Kosen Dormitory: five storeys, white walls with a balcony per room screened in orange pierced brick, brick end walls, red tiled hipped roofs
+
+## สมาคมศิษย์เก่า <a id="alumni"></a>
+
+- OSM id: 516204080 · ไฟล์: `js/models/mid.js` · ชั้น: 2 · สูง: 13.7 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคา ปิรามิดกระจกกลาง ปีกด้านใต้) + Street View ถนนด้านเหนือ (ด้านหน้ามีชื่อสมาคม) และด้านตะวันออก
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks round each one.
+- ลักษณะอาคารที่บันทึก: สมาคมศิษย์เก่า: 2 ชั้น แผงหน้าอาคารสีขาวลึกมีชื่อสมาคมสีแดง (ไทยและอังกฤษ) ชั้นล่างกระจกหลังเสาขาวเรียว กันสาดหน้าประตู / ปิรามิดกระจกกลางหลังคา
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: a broad open hall on white columns under a light roof with solar panels, a red-brick service core, beside a pond นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side คลินิกเวชกรรม: a two-storey brick-faced block behind a tall white frame of slender square columns carrying a deep roof slab; a low wing with a long covered drop-off ภาคอัตโนมัติ: four storeys, white walls with cream floor bands and panels of grey louvres
 
 ## KMITL Dormitory <a id="dormk"></a>
 
