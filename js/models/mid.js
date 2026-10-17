@@ -8,8 +8,10 @@
 //   สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red
 //   (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed
 //   pyramid over the middle of the roof; a wing south
-//   โรงอาหาร ตึกพระเทพฯ: a broad open hall on white columns under a light roof with solar panels, a red-brick
-//   service core, beside a pond
+//   โรงอาหาร ตึกพระเทพฯ: two storeys facing south over a pond: a glazed ground-floor canteen behind white columns
+//   with red-brick piers at the south corners and steps up from the pond walk; a white slab; the upper floor
+//   behind a ring of deep white fins whose tops rise outward into a sawtooth skyline; a grey hipped roof with
+//   solar panels on its south slope; a small service block east (front from Street View on the pond walk)
 //   นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico
 //   ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof,
 //   a covered walk along its east side
@@ -47,18 +49,45 @@ export function buildAlumni(owner) {
   return done(A, owner, T + 4.5, [sign]);
 }
 
+// one fin standing out from face f at position a along the wall: d metres deep, its top rising from y1 at the
+// wall to y2 at the outer edge (drawn two-sided)
+function fin(A, m, f, a, y0, y1, y2, d, t = 0.22) {
+  const P = (u, y, w) => (f.ax === 'z' ? [u, y, f.at + f.out * w] : [f.at + f.out * w, y, u]);
+  const sides = [[a - t / 2, a + t / 2]];
+  for (const [u0, u1] of sides) {
+    const q = [[P(u0, y0, 0), P(u0, y0, d), P(u0, y2, d), P(u0, y1, 0)], [P(u1, y0, d), P(u1, y0, 0), P(u1, y1, 0), P(u1, y2, d)],
+      [P(u0, y0, d), P(u1, y0, d), P(u1, y2, d), P(u0, y2, d)], [P(u0, y1, 0), P(u0, y2, d), P(u1, y2, d), P(u1, y1, 0)]];
+    for (const [p0, p1, p2, p3] of q) { A.quad(m, p0, p1, p2, p3); A.quad(m, p3, p2, p1, p0); }
+  }
+}
+
 export function buildThepCan(owner) {
   const A = new Acc();
-  const X0 = -243, X1 = -192, Z0 = -245, Z1 = -215, H = 6.5;
-  for (let x = X0 + 1; x <= X1 - 1; x += 6.25) for (let z = Z0 + 1; z <= Z1 - 1; z += 7) A.box('wall', x - 0.3, x + 0.3, 0, H, z - 0.3, z + 0.3);
-  A.box('brick', X0 + 2, X0 + 12, 0, H + 1.5, Z0 + 2, Z0 + 10);
-  A.box('paving', X0, X1, 0, 0.3, Z0, Z1);
-  hip(A, 'roofSheet', X0, X1, Z0, Z1, H, 2.2, 1.0);
-  for (let z = Z0 + 1; z < Z1 - 3; z += 2.3) for (let x = X0 + 4; x < (X0 + X1) / 2 - 2; x += 2.1) {
-    const y = H + 2.2 * Math.min(1, Math.min(z - Z0 + 1, Z1 + 1 - z) / 16) + 0.2;
+  const X0 = -247, X1 = -201, Z0 = -247, Z1 = -219, G = 4.2, T = 8.4, D = 1.4;
+  // ground floor: glazed canteen behind white columns, red-brick piers at the south corners
+  A.box('glass', X0 + 1.5, X1 - 1.5, 0.5, G, Z0 + 1.5, Z1 - 2.2);
+  A.box('paving', X0 - 1, X1 + 1, 0, 0.5, Z0 - 1, Z1 + 1);
+  for (let x = X0 + 4; x < X1 - 3; x += 4.6) A.box('wall', x - 0.25, x + 0.25, 0.5, G, Z1 - 0.8, Z1 - 0.3);
+  for (const x of [X0, X1 - 3.2]) A.box('brick', x, x + 3.2, 0, G + 0.4, Z1 - 3.2, Z1);
+  for (let s = 0; s < 4; s++) A.box('paving', -227, -220, 0, 0.5 - s * 0.12, Z1 + 1 + s * 0.4, Z1 + 1.4 + s * 0.4);
+  // white slab over the ground floor
+  A.box('band', X0 - 0.4, X1 + 0.4, G, G + 0.6, Z0 - 0.4, Z1 + 0.4);
+  // upper floor: wall with a strip of windows, set back behind a ring of deep fins with a sawtooth top
+  A.box('wall', X0 + D, X1 - D, G + 0.6, T, Z0 + D, Z1 - D);
+  for (const [f, a0, a1] of [[F('z', Z0 + D, -1), X0 + D, X1 - D], [F('z', Z1 - D, 1), X0 + D, X1 - D], [F('x', X0 + D, -1), Z0 + D, Z1 - D], [F('x', X1 - D, 1), Z0 + D, Z1 - D]]) {
+    onFace(A, 'glass', f, a0 + 0.3, a1 - 0.3, G + 1.6, T - 0.8, 0, 0.04);
+    for (let a = a0 - D + 0.3; a <= a1 + D - 0.2; a += 1.7) fin(A, 'band', f, a, G + 0.6, T + 0.2, T + 1.0, D);
+  }
+  // hipped roof with solar panels on the south slope
+  const h = 2.0, zc = (Z0 + Z1) / 2, z1 = Z1 - D;
+  hip(A, 'roofSheet', X0 + D, X1 - D, Z0 + D, Z1 - D, T + 0.2, h, 0.2);
+  for (let z = zc + 1.2; z < z1 - 1.2; z += 2.2) for (let x = X0 + D + 8; x < X1 - D - 9; x += 2.1) {
+    const y = T + 0.2 + h * (z1 + 0.2 - (z + 0.9)) / (z1 + 0.2 - zc) + 0.15;
     A.box('solar', x, x + 1.9, y, y + 0.1, z, z + 1.8);
   }
-  return done(A, owner, H + 2.4);
+  // small service block east
+  block(A, -201, -192, -240, -226, { G: 3.8, n: 1, bay: 3.4, style: 'punched' }, { w: false });
+  return done(A, owner, T + h + 0.3);
 }
 
 export function buildNano(owner) {
@@ -114,7 +143,7 @@ export function buildAutomation(owner) {
 
 const rect = (x0, x1, z0, z1) => [[x0, z0], [x1, z0], [x1, z1], [x0, z1], [x0, z0]];
 export const ALUMNI_OUTLINE = [[-372, -370], [-340, -370], [-340, -338], [-344, -338], [-344, -308], [-366, -308], [-366, -338], [-372, -338], [-372, -370]];
-export const THEPCAN_OUTLINE = rect(-243, -192, -245, -215);
+export const THEPCAN_OUTLINE = [[-247, -247], [-201, -247], [-201, -240], [-192, -240], [-192, -226], [-201, -226], [-201, -219], [-247, -219], [-247, -247]];
 export const NANO_OUTLINE = [[-100, -137], [-76, -137], [-76, -132], [-48, -132], [-48, -114], [-76, -114], [-76, -101], [-100, -101], [-100, -137]];
 export const BANK_OUTLINE = rect(-130, -115, -174, -88);
 export const CLINIC_OUTLINE = [[-86, -184], [-60, -184], [-60, -188], [-38, -188], [-38, -161], [-60, -161], [-60, -164], [-86, -164], [-86, -184]];
