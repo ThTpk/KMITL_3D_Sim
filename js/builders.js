@@ -5,9 +5,10 @@ import { buildE12, E12_OUTLINE } from './models/e12.js';
 import { buildThep, THEP_OUTLINE } from './models/thep.js';
 import { buildPres, PRES_OUTLINE } from './models/pres.js';
 import { buildHall, HALL_OUTLINE } from './models/hall.js';
+import { buildTel, TEL_OUTLINE } from './models/tel.js';
 
 // Buildings modelled by hand from the Street View / satellite survey (overrides.json "model")
-const MODELS = { ecc: { build: buildECC, outline: ECC_OUTLINE }, e12: { build: buildE12, outline: E12_OUTLINE }, thep: { build: buildThep, outline: THEP_OUTLINE }, pres: { build: buildPres, outline: PRES_OUTLINE }, hall: { build: buildHall, outline: HALL_OUTLINE } };
+const MODELS = { ecc: { build: buildECC, outline: ECC_OUTLINE }, e12: { build: buildE12, outline: E12_OUTLINE }, thep: { build: buildThep, outline: THEP_OUTLINE }, pres: { build: buildPres, outline: PRES_OUTLINE }, hall: { build: buildHall, outline: HALL_OUTLINE }, tel: { build: buildTel, outline: TEL_OUTLINE } };
 
 // ---------- small helpers ----------
 export function hash(n) {
