@@ -1,4 +1,4 @@
-"""Write building_list.md (every named building) and modeled.md (buildings surveyed to build a model).
+"""Write building_list.md (every named KMITL building) and modeled.md (buildings surveyed to build a model).
 
 Reads data/kmitl_data.js (OSM + overrides already merged) and the header comments of js/models/*.js.
 Run again after adding a model or changing overrides: python tools/build_lists.py
@@ -88,23 +88,18 @@ def main():
                        f"{TYPE_TH.get(b['bt'], b['bt'])} | {fmt_num(b.get('lv'))} | {b['id']} | {status(b)} |")
         return out
 
-    named = sorted((b for b in blds if name_of(b)), key=lambda b: name_of(b))
-    inside = [b for b in named if b['_kmitl']]
-    outside = [b for b in named if not b['_kmitl']]
+    # only KMITL's own buildings (the ones drawn in 3D); buildings outside the campus are left out
+    inside = sorted((b for b in blds if b['_kmitl'] and name_of(b)), key=lambda b: name_of(b))
     unnamed_in = sum(1 for b in blds if b['_kmitl'] and not name_of(b))
-    unnamed_out = sum(1 for b in blds if not b['_kmitl'] and not name_of(b))
 
     md = [
-        '# รายชื่ออาคารทั้งหมด',
+        '# รายชื่ออาคาร สจล.',
         '',
         f"สร้างจาก `data/kmitl_data.js` (OpenStreetMap ณ {d['osm_timestamp'][:10]} รวมค่าจาก `data/overrides.json`) "
         'ด้วย `python tools/build_lists.py` — แก้ข้อมูลต้นทางแล้วรันใหม่ อย่าแก้ไฟล์นี้ด้วยมือ',
         '',
-        f"- อาคารทั้งหมดในข้อมูล: {len(blds)} หลัง (มีชื่อ {len(named)} หลัง)",
         f"- อาคารของ สจล. (ภายในเขตสถาบันหรือมีโมเดลเฉพาะ — แสดงเป็น 3 มิติในเว็บ): "
         f"{len(inside) + unnamed_in} หลัง มีชื่อ {len(inside)} หลัง ไม่มีชื่อ {unnamed_in} หลัง",
-        f"- อาคารภายนอก สจล. (ไม่แสดงเป็น 3 มิติ): {len(outside) + unnamed_out} หลัง "
-        f"มีชื่อ {len(outside)} หลัง ไม่มีชื่อ {unnamed_out} หลัง",
         f"- โมเดลเฉพาะ: {sum(1 for b in blds if b.get('model'))} หลัง ดูรายละเอียดการสำรวจใน [modeled.md](modeled.md)",
         '',
         'สถานะ: **โมเดลเฉพาะ** = สร้างด้วยมือใน `js/models/` · **สำรวจ** = บันทึกสี/ชั้น/รูปแบบหน้าอาคารจากภาพ '
@@ -113,10 +108,6 @@ def main():
         f'## อาคารของ สจล. ({len(inside)} หลังที่มีชื่อ)',
         '',
         *table(inside),
-        '',
-        f'## อาคารภายนอก สจล. ({len(outside)} หลังที่มีชื่อ)',
-        '',
-        *table(outside),
         '',
     ]
     (ROOT / 'building_list.md').write_text('\n'.join(md), encoding='utf-8')
@@ -183,7 +174,7 @@ def main():
                       f"{fmt_num(b.get('lv'))} | {cell(b.get('src') or 'Street View')} | {cell(b.get('sv'))} | {b['id']} |")
         md.append('')
     (ROOT / 'modeled.md').write_text('\n'.join(md), encoding='utf-8')
-    print(f'building_list.md: {len(named)} named ({len(inside)} KMITL); modeled.md: {len(models)} models, '
+    print(f'building_list.md: {len(inside)} KMITL; modeled.md: {len(models)} models, '
           f'{len(surveyed)} surveyed only')
 
 
