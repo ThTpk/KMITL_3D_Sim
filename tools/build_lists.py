@@ -46,9 +46,19 @@ def fmt_num(v):
     return '' if v is None else (str(int(v)) if float(v).is_integer() else str(v))
 
 
+def model_file(key):
+    """js/models file that builds model `key`, read from the imports and MODELS table in js/builders.js."""
+    src = (ROOT / 'js/builders.js').read_text(encoding='utf-8')
+    fn = re.search(r'[{,] ' + re.escape(key) + r': [{] build: (\w+)', src).group(1)
+    for m in re.finditer(r"import [{]([^}]*)[}] from '[.]/models/([\w-]+)[.]js'", src):
+        if fn in [n.strip() for n in m.group(1).split(',')]:
+            return m.group(2) + '.js'
+    return key + '.js'
+
+
 def model_header(key):
-    """Leading comment block of js/models/<key>.js split into title, survey notes and form notes."""
-    path = ROOT / 'js/models' / f'{key}.js'
+    """Leading comment block of the model's file split into survey notes and form notes."""
+    path = ROOT / 'js/models' / model_file(key)
     lines = []
     for ln in path.read_text(encoding='utf-8').splitlines():
         if not ln.startswith('//'):
@@ -134,7 +144,7 @@ def main():
         '|---|---|---|---|---|---|',
     ]
     for i, b in enumerate(models, 1):
-        md.append(f"| {i} | [{cell(name_of(b))}](#{b['model']}) | `js/models/{b['model']}.js` | "
+        md.append(f"| {i} | [{cell(name_of(b))}](#{b['model']}) | `js/models/{model_file(b['model'])}` | "
                   f"{fmt_num(b.get('lv'))} | {fmt_num(b.get('ht'))} | {b['id']} |")
     md.append('')
     hid = [by_id[i] for i in hidden.get('x', []) if i in by_id]
@@ -147,7 +157,7 @@ def main():
         if b.get('en') and b.get('en') != name_of(b):
             md += [f"*{b['en']}*", '']
         md += [
-            f"- OSM id: {b['id']} · ไฟล์: `js/models/{b['model']}.js` · ชั้น: {fmt_num(b.get('lv'))} · "
+            f"- OSM id: {b['id']} · ไฟล์: `js/models/{model_file(b['model'])}` · ชั้น: {fmt_num(b.get('lv'))} · "
             f"สูง: {fmt_num(b.get('ht'))} ม.",
             '- แหล่งภาพอ้างอิง: ' + re.sub(r'\s*\(โมเดลเฉพาะ[^)]*\)', '', b.get('src', '')),
         ]
