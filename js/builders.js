@@ -866,8 +866,7 @@ export function buildTrees(data, buildingsList) {
         for (const side of [-1, 1]) {
           const off = side * (r.w / 2 + 3.2);
           const x = a[0] + ux * t - uz * off, z = a[1] + uz * t + ux * off;
-          const campusRoad = inCampus(x, z);
-          if (!campusRoad && R() > 0.25) continue;
+          if (!inCampus(x, z)) continue;
           if (R() < 0.15) continue;
           if (!blocked(x, z) && !inPitch(x, z)) trees.push([x, z, R()]);
         }
@@ -883,6 +882,10 @@ export function buildTrees(data, buildingsList) {
     }
   }
 
+  // like buildings, trees are drawn only inside KMITL (the satellite imagery shows the greenery outside);
+  // this also keeps them off the footprints of the outside buildings that are no longer drawn
+  const kept = trees.filter(([x, z]) => inCampus(x, z));
+  trees.length = 0; trees.push(...kept);
   const trunkGeo = new THREE.CylinderGeometry(0.18, 0.28, 1, 6); trunkGeo.translate(0, 0.5, 0);
   const crownGeo = new THREE.IcosahedronGeometry(1, 1);
   const palmGeo = new THREE.ConeGeometry(1, 0.6, 7); palmGeo.translate(0, 0, 0);
