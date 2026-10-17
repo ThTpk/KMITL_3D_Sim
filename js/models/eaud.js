@@ -7,8 +7,9 @@
 //
 // x = east, z = south, y = up. Walls x -87.4..-49.2, z 43.8..81 (OSM outline agrees with the imagery).
 //   a tall box of exposed red brick with a white coping; two deep slots near the top of each corner
-//   ground floor glazed behind round white columns on the west and south, under a white canopy slab that
-//   wraps the south-west corner; a row of Thai flags on outrigger poles along both faces above it
+//   ground floor glazed on the west and south: a deep white canopy on round columns along the south that
+//   turns the south-west corner, a thin white band over the rest of the west glazing (seen from the statue
+//   plaza west of the hall); Thai flags on outrigger poles on both faces near the corner
 //   semicircular stepped platform at the south-west corner
 //   roof: low concrete pyramid behind the parapet, a raised strip from the north-east corner past the apex
 import * as THREE from 'three';
@@ -48,11 +49,13 @@ export function buildEaud(owner) {
   // ---- canopy wrapping the south-west corner, round white columns ----
   const CO = 3.6;
   A.box('white', X0 - CO, X1 - 4, G, G + 0.9, Z1 - 0.01, Z1 + CO);              // south
-  A.box('white', X0 - CO, X0 + 0.01, G, G + 0.9, Z0 + 4, Z1 + CO);              // west
+  const ZW = Z1 - 9;                                                             // deep canopy turns the corner only this far
+  A.box('white', X0 - CO, X0 + 0.01, G, G + 0.9, ZW, Z1 + CO);                  // west, at the corner
+  A.box('white', X0 - 1.2, X0 + 0.01, G, G + 0.6, Z0 + 4, ZW);                  // west: thin band over the glazing
   A.box('soffit', X0 - CO + 0.1, X1 - 4.1, G - 0.05, G, Z1, Z1 + CO - 0.1, false);
-  A.box('soffit', X0 - CO + 0.1, X0, G - 0.05, G, Z0 + 4.1, Z1 + CO - 0.1, false);
+  A.box('soffit', X0 - CO + 0.1, X0, G - 0.05, G, ZW + 0.1, Z1 + CO - 0.1, false);
   for (let x = X0 + 4; x < X1 - 4; x += 7.2) A.cyl('white', x, Z1 + CO - 0.9, 0.4, 0, G, 16);
-  for (let z = Z1 - 4; z > Z0 + 4; z -= 7.2) A.cyl('white', X0 - CO + 0.9, z, 0.4, 0, G, 16);
+  A.cyl('white', X0 - CO + 0.9, ZW + 1.2, 0.4, 0, G, 16);
   A.cyl('white', X0 - CO + 0.9, Z1 + CO - 0.9, 0.45, 0, G, 16);
 
   // ---- semicircular stepped platform at the south-west corner ----
@@ -67,7 +70,7 @@ export function buildEaud(owner) {
   }
 
   // ---- roof: low concrete pyramid, raised strip along the north-east diagonal ----
-  const R0 = H + 0.4, RISE = 3.0, APEX = [CX, R0 + RISE, CZ];
+  const R0 = H + 0.4, RISE = 2.4, APEX = [CX, R0 + RISE, CZ];
   const c = [[X0 + 0.4, Z0 + 0.4], [X1 - 0.4, Z0 + 0.4], [X1 - 0.4, Z1 - 0.4], [X0 + 0.4, Z1 - 0.4]];
   for (let i = 0; i < 4; i++) {
     const [a, b] = [c[i], c[(i + 1) % 4]];
@@ -80,21 +83,21 @@ export function buildEaud(owner) {
   const SS = [0.88, 0.6, 0.25, 0, -0.25];
   for (let i = 0; i < SS.length - 1; i++) {
     const [sa, sb] = [SS[i], SS[i + 1]];
-    const ta = hip(sa) + 1.6, tb = hip(sb) + 1.6, ba = hip(sa) - 0.6, bb = hip(sb) - 0.6;
+    const ta = hip(sa) + 0.9, tb = hip(sb) + 0.9, ba = hip(sa) - 0.6, bb = hip(sb) - 0.6;
     A.quad('strip', P(sa, 1, ba), P(sb, 1, bb), P(sb, 1, tb), P(sa, 1, ta));
     A.quad('strip', P(sb, -1, bb), P(sa, -1, ba), P(sa, -1, ta), P(sb, -1, tb));
     A.quad('stripTop', P(sa, -1, ta), P(sa, 1, ta), P(sb, 1, tb), P(sb, -1, tb));
   }
   for (const [s, o] of [[SS[0], 1], [SS[SS.length - 1], -1]]) {
-    const t = hip(s) + 1.6, b = hip(s) - 0.6;
+    const t = hip(s) + 0.9, b = hip(s) - 0.6;
     if (o > 0) A.quad('strip', P(s, -1, b), P(s, 1, b), P(s, 1, t), P(s, -1, t));
     else A.quad('strip', P(s, 1, b), P(s, -1, b), P(s, -1, t), P(s, 1, t));
   }
 
   // ---- Thai flags on outrigger poles along the west and south faces ----
   const flagPos = [];
-  for (let i = 0; i < 7; i++) flagPos.push({ p: [X0 + 3 + i * 4.2, Z1], o: [0, 1], u: [1, 0] });
-  for (let i = 0; i < 7; i++) flagPos.push({ p: [X0, Z1 - 3 - i * 4.2], o: [-1, 0], u: [0, -1] });
+  for (let i = 0; i < 4; i++) flagPos.push({ p: [X0 + 3 + i * 3.6, Z1], o: [0, 1], u: [1, 0] });
+  for (let i = 0; i < 4; i++) flagPos.push({ p: [X0, Z1 - 3 - i * 3.6], o: [-1, 0], u: [0, -1] });
   const flagQuads = [];
   for (const { p, o, u } of flagPos) {
     const base = [p[0] + o[0] * 0.3, G + 0.9, p[1] + o[1] * 0.3], tip = [p[0] + o[0] * 0.9, G + 6.0, p[1] + o[1] * 0.9];
@@ -158,7 +161,7 @@ export function buildEaud(owner) {
   fg.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
   fg.computeVertexNormals();
   add(fg, new THREE.MeshStandardMaterial({ map: thai, side: THREE.DoubleSide, roughness: 0.8 }));
-  return { meshes, top: R0 + RISE + 1.6 };
+  return { meshes, top: R0 + RISE + 0.9 };
 }
 
 export const EAUD_OUTLINE = [[X0, Z0], [X1, Z0], [X1, Z1], [X0, Z1], [X0, Z0]];

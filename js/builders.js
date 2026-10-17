@@ -8,9 +8,10 @@ import { buildHall, HALL_OUTLINE } from './models/hall.js';
 import { buildTel, TEL_OUTLINE } from './models/tel.js';
 import { buildA, A_OUTLINE } from './models/abld.js';
 import { buildEaud, EAUD_OUTLINE } from './models/eaud.js';
+import { buildWing, WING_OUTLINE } from './models/ewing.js';
 
 // Buildings modelled by hand from the Street View / satellite survey (overrides.json "model")
-const MODELS = { ecc: { build: buildECC, outline: ECC_OUTLINE }, e12: { build: buildE12, outline: E12_OUTLINE }, thep: { build: buildThep, outline: THEP_OUTLINE }, pres: { build: buildPres, outline: PRES_OUTLINE }, hall: { build: buildHall, outline: HALL_OUTLINE }, tel: { build: buildTel, outline: TEL_OUTLINE }, abld: { build: buildA, outline: A_OUTLINE }, eaud: { build: buildEaud, outline: EAUD_OUTLINE } };
+const MODELS = { ecc: { build: buildECC, outline: ECC_OUTLINE }, e12: { build: buildE12, outline: E12_OUTLINE }, thep: { build: buildThep, outline: THEP_OUTLINE }, pres: { build: buildPres, outline: PRES_OUTLINE }, hall: { build: buildHall, outline: HALL_OUTLINE }, tel: { build: buildTel, outline: TEL_OUTLINE }, abld: { build: buildA, outline: A_OUTLINE }, eaud: { build: buildEaud, outline: EAUD_OUTLINE }, ewing: { build: buildWing, outline: WING_OUTLINE } };
 
 // ---------- small helpers ----------
 export function hash(n) {
