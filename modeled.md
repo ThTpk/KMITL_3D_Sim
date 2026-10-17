@@ -4,7 +4,7 @@
 
 สำรวจเมื่อ 2026-10-16 ถึงปัจจุบัน ภาพจาก Google Street View / Google Maps / ภาพดาวเทียม ใช้เป็นข้อมูลอ้างอิงในการขึ้นรูปเท่านั้น ไม่ได้แสดงในหน้าเว็บ รูปทรงทั้งหมดสร้างด้วยโค้ด
 
-## สรุปโมเดลเฉพาะ (27 หลัง)
+## สรุปโมเดลเฉพาะ (32 หลัง)
 
 | # | อาคาร | ไฟล์โมเดล | ชั้น | สูง (ม.) | OSM id |
 |---|---|---|---|---|---|
@@ -19,22 +19,27 @@
 | 9 | [ตึกโทรคมนาคม](#tel) | `js/models/tel.js` | 4 | 14.8 | 190868528 |
 | 10 | [ตึกบี](#bbld) | `js/models/bbld.js` | 4 | 13.6 | 190870224 |
 | 11 | [โรงอาหาร A คณะวิศวกรรมศาสตร์](#cana) | `js/models/cana.js` | 1 | 8.6 | 190880523 |
-| 12 | [A-Building](#abld) | `js/models/abld.js` | 6 | 21.8 | 292807567 |
-| 13 | [อาคารเฉลิมพระเกียรติ 55 พรรษา สมเด็จพระเทพฯ](#t55) | `js/models/t55.js` | 8 | 30 | 309556942 |
-| 14 | [ตึก ECC](#ecc) | `js/models/ecc.js` | 10 | 39.5 | 309557571 |
-| 15 | [อาคารเรียนรวม สมเด็จพระเทพฯ](#thep) | `js/models/thep.js` | 2 | 9.4 | 309919519 |
-| 16 | [ภาคไฟฟ้าและพลังงานไฟฟ้า](#elec) | `js/models/elec.js` | 2 | 11.6 | 516204095 |
-| 17 | [อาคารจอมไตร](#jomtrai) | `js/models/jomtrai.js` | 3 | 13.4 | 516308731 |
-| 18 | [สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#pres) | `js/models/pres.js` | 10 | 38.8 | 516308733 |
-| 19 | [อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช](#royal) | `js/models/royal.js` | 1 | 22 | 516308734 |
-| 20 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
-| 21 | [CMKL University](#cmkl) | `js/models/cmkl.js` | 10 | 38.9 | 784091346 |
-| 22 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
-| 23 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
-| 24 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
-| 25 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
-| 26 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
-| 27 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
+| 12 | [หอประชุมจุฬาภรณ์วลับลักษณ์](#chaud) | `js/models/chaud.js` | 3 | 15.8 | 265574872 |
+| 13 | [จุฬาภรณ์วลัยลักษณ์ 2](#chula2) | `js/models/chula2.js` | 6 | 23.4 | 265574874 |
+| 14 | [ตึกปฏิบัติการณ์หลังใหม่](#newlab) | `js/models/newlab.js` | 10 | 38 | 265588799 |
+| 15 | [A-Building](#abld) | `js/models/abld.js` | 6 | 21.8 | 292807567 |
+| 16 | [อาคารเฉลิมพระเกียรติ 55 พรรษา สมเด็จพระเทพฯ](#t55) | `js/models/t55.js` | 8 | 30 | 309556942 |
+| 17 | [ตึก ECC](#ecc) | `js/models/ecc.js` | 10 | 39.5 | 309557571 |
+| 18 | [อาคารเรียนรวม สมเด็จพระเทพฯ](#thep) | `js/models/thep.js` | 2 | 9.4 | 309919519 |
+| 19 | [ภาคไฟฟ้าและพลังงานไฟฟ้า](#elec) | `js/models/elec.js` | 2 | 11.6 | 516204095 |
+| 20 | [อาคารจอมไตร](#jomtrai) | `js/models/jomtrai.js` | 3 | 13.4 | 516308731 |
+| 21 | [สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#pres) | `js/models/pres.js` | 10 | 38.8 | 516308733 |
+| 22 | [อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช](#royal) | `js/models/royal.js` | 1 | 22 | 516308734 |
+| 23 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
+| 24 | [CMKL University](#cmkl) | `js/models/cmkl.js` | 10 | 38.9 | 784091346 |
+| 25 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
+| 26 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
+| 27 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
+| 28 | [อาคารนวัตกรรมการเรียนรู้](#innov) | `js/models/innov.js` | 4 | 14.7 | 1561993799 |
+| 29 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
+| 30 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
+| 31 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
+| 32 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
 
 รูปทรง OSM ที่ซ่อนไว้เพราะเป็นส่วนของโมเดลเฉพาะ (`hide`): 1138463195, 1138463197, 1138463209, 1138463210
 
@@ -131,6 +136,30 @@
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (three roofs: a white west block, a grey central hall that reaches further north as the entrance, a white east hall, and a low annex on the south) and Google Street View: the north-east corner and east side from the road (a car pano about 25 m away) and a 360° photo at the north entrance (looking into the hall). The west and south sides are behind other buildings and trees and follow the same pattern.
 - ลักษณะอาคารที่บันทึก: โรงอาหาร A คณะวิศวะ: อาคารชั้นเดียวยกพื้นสูง ด้านข้างเปิดโล่งมีผนังเตี้ยสีขาว เสาเหลี่ยมสีขาว ชายคายื่นลึก หลังคาเหล็กลาดต่ำสีเทาอ่อน / มุมตะวันออกเฉียงเหนือเป็นห้องทึบสีชมพูอ่อนมีตะแกรงเหล็ก บันไดขึ้นจากถนน / กลางอาคาร: ทางเข้าด้านเหนือใต้แผ่นพื้นยื่นลึกบนเสากลม โถงสูงหลังคาจั่วลาดต่ำ / ปีกตะวันตกผนังสีครีมมีหน้าต่าง หลังคาแบนสีขาว / ส่วนบริการเตี้ยด้านใต้
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): east hall   x -245.5..-224.5, z 96..117: one storey on a 1.2 m plinth, open sides with a low white parapet, square white columns, deep white eaves, low light-grey metal roof; an enclosed pink block with a steel grille at the north-east corner, steps up from the road centre      x -257..-245.5, z 89.5..120: taller hall; at the north a deep white slab on round columns over the entrance steps, behind it a high open hall with a low gabled roof west block  x -273..-257, z 96..122: cream walls with windows, flat white roof south annex x -246..-232, z 117..126: low service block
+
+## หอประชุมจุฬาภรณ์วลับลักษณ์ <a id="chaud"></a>
+
+- OSM id: 265574872 · ไฟล์: `js/models/chaud.js` · ชั้น: 3 · สูง: 15.8 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคาปั้นหยาสีแดงกับแผงโซลาร์) + Street View ทางเดินด้านใต้ (ด้านหน้ามีชื่ออาคาร) มุมตะวันออกเฉียงเหนือและตะวันออกเฉียงใต้ ทางเดินด้านตะวันตก
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (a red hipped roof with solar panels) and Google Street View from the walk on its south side (the front with the name), the north-east and south-east corners and the west walk.
+- ลักษณะอาคารที่บันทึก: หอประชุมจุฬาภรณ์วลัยลักษณ์: 3 ชั้น ชั้นล่างร่นหลังเสาอิฐแดงเหลี่ยม / ผนังบนสีขาว แผงอิฐแดงที่ราวกันตก แถบครีบบานเกล็ดขาวลึก หน้าต่างแถบใต้ชายคา / ชื่ออาคารด้านใต้ / หลังคาปั้นหยาต่ำสีแดงมีแผงโซลาร์
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): three storeys: the ground floor set back behind square red-brick columns; white upper walls with red-brick parapet panels, a band of deep white louvre fins across the first floor, a row of clerestory windows under the eaves; the name on the south front; a low red hipped roof with solar panels; a covered bridge to the building to the east
+
+## จุฬาภรณ์วลัยลักษณ์ 2 <a id="chula2"></a>
+
+- OSM id: 265574874 · ไฟล์: `js/models/chula2.js` · ชั้น: 6 · สูง: 23.4 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผังโค้งด้านตะวันตกเฉียงเหนือ แผงโซลาร์) + Street View ถนนด้านเหนือ ตะวันตก และตะวันออก (ด้านเหนือโค้งมีตัวอักษร SCHOOL OF SCIENCE ทางเข้าด้านตะวันออก)
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the plan curving round its north-west side, solar panels on the roof) and Google Street View from the roads on the north, west and east sides (the curved north face with "SCHOOL OF SCIENCE" in red letters, the entrance on the east, the faculty's Thai name on the east end).
+- ลักษณะอาคารที่บันทึก: อาคารคณะวิทยาศาสตร์ (จุฬาภรณ์วลัยลักษณ์ 2): 6 ชั้น ผนังขาว แผงกันแดดแนวนอนลึกทุกชั้น หน้าต่างแถบ / ชั้นล่างอิฐแดงหลังเสากลมสีขาว / ด้านเหนือโค้ง ตัวอักษร SCHOOL OF SCIENCE สีแดง / หลังคาแผงโซลาร์
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): six storeys; white render with deep continuous sunshade slabs at every floor and strip windows between; a red-brick ground floor behind round white columns; the plan curves round from the west end to the north-east corner; flat roof with solar panels
+
+## ตึกปฏิบัติการณ์หลังใหม่ <a id="newlab"></a>
+
+- OSM id: 265588799 · ไฟล์: `js/models/newlab.js` · ชั้น: 10 · สูง: 38 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคาอาคารสูงกับแผงโซลาร์ เอียงไปทางเหนือราว 6 ม. ในภาพ จึงเลื่อนลงใต้) + Street View ถนนด้านใต้ ตะวันออก และเหนือ
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the tower roof with solar panels, which leans about 6 m north in the imagery and was moved south; the lower south part) and Google Street View from the roads on the south, east and north sides.
+- ลักษณะอาคารที่บันทึก: อาคารสูงสีขาวล้วน กรอบบังแดดลึกเป็นตาราง ใต้ถุนมีเสากลม
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): all white: a deep egg-crate of fins and slabs round recessed windows with AC units, broad pilasters every few bays, full-height strips of vertical louvres at the stairs; the ground floor is an open car park tower x 188..245 / z -150..-122, ten storeys; a four-storey part south-east x 213..251 / z -122..-102 a canopy on round columns over the entrance on the north
 
 ## A-Building <a id="abld"></a>
 
@@ -242,6 +271,14 @@
 - ลักษณะอาคารที่บันทึก: อาคารมหาวิทยาลัย: อาคาร 2 ชั้นระหว่างสำนักงานอธิการบดีกับตึก A / ชั้นล่างกระจกร่นหลังเสากลมสีขาว ใต้แถบชายคาบานเกล็ดสีเทา / ชั้นบนอิฐแดงในกรอบเสาและพื้นสีขาว ระเบียงมีคอยล์ร้อนแอร์ที่มุมตะวันออกเฉียงเหนือ / หลังคาปิรามิดแปดเหลี่ยมสีขาวเทาครึ่งเหนือ หลังคาแบนครึ่งใต้ / ซุ้มทางเข้าด้านใต้หลังคาฟันปลาสีขาว แผ่นโปร่งแสงสีเขียว / ทางเดินมีหลังคาเชื่อมไปอาคารสำนักงานอธิการบดี
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): body x -30..-9.3, z -306.6..-267: ground floor glazed, set back behind round white columns under a grey louvred soffit band; upper storey red brick in a white frame of columns and floor slabs, balcony with AC units at the north-east corner; white roof edge north half: low eight-sided pyramid roof, light grey; south half: flat roof, dark porch x -28.8..-17, z -267..-257: white zig-zag canopy with a green translucent roof on white columns, steps; covered link x -29.8..-9.3, z -316.5..-306.6: flat roof on columns to the President building
 
+## อาคารนวัตกรรมการเรียนรู้ <a id="innov"></a>
+
+- OSM id: 1561993799 · ไฟล์: `js/models/innov.js` · ชั้น: 4 · สูง: 14.7 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (อาคารหลังคาแบนกับโครงหลังคาเหล็กโปร่งของซุ้มเสา) + Street View ลานจอดรถด้านตะวันตกและตะวันออก ทางเดินใต้ซุ้ม
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the flat-roofed block and the open steel lattice roof of the portico north-east of it) and Google Street View from the car parks on its west and east sides and the covered walks under the portico.
+- ลักษณะอาคารที่บันทึก: อาคารนวัตกรรมการเรียนรู้: เสากลมสีขาว กระจกสีเข้ม มีโครงหลังคาเหล็กเปิดโล่งด้านบน บันไดกว้างหน้าอาคาร
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): a four-storey white block with strip windows of dark glass and a brick corner a tall portico of square white columns, about 14 m high, carrying an open lattice of white steel beams with a small glazed pyramid; broad steps up to the block
+
 ## Lita cafe & roaster - KMITL <a id="lita"></a>
 
 - OSM id: 1564107231 · ไฟล์: `js/models/lita.js` · ชั้น: 1 · สูง: 4.8 ม.
@@ -268,7 +305,15 @@
 - ลักษณะอาคารที่บันทึก: คณะเทคโนโลยีการเกษตร: พื้นยื่นแนวนอนสีครีม หน้าต่างถอยร่น หอบันไดอิฐแดง
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): four diamond wings (square rings about 43 m a side, 12 m deep, around planted courtyards) at the corners of a central lawn; the two on the west have four storeys, the two on the east five cream render with deep white floor bands and ribbon windows between piers on the outer faces, open walkways with solid parapets on the courtyard faces, red-brick stair towers crossed by the white bands at the corners of each wing; a low plinth all round a four-storey block with a solar roof on the west side, and solar-panelled links north and south of the lawn
 
-## อาคารที่สำรวจแต่ยังไม่มีโมเดลเฉพาะ (14 หลัง)
+## จุฬาภรณ์วลัยลักษณ์ 1 <a id="chula1"></a>
+
+- OSM id: 3568617 · ไฟล์: `js/models/chula1.js` · ชั้น: 7 · สูง: 28 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ปีกอาคาร 3 ปีก แผงโซลาร์ปีกตะวันตก) + Street View ลานจอดรถในมุมตัว L (หอทางเข้ามีชื่ออาคาร) ถนนด้านตะวันออก มุมตะวันออกเฉียงเหนือ
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the wings, solar panels on the west wing) and Google Street View from the car park in the crook of the L (the entrance tower with the name), the road along the east side and the north-east corner.
+- ลักษณะอาคารที่บันทึก: จุฬาภรณ์วลัยลักษณ์ 1: 7 ชั้น ผนังขาว แผงกันแดดแนวนอนลึกต่อเนื่องทุกชั้น หน้าต่างแถบกระจกเขียวเทา / หอทางเข้าแนวทแยงที่มุมใน แผงอิฐแดงกลาง แถบบานเกล็ดขาว ล็อบบี้กระจกบนเสากลม บันไดกว้าง
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): seven storeys of white render: deep continuous sunshade slabs at every floor with strip windows of green-grey glass between; a plain white parapet north wing x 180..247, west wing to z -191, east wing to z -151; the entrance tower fills the inner corner on a diagonal, a red-brick panel up its middle above a band of white louvres, a glazed lobby on round columns under it, broad steps to the car park
+
+## อาคารที่สำรวจแต่ยังไม่มีโมเดลเฉพาะ (10 หลัง)
 
 บันทึกสี จำนวนชั้น รูปหลังคา และรูปแบบหน้าอาคารใน `data/overrides.json` แต่ใช้รูปทรงอัตโนมัติจาก OSM
 
@@ -278,13 +323,9 @@
 | 2 | อาคารเรียนรวมสถาปัตย์ | 3 | Street View | คณะสถาปัตยกรรมศาสตร์: ผนังขาว แถบแนวตั้งสีส้ม ใต้ถุนโล่งมีเสา | 516204090 |
 | 3 | ภาควิชาวิศวกรรมเครื่องกล | 4 | Street View | ภาควิชาวิศวกรรมเครื่องกล: ผนังขาว ฐานผนังอิฐแดง หน้าต่างกรอบไม้สีเข้มบานใหญ่ | 190889051 |
 | 4 | หอพักนักศึกษา อาคาร 11 | 10 | Google Maps photos | หอพักนักศึกษาอาคาร 9–12: อาคารยาว 10 ชั้นสีขาว ระเบียงทางเดินเป็นแถบแนวนอน ผนังหัว-ท้ายและบันไดอิฐส้ม | 1206348758 |
-| 5 | จุฬาภรณ์วลัยลักษณ์ 2 | 8 | Google Maps photos | อาคารคณะวิทยาศาสตร์ (จุฬาภรณ์วลัยลักษณ์): ตารางคอนกรีตสีขาว ระเบียงทุกชั้น ป้ายแถบสีน้ำเงินด้านบน ใต้ถุนมีเสา (OSM ระบุ 4 ชั้น แต่ภาพจริงสูงราว 8 ชั้น) | 265574874 |
-| 6 | ตึกปฏิบัติการณ์หลังใหม่ | 9 | Street View | อาคารสูงสีขาวล้วน กรอบบังแดดลึกเป็นตาราง ใต้ถุนมีเสากลม | 265588799 |
-| 7 | คณะทันตแพทยศาสตร์ | 4 | Google Maps photos | คณะทันตแพทยศาสตร์: อาคารขาวแนวนอน ชั้นล่างกระจก แผงสีม่วง หลังคากันสาดโค้งที่ทางเข้า | 501351775 |
-| 8 | หอพักนักศึกษา อาคาร 9 | 10 | Google Maps photos | หอพักนักศึกษาอาคาร 9–12: อาคารยาว 10 ชั้นสีขาว ระเบียงทางเดินเป็นแถบแนวนอน ผนังหัว-ท้ายและบันไดอิฐส้ม | 1206348756 |
-| 9 | อาคารนวัตกรรมการเรียนรู้ | 5 | Google Maps photos | อาคารนวัตกรรมการเรียนรู้: เสากลมสีขาว กระจกสีเข้ม มีโครงหลังคาเหล็กเปิดโล่งด้านบน บันไดกว้างหน้าอาคาร | 1561993799 |
-| 10 | KMITL Dormitory | 5 | Street View | หอพัก สจล.: ผนังขาว เสาเอ็นสีน้ำตาลแดง หลังคาปั้นหยากระเบื้องส้มแดง | 1116753937 |
-| 11 | หอพักนักศึกษา อาคาร 10 | 10 | Google Maps photos | หอพักนักศึกษาอาคาร 9–12: อาคารยาว 10 ชั้นสีขาว ระเบียงทางเดินเป็นแถบแนวนอน ผนังหัว-ท้ายและบันไดอิฐส้ม | 1206348757 |
-| 12 | หอพักนักศึกษา อาคาร 12 | 10 | Google Maps photos | หอพักนักศึกษาอาคาร 9–12: อาคารยาว 10 ชั้นสีขาว ระเบียงทางเดินเป็นแถบแนวนอน ผนังหัว-ท้ายและบันไดอิฐส้ม | 1206348759 |
-| 13 | KOSEN-KMITL | 5 | Google Maps photos | KOSEN-KMITL: ผนังแผงสีกรมท่าเทาเข้ม ครีบแนวตั้งเอียง หน้าต่างกระจกสูง ภายในมีโถงสูงหลายชั้น | 1322811831 |
-| 14 | จุฬาภรณ์วลัยลักษณ์ 1 | 6 | Street View | ผนังขาวแนวนอนเป็นขั้น ฐานอาคารอิฐสีเทา ทางเข้ามีเสากลม | 3568617 |
+| 5 | คณะทันตแพทยศาสตร์ | 4 | Google Maps photos | คณะทันตแพทยศาสตร์: อาคารขาวแนวนอน ชั้นล่างกระจก แผงสีม่วง หลังคากันสาดโค้งที่ทางเข้า | 501351775 |
+| 6 | หอพักนักศึกษา อาคาร 9 | 10 | Google Maps photos | หอพักนักศึกษาอาคาร 9–12: อาคารยาว 10 ชั้นสีขาว ระเบียงทางเดินเป็นแถบแนวนอน ผนังหัว-ท้ายและบันไดอิฐส้ม | 1206348756 |
+| 7 | KMITL Dormitory | 5 | Street View | หอพัก สจล.: ผนังขาว เสาเอ็นสีน้ำตาลแดง หลังคาปั้นหยากระเบื้องส้มแดง | 1116753937 |
+| 8 | หอพักนักศึกษา อาคาร 10 | 10 | Google Maps photos | หอพักนักศึกษาอาคาร 9–12: อาคารยาว 10 ชั้นสีขาว ระเบียงทางเดินเป็นแถบแนวนอน ผนังหัว-ท้ายและบันไดอิฐส้ม | 1206348757 |
+| 9 | หอพักนักศึกษา อาคาร 12 | 10 | Google Maps photos | หอพักนักศึกษาอาคาร 9–12: อาคารยาว 10 ชั้นสีขาว ระเบียงทางเดินเป็นแถบแนวนอน ผนังหัว-ท้ายและบันไดอิฐส้ม | 1206348759 |
+| 10 | KOSEN-KMITL | 5 | Google Maps photos | KOSEN-KMITL: ผนังแผงสีกรมท่าเทาเข้ม ครีบแนวตั้งเอียง หน้าต่างกระจกสูง ภายในมีโถงสูงหลายชั้น | 1322811831 |

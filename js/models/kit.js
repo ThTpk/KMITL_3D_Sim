@@ -42,7 +42,7 @@ export function facade(A, f, a0, a1, o) {
   for (let k = 0; k < n; k++) {
     const yb = y0 + (k === 0 ? 0 : G + (k - 1) * FL), yt = y0 + G + k * FL;
     const h = yt - yb;
-    if (k > 0 || style === 'brick' || style === 'blank') onFace(A, M.band, f, a0 - 0.15, a1 + 0.15, yb - 0.15, yb + 0.45, 0, 0.3);
+    if (k > 0 || style === 'brick' || style === 'blank') onFace(A, M.band, f, a0 - 0.15, a1 + 0.15, yb - 0.15, yb + 0.45, 0, o.bandDepth ?? 0.3);
     if (style === 'brick') { onFace(A, M.brick, f, a0, a1, yb + 0.45, yt - 0.15, 0, 0.04); continue; }
     if (style === 'blank') continue;
     for (let i = 0; i < bays; i++) {
@@ -52,6 +52,13 @@ export function facade(A, f, a0, a1, o) {
         if (o.spandrel) onFace(A, o.spandrel, f, b0, b1, yb + 0.45, yb + h * 0.32, 0, 0.05);
         onFace(A, M.glass, f, b0 + 0.25, b1 - 0.25, yb + h * 0.32, yt - 0.55, 0, 0.04);
         onFace(A, M.pier, f, b0 - 0.2, b0 + 0.2, yb + 0.45, yt - 0.15, 0, 0.12);
+      } else if (style === 'grid') {
+        // deep egg-crate sunshades: projecting fins and slabs around recessed windows
+        const dp = o.depth ?? 0.9;
+        onFace(A, M.glass, f, b0 + 0.3, b1 - 0.3, yb + 0.9, yt - 0.5, 0, 0.04);
+        onFace(A, M.pier, f, b0 - 0.18, b0 + 0.18, yb, yt, 0, dp);
+        onFace(A, M.band, f, b0, b1, yt - 0.25, yt, 0, dp);
+        if (i === bays - 1) onFace(A, M.pier, f, b1 - 0.18, b1 + 0.18, yb, yt, 0, dp);
       } else if (style === 'punched') {
         const m = Math.min(0.9, w * 0.2);
         onFace(A, M.glass, f, b0 + m, b1 - m, yb + h * 0.3, yt - 0.7, 0, 0.04);
@@ -85,6 +92,15 @@ export function block(A, x0, x1, z0, z1, o, faces = {}) {
   return top;
 }
 
+// open ground floor: a dark recessed core inset from the edges and columns along the edges (round when r > 0)
+export function pilotis(A, x0, x1, z0, z1, h, { step = 7, inset = 3, col = 'wall', core = 'dark', r = 0, w = 0.8 } = {}) {
+  A.box(core, x0 + inset, x1 - inset, 0, h, z0 + inset, z1 - inset);
+  const put = (x, z) => (r ? A.cyl(col, x, z, r, 0, h, 12) : A.box(col, x - w / 2, x + w / 2, 0, h, z - w / 2, z + w / 2));
+  const nx = Math.max(1, Math.round((x1 - x0) / step)), nz = Math.max(1, Math.round((z1 - z0) / step));
+  for (let i = 0; i <= nx; i++) for (const z of [z0 + 0.6, z1 - 0.6]) put(x0 + 0.6 + (i * (x1 - x0 - 1.2)) / nx, z);
+  for (let j = 1; j < nz; j++) for (const x of [x0 + 0.6, x1 - 0.6]) put(x, z0 + 0.6 + (j * (z1 - z0 - 1.2)) / nz);
+}
+
 // hipped roof over x0..x1 / z0..z1 from eave height y, rising h; ridge along the longer side (a pyramid when square)
 export function hip(A, m, x0, x1, z0, z1, y, h, eave = 0.6) {
   x0 -= eave; x1 += eave; z0 -= eave; z1 += eave;
@@ -98,6 +114,22 @@ export function hip(A, m, x0, x1, z0, z1, y, h, eave = 0.6) {
     A.quad(m, p00, p01, b, a); A.quad(m, p11, p10, a, b); A.tri(m, p10, p00, a); A.tri(m, p01, p11, b);
   }
   A.box(m, x0, x1, y - 0.25, y, z0, z1);
+}
+
+// a block on any plan (a ring of [x, z], e.g. curved): walls, a window band and a projecting floor slab on
+// every storey, a parapet. Offsets are taken from the centroid, so keep the plan roughly convex.
+export function ringStack(A, ring, { y0 = 0, G = 4, FL = 3.6, n = 1, depth = 0.8, wall = 'wall', band = 'band', glass = 'glass' } = {}) {
+  const cx = ring.reduce((s, p) => s + p[0], 0) / ring.length, cz = ring.reduce((s, p) => s + p[1], 0) / ring.length;
+  const grow = (d) => ring.map(([x, z]) => { const l = Math.hypot(x - cx, z - cz) || 1; return [x + ((x - cx) / l) * d, z + ((z - cz) / l) * d]; });
+  const top = y0 + G + (n - 1) * FL, gl = grow(0.05), sl = grow(depth);
+  A.prism(wall, ring, y0, top);
+  for (let k = 0; k < n; k++) {
+    const yb = y0 + (k === 0 ? 0 : G + (k - 1) * FL), yt = y0 + G + k * FL;
+    A.prism(glass, gl, yb + (yt - yb) * 0.32, yt - 0.55, { top: false });
+    if (k > 0) A.prism(band, sl, yb - 0.15, yb + 0.25);
+  }
+  A.prism(band, grow(0.15), top - 0.1, top + 0.9);
+  return top;
 }
 
 // rows of solar panels over x0..x1 / z0..z1 at height y (panels run along x)
