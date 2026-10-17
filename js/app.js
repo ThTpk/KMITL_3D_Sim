@@ -61,7 +61,7 @@ const hemi = new THREE.HemisphereLight('#dfeaff', '#7d7462', 1.1);
 scene.add(hemi);
 const sun = new THREE.DirectionalLight('#fff4e0', 3.2);
 sun.castShadow = true;
-sun.shadow.mapSize.set(4096, 4096);
+sun.shadow.mapSize.set(2048, 2048);   // 4096² used ~65 MB of video memory for a barely sharper shadow
 sun.shadow.bias = -0.0004;
 sun.shadow.normalBias = 0.6;
 const SH = 520;
@@ -207,6 +207,8 @@ async function ensureSatellite() {
   const tex = new THREE.CanvasTexture(cv);
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = 8;
+  // once the mosaic is on the GPU the ~47 MB canvas is not needed: shrink it so the browser frees it
+  tex.onUpdate = () => { cv.width = cv.height = 1; tex.onUpdate = null; };
   const [x0, z0] = toXZ(y2lat(ty0), x2lon(tx0));
   const [x1, z1] = toXZ(y2lat(ty1 + 1), x2lon(tx1 + 1));
   const geo = new THREE.PlaneGeometry(x1 - x0, z1 - z0);

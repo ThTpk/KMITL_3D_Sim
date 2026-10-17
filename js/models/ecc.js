@@ -109,8 +109,12 @@ export function canvasTex(w, h, draw, rx, ry) {
   t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
   return t;
 }
+// the brick and glass textures are identical for every model, so each is made once and shared
+// (each model used to make its own copies: about 60 x 512² canvases)
+const TEX_CACHE = new Map();
+const cached = (key, make) => { if (!TEX_CACHE.has(key)) TEX_CACHE.set(key, make()); return TEX_CACHE.get(key); };
 // orange-brick facing tiles with light joints (2.4 m square)
-export const brickTex = () => canvasTex(256, 256, (g, w, h) => {
+export const brickTex = () => cached('brick', () => canvasTex(256, 256, (g, w, h) => {
   g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h);
   const rows = 32, cols = 10;
   for (let j = 0; j < rows; j++) for (let i = -1; i < cols; i++) {
@@ -119,10 +123,10 @@ export const brickTex = () => canvasTex(256, 256, (g, w, h) => {
     g.fillStyle = `rgb(${255 * k | 0},${232 * k | 0},${222 * k | 0})`;
     g.fillRect(x + 1, y + 1, w / cols - 2, h / rows - 2);
   }
-}, 2.4, 2.4);
+}, 2.4, 2.4));
 // window glass: mullions by day, random lit rooms at night (cells 2 m x 3.8 m)
 export function glassTex(night) {
-  return canvasTex(512, 512, (g, w, h) => {
+  return cached(night ? 'glassNight' : 'glassDay', () => canvasTex(512, 512, (g, w, h) => {
     g.fillStyle = night ? '#000' : '#ffffff'; g.fillRect(0, 0, w, h);
     let s = 7;
     const r = () => ((s = (s * 16807) % 2147483647) / 2147483647);
@@ -135,7 +139,7 @@ export function glassTex(night) {
         g.fillStyle = 'rgba(210,214,216,0.9)'; g.fillRect(i * cw, j * ch, 4, ch); g.fillRect(i * cw, j * ch + ch * 0.62, cw, 3);
       }
     }
-  }, 16, 15.2);
+  }, 16, 15.2));
 }
 export function textTex(text, { w = 2048, h = 160, color = '#5d5b57', bg = null, font = 'IBM Plex Sans Thai', weight = 600 } = {}) {
   const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
