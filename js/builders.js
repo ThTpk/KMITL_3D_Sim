@@ -16,9 +16,12 @@ import { buildCanA, CANA_OUTLINE } from './models/cana.js';
 import { buildSiie, SIIE_OUTLINE } from './models/siie.js';
 import { buildCivil, CIVIL_OUTLINE } from './models/civil.js';
 import { buildElec, ELEC_OUTLINE } from './models/elec.js';
+import { buildStad, STAD_OUTLINE } from './models/stad.js';
+import { buildRoyal, ROYAL_OUTLINE } from './models/royal.js';
+import { buildUni, UNI_OUTLINE } from './models/uni.js';
 
 // Buildings modelled by hand from the Street View / satellite survey (overrides.json "model")
-const MODELS = { ecc: { build: buildECC, outline: ECC_OUTLINE }, e12: { build: buildE12, outline: E12_OUTLINE }, thep: { build: buildThep, outline: THEP_OUTLINE }, pres: { build: buildPres, outline: PRES_OUTLINE }, hall: { build: buildHall, outline: HALL_OUTLINE }, tel: { build: buildTel, outline: TEL_OUTLINE }, abld: { build: buildA, outline: A_OUTLINE }, eaud: { build: buildEaud, outline: EAUD_OUTLINE }, ewing: { build: buildWing, outline: WING_OUTLINE }, bbld: { build: buildB, outline: B_OUTLINE }, tka: { build: buildTka, outline: TKA_OUTLINE }, lita: { build: buildLita, outline: LITA_OUTLINE }, cana: { build: buildCanA, outline: CANA_OUTLINE }, siie: { build: buildSiie, outline: SIIE_OUTLINE }, civil: { build: buildCivil, outline: CIVIL_OUTLINE }, elec: { build: buildElec, outline: ELEC_OUTLINE } };
+const MODELS = { ecc: { build: buildECC, outline: ECC_OUTLINE }, e12: { build: buildE12, outline: E12_OUTLINE }, thep: { build: buildThep, outline: THEP_OUTLINE }, pres: { build: buildPres, outline: PRES_OUTLINE }, hall: { build: buildHall, outline: HALL_OUTLINE }, tel: { build: buildTel, outline: TEL_OUTLINE }, abld: { build: buildA, outline: A_OUTLINE }, eaud: { build: buildEaud, outline: EAUD_OUTLINE }, ewing: { build: buildWing, outline: WING_OUTLINE }, bbld: { build: buildB, outline: B_OUTLINE }, tka: { build: buildTka, outline: TKA_OUTLINE }, lita: { build: buildLita, outline: LITA_OUTLINE }, cana: { build: buildCanA, outline: CANA_OUTLINE }, siie: { build: buildSiie, outline: SIIE_OUTLINE }, civil: { build: buildCivil, outline: CIVIL_OUTLINE }, elec: { build: buildElec, outline: ELEC_OUTLINE }, stad: { build: buildStad, outline: STAD_OUTLINE }, royal: { build: buildRoyal, outline: ROYAL_OUTLINE }, uni: { build: buildUni, outline: UNI_OUTLINE } };
 
 // ---------- small helpers ----------
 export function hash(n) {
