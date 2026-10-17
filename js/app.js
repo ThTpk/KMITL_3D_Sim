@@ -77,6 +77,11 @@ scene.add(ground);
 // ---------- build the world ----------
 const layers = {};
 const t0 = performance.now();
+// only KMITL's own buildings are drawn in 3D (inside the campus outlines, or hand-built); buildings outside the
+// campus are left out, while roads, rails and the elevated highway are still drawn everywhere
+const campusRings = DATA.campus.map((c) => c.o);
+const inCampus = (x, z) => campusRings.some((o) => pointInRing(x, z, o));
+DATA.buildings = DATA.buildings.filter((b) => b.model || inCampus(b.c[0], b.c[1]));
 const { meshes: buildingMeshes, meta: buildingMeta } = buildBuildings(DATA.buildings);
 layers.buildings = new THREE.Group();
 buildingMeshes.forEach((m) => layers.buildings.add(m));
@@ -99,9 +104,6 @@ const TYPE_TH = {
   roof: 'หลังคา/โรงจอดรถ', garage: 'โรงรถ', carport: 'ที่จอดรถมีหลังคา', shed: 'โรงเก็บของ', industrial: 'อาคารอุตสาหกรรม', service: 'อาคารบริการ',
   sports_centre: 'ศูนย์กีฬา', stadium: 'สนามกีฬา', train_station: 'สถานีรถไฟ', construction: 'กำลังก่อสร้าง', yes: 'อาคาร',
 };
-const campusRings = DATA.campus.map((c) => c.o);
-const inCampus = (x, z) => campusRings.some((o) => pointInRing(x, z, o));
-
 const labels = [];
 layers.labels = new THREE.Group();
 buildingMeta.forEach((m, idx) => {
