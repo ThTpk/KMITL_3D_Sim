@@ -47,18 +47,22 @@ export function buildUni(owner) {
   A.box('glass', X1 - 5.4, X1 - 0.3, G + 1.25, H - 0.3, Z0 + 0.3, Z0 + 2.4);
   A.box('white', X1 - 5.7, X1, G + 1.25, G + 1.4, Z0, Z0 + 2.4);
   for (const x of [X1 - 4.6, X1 - 3.4, X1 - 2.2]) A.box('ac', x, x + 0.9, G + 1.4, G + 2.0, Z0 + 2.0, Z0 + 2.4);
-  A.box('white', X0 - 0.4, X1 + 0.4, H, H + 0.6, Z0 - 0.4, Z1 + 0.4);           // roof edge
+  // roof edge: a parapet ring only, so no face lies in the same plane as the roof surfaces inside it
+  A.box('white', X0 - 0.4, X1 + 0.4, H, H + 0.9, Z0 - 0.4, Z0 + 0.2);
+  A.box('white', X0 - 0.4, X1 + 0.4, H, H + 0.9, Z1 - 0.2, Z1 + 0.4);
+  A.box('white', X0 - 0.4, X0 + 0.2, H, H + 0.9, Z0 + 0.2, Z1 - 0.2);
+  A.box('white', X1 - 0.2, X1 + 0.4, H, H + 0.9, Z0 + 0.2, Z1 - 0.2);
 
   // ---- roofs: eight-sided pyramid over the north half, flat over the south half ----
   {
-    const cx = (X0 + X1) / 2, cz = -294.5, rx = 9.0, rz = 9.0, y0 = H + 0.6, y1 = H + 4.6, N = 8;
+    const cx = (X0 + X1) / 2, cz = -294.6, rx = 10.6, rz = 11.0, y0 = H + 0.45, y1 = H + 4.6, N = 8;             // base just above the roof deck
     const P8 = (i) => { const t = (i / N) * Math.PI * 2 + Math.PI / 8; return [cx + rx * Math.cos(t) / Math.cos(Math.PI / 8), y0, cz + rz * Math.sin(t) / Math.cos(Math.PI / 8)]; };
     for (let i = 0; i < N; i++) {
       const a = P8(i), b = P8((i + 1) % N);
-      const clamp = (p) => [Math.max(X0 + 0.5, Math.min(X1 - 0.5, p[0])), p[1], Math.max(Z0 + 0.5, Math.min(-283, p[2]))];
+      const clamp = (p) => [Math.max(X0 + 0.25, Math.min(X1 - 0.25, p[0])), p[1], Math.max(Z0 + 0.25, Math.min(-284.2, p[2]))];
       A.tri(i % 2 ? 'pyr' : 'pyrLight', clamp(b), clamp(a), [cx, y1, cz]);
     }
-    A.box('roof', X0 - 0.2, X1 + 0.2, H + 0.5, H + 0.6, Z0, Z1);
+    A.box('roof', X0 + 0.2, X1 - 0.2, H, H + 0.3, Z0 + 0.2, Z1 - 0.2);            // roof deck, below the parapet top
   }
 
   // ---- porch: white zig-zag canopy, green translucent roof, columns, steps ----
