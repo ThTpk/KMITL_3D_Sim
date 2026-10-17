@@ -39,22 +39,29 @@ export function buildStad(owner) {
     A.quad('rail', off(a, 0.3, P), off(b, 0.3, P), off(b, 0.3, P + 1.0), off(a, 0.3, P + 1.0));
   }
   const SUB = 6, COLS = (Fr.length - 1) * SUB, ROWS = 12;
+  // seat colours spelling "I ♥ KMITL" across the stand: white letters, a red heart (sampled from a canvas)
   const letter = (() => {
     const cv = document.createElement('canvas'); cv.width = COLS; cv.height = ROWS;
     const g = cv.getContext('2d'); g.fillStyle = '#000'; g.fillRect(0, 0, COLS, ROWS);
     g.fillStyle = '#fff'; g.font = 'bold 9px Arial'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    const xs = [0.12, 0.3, 0.62, 0.78, 0.92];                      // K M | emblem | I T L
-    ['K', 'M', 'I', 'T', 'L'].forEach((ch, j) => g.fillText(ch, xs[j] * COLS, ROWS * 0.45));
-    g.beginPath(); g.arc(0.46 * COLS, ROWS * 0.42, 3.2, 0, Math.PI * 2); g.fill();     // emblem in the middle
+    [['I', 0.08], ['K', 0.38], ['M', 0.53], ['I', 0.665], ['T', 0.77], ['L', 0.88]].forEach(([ch, x]) => g.fillText(ch, x * COLS, ROWS * 0.45));
+    const hx = 0.215 * COLS, hy = ROWS * 0.36, r = 2.3;                        // heart: two lobes and a point
+    g.fillStyle = '#f00'; g.beginPath();
+    g.arc(hx - r * 0.95, hy, r, 0, Math.PI * 2); g.arc(hx + r * 0.95, hy, r, 0, Math.PI * 2); g.fill();
+    g.beginPath(); g.moveTo(hx - r * 2.05, hy + 0.4); g.lineTo(hx + r * 2.05, hy + 0.4); g.lineTo(hx, hy + r * 2.5); g.closePath(); g.fill();
     const d = g.getImageData(0, 0, COLS, ROWS).data;
-    return (x, y) => x >= 0 && x < COLS && y >= 0 && y < ROWS && d[(y * COLS + x) * 4] > 110;
+    return (x, y) => {
+      if (x < 0 || x >= COLS || y < 0 || y >= ROWS) return null;
+      const i = (y * COLS + x) * 4, R = d[i], G = d[i + 1];
+      return R > 110 && G > 110 ? 'seatWhite' : R > 110 ? 'seatHeart' : null;
+    };
   })();
   // ---- seating rake, rear wall, columns, cantilevered roof on raking beams ----
   for (let i = 0; i < Fr.length - 1; i++) {
     const f0 = Fr[i], f1 = Fr[i + 1], b0 = Bk[i], b1 = Bk[i + 1];
     const s0 = lerp(f0, b0, 0.08), s1 = lerp(f1, b1, 0.08), t0 = lerp(f0, b0, 0.9), t1 = lerp(f1, b1, 0.9);
     // stepped seat rows as a sawtooth of 12 risers; each bay split into SUB columns so white seats can spell
-    // K M I T L across the stand, read from the pitch (photos of the stand from the field)
+    // "I ♥ KMITL" across the stand, read from the pitch (photos of the stand from the field)
     const N = 12;
     for (let k = 0; k < N; k++) {
       const u0 = k / N, u1 = (k + 1) / N, y0 = SEAT0 + (SEAT1 - SEAT0) * u0, y1 = SEAT0 + (SEAT1 - SEAT0) * u1;
@@ -62,9 +69,9 @@ export function buildStad(owner) {
         const v0 = c / SUB, v1 = (c + 1) / SUB;
         const p0 = lerp(lerp(s0, s1, v0), lerp(t0, t1, v0), u0), p1 = lerp(lerp(s0, s1, v1), lerp(t0, t1, v1), u0);
         const q0 = lerp(lerp(s0, s1, v0), lerp(t0, t1, v0), u1), q1 = lerp(lerp(s0, s1, v1), lerp(t0, t1, v1), u1);
-        const white = letter(COLS - 1 - (i * SUB + c), N - 1 - k);   // Fr runs north -> south, i.e. right -> left from the pitch
-        const m = white ? 'seatWhite' : k % 3 === 2 ? 'seatDark' : 'seat';
-        A.quad(white ? 'seatWhite' : 'riser', [p1[0], y0, p1[1]], [p0[0], y0, p0[1]], [p0[0], y1, p0[1]], [p1[0], y1, p1[1]]);   // riser (seat backs)
+        const paint = letter(COLS - 1 - (i * SUB + c), N - 1 - k);   // Fr runs north -> south, i.e. right -> left from the pitch
+        const m = paint || (k % 3 === 2 ? 'seatDark' : 'seat');
+        A.quad(paint || 'riser', [p1[0], y0, p1[1]], [p0[0], y0, p0[1]], [p0[0], y1, p0[1]], [p1[0], y1, p1[1]]);   // riser (seat backs)
         A.quad(m, [p0[0], y1, p0[1]], [p1[0], y1, p1[1]], [q1[0], y1, q1[1]], [q0[0], y1, q0[1]]);                              // tread
       }
     }
@@ -159,6 +166,7 @@ export function buildStad(owner) {
     step: std({ color: '#bdb7ad', side: THREE.DoubleSide }),
     riser: std({ color: '#8a3b30', side: THREE.DoubleSide }),
     seatWhite: std({ color: '#ecebe6', side: THREE.DoubleSide }),
+    seatHeart: std({ color: '#ec2f38', emissive: new THREE.Color('#5a0a0e'), side: THREE.DoubleSide }),
     concrete: std({ color: '#d7d3cb', side: THREE.DoubleSide }),
     rearWall: std({ color: '#cfcbc2', side: THREE.DoubleSide }),
     roof: std({ color: '#e8e6e0', roughness: 0.7, side: THREE.DoubleSide }),
