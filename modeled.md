@@ -4,52 +4,57 @@
 
 สำรวจเมื่อ 2026-10-16 ถึงปัจจุบัน ภาพจาก Google Street View / Google Maps / ภาพดาวเทียม ใช้เป็นข้อมูลอ้างอิงในการขึ้นรูปเท่านั้น ไม่ได้แสดงในหน้าเว็บ รูปทรงทั้งหมดสร้างด้วยโค้ด
 
-## สรุปโมเดลเฉพาะ (42 หลัง)
+## สรุปโมเดลเฉพาะ (47 หลัง)
 
 | # | อาคาร | ไฟล์โมเดล | ชั้น | สูง (ม.) | OSM id |
 |---|---|---|---|---|---|
 | 1 | [หอประชุมเจ้าพระยาสุรวงษ์ไวยวัฒน์ (วร บุนนาค)](#hall) | `js/models/hall.js` | 3 | 25 | 190697575 |
-| 2 | [SIIE - Faculty Of Engineering, International Program](#siie) | `js/models/siie.js` | 8 | 30.9 | 516204082 |
-| 3 | [ภาคโยธา](#civil) | `js/models/civil.js` | 2 | 10.3 | 516204085 |
-| 4 | [อาคารเรียนรวม คณะวิศวกรรมศาสตร์ (12 ชั้น)](#e12) | `js/models/e12.js` | 12 | 47.5 | 516204086 |
-| 5 | [อัฒจันทร์ สนามกีฬากลาง](#stad) | `js/models/stad.js` | 3 | 17 | 1138463206 |
-| 6 | [หอพักนักศึกษา อาคาร 11](#dorm11) | `js/models/dorms.js` | 10 | 36.2 | 1206348758 |
-| 7 | [สำนักหอสมุดกลาง อาคารเฉลิมพระเกียรติ](#lib) | `js/models/lib.js` | 6 | 21 | 190697423 |
-| 8 | [หอประชุมวิศวะ](#eaud) | `js/models/eaud.js` | 2 | 17.4 | 190868497 |
-| 9 | [หอประชุมวิศวะ](#ewing) | `js/models/ewing.js` | 2 | 11.3 | 190868498 |
-| 10 | [ตึกโทรคมนาคม](#tel) | `js/models/tel.js` | 4 | 14.8 | 190868528 |
-| 11 | [ตึกบี](#bbld) | `js/models/bbld.js` | 4 | 13.6 | 190870224 |
-| 12 | [โรงอาหาร A คณะวิศวกรรมศาสตร์](#cana) | `js/models/cana.js` | 1 | 8.6 | 190880523 |
-| 13 | [หอประชุมจุฬาภรณ์วลับลักษณ์](#chaud) | `js/models/chaud.js` | 3 | 15.8 | 265574872 |
-| 14 | [จุฬาภรณ์วลัยลักษณ์ 2](#chula2) | `js/models/chula2.js` | 6 | 23.4 | 265574874 |
-| 15 | [ตึกปฏิบัติการณ์หลังใหม่](#newlab) | `js/models/newlab.js` | 10 | 38 | 265588799 |
-| 16 | [โรงอาหาร คณะวิทยาศาสตร์](#scican) | `js/models/scican.js` |  | 9.5 | 265596517 |
-| 17 | [ตึก วท.](#witt) | `js/models/witt.js` | 2 | 9.2 | 265596518 |
-| 18 | [A-Building](#abld) | `js/models/abld.js` | 6 | 21.8 | 292807567 |
-| 19 | [อาคารเฉลิมพระเกียรติ 55 พรรษา สมเด็จพระเทพฯ](#t55) | `js/models/t55.js` | 8 | 30 | 309556942 |
-| 20 | [ตึก ECC](#ecc) | `js/models/ecc.js` | 10 | 39.5 | 309557571 |
-| 21 | [อาคารเรียนรวม สมเด็จพระเทพฯ](#thep) | `js/models/thep.js` | 2 | 9.4 | 309919519 |
-| 22 | [คณะทันตแพทยศาสตร์](#dent) | `js/models/dent.js` | 5 | 22.2 | 501351775 |
-| 23 | [ภาคไฟฟ้าและพลังงานไฟฟ้า](#elec) | `js/models/elec.js` | 2 | 11.6 | 516204095 |
-| 24 | [อาคารจอมไตร](#jomtrai) | `js/models/jomtrai.js` | 3 | 13.4 | 516308731 |
-| 25 | [สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#pres) | `js/models/pres.js` | 10 | 38.8 | 516308733 |
-| 26 | [อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช](#royal) | `js/models/royal.js` | 1 | 22 | 516308734 |
-| 27 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
-| 28 | [CMKL University](#cmkl) | `js/models/cmkl.js` | 10 | 38.9 | 784091346 |
-| 29 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
-| 30 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
-| 31 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
-| 32 | [หอพักนักศึกษา อาคาร 9](#dorm9) | `js/models/dorms.js` | 10 | 36.2 | 1206348756 |
-| 33 | [อาคารนวัตกรรมการเรียนรู้](#innov) | `js/models/innov.js` | 4 | 14.7 | 1561993799 |
-| 34 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
-| 35 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
-| 36 | [KMITL Dormitory](#dormk) | `js/models/dorms.js` | 5 | 22.9 | 1116753937 |
-| 37 | [หอพักนักศึกษา อาคาร 10](#dorm10) | `js/models/dorms.js` | 10 | 36.2 | 1206348757 |
-| 38 | [หอพักนักศึกษา อาคาร 12](#dorm12) | `js/models/dorms.js` | 10 | 36.2 | 1206348759 |
-| 39 | [โรงอาหาร คณะเทคโนโลยีสารสนเทศ](#itcan) | `js/models/itcan.js` | 2 | 10.4 | 314205127 |
-| 40 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
-| 41 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
-| 42 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
+| 2 | [อาคารปฏิบัติการรวมวิศวกรรม 1](#englab1) | `js/models/englab1.js` | 6 | 25.8 | 190886412 |
+| 3 | [SIIE - Faculty Of Engineering, International Program](#siie) | `js/models/siie.js` | 8 | 30.9 | 516204082 |
+| 4 | [ภาคโยธา](#civil) | `js/models/civil.js` | 2 | 10.3 | 516204085 |
+| 5 | [ตึกที่ติดกับหอประชุมสถาปัตยกรรมศาสตร์](#archsouth) | `js/models/archs.js` | 4 | 16.3 | 190880792 |
+| 6 | [หอประชุมสถาปัตยกรรมศาสตร์](#archaud) | `js/models/archs.js` |  | 16.1 | 190881393 |
+| 7 | [อาคารเรียนรวมสถาปัตย์](#archlec) | `js/models/archs.js` | 3 | 16.3 | 516204090 |
+| 8 | [อาคารเรียนรวม คณะวิศวกรรมศาสตร์ (12 ชั้น)](#e12) | `js/models/e12.js` | 12 | 47.5 | 516204086 |
+| 9 | [อัฒจันทร์ สนามกีฬากลาง](#stad) | `js/models/stad.js` | 3 | 17 | 1138463206 |
+| 10 | [หอพักนักศึกษา อาคาร 11](#dorm11) | `js/models/dorms.js` | 10 | 36.2 | 1206348758 |
+| 11 | [สำนักหอสมุดกลาง อาคารเฉลิมพระเกียรติ](#lib) | `js/models/lib.js` | 6 | 21 | 190697423 |
+| 12 | [หอประชุมวิศวะ](#eaud) | `js/models/eaud.js` | 2 | 17.4 | 190868497 |
+| 13 | [หอประชุมวิศวะ](#ewing) | `js/models/ewing.js` | 2 | 11.3 | 190868498 |
+| 14 | [ตึกโทรคมนาคม](#tel) | `js/models/tel.js` | 4 | 14.8 | 190868528 |
+| 15 | [ตึกบี](#bbld) | `js/models/bbld.js` | 4 | 13.6 | 190870224 |
+| 16 | [โรงอาหาร A คณะวิศวกรรมศาสตร์](#cana) | `js/models/cana.js` | 1 | 8.6 | 190880523 |
+| 17 | [หอประชุมจุฬาภรณ์วลับลักษณ์](#chaud) | `js/models/chaud.js` | 3 | 15.8 | 265574872 |
+| 18 | [จุฬาภรณ์วลัยลักษณ์ 2](#chula2) | `js/models/chula2.js` | 6 | 23.4 | 265574874 |
+| 19 | [ตึกปฏิบัติการณ์หลังใหม่](#newlab) | `js/models/newlab.js` | 10 | 38 | 265588799 |
+| 20 | [โรงอาหาร คณะวิทยาศาสตร์](#scican) | `js/models/scican.js` |  | 9.5 | 265596517 |
+| 21 | [ตึก วท.](#witt) | `js/models/witt.js` | 2 | 9.2 | 265596518 |
+| 22 | [A-Building](#abld) | `js/models/abld.js` | 6 | 21.8 | 292807567 |
+| 23 | [อาคารเฉลิมพระเกียรติ 55 พรรษา สมเด็จพระเทพฯ](#t55) | `js/models/t55.js` | 8 | 30 | 309556942 |
+| 24 | [ตึก ECC](#ecc) | `js/models/ecc.js` | 10 | 39.5 | 309557571 |
+| 25 | [อาคารเรียนรวม สมเด็จพระเทพฯ](#thep) | `js/models/thep.js` | 2 | 9.4 | 309919519 |
+| 26 | [คณะทันตแพทยศาสตร์](#dent) | `js/models/dent.js` | 5 | 22.2 | 501351775 |
+| 27 | [ภาคไฟฟ้าและพลังงานไฟฟ้า](#elec) | `js/models/elec.js` | 2 | 11.6 | 516204095 |
+| 28 | [อาคารจอมไตร](#jomtrai) | `js/models/jomtrai.js` | 3 | 13.4 | 516308731 |
+| 29 | [สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#pres) | `js/models/pres.js` | 10 | 38.8 | 516308733 |
+| 30 | [อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช](#royal) | `js/models/royal.js` | 1 | 22 | 516308734 |
+| 31 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
+| 32 | [CMKL University](#cmkl) | `js/models/cmkl.js` | 10 | 38.9 | 784091346 |
+| 33 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
+| 34 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
+| 35 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
+| 36 | [หอพักนักศึกษา อาคาร 9](#dorm9) | `js/models/dorms.js` | 10 | 36.2 | 1206348756 |
+| 37 | [อาคารนวัตกรรมการเรียนรู้](#innov) | `js/models/innov.js` | 4 | 14.7 | 1561993799 |
+| 38 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
+| 39 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
+| 40 | [KMITL Kosen Dormitory](#dormks) | `js/models/dorms.js` | 5 | 22.9 | 516204078 |
+| 41 | [KMITL Dormitory](#dormk) | `js/models/dorms.js` | 5 | 22.9 | 1116753937 |
+| 42 | [หอพักนักศึกษา อาคาร 10](#dorm10) | `js/models/dorms.js` | 10 | 36.2 | 1206348757 |
+| 43 | [หอพักนักศึกษา อาคาร 12](#dorm12) | `js/models/dorms.js` | 10 | 36.2 | 1206348759 |
+| 44 | [โรงอาหาร คณะเทคโนโลยีสารสนเทศ](#itcan) | `js/models/itcan.js` | 2 | 10.4 | 314205127 |
+| 45 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
+| 46 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
+| 47 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
 
 รูปทรง OSM ที่ซ่อนไว้เพราะเป็นส่วนของโมเดลเฉพาะ (`hide`): 1138463195, 1138463197, 1138463209, 1138463210
 
@@ -62,6 +67,14 @@
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plan, roof shapes; the OSM outline is coarse and shifted, the imagery lines up with the mapped roads) and Google Street View: a 360° photo from the car park 47 m south of the front (whole south face), the entrance steps close up, the south-west corner, the west end beside the steel carport, the north face from the north road, the north-east corner and the east service road.
 - ลักษณะอาคารที่บันทึก: หอประชุมเจ้าพระยาสุรวงษ์ฯ: โถงประชุมใหญ่กล่องสีขาวสูง หลังคาโค้งประทุนแนวตะวันออก-ตะวันตก ปูแผงโซลาร์ / ด้านหน้า (ใต้): หลังคาปีกยื่นยาว 4 ช่วง ชายคาแอ่นลงกลางช่วงและเชิดขึ้นที่มุมทั้งสองข้าง เสาสีขาวสูงมีค้ำเหล็กรูปตัว V ผนังกระจกสองชั้นแถบขาวด้านบน ป้ายชื่ออาคารสีน้ำเงินบนแผงขาว ตราสัญลักษณ์ด้านบน ยกพื้นมีบันได / ปลายทั้งสองข้างอิฐแดงกรอบหน้าต่างขาว แถบพื้นสีขาว / ด้านเหนือ: ชั้นล่างผนังขาวมีหน้าต่างและช่องระบายอากาศ ชั้นบนระเบียงร่น เสาอิฐแดงสูง / ปีกตะวันตกเฉียงเหนือ: ผนังขาวหน้าต่างแถบยาว หลังคาแบนยื่น หอป้ายอิฐ 'KMITL Convention Hall' / ด้านตะวันออก: อาคารบริการสองชั้นสีขาว ที่จอดขนของชั้นล่าง ทางลาดลงชั้นใต้ดิน / ด้านตะวันตก: หลังคาโครงเหล็กคลุมที่จอดรถ
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): main hall  x 90..192, z 95..149: tall plain white box under a barrel roof (ridge east-west at z 122) south front x 69..214, z 151..190: foyer block under a wing roof in four bays whose eave sags between the seams and sweeps up at both outer corners; tall white columns with V struts carry the overhang; two-storey glass wall with a white band above; the hall's name on a white board, emblem above; both ends in red brick with white-framed windows and white floor bands north strip x 60..190, z 87..95: white ground floor (windows, louvres), recessed balconies, brick piers north-west wing x 48..78, z 94..137: white, ribbon windows, flat overhanging roof, brick name tower east annex x 190..198: two-storey white service block with a roof terrace, loading bays below west carport x 48..70.5, z 153..170: light steel roof on slanted posts all large roofs are covered in solar panels
+
+## อาคารปฏิบัติการรวมวิศวกรรม 1 <a id="englab1"></a>
+
+- OSM id: 190886412 · ไฟล์: `js/models/englab1.js` · ชั้น: 6 · สูง: 25.8 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคายาว) + Street View ทางเดินและถนนรอบอาคาร: ด้านใต้ฝั่งยิมเล็ก ด้านเหนือจากลานจอดรถ ปลายทั้งสองด้าน
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (a long flat roof between the small gym and the car park) and Google Street View from the walks and roads all round it: the south face from the gym side, the north face from the car park, both ends.
+- ลักษณะอาคารที่บันทึก: อาคารปฏิบัติการวิศวกรรม 1: 6 ชั้นยาว 115 ม. ผนังขาว / ด้านใต้ระเบียงลึกทุกชั้นกับบานเกล็ดบังแดด ครีบขาวเรียงบนขอบหลังคา / ด้านเหนือหน้าต่างกรอบเข้มเป็นคู่สลับแผงบล็อกแก้วสีเทา / หอบันไดขอบส้มปลายตะวันตก
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): six storeys, 115 m long; white render south face: deep balconies on every floor with thin sunshade louvres, strip windows behind, a row of white fins standing up along the roof edge like a comb north face: large dark-framed windows in pairs between panels of grey glass block, white floor bands plain white end walls; an orange-trimmed stair block at the west end
 
 ## SIIE - Faculty Of Engineering, International Program <a id="siie"></a>
 
@@ -78,6 +91,30 @@
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plan and roofs) and Google Street View from the road along the north side (one car pano, looking south-west, south and south-east). The courtyard and the west and south halls are not visible from any road; they follow the roofs and the north wing.
 - ลักษณะอาคารที่บันทึก: ภาคโยธา: กลุ่มอาคารเตี้ยรอบลานต้นไม้ / ปีกเหนือ 2 ชั้น ผนังครีมระหว่างเสาอิฐส้ม ประตูม้วนสีเขียวชั้นล่าง บันไดเปิดปลายตะวันออก แถบเชิงชายสีเทา หลังคาปั้นหยาสีแดง / ถัดไปทางตะวันออก อาคาร 2 ชั้นสีครีมมีป้ายภาควิชา หลังคาจั่วสีเทา และโรงปฏิบัติการหลังคาจั่วเหล็กสีอ่อน / โรงปฏิบัติการชั้นเดียวด้านตะวันตกและด้านใต้ หลังคาเหล็กลอนจั่ว / อาคารเล็กหลังคาแบนสองหลังข้างลาน
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): north wing  x -419..-395, z 89..108: two storeys, cream walls between orange-brick piers, green roller shutters on the ground floor, an open stair at the east end, grey fascia band, red hipped roof north-east  x -395..-381, z 89..111: two storeys, cream walls with the department sign, grey gable roof x -381..-365, z 90..109: workshop, light metal gable roof west hall   x -441..-424, z 105..152 and south hall x -418..-370, z 125..140: single-storey workshops, light corrugated metal gable roofs two small flat-roofed blocks off the courtyard
+
+## ตึกที่ติดกับหอประชุมสถาปัตยกรรมศาสตร์ <a id="archsouth"></a>
+
+- OSM id: 190880792 · ไฟล์: `js/models/archs.js` · ชั้น: 4 · สูง: 16.3 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (อาคารหลังคาแบน) + Street View ถนนด้านตะวันตกและลานด้านใต้
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the two long bars and their link, the auditorium hall with its round drum and east porch, the flat-roofed block south of it) and Google Street View from the road along the west side (the auditorium's brick walls, the south block), the road to the north and the courtyard south of the south block.
+- ลักษณะอาคารที่บันทึก: อาคาร 4 ชั้น ชั้นล่างอิฐแดง ชั้นบนมีแผงบานเกล็ดโลหะแนวนอนสีเทาเข้มบนโครงเหล็ก หลังคาแบน / ทางเข้ากระจกด้านใต้
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): lecture building: two long three-storey bars (x -265..-167) joined by a link; white walls with tall orange vertical strips between the windows, an open ground floor behind columns, light metal gabled roofs auditorium: a tall blank box of red brick crossed by thin white bands, a glazed entrance on the west; a round drum on its east half under a shallow dome, a porch on the east south block: four storeys, a red-brick ground floor, the upper floors behind dark-grey horizontal metal louvre screens on steel frames, a flat roof
+
+## หอประชุมสถาปัตยกรรมศาสตร์ <a id="archaud"></a>
+
+- OSM id: 190881393 · ไฟล์: `js/models/archs.js` · ชั้น:  · สูง: 16.1 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (โถงหอประชุม ทรงกลม มุขด้านตะวันออก) + Street View ถนนด้านตะวันตกและด้านเหนือ
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the two long bars and their link, the auditorium hall with its round drum and east porch, the flat-roofed block south of it) and Google Street View from the road along the west side (the auditorium's brick walls, the south block), the road to the north and the courtyard south of the south block.
+- ลักษณะอาคารที่บันทึก: หอประชุมสถาปัตยกรรมศาสตร์: กล่องอิฐแดงทึบสูง แถบขาวบาง ทางเข้ากระจกด้านตะวันตก / ทรงกลมด้านตะวันออกหลังคาโดมเตี้ย มุขด้านตะวันออก
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): lecture building: two long three-storey bars (x -265..-167) joined by a link; white walls with tall orange vertical strips between the windows, an open ground floor behind columns, light metal gabled roofs auditorium: a tall blank box of red brick crossed by thin white bands, a glazed entrance on the west; a round drum on its east half under a shallow dome, a porch on the east south block: four storeys, a red-brick ground floor, the upper floors behind dark-grey horizontal metal louvre screens on steel frames, a flat roof
+
+## อาคารเรียนรวมสถาปัตย์ <a id="archlec"></a>
+
+- OSM id: 516204090 · ไฟล์: `js/models/archs.js` · ชั้น: 3 · สูง: 16.3 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (อาคารยาวสองหลังกับทางเชื่อม หลังคาโลหะ) + Street View ถนนด้านเหนือ ภายในลานไม่มีภาพ Street View
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the two long bars and their link, the auditorium hall with its round drum and east porch, the flat-roofed block south of it) and Google Street View from the road along the west side (the auditorium's brick walls, the south block), the road to the north and the courtyard south of the south block.
+- ลักษณะอาคารที่บันทึก: คณะสถาปัตยกรรมศาสตร์: ผนังขาว แถบแนวตั้งสีส้ม ใต้ถุนโล่งมีเสา
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): lecture building: two long three-storey bars (x -265..-167) joined by a link; white walls with tall orange vertical strips between the windows, an open ground floor behind columns, light metal gabled roofs auditorium: a tall blank box of red brick crossed by thin white bands, a glazed entrance on the west; a round drum on its east half under a shallow dome, a porch on the east south block: four storeys, a red-brick ground floor, the upper floors behind dark-grey horizontal metal louvre screens on steel frames, a flat roof
 
 ## อาคารเรียนรวม คณะวิศวกรรมศาสตร์ (12 ชั้น) <a id="e12"></a>
 
@@ -347,6 +384,14 @@
 - ลักษณะอาคารที่บันทึก: คณะเทคโนโลยีสารสนเทศ: ผนังกระจกสีฟ้า สลับแถบพื้นสีขาว ขอบหลังคาโค้ง
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): main block x 302..368 / z -366..-320: seven storeys of white render with ribbon windows of blue glass; the ground floor is an open car park behind square columns east wing x 368..400 / z -368..-350: an eight-storey white tower, plain end walls with narrow slit windows, glazed balconies stacked on its south face curved blue-glass entrance hall at the south-east, three storeys behind tall round columns, under a deep flat canopy; broad steps and a pool in front north hall x 330..375 / z -392..-366: three storeys of white tile with few windows
 
+## KMITL Kosen Dormitory <a id="dormks"></a>
+
+- OSM id: 516204078 · ไฟล์: `js/models/dorms.js` · ชั้น: 5 · สูง: 22.9 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคาปั้นหยากระเบื้องแดง) + Street View ถนนด้านตะวันออกและถนนด้านใต้
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans, solar panels on the tall blocks, red tiled hipped roofs on the low ones; the tall roofs lean about 6 m north in the imagery and were moved south), photos on Google Maps (the tall blocks), and Google Street View from the road along the east side and the road to the south. Street View here predates the four tall blocks, which follow the photos and the imagery.
+- ลักษณะอาคารที่บันทึก: หอพัก Kosen สจล.: 5 ชั้น ผนังขาว ระเบียงทุกห้องกั้นด้วยอิฐช่องลมสีส้ม ผนังหัว-ท้ายอิฐ / หลังคาปั้นหยากระเบื้องแดง
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): หอพักนักศึกษา อาคาร 9-12: long ten-storey slabs of white render, the open corridors on one long side drawn as continuous white parapet bands, rooms with windows and AC units on the other; orange-brick end walls and stair towers rising above the roof; solar panels over the roof KMITL Dormitory and KMITL Kosen Dormitory: five storeys, white walls with a balcony per room screened in orange pierced brick, brick end walls, red tiled hipped roofs
+
 ## KMITL Dormitory <a id="dormk"></a>
 
 - OSM id: 1116753937 · ไฟล์: `js/models/dorms.js` · ชั้น: 5 · สูง: 22.9 ม.
@@ -405,12 +450,10 @@
 - ลักษณะอาคารที่บันทึก: จุฬาภรณ์วลัยลักษณ์ 1: 7 ชั้น ผนังขาว แผงกันแดดแนวนอนลึกต่อเนื่องทุกชั้น หน้าต่างแถบกระจกเขียวเทา / หอทางเข้าแนวทแยงที่มุมใน แผงอิฐแดงกลาง แถบบานเกล็ดขาว ล็อบบี้กระจกบนเสากลม บันไดกว้าง
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): seven storeys of white render: deep continuous sunshade slabs at every floor with strip windows of green-grey glass between; a plain white parapet north wing x 180..247, west wing to z -191, east wing to z -151; the entrance tower fills the inner corner on a diagonal, a red-brick panel up its middle above a band of white louvres, a glazed lobby on round columns under it, broad steps to the car park
 
-## อาคารที่สำรวจแต่ยังไม่มีโมเดลเฉพาะ (3 หลัง)
+## อาคารที่สำรวจแต่ยังไม่มีโมเดลเฉพาะ (1 หลัง)
 
 บันทึกสี จำนวนชั้น รูปหลังคา และรูปแบบหน้าอาคารใน `data/overrides.json` แต่ใช้รูปทรงอัตโนมัติจาก OSM
 
 | # | อาคาร | ชั้น | แหล่งภาพ | ลักษณะที่บันทึก | OSM id |
 |---|---|---|---|---|---|
-| 1 | อาคารปฏิบัติการรวมวิศวกรรม 1 | 6 | Street View | อาคารปฏิบัติการวิศวกรรม 1: ผนังขาวเทา หน้าต่างแถบยาวทุกชั้น | 190886412 |
-| 2 | อาคารเรียนรวมสถาปัตย์ | 3 | Street View | คณะสถาปัตยกรรมศาสตร์: ผนังขาว แถบแนวตั้งสีส้ม ใต้ถุนโล่งมีเสา | 516204090 |
-| 3 | ภาควิชาวิศวกรรมเครื่องกล | 4 | Street View | ภาควิชาวิศวกรรมเครื่องกล: ผนังขาว ฐานผนังอิฐแดง หน้าต่างกรอบไม้สีเข้มบานใหญ่ | 190889051 |
+| 1 | ภาควิชาวิศวกรรมเครื่องกล | 4 | Street View | ภาควิชาวิศวกรรมเครื่องกล: ผนังขาว ฐานผนังอิฐแดง หน้าต่างกรอบไม้สีเข้มบานใหญ่ | 190889051 |
