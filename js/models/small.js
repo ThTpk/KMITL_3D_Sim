@@ -12,12 +12,12 @@
 //   club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled
 //   gables
 //   café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia
-//   ตึกกระจก: two storeys clad in blue-green glass; ลานเชียร์: an open hall of steel posts under a broad roof
+//   ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
 import { Acc, F, onFace, block, hip, gable, mats, meshes, BASE_MATS } from './kit.js';
 
 const SPEC = { ...BASE_MATS, wall: '#efede6', cream: '#ece3cf', roofSheet: '#bfc2c1', tile: { color: '#a8473a', roughness: 0.85 },
   steel: { color: '#6a7076', metalness: 0.5, roughness: 0.5 }, orange: '#f08a24', green: '#1f8a4c', red: '#d32f2f', blue: '#2a5caa',
-  amazon: '#3d6b35', curtain: { color: '#4f8a95', roughness: 0.2, metalness: 0.4 }, glass: { color: '#6f7d84' } };
+  amazon: '#3d6b35', glass: { color: '#6f7d84' } };
 const done = (A, owner, top) => ({ meshes: meshes(A, mats(SPEC), owner), top });
 const rect = (x0, x1, z0, z1) => [[x0, z0], [x1, z0], [x1, z1], [x0, z1], [x0, z0]];
 
@@ -47,7 +47,13 @@ export function buildAmazon(owner) {
   A.box('wall', -314, -296, 4.0, 4.4, -371, -351);
   return done(A, owner, 4.4);
 }
-export function buildCheer(owner) { const A = new Acc(); hall(A, 431, 471, 190, 210, 7.0, 'roofSheet', false); A.box('paving', 431, 471, 0, 0.3, 190, 210); return done(A, owner, 9.4); }
+export function buildCheer(owner) {
+  const A = new Acc();
+  A.box('paving', 431, 471, 0, 0.6, 190, 210);
+  hall(A, 431, 471, 190, 210, 7.0, 'roofSheet', false);
+  A.box('dark', 431, 471, 5.2, 7.0, 189.6, 189.8);
+  return done(A, owner, 9.4);
+}
 export function buildClub(owner) {
   const A = new Acc();
   block(A, 109, 136, -122, -104, { G: 3.8, FL: 3.4, n: 2, bay: 3.6, style: 'punched' }, {});
@@ -58,16 +64,17 @@ export function buildClub(owner) {
 }
 export function buildGlass(owner) {
   const A = new Acc();
-  A.box('curtain', -40, -10, 0, 8.2, -104, -88);
-  for (const y of [4.2, 8.2]) A.box('wall', -40.2, -9.8, y - 0.2, y + 0.3, -104.2, -87.8);
-  A.box('roof', -39.8, -10.2, 8.5, 8.6, -103.8, -88.2);
-  return done(A, owner, 8.6);
+  const t = block(A, -40, -10, -104, -88, { G: 4.4, FL: 3.8, n: 2, bay: 4.2, style: 'band', mats: { glass: 'glass' } }, {});
+  for (const f of [F('z', -104, -1), F('z', -88, 1)]) for (let x = -36; x < -12; x += 8) onFace(A, 'glass', f, x, x + 5.6, 1.0, t - 1.0, 0, 0.06);
+  A.box('roof', -39.7, -10.3, t, t + 0.12, -103.7, -88.3);
+  return done(A, owner, t + 0.9);
 }
 export function buildKruClub(owner) {
   const A = new Acc();
-  block(A, 272, 295, -110, -101, { G: 3.8, n: 1, bay: 3.6, style: 'punched' }, {});
-  gable(A, 'roofSheet', 272, 295, -110, -101, 3.8, 1.4, { eave: 0.8 });
-  return done(A, owner, 5.2);
+  const t = block(A, 272, 295, -110, -101, { G: 3.4, FL: 3.0, n: 2, bay: 3.6, style: 'punched' }, {});
+  for (const x of [284, 288]) onFace(A, 'red', F('z', -101, 1), x, x + 3.6, 3.8, 6.0, 0, 0.12);
+  gable(A, 'roofSheet', 272, 295, -110, -101, t, 1.3, { eave: 0.9 });
+  return done(A, owner, t + 1.3);
 }
 export function buildLawson(owner) { const A = new Acc(); shop(A, 44, 55, -134, -120, ['blue', 'wall'], F('x', 44, -1)); return done(A, owner, 4.2); }
 export function buildInthanin(owner) {
