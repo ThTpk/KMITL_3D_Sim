@@ -116,6 +116,18 @@ export function hip(A, m, x0, x1, z0, z1, y, h, eave = 0.6) {
   A.box(m, x0, x1, y - 0.25, y, z0, z1);
 }
 
+// gabled roof over x0..x1 / z0..z1 from eave height y, rising h, ridge along x; gable ends filled in `end`
+export function gable(A, m, x0, x1, z0, z1, y, h, { eave = 0.6, end = 'wall' } = {}) {
+  const zc = (z0 + z1) / 2, t = y + h;
+  const X0 = x0 - eave, X1 = x1 + eave, Z0 = z0 - eave, Z1 = z1 + eave;
+  const dz = (zc - Z0), yE = t - (h * dz) / (zc - z0);              // eave drops with the overhang
+  A.quad(m, [X1, yE, Z0], [X0, yE, Z0], [X0, t, zc], [X1, t, zc]);
+  A.quad(m, [X0, yE, Z1], [X1, yE, Z1], [X1, t, zc], [X0, t, zc]);
+  A.quad(m, [X0, yE - 0.15, Z0], [X1, yE - 0.15, Z0], [X1, yE, Z0], [X0, yE, Z0]);
+  A.quad(m, [X1, yE - 0.15, Z1], [X0, yE - 0.15, Z1], [X0, yE, Z1], [X1, yE, Z1]);
+  if (end) { A.tri(end, [x0, y, z1], [x0, t, zc], [x0, y, z0]); A.tri(end, [x1, y, z0], [x1, t, zc], [x1, y, z1]); }
+}
+
 // a block on any plan (a ring of [x, z], e.g. curved): walls, a window band and a projecting floor slab on
 // every storey, a parapet. Offsets are taken from the centroid, so keep the plan roughly convex.
 export function ringStack(A, ring, { y0 = 0, G = 4, FL = 3.6, n = 1, depth = 0.8, wall = 'wall', band = 'band', glass = 'glass' } = {}) {
