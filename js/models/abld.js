@@ -1,4 +1,4 @@
-// Hand-built model of ตึก A (A-Building, Faculty of Engineering, OSM way 292807567).
+// Hand-built model of A-Building (Faculty of Engineering, OSM way 292807567; not ตึก A, which is tka.js).
 // Surveyed 2026-10-17 from Google Maps satellite imagery (plan, roof, the three towers on the south side)
 // and Google Street View: the north face and the entrance from Engineering Avenue (two points, 20 m and
 // 35 m away) and the east end from the east road (its height from the viewing angle, about 21.5 m).
