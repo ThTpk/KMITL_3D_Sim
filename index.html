@@ -6,7 +6,7 @@
   <title>KMITL 3D Campus</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=20261017k" />
   <script type="importmap">
     {
       "imports": {
@@ -49,9 +49,16 @@
       <label><input type="checkbox" autocomplete="off" data-layer="buildings" checked /> อาคาร</label>
       <label><input type="checkbox" autocomplete="off" data-layer="labels" /> ชื่ออาคาร</label>
       <label><input type="checkbox" autocomplete="off" data-layer="roadLabels" /> ชื่อถนน</label>
-      <label><input type="checkbox" autocomplete="off" data-layer="traffic" /> รถไฟ/รถยนต์</label>
+      <label><input type="checkbox" autocomplete="off" data-layer="traffic" /> รถไฟ/รถยนต์/เครื่องบิน</label>
       <label><input type="checkbox" autocomplete="off" data-layer="satellite" checked /> ภาพดาวเทียม</label>
       <label><input type="checkbox" autocomplete="off" data-layer="shadows" checked /> เงา</label>
+      <label><input type="checkbox" autocomplete="off" data-layer="elevation" /> ความสูงพื้นที่</label>
+      <label><input type="checkbox" autocomplete="off" data-layer="flood" /> น้ำท่วม</label>
+    </div>
+    <div class="row flood" id="flood-row" hidden>
+      <span>🌊</span>
+      <input id="flood-level" type="range" min="-1" max="3" step="0.1" value="1" />
+      <span id="flood-label"></span>
     </div>
     <div class="row time">
       <span>🕒</span>
@@ -66,6 +73,7 @@
     <div><i style="background:#ff7a1a"></i>เขตสถาบัน</div>
   </div>
 
+  <div id="elev-legend" class="panel" hidden></div>
   <div id="tooltip" hidden></div>
   <div id="compass" class="panel" title="หันทิศเหนือ"><span>N</span></div>
   <div id="loading"><div class="spinner"></div><div>กำลังสร้างแบบจำลอง…</div></div>
@@ -75,6 +83,7 @@
   </footer>
 
   <script src="data/kmitl_data.js"></script>
-  <script type="module" src="js/app.js?v=20261017j"></script>
+  <script src="data/kmitl_dem.js"></script>
+  <script type="module" src="js/app.js?v=20261017l"></script>
 </body>
 </html>
