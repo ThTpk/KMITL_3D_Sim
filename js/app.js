@@ -3,7 +3,7 @@ import { MapControls } from 'three/addons/controls/MapControls.js';
 import { Sky } from 'three/addons/objects/Sky.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 import {
-  buildBuildings, buildAreas, buildWater, buildRoads, buildRails, buildTrees, buildCampusOutline,
+  buildBuildings, buildAreas, buildWater, buildRoads, buildRails, buildCampusOutline,
   highlightGeometry, pointInRing,
 } from './builders.js';
 import { buildTraffic } from './traffic.js';
@@ -91,11 +91,10 @@ layers.water = buildWater(DATA);
 layers.roads = buildRoads(DATA);
 layers.rails = buildRails(DATA);
 layers.campus = buildCampusOutline(DATA);
-layers.trees = buildTrees(DATA, DATA.buildings);
 const traffic = buildTraffic(DATA);
 layers.traffic = traffic.group;
-for (const k of ['areas', 'water', 'roads', 'rails', 'campus', 'buildings', 'trees', 'traffic']) scene.add(layers[k]);
-console.log(`world built in ${(performance.now() - t0).toFixed(0)} ms – ${buildingMeta.length} buildings, ${layers.trees.userData.count} trees`);
+for (const k of ['areas', 'water', 'roads', 'rails', 'campus', 'buildings', 'traffic']) scene.add(layers[k]);
+console.log(`world built in ${(performance.now() - t0).toFixed(0)} ms – ${buildingMeta.length} buildings`);
 
 // ---------- labels ----------
 const TYPE_TH = {
@@ -379,12 +378,11 @@ document.getElementById('compass').addEventListener('click', () => {
 
 // ---------- layer toggles ----------
 // defaults: buildings, satellite imagery and shadows; everything else can be switched on in the panel
-const layerState = { buildings: true, labels: false, roadLabels: false, trees: false, traffic: false, satellite: true, shadows: true };
+const layerState = { buildings: true, labels: false, roadLabels: false, traffic: false, satellite: true, shadows: true };
 function applyLayers() {
   layers.buildings.visible = layerState.buildings;
   layers.labels.visible = layerState.buildings && layerState.labels;
   layers.roadLabels.visible = layerState.roadLabels;
-  layers.trees.visible = layerState.trees;
   layers.traffic.visible = layerState.traffic;
   layers.areas.visible = !layerState.satellite;
   if (satMesh) satMesh.visible = layerState.satellite;

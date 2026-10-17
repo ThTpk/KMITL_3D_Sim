@@ -371,7 +371,7 @@ export function buildBuildings(list) {
     const H = buildingHeights(b);
     const M = MODELS[b.model];
     if (M) {
-      // replace the OSM outline with the surveyed one (highlight, label, tree clearance, area)
+      // replace the OSM outline with the surveyed one (highlight, label, area)
       b.o = M.outline; delete b.h;
       const pts = openRing(b.o);
       b.c = [pts.reduce((s, p) => s + p[0], 0) / pts.length, pts.reduce((s, p) => s + p[1], 0) / pts.length].map((v) => Math.round(v * 10) / 10);
@@ -804,118 +804,6 @@ export function buildCampusOutline(data) {
   data.campus.forEach((c) => ribbon(s, c.o, 2.2, () => 0.4, col));
   const m = new THREE.Mesh(s.geometry(), new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.85, polygonOffset: true, polygonOffsetFactor: -6, polygonOffsetUnits: -12 }));
   return m;
-}
-
-// ---------- trees ----------
-export function buildTrees(data, buildingsList) {
-  // spatial grid of building footprints for collision checks
-  const cell = 40, grid = new Map();
-  const key = (i, j) => i * 100003 + j;
-  for (const b of buildingsList) {
-    const [x0, z0, x1, z1] = ringBBox(b.o);
-    for (let i = Math.floor(x0 / cell); i <= Math.floor(x1 / cell); i++)
-      for (let j = Math.floor(z0 / cell); j <= Math.floor(z1 / cell); j++) {
-        const k = key(i, j); if (!grid.has(k)) grid.set(k, []); grid.get(k).push(b);
-      }
-  }
-  const roadGrid = new Map();
-  for (const r of data.roads) {
-    if (['footway', 'path', 'steps'].includes(r.k)) continue;
-    for (let i = 1; i < r.p.length; i++) {
-      const a = r.p[i - 1], b = r.p[i];
-      const k = key(Math.floor((a[0] + b[0]) / 2 / cell), Math.floor((a[1] + b[1]) / 2 / cell));
-      if (!roadGrid.has(k)) roadGrid.set(k, []);
-      roadGrid.get(k).push([a, b, r.w / 2 + 1.2]);
-    }
-  }
-  const blocked = (x, z) => {
-    const i = Math.floor(x / cell), j = Math.floor(z / cell);
-    for (const b of grid.get(key(i, j)) || []) if (pointInRing(x, z, b.o)) return true;
-    for (let di = -1; di <= 1; di++) for (let dj = -1; dj <= 1; dj++)
-      for (const [a, b, hw] of roadGrid.get(key(i + di, j + dj)) || []) if (distSeg(x, z, a, b) < hw) return true;
-    for (const w of data.water) if (w.o && pointInRing(x, z, w.o)) return true;
-    return false;
-  };
-  const inPitch = (x, z) => data.sport.some((s) => pointInRing(x, z, s.o)) || data.parking.some((p) => pointInRing(x, z, p.o));
-
-  const trees = [];
-  const R = rng(12345);
-  // 1) green areas
-  for (const g of data.green) {
-    const [x0, z0, x1, z1] = ringBBox(g.o);
-    const area = (x1 - x0) * (z1 - z0);
-    const dense = ['wood', 'forest', 'orchard', 'scrub'].includes(g.k);
-    const n = Math.min(900, area / (dense ? 60 : 260));
-    for (let i = 0; i < n; i++) {
-      const x = x0 + R() * (x1 - x0), z = z0 + R() * (z1 - z0);
-      if (pointInPoly(x, z, g.o, g.h) && !blocked(x, z)) trees.push([x, z, R()]);
-    }
-  }
-  // 2) along roads inside the campus
-  const campus = data.campus.map((c) => c.o);
-  const inCampus = (x, z) => campus.some((o) => pointInRing(x, z, o));
-  for (const r of data.roads) {
-    if (!['service', 'residential', 'unclassified', 'tertiary', 'secondary', 'primary', 'pedestrian', 'living_street'].includes(r.k)) continue;
-    if (r.br) continue;
-    const spacing = r.k === 'primary' || r.k === 'secondary' ? 14 : 11;
-    for (let i = 1; i < r.p.length; i++) {
-      const a = r.p[i - 1], b = r.p[i], seg = Math.hypot(b[0] - a[0], b[1] - a[1]);
-      if (seg < 4) continue;
-      const ux = (b[0] - a[0]) / seg, uz = (b[1] - a[1]) / seg;
-      for (let t = spacing / 2; t < seg; t += spacing) {
-        for (const side of [-1, 1]) {
-          const off = side * (r.w / 2 + 3.2);
-          const x = a[0] + ux * t - uz * off, z = a[1] + uz * t + ux * off;
-          if (!inCampus(x, z)) continue;
-          if (R() < 0.15) continue;
-          if (!blocked(x, z) && !inPitch(x, z)) trees.push([x, z, R()]);
-        }
-      }
-    }
-  }
-  // 3) sprinkle in open campus space
-  for (const o of campus) {
-    const [x0, z0, x1, z1] = ringBBox(o);
-    for (let i = 0; i < 1400; i++) {
-      const x = x0 + R() * (x1 - x0), z = z0 + R() * (z1 - z0);
-      if (pointInRing(x, z, o) && !blocked(x, z) && !inPitch(x, z)) trees.push([x, z, R()]);
-    }
-  }
-
-  // like buildings, trees are drawn only inside KMITL (the satellite imagery shows the greenery outside);
-  // this also keeps them off the footprints of the outside buildings that are no longer drawn
-  const kept = trees.filter(([x, z]) => inCampus(x, z));
-  trees.length = 0; trees.push(...kept);
-  const trunkGeo = new THREE.CylinderGeometry(0.18, 0.28, 1, 6); trunkGeo.translate(0, 0.5, 0);
-  const crownGeo = new THREE.IcosahedronGeometry(1, 1);
-  const palmGeo = new THREE.ConeGeometry(1, 0.6, 7); palmGeo.translate(0, 0, 0);
-  const trunk = new THREE.InstancedMesh(trunkGeo, new THREE.MeshStandardMaterial({ color: '#6b5240', roughness: 1 }), trees.length);
-  const crown = new THREE.InstancedMesh(crownGeo, new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 0.9, flatShading: true }), trees.length);
-  const M = new THREE.Matrix4(), Q = new THREE.Quaternion(), S = new THREE.Vector3(), P = new THREE.Vector3(), col = new THREE.Color();
-  const greens = ['#4f7f3a', '#5b8c3f', '#467335', '#6a9a48', '#3f6b33', '#739f4f'];
-  trees.forEach(([x, z, r], i) => {
-    const h = 3 + r * 6, cr = 2 + r * 2.6;
-    M.makeScale(1 + r * 0.6, h, 1 + r * 0.6).setPosition(x, 0, z); trunk.setMatrixAt(i, M);
-    Q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), r * 6.28);
-    S.set(cr, cr * (0.75 + hash(i) * 0.4), cr); P.set(x, h + cr * 0.55, z);
-    M.compose(P, Q, S); crown.setMatrixAt(i, M);
-    crown.setColorAt(i, col.set(greens[Math.floor(hash(i * 7) * greens.length)]));
-  });
-  void palmGeo;
-  trunk.castShadow = crown.castShadow = true;
-  crown.receiveShadow = true;
-  const g = new THREE.Group();
-  g.add(trunk, crown);
-  g.userData.count = trees.length;
-  return g;
-}
-
-function distSeg(x, z, a, b) {
-  const dx = b[0] - a[0], dz = b[1] - a[1];
-  const l2 = dx * dx + dz * dz || 1;
-  let t = ((x - a[0]) * dx + (z - a[1]) * dz) / l2;
-  t = Math.max(0, Math.min(1, t));
-  return Math.hypot(x - a[0] - t * dx, z - a[1] - t * dz);
 }
 
 // single-building highlight geometry (used on hover/select)
