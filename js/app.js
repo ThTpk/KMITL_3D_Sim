@@ -503,6 +503,8 @@ document.addEventListener('click', (e) => { if (!e.target.closest('.search')) re
 const compassNeedle = document.querySelector('#compass span');
 const clock = new THREE.Clock();
 let frame = 0;
+const fallbackSunDir = new THREE.Vector3(0.3, 1, 0.2).normalize(), origin = new THREE.Vector3();
+const lightBasis = new THREE.Matrix4(), lightX = new THREE.Vector3(), lightY = new THREE.Vector3(), lightZ = new THREE.Vector3(), snapped = new THREE.Vector3();
 function loop(manual = false) {
   const dt = manual ? 0.1 : Math.min(0.1, clock.getDelta());
   stepTween(dt);
@@ -512,11 +514,24 @@ function loop(manual = false) {
   // keep the shadow frustum centred on what we're looking at
   const t = controls.target;
   const dist = camera.position.distanceTo(t);
-  const ext = THREE.MathUtils.clamp(dist * 0.75, 180, 900);
+  // the ground layers sit only a few cm apart: with a fixed 1 m near plane the depth buffer could not tell them
+  // apart beyond a few hundred metres and they z-fought (flickered); pushing the near plane out with the
+  // distance keeps the depth precision near the target at a few mm
+  const near = THREE.MathUtils.clamp(dist * 0.015, 1, 25);
+  if (Math.abs(camera.near - near) > 0.05 * near) { camera.near = near; camera.updateProjectionMatrix(); }
+  // shadow frustum size in fixed steps (x1.25) so zooming does not keep resampling the shadow map
+  const ext = 180 * 1.25 ** THREE.MathUtils.clamp(Math.round(Math.log(dist * 0.75 / 180) / Math.log(1.25)), 0, 7);
   const sc = sun.shadow.camera;
-  if (Math.abs(sc.right - ext) > 20) { sc.left = -ext; sc.right = ext; sc.top = ext; sc.bottom = -ext; sc.updateProjectionMatrix(); }
-  sun.target.position.copy(t);
-  sun.position.copy(t).addScaledVector(sunDir.y > 0.02 ? sunDir : new THREE.Vector3(0.3, 1, 0.2).normalize(), 1800);
+  if (sc.right !== ext) { sc.left = -ext; sc.right = ext; sc.top = ext; sc.bottom = -ext; sc.updateProjectionMatrix(); }
+  // snap the frustum centre to whole shadow-map texels, so panning slides the shadows instead of making
+  // their edges shimmer
+  const dir = sunDir.y > 0.02 ? sunDir : fallbackSunDir;
+  lightBasis.lookAt(dir, origin, camera.up).extractBasis(lightX, lightY, lightZ);
+  const texel = (2 * ext) / sun.shadow.mapSize.x;
+  const tx = t.dot(lightX), ty = t.dot(lightY);
+  snapped.copy(t).addScaledVector(lightX, Math.round(tx / texel) * texel - tx).addScaledVector(lightY, Math.round(ty / texel) * texel - ty);
+  sun.target.position.copy(snapped);
+  sun.position.copy(snapped).addScaledVector(dir, 1800);
   compassNeedle.style.transform = `rotate(${THREE.MathUtils.radToDeg(controls.getAzimuthalAngle())}deg)`;
   if (frame++ % 6 === 0) updateLabels();
   renderer.render(scene, camera);
