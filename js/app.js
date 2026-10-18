@@ -7,7 +7,6 @@ import {
   highlightGeometry, pointInRing,
 } from './builders.js';
 import { buildTraffic } from './traffic.js';
-import { buildElevation, buildFlood, ELEV_STOPS } from './flood.js';
 import { buildPlanes } from './planes.js';
 
 const DATA = window.KMITL_DATA;
@@ -98,12 +97,7 @@ layers.traffic = traffic.group;
 // airliners over the stadium and the 12-storey building share the trains/cars toggle
 const planes = buildPlanes();
 layers.traffic.add(planes.group);
-// ground elevation and flood water from the elevation grid (data/kmitl_dem.js)
-const DEM = window.KMITL_DEM;
-layers.elevation = buildElevation(DEM);
-const flood = buildFlood(DEM, (x, z) => inCampus(x, z));
-layers.flood = flood.mesh;
-for (const k of ['areas', 'water', 'roads', 'rails', 'campus', 'buildings', 'traffic', 'elevation', 'flood']) scene.add(layers[k]);
+for (const k of ['areas', 'water', 'roads', 'rails', 'campus', 'buildings', 'traffic']) scene.add(layers[k]);
 console.log(`world built in ${(performance.now() - t0).toFixed(0)} ms – ${buildingMeta.length} buildings`);
 
 // ---------- labels ----------
@@ -390,16 +384,12 @@ document.getElementById('compass').addEventListener('click', () => {
 
 // ---------- layer toggles ----------
 // defaults: buildings, satellite imagery and shadows; everything else can be switched on in the panel
-const layerState = { buildings: true, labels: false, roadLabels: false, traffic: false, satellite: true, shadows: true, elevation: false, flood: false };
+const layerState = { buildings: true, labels: false, roadLabels: false, traffic: false, satellite: true, shadows: true };
 function applyLayers() {
   layers.buildings.visible = layerState.buildings;
   layers.labels.visible = layerState.buildings && layerState.labels;
   layers.roadLabels.visible = layerState.roadLabels;
   layers.traffic.visible = layerState.traffic;
-  layers.elevation.visible = layerState.elevation;
-  layers.flood.visible = layerState.flood;
-  document.getElementById('flood-row').hidden = !layerState.flood;
-  document.getElementById('elev-legend').hidden = !layerState.elevation;
   layers.areas.visible = !layerState.satellite;
   if (satMesh) satMesh.visible = layerState.satellite;
   document.getElementById('sat-attrib').hidden = !layerState.satellite;
@@ -413,19 +403,6 @@ document.querySelectorAll('[data-layer]').forEach((cb) => cb.addEventListener('c
   if (cb.dataset.layer === 'satellite' && cb.checked) ensureSatellite();
   applyLayers();
 }));
-
-// ---------- flood level ----------
-// water level in metres above mean sea level, -1 to 3
-const floodInput = document.getElementById('flood-level'), floodLabel = document.getElementById('flood-label');
-function setFlood(level) {
-  const { share } = flood.setLevel(level);
-  floodLabel.textContent = `${level >= 0 ? '+' : ''}${level.toFixed(1)} ม. รทก. · ท่วม ${Math.round(share * 100)}% ของ สจล.`;
-}
-floodInput.addEventListener('input', () => setFlood(+floodInput.value));
-setFlood(+floodInput.value);
-document.getElementById('elev-legend').innerHTML = '<b>ความสูงพื้นที่ (ม. รทก.)</b>' +
-  ELEV_STOPS.map(([v, c]) => `<div><i style="background:${c}"></i>${v}</div>`).join('') +
-  '<small>ค่าประมาณจาก DEM ดาวเทียม คลาดเคลื่อนได้ 1-2 ม.</small>';
 
 // ---------- time of day ----------
 const timeInput = document.getElementById('time'), timeLabel = document.getElementById('time-label');
@@ -555,4 +532,4 @@ renderer.setAnimationLoop(null);
 loop();
 document.getElementById('loading').classList.add('done');
 // debugging hook: advance n frames synchronously (useful when the tab is in the background)
-window.__kmitl = { scene, camera, controls, buildingMeta, select, flyTo, setTime, setFlood, traffic, step: (n = 20) => { for (let i = 0; i < n; i++) loop(true); } };
+window.__kmitl = { scene, camera, controls, buildingMeta, select, flyTo, setTime, traffic, step: (n = 20) => { for (let i = 0; i < n; i++) loop(true); } };

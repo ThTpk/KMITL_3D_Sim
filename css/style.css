@@ -56,7 +56,7 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); c
 
 #controls { left: 12px; bottom: 30px; padding: 10px; display: flex; flex-direction: column; gap: 8px; max-width: calc(100vw - 24px); }
 #controls .row { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
-#controls .row[hidden], #elev-legend[hidden] { display: none; }
+#controls .row[hidden] { display: none; }
 #controls button { font: inherit; font-size: 12.5px; padding: 6px 10px; border-radius: 7px; border: 1px solid var(--line); background: transparent; color: var(--text); cursor: pointer; }
 #controls button:hover { border-color: var(--accent); }
 #controls button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
@@ -65,12 +65,6 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); c
 #controls .time { gap: 8px; }
 #time { width: 220px; accent-color: var(--accent); }
 #time-label { font-variant-numeric: tabular-nums; width: 42px; }
-#controls .flood { gap: 8px; }
-#flood-level { width: 220px; accent-color: #3d7fb3; }
-#flood-label { font-variant-numeric: tabular-nums; font-size: 12px; }
-#elev-legend { left: 12px; top: 84px; padding: 8px 10px; font-size: 12px; display: flex; flex-direction: column; gap: 3px; max-width: 170px; }
-#elev-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -2px; }
-#elev-legend small { color: var(--muted, #888); line-height: 1.3; }
 
 #legend { right: 12px; bottom: 30px; padding: 8px 10px; font-size: 12px; display: flex; flex-direction: column; gap: 4px; }
 #legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -2px; border: 1px solid var(--line); }
@@ -104,6 +98,6 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); c
   #search { width: 100%; }
   #info { left: 12px; right: 12px; width: auto; top: auto; bottom: 12px; max-height: 55vh; z-index: 30; }
   #legend { display: none; }
-  #time, #flood-level { width: 140px; }
+  #time { width: 140px; }
   #compass { bottom: auto; top: 128px; }
 }
