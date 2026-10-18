@@ -98,34 +98,73 @@ export function buildB(owner) {
   // front (two panoramas the user sent: the steps, the undercroft, the brick wall, the west stair) ----
   {
     const [x0, x1, z0, z1] = T_, P = 1.9, U = 4.6, TOP = 12.2;
-    // podium of washed gravel, and in front of it two flights: a wide lower one, a landing, a narrower upper one
-    // between planters
+    // podium of washed gravel. In front, from the west: the covered ramp (x -293.5..-289.5), a garden with round
+    // planters, then the stairs: a wide lower flight, a landing and a narrower upper flight west of the "B" column
+    // with a planter east of it (third panorama the user sent, from the foot of the ramp)
     const zf = z1 + 1.5;                                                             // front edge of the podium
     A.box('granite', x0 - 3, x1 + 3, 0, P, z0, zf);
-    const LW = 1.0, nl = 6, nu = 5, tr = 0.32;
+    const LW = 1.0, nl = 6, nu = 5, tr = 0.32, SX0 = -285, UX0 = -284.5, UX1 = -278.2;
     const zl = zf + 2.2;                                                             // landing from zf to zl
-    A.box('granite', x0 - 3, x1 + 3, 0, LW, zf, zl);
-    for (let s = 0; s < nu; s++) {                                                    // upper flight, centre
+    A.box('granite', SX0, x1 + 3, 0, LW, zf, zl);
+    for (let s = 0; s < nu; s++) {                                                    // upper flight
       const za = zf + s * (2.2 / nu), y = P - (s * (P - LW)) / nu;
-      A.box('granite', x0 + 3.5, x1 - 3.5, LW, y, za, za + 2.2 / nu);
+      A.box('granite', UX0, UX1, LW, y, za, za + 2.2 / nu);
     }
-    for (const [a, b] of [[x0 - 3, x0 + 3.5], [x1 - 3.5, x1 + 3]]) {                  // planters either side of the upper flight
-      A.box('granite', a, b, LW, P + 0.5, zf, zl - 0.3);
-      A.box('soil', a + 0.25, b - 0.25, P + 0.5, P + 0.55, zf + 0.25, zl - 0.55);
-    }
-    for (let s = 0; s < nl; s++) {                                                    // lower flight, full width
+    A.box('granite', SX0, UX0, 0, P + 0.4, zf, zl);                                  // cheek wall west of the upper flight
+    A.box('granite', UX1, x1 + 3, LW, P + 0.5, zf, zl - 0.3);                        // planter east of it
+    A.box('soil', UX1 + 0.25, x1 + 2.75, P + 0.5, P + 0.55, zf + 0.25, zl - 0.55);
+    for (let s = 0; s < nl; s++) {                                                    // lower flight
       const y = LW - (s * LW) / nl, za = zl + s * tr;
-      A.box('granite', x0 - 3, x1 + 3, 0, y, za, za + tr);
+      A.box('granite', SX0, x1 + 3, 0, y, za, za + tr);
     }
     const zb = zl + nl * tr;
-    for (const x of [x0 - 3, x1 + 2.5]) A.box('granite', x, x + 0.5, 0, LW + 0.6, zl, zb);   // cheek walls
-    for (const x of [x0 + 3.5, x1 - 3.5]) chain(A, 'rail', [[x, P + 0.9, zf + 0.2, 0.035], [x, LW + 0.9, zl - 0.2, 0.035]], 5);
-    for (const x of [(x0 + x1) / 2 - 3, (x0 + x1) / 2 + 3, x0 + 0.5, x1 - 0.5])
-      chain(A, 'rail', [[x, LW + 0.9, zl + 0.1, 0.035], [x, 0.9, zb - 0.1, 0.035]], 5);
-    // lamp posts with mushroom caps on the podium edge
-    for (const x of [x0 - 1.5, x1 + 1.5]) {
-      tube(A, 'rail', [x, P, zf - 0.6], [x, P + 2.6, zf - 0.6], 0.07, 0.06, 6);
-      lathe(A, 'rail', x, zf - 0.6, [[0.06, P + 2.55], [0.28, P + 2.62], [0.26, P + 2.72], [0, P + 2.78]], 10);
+    for (const x of [SX0, x1 + 2.5]) A.box('granite', x, x + 0.5, 0, LW + 0.6, zl, zb);   // cheek walls
+    for (const x of [UX0 + 0.3, UX1 - 0.3]) chain(A, 'rail', [[x, P + 0.9, zf + 0.2, 0.035], [x, LW + 0.9, zl - 0.2, 0.035]], 5);
+    for (const x of [SX0 + 0.8, -279, -273.5, x1 + 2]) chain(A, 'rail', [[x, LW + 0.9, zl + 0.1, 0.035], [x, 0.9, zb - 0.1, 0.035]], 5);
+    // garden between the ramp and the stairs, round planters
+    A.box('lawn', -289.3, SX0, 0, 0.12, zf, zb + 2);
+    for (const [x, z] of [[-287.5, zf + 2.5], [-286.2, zb + 0.5]]) lathe(A, 'granite', x, z, [[0.5, 0.12], [0.55, 0.6], [0.5, 0.6], [0, 0.55]], 12);
+    // lamp post with a mushroom cap on the podium edge (east)
+    tube(A, 'rail', [x1 + 1.5, P, zf - 0.6], [x1 + 1.5, P + 2.6, zf - 0.6], 0.07, 0.06, 6);
+    lathe(A, 'rail', x1 + 1.5, zf - 0.6, [[0.06, P + 2.55], [0.28, P + 2.62], [0.26, P + 2.72], [0, P + 2.78]], 10);
+
+    // covered ramp from the road up to the podium: low concrete walls, a flat slab on pairs of square columns,
+    // a dark lamp post at its foot; at the top it runs into the undercroft
+    {
+      const RX0 = -293.5, RX1 = -289.5, RZ0 = zf, RZ1 = zf + 11.5, CY = 4.2;
+      const ry = (z) => P * (RZ1 - z) / (RZ1 - RZ0);                                 // ramp surface height
+      // ramp surface (sloped) with a gravel body under it
+      const a = [RX0 + 0.2, ry(RZ0), RZ0], b = [RX1 - 0.2, ry(RZ0), RZ0], c = [RX1 - 0.2, 0.02, RZ1], d = [RX0 + 0.2, 0.02, RZ1];
+      A.quad('rampTop', d, c, b, a);
+      for (const x of [RX0 + 0.2, RX1 - 0.2]) {
+        const o = x < (RX0 + RX1) / 2 ? -1 : 1, t = [x, 0, RZ0], u = [x, ry(RZ0), RZ0], v = [x, 0.02, RZ1];
+        if (o < 0) A.tri('granite', t, v, u); else A.tri('granite', t, u, v);
+      }
+      // side walls with sloped tops, 1 m above the ramp
+      const face = (m, q, nrm) => {                                                  // quad turned to face nrm
+        const [p0, p1, p2] = q, u = p1.map((v, i) => v - p0[i]), w = p2.map((v, i) => v - p0[i]);
+        const n = [u[1] * w[2] - u[2] * w[1], u[2] * w[0] - u[0] * w[2], u[0] * w[1] - u[1] * w[0]];
+        if (n[0] * nrm[0] + n[1] * nrm[1] + n[2] * nrm[2] >= 0) A.quad(m, ...q); else A.quad(m, q[3], q[2], q[1], q[0]);
+      };
+      for (const xa of [RX0, RX1 - 0.2]) {
+        const xb = xa + 0.2, t0 = ry(RZ0) + 1.0, t1 = 1.0;
+        face('granite', [[xa, t0, RZ0], [xb, t0, RZ0], [xb, t1, RZ1], [xa, t1, RZ1]], [0, 1, 0]);
+        face('granite', [[xa, 0, RZ0], [xa, 0, RZ1], [xa, t1, RZ1], [xa, t0, RZ0]], [-1, 0, 0]);
+        face('granite', [[xb, 0, RZ0], [xb, 0, RZ1], [xb, t1, RZ1], [xb, t0, RZ0]], [1, 0, 0]);
+        face('granite', [[xa, 0, RZ1], [xb, 0, RZ1], [xb, t1, RZ1], [xa, t1, RZ1]], [0, 0, 1]);
+      }
+      // canopy: flat slab with edge beams, on pairs of columns
+      A.box('frame', RX0 - 0.3, RX1 + 0.3, CY, CY + 0.3, RZ0 - 0.5, RZ1 + 0.3);
+      for (const x of [RX0 - 0.3, RX1 + 0.05]) A.box('frame', x, x + 0.25, CY - 0.45, CY, RZ0 - 0.5, RZ1 + 0.3);
+      A.box('frame', RX0 - 0.3, RX1 + 0.3, CY - 0.45, CY, RZ1, RZ1 + 0.3);
+      for (const z of [RZ1 - 0.2, RZ1 - 3.9, RZ1 - 7.6, RZ0 + 0.4]) for (const x of [RX0 + 0.1, RX1 - 0.1])
+        A.box('pier', x - 0.18, x + 0.18, ry(z), CY - 0.45, z - 0.18, z + 0.18);
+      // lamp post at the foot
+      tube(A, 'lampGreen', [RX0 - 0.8, 0, RZ1 + 0.4], [RX0 - 0.8, 3.9, RZ1 + 0.4], 0.08, 0.06, 8);
+      lathe(A, 'lampGreen', RX0 - 0.8, RZ1 + 0.4, [[0.12, 3.9], [0.2, 4.1], [0.2, 4.4], [0.1, 4.55], [0, 4.6]], 8);
+      // the undercroft beyond the top: a back wall with a dark doorway, a wall along the garden side
+      A.box('render', RX0 - 0.5, RX1 + 1.5, P, U - 0.1, z1 - 7, z1 - 6.7);
+      onFace(A, 'dark', { ax: 'z', at: z1 - 6.7, out: 1 }, RX0 + 0.6, RX1 - 0.6, P, P + 2.4, 0, 0.04);
     }
     // white stair up the west side from the car park, behind white walls
     for (let s = 0; s < 10; s++) {
@@ -160,7 +199,7 @@ export function buildB(owner) {
     }
     // grey square pilotis
     for (let x = x0 + 0.4; x < x1; x += 5.3) for (const z of [z0 + 8, z1 - 0.6]) A.box('pier', x - 0.35, x + 0.35, P, ys + (z1 - z) / (z1 - z0) * (yn - ys), z - 0.35, z + 0.35);
-    A.box('gold', x0 + 5.7 - 0.06, x0 + 5.7 + 0.06, P + 1.0, P + 2.6, z1 - 0.25, z1 - 0.22);   // name plaque on a front column
+    A.box('gold', x0 + 11 - 0.06, x0 + 11 + 0.06, P + 1.0, P + 2.6, z1 - 0.25, z1 - 0.22);    // name plaque on the third front column
   }
 
   // ===== materials & meshes =====
@@ -192,6 +231,10 @@ export function buildB(owner) {
     rail: std({ color: '#7a4a35', roughness: 0.6, metalness: 0.3 }),
     pier: std({ color: '#b9bdc4', roughness: 0.85 }),
     gold: std({ color: '#c9a24a', roughness: 0.35, metalness: 0.6 }),
+    rampTop: std({ color: '#a9a49b', roughness: 0.95 }),
+    lawn: std({ color: '#6f9a4a', roughness: 1 }),
+    lampGreen: std({ color: '#26332c', roughness: 0.5, metalness: 0.4 }),
+    dark: std({ color: '#2b2e31', roughness: 0.8 }),
     soffit: std({ color: '#c4c8d0', side: THREE.DoubleSide }),
   };
   const meshes = [];
@@ -210,9 +253,9 @@ export function buildB(owner) {
     g.setAttribute('uv', new THREE.Float32BufferAttribute(B.uv, 2));
     add(g, MAT[k]);
   }
-  // the letter B on the south-west pilotis column of the theatre (faces south)
+  // the letter B on the fourth front pilotis column of the theatre, east of the upper flight (faces south)
   {
-    const x = T_[0] + 0.4, z = T_[3] - 0.6 + 0.36, y0 = 2.6, y1 = 3.6;
+    const x = T_[0] + 0.4 + 3 * 5.3, z = T_[3] - 0.6 + 0.36, y0 = 2.6, y1 = 3.6;
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.Float32BufferAttribute([x - 0.32, y0, z, x + 0.32, y0, z, x + 0.32, y1, z, x - 0.32, y0, z, x + 0.32, y1, z, x - 0.32, y1, z], 3));
     g.setAttribute('uv', new THREE.Float32BufferAttribute([0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1], 2));
