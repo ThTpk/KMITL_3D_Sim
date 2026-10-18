@@ -16,6 +16,7 @@
 // ground floor rendered, with a band of breeze blocks and AC units.
 import * as THREE from 'three';
 import { Acc, onFace, glassTex, brickTex, textTex } from './ecc.js';
+import { tube, lathe, chain } from './kit.js';
 
 const FL = 3.3, ROOF4 = 4 * FL + 0.4, ROOF3 = 3 * FL + 0.4;
 const W_ = [-324.5, -293, 27, 60.4], E_ = [-293, -247.5, 31, 51.4], N_ = [-293, -251, 18, 31], F_ = [-293, -255, 9.7, 18];
@@ -93,27 +94,73 @@ export function buildB(owner) {
     for (const y of [ROOF4 + 2.6, ROOF4 + 3.2]) A.box('frame', x - 0.9, x + 0.9, y, y + 0.05, z - 0.03, z + 0.03);
   }
 
-  // ---- theatre on pilotis over a podium, wide steps to the road ----
+  // ---- theatre on pilotis over a podium; the front (south) reworked 2026-10-18 from Street View on the road in
+  // front (two panoramas the user sent: the steps, the undercroft, the brick wall, the west stair) ----
   {
-    const [x0, x1, z0, z1] = T_, P = 1.2, U = 4.6, TOP = 12.2;
-    A.box('paving', x0 - 3, x1 + 3, 0, P, z0, z1 + 1.5);
-    for (let s = 0; s < 6; s++) A.box('paving', x0 - 3, x1 + 3, 0, P - s * 0.2, z1 + 1.5, z1 + 1.5 + (s + 1) * 0.4);
+    const [x0, x1, z0, z1] = T_, P = 1.9, U = 4.6, TOP = 12.2;
+    // podium of washed gravel, and in front of it two flights: a wide lower one, a landing, a narrower upper one
+    // between planters
+    const zf = z1 + 1.5;                                                             // front edge of the podium
+    A.box('granite', x0 - 3, x1 + 3, 0, P, z0, zf);
+    const LW = 1.0, nl = 6, nu = 5, tr = 0.32;
+    const zl = zf + 2.2;                                                             // landing from zf to zl
+    A.box('granite', x0 - 3, x1 + 3, 0, LW, zf, zl);
+    for (let s = 0; s < nu; s++) {                                                    // upper flight, centre
+      const za = zf + s * (2.2 / nu), y = P - (s * (P - LW)) / nu;
+      A.box('granite', x0 + 3.5, x1 - 3.5, LW, y, za, za + 2.2 / nu);
+    }
+    for (const [a, b] of [[x0 - 3, x0 + 3.5], [x1 - 3.5, x1 + 3]]) {                  // planters either side of the upper flight
+      A.box('granite', a, b, LW, P + 0.5, zf, zl - 0.3);
+      A.box('soil', a + 0.25, b - 0.25, P + 0.5, P + 0.55, zf + 0.25, zl - 0.55);
+    }
+    for (let s = 0; s < nl; s++) {                                                    // lower flight, full width
+      const y = LW - (s * LW) / nl, za = zl + s * tr;
+      A.box('granite', x0 - 3, x1 + 3, 0, y, za, za + tr);
+    }
+    const zb = zl + nl * tr;
+    for (const x of [x0 - 3, x1 + 2.5]) A.box('granite', x, x + 0.5, 0, LW + 0.6, zl, zb);   // cheek walls
+    for (const x of [x0 + 3.5, x1 - 3.5]) chain(A, 'rail', [[x, P + 0.9, zf + 0.2, 0.035], [x, LW + 0.9, zl - 0.2, 0.035]], 5);
+    for (const x of [(x0 + x1) / 2 - 3, (x0 + x1) / 2 + 3, x0 + 0.5, x1 - 0.5])
+      chain(A, 'rail', [[x, LW + 0.9, zl + 0.1, 0.035], [x, 0.9, zb - 0.1, 0.035]], 5);
+    // lamp posts with mushroom caps on the podium edge
+    for (const x of [x0 - 1.5, x1 + 1.5]) {
+      tube(A, 'rail', [x, P, zf - 0.6], [x, P + 2.6, zf - 0.6], 0.07, 0.06, 6);
+      lathe(A, 'rail', x, zf - 0.6, [[0.06, P + 2.55], [0.28, P + 2.62], [0.26, P + 2.72], [0, P + 2.78]], 10);
+    }
+    // white stair up the west side from the car park, behind white walls
+    for (let s = 0; s < 10; s++) {
+      const z = z1 + 1.2 - s * 0.32, y = ((s + 1) * P) / 10;
+      A.box('granite', -299.5, x0 - 3, 0, y, z - 0.32, z);
+    }
+    A.box('render', -300, -299.5, 0, P + 2.2, z1 - 6, z1 + 3);
+    A.box('render', -300, x0 - 3, 0, 2.4, z1 + 2.8, z1 + 3.2);
+    A.box('frame', -300.2, -299.3, 0, P + 2.6, z1 - 2.5, z1 - 1.9);                 // white portal
+    A.box('frame', -300.2, x0 - 3, P + 2.4, P + 2.8, z1 - 2.5, z1 - 1.9);
+
     A.box('render', x0 + 3, x1 - 3, P, U, z0, z0 + 6);                              // lobby / stair core under the hall
     onFace(A, 'glass', { ax: 'z', at: z0 + 6, out: 1 }, x0 + 4, x1 - 4, P + 0.3, U - 0.6, 0, 0.05);
-    // hall: brick walls with a white frame, raked underside rising to the north
+    // hall: solid brick with two tall slot windows on the front, white corner piers, a thick white fascia below
+    // and the white roof slab above; raked underside with exposed ribs rising to the north
     A.box('brick', x0, x1, U + 1.5, TOP, z0, z1);
     A.box('frame', x0 - 0.3, x1 + 0.3, TOP - 0.2, TOP + 0.5, z0, z1 + 0.8);         // white roof slab, overhang on the south
+    for (const x of [x0, x1 - 0.6]) A.box('frame', x, x + 0.6, U + 1.5, TOP - 0.2, z1 - 0.3, z1 + 0.25);   // corner piers
+    const front = { ax: 'z', at: z1, out: 1 };
+    for (const [a, b] of [[x0 + 0.9, x0 + 1.9], [x0 + 9.2, x0 + 10.5]]) {
+      onFace(A, 'frame', front, a - 0.15, b + 0.15, 7.9, 10.75, 0, 0.06);
+      onFace(A, 'glass', front, a, b, 8.05, 10.6, 0, 0.1);
+    }
     const ys = U, yn = U + 1.6;                                                      // underside heights at the south and north ends
     A.quad('soffit', [x0, ys, z1], [x0, yn, z0], [x1, yn, z0], [x1, ys, z1]);
+    for (let x = x0 + 1.3; x < x1 - 0.5; x += 2.6) tube(A, 'frame', [x, ys - 0.25, z1 - 0.5], [x, yn - 0.25, z0], 0.22, 0.22, 4);   // ribs
     for (const x of [x0, x1]) A.quad('frame', [x, ys, z1], [x, yn, z0], [x, U + 1.6, z0], [x, U + 1.6, z1]);
-    A.box('frame', x0, x1, ys - 0.1, U + 1.6, z1 - 0.4, z1);
-    for (let x = x0 + 0.4; x < x1; x += 5.3) for (const z of [z0 + 8, z1 - 0.6]) A.box('frame', x - 0.35, x + 0.35, P, ys + (z1 - z) / (z1 - z0) * (yn - ys), z - 0.35, z + 0.35);
-    for (let x = x0 + 0.4; x < x1; x += 5.3) A.box('frame', x - 0.3, x + 0.3, U + 1.5, TOP, z1, z1 + 0.35);   // frame columns on the south wall
-    for (let x = x0 + 2.8; x < x1 - 1; x += 5.3) onFace(A, 'glass', { ax: 'z', at: z1, out: 1 }, x - 0.6, x + 0.6, 8.6, 10.4, 0, 0.05);
+    A.box('frame', x0 - 0.2, x1 + 0.2, ys - 0.6, U + 1.6, z1 - 0.5, z1 + 0.3);       // thick white fascia
     for (const f of [{ ax: 'x', at: x0, out: -1 }, { ax: 'x', at: x1, out: 1 }]) {
-      onFace(A, 'frame', f, z0, z1, U + 1.5, U + 1.9, 0, 0.3);
+      onFace(A, 'frame', f, z0, z1 + 0.3, U + 1.2, U + 1.9, 0, 0.3);
       for (let z = z0 + 3; z < z1 - 2; z += 4.5) onFace(A, 'glass', f, z, z + 1.0, 8.6, 10.4, 0, 0.05);
     }
+    // grey square pilotis
+    for (let x = x0 + 0.4; x < x1; x += 5.3) for (const z of [z0 + 8, z1 - 0.6]) A.box('pier', x - 0.35, x + 0.35, P, ys + (z1 - z) / (z1 - z0) * (yn - ys), z - 0.35, z + 0.35);
+    A.box('gold', x0 + 5.7 - 0.06, x0 + 5.7 + 0.06, P + 1.0, P + 2.6, z1 - 0.25, z1 - 0.22);   // name plaque on a front column
   }
 
   // ===== materials & meshes =====
@@ -140,6 +187,11 @@ export function buildB(owner) {
     solar: std({ color: '#2a3550', roughness: 0.35, metalness: 0.3 }),
     plant: std({ color: '#b9bcbd', roughness: 0.8 }),
     paving: std({ color: '#c9c5bd', roughness: 1 }),
+    granite: std({ color: '#b7b0a5', roughness: 0.95 }),
+    soil: std({ color: '#5b6b3c', roughness: 1 }),
+    rail: std({ color: '#7a4a35', roughness: 0.6, metalness: 0.3 }),
+    pier: std({ color: '#b9bdc4', roughness: 0.85 }),
+    gold: std({ color: '#c9a24a', roughness: 0.35, metalness: 0.6 }),
     soffit: std({ color: '#c4c8d0', side: THREE.DoubleSide }),
   };
   const meshes = [];
