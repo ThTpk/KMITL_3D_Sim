@@ -1,5 +1,6 @@
 // Geometry builders: turn the compact OSM-derived data into merged three.js meshes.
 import * as THREE from 'three';
+import { Water } from 'three/addons/objects/Water.js';
 import { buildECC, ECC_OUTLINE } from './models/ecc.js';
 import { buildE12, E12_OUTLINE } from './models/e12.js';
 import { buildThep, THEP_OUTLINE } from './models/thep.js';
@@ -626,17 +627,79 @@ export function buildAreas(data) {
   return [mesh, plat];
 }
 
+// Tileable water normal map, made procedurally: a sum of sine waves with whole-number frequencies across the
+// tile, so it wraps seamlessly (no texture file to download)
+function waterNormals(N = 256) {
+  const waves = [];
+  const r = rng(77);
+  for (let i = 0; i < 24; i++) {
+    const k = 1 + Math.floor(r() * (i < 8 ? 4 : 12));
+    const a = r() * Math.PI * 2;
+    waves.push([Math.round(Math.cos(a) * k), Math.round(Math.sin(a) * k), r() * Math.PI * 2, 1 / (k + 1.5)]);
+  }
+  const d = new Uint8Array(N * N * 4);
+  for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+    let gx = 0, gy = 0;
+    for (const [kx, ky, ph, amp] of waves) {
+      const c = Math.cos(2 * Math.PI * (kx * x + ky * y) / N + ph) * amp;
+      gx += c * kx; gy += c * ky;
+    }
+    const nx = -gx * 0.09, ny = -gy * 0.09, l = Math.hypot(nx, ny, 1);
+    const i = (y * N + x) * 4;
+    d[i] = (nx / l * 0.5 + 0.5) * 255; d[i + 1] = (ny / l * 0.5 + 0.5) * 255; d[i + 2] = (1 / l * 0.5 + 0.5) * 255; d[i + 3] = 255;
+  }
+  const t = new THREE.DataTexture(d, N, N);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.minFilter = THREE.LinearMipmapLinearFilter;
+  t.generateMipmaps = true;
+  t.needsUpdate = true;
+  return t;
+}
+
+export const WATER_Y = 0.12;
+// Ponds and canals use the three.js Water shader (a planar reflection of the scene, rippled by scrolling normal
+// maps, with sun glints); swimming pools stay a plain bright surface
 export function buildWater(data) {
-  const s = new Soup(false);
+  const s = new Soup(false), pools = new Soup(false);
   const col = C('#4f8fb0');
   data.water.forEach((w) => {
-    if (w.o) flatPoly(s, w.o, w.h, 0.12, w.k === 'swimming_pool' ? C('#4fb7d6') : col);
-    else if (w.line) ribbon(s, w.line, w.w, () => 0.11, col);
+    if (w.o) flatPoly(w.k === 'swimming_pool' ? pools : s, w.o, w.h, WATER_Y, w.k === 'swimming_pool' ? C('#4fb7d6') : col);
+    else if (w.line) ribbon(s, w.line, w.w, () => WATER_Y, col);
   });
-  const m = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.15, metalness: 0.25, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -4 });
-  const mesh = new THREE.Mesh(s.geometry(), m);
-  mesh.receiveShadow = true;
-  return mesh;
+  const group = new THREE.Group();
+
+  // Water reflects about its local XY plane, so the world-space soup is moved into it: (x, y, z) -> (x, -z, 0),
+  // and the mesh is turned flat again with rotation.x = -90°
+  const geo = s.geometry();
+  const p = geo.attributes.position;
+  for (let i = 0; i < p.count; i++) p.setXYZ(i, p.getX(i), -p.getZ(i), 0);
+  geo.deleteAttribute('color');
+  geo.computeVertexNormals();
+  geo.computeBoundingSphere();
+  const water = new Water(geo, {
+    textureWidth: 512, textureHeight: 512,
+    waterNormals: waterNormals(),
+    sunDirection: new THREE.Vector3(0.3, 1, 0.2).normalize(),
+    sunColor: '#fff4e0',
+    waterColor: '#1f4f5c',
+    distortionScale: 5,
+    fog: true,
+  });
+  water.rotation.x = -Math.PI / 2;
+  water.position.y = WATER_Y;
+  water.receiveShadow = true;
+  water.material.uniforms.size.value = 1.5;   // one ripple tile ≈ 70 m
+  // the bright sky made the reflection read as grey glass: tint it towards murky pond water
+  water.material.fragmentShader = water.material.fragmentShader.replace('vec3 outgoingLight = albedo;', 'vec3 outgoingLight = albedo * vec3(0.55, 0.74, 0.84);');
+  Object.assign(water.material, { polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -4 });
+  group.add(water);
+
+  const pm = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.15, metalness: 0.25, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -4 });
+  const poolMesh = new THREE.Mesh(pools.geometry(), pm);
+  poolMesh.receiveShadow = true;
+  group.add(poolMesh);
+  group.userData.surface = water;
+  return group;
 }
 
 // Ribbon along a polyline; yFn(distanceAlong, totalLength) gives elevation

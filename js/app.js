@@ -435,6 +435,11 @@ function setTime(h) {
   windowGlow = THREE.MathUtils.clamp((8 - elev) / 10, 0, 1);
   buildingMeshes.forEach((m) => { if (m.material.emissiveMap) m.material.emissiveIntensity = windowGlow * 1.6; });
   traffic.setNight(windowGlow);
+  // sun glints on the water follow the sun (or the moon after dusk); the water itself darkens at night
+  const wu = layers.water.userData.surface.material.uniforms;
+  wu.sunDirection.value.copy(moon ? new THREE.Vector3(-sunDir.x, -sunDir.y, -sunDir.z) : sunDir).normalize();
+  wu.sunColor.value.copy(sun.color).multiplyScalar(moon ? 0.25 : THREE.MathUtils.clamp(elev / 12, 0.3, 1));
+  wu.waterColor.value.set('#1f4f5c').lerp(nightBg, 1 - day);
 }
 timeInput.addEventListener('input', () => setTime(+timeInput.value));
 setTime(+timeInput.value);
@@ -485,6 +490,7 @@ const lightBasis = new THREE.Matrix4(), lightX = new THREE.Vector3(), lightY = n
 function loop(manual = false) {
   const dt = manual ? 0.1 : Math.min(0.1, clock.getDelta());
   stepTween(dt);
+  layers.water.userData.surface.material.uniforms.time.value += dt * 0.6;
   if (layers.traffic.visible) { traffic.update(dt); planes.update(dt); }
   if (orbiting && !tween) controls.target.lerp(new THREE.Vector3(campusCentre[0], 0, campusCentre[1]), 0.01);
   controls.update();
