@@ -28,7 +28,7 @@ const TOP = lvY(N);                                          // 42.5
 // a stack of floors over x0..x1 / z0..z1: dark glass, projecting white slabs, fins on the faces listed
 function stack(A, x0, x1, z0, z1, n, { fins = 'nsew', slab = 1.0, rail = false } = {}) {
   const top = lvY(n);
-  A.box('glassDark', x0 + 0.4, x1 - 0.4, 0, top, z0 + 0.4, z1 - 0.4);
+  A.box('glassDark', x0 + 0.4, x1 - 0.4, 0, top - 0.4, z0 + 0.4, z1 - 0.4);           // stops under the top slab (no shared face)
   for (let k = 1; k <= n; k++) {
     const y = lvY(k);
     A.box('white', x0 - slab, x1 + slab, y - 0.35, y, z0 - slab, z1 + slab);
@@ -64,7 +64,7 @@ export function buildInnov(owner) {
     A.box('white', TX0 - 1.0, TX1 + 1.0, y - 0.35, y, TZ0 - 1.0, TZ1 + 1.0);
     A.box('white', TX0 - 0.75, TX1 + 0.75, y - 0.55, y - 0.35, TZ0 - 0.75, TZ1 + 0.75);
   }
-  A.box('glassDark', TX0 + 0.4, TX1 - 0.4, G, TOP, TZ0 + 0.4, TZ1 - 0.4);
+  A.box('glassDark', TX0 + 0.4, TX1 - 0.4, G, TOP - 0.4, TZ0 + 0.4, TZ1 - 0.4);
   for (const [f, a0, a1] of [[F('z', TZ0 + 0.4, -1), TX0, TX1], [F('z', TZ1 - 0.4, 1), TX0, TX1], [F('x', TX0 + 0.4, -1), TZ0, TZ1]])
     for (let a = a0 + 0.6; a < a1 - 0.4; a += 1.2)
       for (let k = 1; k < N; k++) onFace(A, 'white', f, a, a + 0.3, lvY(k), lvY(k + 1) - 0.55, 0, 1.0);
@@ -85,7 +85,6 @@ export function buildInnov(owner) {
 
   // ---- broad white steps south of the building, rising north ----
   for (let s = 0; s < 10; s++) A.box('steps', 261, 297, 0, 0.45 * (s + 1), -238, -221 - s * 1.7);
-  for (let s = 0; s < 10; s++) A.box('stepEdge', 261, 297, 0.45 * (s + 1) - 0.06, 0.45 * (s + 1) + 0.01, -221 - s * 1.7 - 0.06, -221 - s * 1.7);
 
   // ---- lattice canopy: from the top of the tower's east face to a low tip at x 310 ----
   {
@@ -114,14 +113,14 @@ export function buildInnov(owner) {
   }
 
   // ---- forecourt: paving with a triangle pattern, a round fountain, a hedge along the road ----
-  A.box('paving', 291, 362, 0, 0.1, -273, -244);
+  A.box('paving', 291, 362, 0, 0.25, -273, -244);
   {
     let seed = 7;
     const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
     for (let x = 312; x < 345; x += 2.4) for (let z = -270; z < -247; z += 2.4) {
       if (rnd() < 0.5) continue;
       const up = rnd() < 0.5;
-      A.prism('pavingDark', up ? [[x, z + 2.2], [x + 2.2, z + 2.2], [x + 1.1, z]] : [[x, z], [x + 2.2, z], [x + 1.1, z + 2.2]], 0.1, 0.12);
+      A.prism('pavingDark', up ? [[x, z + 2.2], [x + 2.2, z + 2.2], [x + 1.1, z]] : [[x, z], [x + 2.2, z], [x + 1.1, z + 2.2]], 0.25, 0.25, { sides: false });
     }
   }
   lathe(A, 'paving', 348.3, -252.3, [[4.3, 0.1], [4.3, 0.55], [3.9, 0.55], [3.9, 0.3], [0, 0.3]], 32);
@@ -139,9 +138,9 @@ export function buildInnov(owner) {
   }
 
   const MAT = mats({ ...BASE_MATS, white: '#f4f4f1', glassDark: { color: '#6f7d86', roughness: 0.25 },
-    railGlass: { color: '#9fb4bd', roughness: 0.1, metalness: 0.2, transparent: true, opacity: 0.45 },
-    plant: '#c9cbcb', steps: '#e9e7e1', stepEdge: '#cfcac0', steel: { color: '#c3c8cc', roughness: 0.45, metalness: 0.5 },
-    tipTop: '#d8dadb', tipUnder: '#4a4d50', paving: { color: '#c9c4ba', roughness: 0.95 }, pavingDark: { color: '#8f8b84', roughness: 0.95 },
+    railGlass: { color: '#9fb4bd', roughness: 0.1, metalness: 0.2, transparent: true, opacity: 0.45, depthWrite: false },
+    plant: '#c9cbcb', steps: '#e9e7e1', steel: { color: '#c3c8cc', roughness: 0.45, metalness: 0.5 },
+    tipTop: '#d8dadb', tipUnder: '#4a4d50', paving: { color: '#c9c4ba', roughness: 0.95 }, pavingDark: { color: '#8f8b84', roughness: 0.95, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -4 },
     fountainWater: { color: '#5f9fb3', roughness: 0.1, metalness: 0.1 }, hedge: { color: '#4f7a3a', roughness: 1 },
     sign: { color: '#2d2a27', roughness: 0.6 }, gold: { color: '#c9a24a', roughness: 0.35, metalness: 0.6 } });
   return { meshes: meshes(A, MAT, owner), top: TOP + 3.2 };
@@ -157,7 +156,7 @@ export function buildFootbridge(owner) {
   const X0 = 262.5, X1 = 265, ZN = -303, ZS = -275, D = 5.8;
   A.box('deck', X0, X1, D - 0.5, D, ZN, ZS);
   for (const x of [X0, X1 - 0.08]) A.box('panel', x, x + 0.08, D, D + 1.2, ZN, ZS);
-  for (const z of [ZN, (ZN + ZS) / 2, ZS]) for (const x of [X0 + 0.2, X1 - 0.2]) A.box('post', x - 0.18, x + 0.18, 0, D, z - 0.18, z + 0.18);
+  for (const z of [ZN, (ZN + ZS) / 2, ZS]) for (const x of [X0 + 0.2, X1 - 0.2]) A.box('post', x - 0.18, x + 0.18, 0, D - 0.5, z - 0.18, z + 0.18);
   for (let z = ZN; z <= ZS; z += 3.5) for (const x of [X0, X1]) A.box('post', x - 0.05, x + 0.05, D, D + 2.6, z - 0.05, z + 0.05);
   A.box('roof', X0 - 0.3, X1 + 0.3, D + 2.6, D + 2.75, ZN - 0.3, ZS + 0.3);
   // stairs: from each end of the deck down westwards along the footpath
