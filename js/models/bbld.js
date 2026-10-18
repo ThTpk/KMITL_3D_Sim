@@ -51,10 +51,71 @@ export function buildB(owner) {
     onFace(A, 'frame', f, a0 - 0.2, a1 + 0.2, top - 0.6, top + 0.3, 0, 0.5);  // roof cornice
   };
 
+  // west block, south and west faces (reworked 2026-10-18 from five panoramas the user sent, on the parking
+  // road south-west of the theatre, at the south-west corner and on the car park west of the block): the
+  // floors step in and out instead of repeating
+  //   ground   grey-blue render, breeze-block band, AC units, doors, corrugated lean-to awnings
+  //   floor 1  projects 0.6 m: on the south grey-framed windows between brick piers; on the west two big blank
+  //            brick panels split by grey pilasters
+  //   floor 2  in line with the wall: brick sill and a ribbon window between grey pilasters; on the west a
+  //            railing on the slab edge and a dark tarp awning
+  //   floor 3  cantilevers 1 m on a grey slab: brick, a band of grey-framed windows, brick, a grey cornice
+  const facadeB = (f, west, { a0 = f.a[0], a1 = f.a[1], e0 = 0 } = {}) => {
+    const bay = 6, P1 = 0.6, P3 = 1.0;
+    // ground floor
+    onFace(A, 'render', f, a0, a1, 0, FL, 0, 0.05);
+    onFace(A, 'breeze', f, a0 + 0.4, a1 - 0.4, 2.2, 3.0, 0.05, 0.08);
+    for (let a = a0 + 1.5, i = 0; a < a1 - 2.5; a += bay, i++) {
+      onFace(A, i % 3 === 1 ? 'door' : 'glass', f, a, a + (i % 3 === 1 ? 1.6 : 2.2), i % 3 === 1 ? 0 : 0.9, 2.1, 0.05, 0.08);
+      onFace(A, 'ac', f, a + 2.6, a + 3.4, 1.0, 1.6, 0.05, 0.4);
+      if (i % 2 === 0) onFace(A, 'tin', f, a - 0.6, a + 4.2, 2.35, 2.45, 0.05, 1.5);   // lean-to awning
+    }
+    // grey slabs at each floor
+    for (const [y, d] of [[FL, 0.75], [2 * FL, 0.75], [3 * FL, P3 + 0.1]]) onFace(A, 'frame', f, a0 - e0 * d, a1, y - 0.2, y + 0.25, 0, d);
+    // floor 1
+    const y1 = FL + 0.25, y2 = 2 * FL - 0.2;
+    if (west) {
+      onFace(A, 'brick', f, a0, a1, y1, y2, 0, P1);
+      for (let a = a0; a <= a1 + 0.01; a += bay) onFace(A, 'frame', f, Math.max(a0, a - 0.2), Math.min(a1, a + 0.2), y1, y2, 0, P1 + 0.06);
+    } else {
+      for (let a = a0 - e0 * P1; a < a1 - 0.5; a += bay) {
+        const w0 = a + 1.5, w1 = Math.min(a1, a + 4.5);
+        onFace(A, 'brick', f, a, Math.min(a1, w0), y1, y2, 0, P1);
+        if (w1 > w0 + 0.5) {
+          onFace(A, 'brick', f, w0, w1, y1, y1 + 0.6, 0, P1);
+          onFace(A, 'glass', f, w0 + 0.15, w1 - 0.15, y1 + 0.6, y2 - 0.25, 0, P1 - 0.12);
+          for (const [b0, b1] of [[w0, w0 + 0.15], [w1 - 0.15, w1]]) onFace(A, 'frame', f, b0, b1, y1 + 0.6, y2, 0, P1 + 0.04);
+          onFace(A, 'frame', f, w0, w1, y2 - 0.25, y2, 0, P1 + 0.04);
+          for (let m = w0 + 1.0; m < w1 - 0.5; m += 1.0) onFace(A, 'mull', f, m - 0.03, m + 0.03, y1 + 0.6, y2 - 0.25, 0, P1 - 0.08);
+        }
+        if (w1 < a + bay) onFace(A, 'brick', f, w1, Math.min(a1, a + bay), y1, y2, 0, P1);
+      }
+    }
+    // floor 2
+    const y3 = 2 * FL + 0.25, y4 = 3 * FL - 0.2;
+    onFace(A, 'brick', f, a0, a1, y3, y3 + 0.9, 0, 0.12);
+    onFace(A, 'glass', f, a0, a1, y3 + 0.9, y4, 0, 0.04);
+    for (let a = a0 + 1.2; a < a1 - 0.3; a += 1.2) onFace(A, 'mull', f, a - 0.04, a + 0.04, y3 + 0.9, y4, 0, 0.08);
+    for (let a = a0; a <= a1 + 0.01; a += bay) onFace(A, 'frame', f, Math.max(a0, a - 0.25), Math.min(a1, a + 0.25), y3, y4, 0, 0.3);
+    if (west) {
+      onFace(A, 'frame', f, a0, a1, y3 + 1.0, y3 + 1.06, 0.66, 0.72);                // railing on the slab edge
+      for (let a = a0 + 0.3; a < a1; a += 1.5) onFace(A, 'frame', f, a, a + 0.05, y3, y3 + 1.0, 0.66, 0.71);
+      onFace(A, 'tarp', f, a0 + bay, a1 - bay, y4 - 0.6, y4 - 0.5, 0.05, 0.7);       // tarp awning
+    }
+    // floor 3: cantilevered
+    const y5 = 3 * FL + 0.25, top = ROOF4;
+    onFace(A, 'brick', f, a0 - e0 * P3, a1, y5, y5 + 0.9, 0, P3);
+    onFace(A, 'glass', f, a0 - e0 * P3, a1, y5 + 0.9, top - 0.9, 0, P3 - 0.1);
+    for (let a = a0 + 1.2; a < a1 - 0.3; a += 1.2) onFace(A, 'mull', f, a - 0.04, a + 0.04, y5 + 0.9, top - 0.9, 0, P3 - 0.02);
+    for (let a = a0 + bay / 2; a < a1 - 1; a += bay) onFace(A, 'brick', f, a - 0.9, a + 0.9, y5 + 0.9, top - 0.9, 0, P3);   // brick between window groups
+    onFace(A, 'brick', f, a0 - e0 * P3, a1, top - 0.9, top - 0.3, 0, P3);
+    onFace(A, 'frame', f, a0 - e0 * (P3 + 0.2), a1, top - 0.3, top + 0.3, 0, P3 + 0.2);  // cornice
+  };
+
   // ---- west and east blocks (four storeys) ----
   for (const b of [W_, E_]) A.box('render', b[0], b[1], 0, ROOF4, b[2], b[3]);
   const fw = faces(W_), fe = faces(E_);
-  facade(fw.W, 4, ROOF4); facade(fw.N, 4, ROOF4); facade(fw.S, 4, ROOF4);
+  facadeB(fw.W, true); facade(fw.N, 4, ROOF4); facadeB(fw.S, false, { e0: 1 });
   facade(fe.E, 4, ROOF4); facade(fe.S, 4, ROOF4, { a0: T_[1] }); facade(fe.N, 4, ROOF4, { a0: N_[1] });
   facade(fw.E, 4, ROOF4, { a0: E_[3] });                                         // the bit of the west block's east face south of the east block
   // ---- north strip (three storeys) and one-storey front ----
@@ -232,6 +293,9 @@ export function buildB(owner) {
     pier: std({ color: '#b9bdc4', roughness: 0.85 }),
     gold: std({ color: '#c9a24a', roughness: 0.35, metalness: 0.6 }),
     rampTop: std({ color: '#a9a49b', roughness: 0.95 }),
+    door: std({ color: '#5a4636', roughness: 0.7 }),
+    tin: std({ color: '#a9aca8', roughness: 0.5, metalness: 0.4 }),
+    tarp: std({ color: '#2f3b33', roughness: 0.9 }),
     lawn: std({ color: '#6f9a4a', roughness: 1 }),
     lampGreen: std({ color: '#26332c', roughness: 0.5, metalness: 0.4 }),
     dark: std({ color: '#2b2e31', roughness: 0.8 }),
