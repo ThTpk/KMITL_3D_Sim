@@ -17,12 +17,62 @@
 //   terrace      white, x 55..78, z -353.5..-344, steps down to the path
 //   ลานพระจอม    grey stone plaza x 57..76.5, z -329..-308 inside a terracotta-paved U and hedges; a round court
 //                (pink paving in a grey ring) to the south, centre 67.3, -289.8
-//   monument     facing south at 66.6, -322: stepped platform, pink marble pedestal with a dark plaque, side
-//                blocks with bronze lotus-bud urns, the bronze standing statue beside a draped tiered stand,
-//                a bronze boat-shaped offering tray, a curved marble balustrade behind, bronze elephants on
-//                pedestals at both ends, two lamp posts with clusters of white globes
+//   monument     facing south at 66.6, -322 (reworked 2026-10-18 in more detail from a Google Maps photo sphere
+//                in front of it and a published KMITL ceremony photo): a stepped marble platform with broad
+//                steps; a jointed marble pedestal with a bronze plaque, a round emblem and a two-step cornice;
+//                the larger-than-life bronze statue, bare-headed in a long open frock coat with a sash over chong
+//                kraben, the right hand on a cloth-draped stand topped by the tiered great crown, the left holding
+//                a sword point-down; a rounded offering base with a bronze bowl and a boat-shaped candle tray on
+//                legs; bronze lotus-bud urns on footed stands on side blocks; a curved balustrade of turned
+//                balusters behind; bronze elephants facing outwards with trunks raised on pedestals at both ends;
+//                two navy lamp posts each with a candelabra of nine white globes on tulip cups
 import * as THREE from 'three';
 import { Acc } from './ecc.js';
+
+// ---- curved pieces for the monument: turned profiles, tubes between two points, ellipsoids ----
+// lathe: a solid of revolution about the vertical axis at (cx, cz); prof = [[r, y], ...] from the bottom up,
+// sx / sz stretch it into an ellipse in plan
+function lathe(A, m, cx, cz, prof, seg = 16, sx = 1, sz = 1) {
+  const P = (t, r, y) => [cx + r * sx * Math.cos(t), y, cz + r * sz * Math.sin(t)];
+  for (let i = 0; i < seg; i++) {
+    const t0 = (i / seg) * Math.PI * 2, t1 = ((i + 1) / seg) * Math.PI * 2;
+    for (let k = 0; k < prof.length - 1; k++) {
+      const [ra, ya] = prof[k], [rb, yb] = prof[k + 1];
+      if (ra < 1e-4 && rb < 1e-4) continue;
+      if (ra < 1e-4) A.tri(m, P(t1, rb, yb), [cx, ya, cz], P(t0, rb, yb));
+      else if (rb < 1e-4) A.tri(m, P(t1, ra, ya), P(t0, ra, ya), [cx, yb, cz]);
+      else A.quad(m, P(t1, ra, ya), P(t0, ra, ya), P(t0, rb, yb), P(t1, rb, yb));
+    }
+    const [rt, yt] = prof[prof.length - 1];
+    if (rt > 1e-4) A.tri(m, [cx, yt, cz], P(t1, rt, yt), P(t0, rt, yt));
+  }
+}
+// tube: a frustum from p0 (radius r0) to p1 (radius r1), closed at both ends
+function tube(A, m, p0, p1, r0, r1 = r0, seg = 8) {
+  const d = [p1[0] - p0[0], p1[1] - p0[1], p1[2] - p0[2]], L = Math.hypot(...d) || 1;
+  const n = d.map((v) => v / L);
+  const h = Math.abs(n[1]) < 0.9 ? [0, 1, 0] : [1, 0, 0];
+  let u = [n[1] * h[2] - n[2] * h[1], n[2] * h[0] - n[0] * h[2], n[0] * h[1] - n[1] * h[0]];
+  const ul = Math.hypot(...u); u = u.map((v) => v / ul);
+  const v = [u[1] * n[2] - u[2] * n[1], u[2] * n[0] - u[0] * n[2], u[0] * n[1] - u[1] * n[0]];   // u × n, so u × v = -n
+  const P = (p, r, t) => [0, 1, 2].map((k) => p[k] + r * (Math.cos(t) * u[k] + Math.sin(t) * v[k]));
+  for (let i = 0; i < seg; i++) {
+    const t0 = (i / seg) * Math.PI * 2, t1 = ((i + 1) / seg) * Math.PI * 2;
+    A.quad(m, P(p0, r0, t1), P(p0, r0, t0), P(p1, r1, t0), P(p1, r1, t1));
+    A.tri(m, p1, P(p1, r1, t1), P(p1, r1, t0));
+    A.tri(m, p0, P(p0, r0, t0), P(p0, r0, t1));
+  }
+}
+// ellipsoid with radii rx, ry, rz centred on c
+function blob(A, m, c, rx, ry, rz, seg = 12, rings = 7) {
+  const prof = [];
+  for (let k = 0; k <= rings; k++) { const a = -Math.PI / 2 + (Math.PI * k) / rings; prof.push([Math.cos(a), c[1] + Math.sin(a) * ry]); }
+  lathe(A, m, c[0], c[2], prof, seg, rx, rz);
+}
+// a chain of tubes through points [[x, y, z, r], ...]
+function chain(A, m, pts, seg = 8) {
+  for (let i = 0; i < pts.length - 1; i++) tube(A, m, pts[i].slice(0, 3), pts[i + 1].slice(0, 3), pts[i][3], pts[i + 1][3], seg);
+}
 
 export function buildRoyal(owner) {
   const A = new Acc();
@@ -150,71 +200,163 @@ export function buildRoyal(owner) {
   // ===== the monument =====
   {
     const mx = 66.6, mz = -322;
-    // stepped platform, steps on the south
+    // stepped marble platform, broad steps on the south
     A.box('marble', mx - 8.5, mx + 8.5, 0.24, 0.5, mz - 4.5, mz + 3.5);
     A.box('marble', mx - 7.5, mx + 7.5, 0.5, 0.76, mz - 4.5, mz + 2.4);
     A.box('marble', mx - 6.5, mx + 6.5, 0.76, 1.02, mz - 4.5, mz + 1.4);
-    // curved marble balustrade behind (north)
-    const R = 6.6, N = 18;
-    for (let i = 0; i <= N; i++) {
-      const t = Math.PI + (Math.PI * i) / N;                                      // north half circle
-      const x = mx + R * Math.cos(t), z = mz + 0.8 + R * 0.6 * Math.sin(t);
-      A.box('marble', x - 0.09, x + 0.09, 1.02, 1.8, z - 0.09, z + 0.09);
-      if (i < N) {
-        const t2 = Math.PI + (Math.PI * (i + 1)) / N, x2 = mx + R * Math.cos(t2), z2 = mz + 0.8 + R * 0.6 * Math.sin(t2);
-        A.box('marble', Math.min(x, x2) - 0.12, Math.max(x, x2) + 0.12, 1.8, 1.95, Math.min(z, z2) - 0.12, Math.max(z, z2) + 0.12);
+    for (const [y, z] of [[0.5, mz + 3.5], [0.76, mz + 2.4], [1.02, mz + 1.4]]) A.box('marbleEdge', mx - 6, mx + 6, y - 0.03, y + 0.01, z - 0.04, z + 0.02);
+
+    // curved balustrade behind (north): plinth, turned balusters, top rail, piers
+    {
+      const cz = mz + 0.8, RX = 6.6, RZ = 3.96, N = 48;
+      const pt = (i) => { const t = Math.PI + (Math.PI * i) / N; return [mx + RX * Math.cos(t), cz + RZ * Math.sin(t)]; };
+      const band = (i, w, y0, y1) => {
+        const [ax, az] = pt(i), [bx, bz] = pt(i + 1), l = Math.hypot(bx - ax, bz - az), nx = (-(bz - az) / l) * w, nz = ((bx - ax) / l) * w;
+        A.prism('marble', [[ax + nx, az + nz], [bx + nx, bz + nz], [bx - nx, bz - nz], [ax - nx, az - nz]], y0, y1);
+      };
+      for (let i = 0; i < N; i++) { band(i, 0.2, 1.02, 1.2); band(i, 0.17, 1.78, 1.86); band(i, 0.2, 1.86, 1.96); }
+      for (let i = 0; i < N; i++) for (const f of [0.25, 0.75]) {
+        if (i % 8 === 0 && f === 0.25) continue;
+        const [ax, az] = pt(i), [bx, bz] = pt(i + 1), x = ax + (bx - ax) * f, z = az + (bz - az) * f;
+        lathe(A, 'marble', x, z, [[0.07, 1.2], [0.1, 1.27], [0.06, 1.37], [0.11, 1.52], [0.07, 1.68], [0.09, 1.74], [0.09, 1.78]], 8);
+      }
+      for (let i = 0; i <= N; i += 8) {
+        const [x, z] = pt(i);
+        A.box('marble', x - 0.24, x + 0.24, 1.02, 2.05, z - 0.24, z + 0.24);
+        A.box('marble', x - 0.3, x + 0.3, 2.05, 2.15, z - 0.3, z + 0.3);
       }
     }
-    // pedestal: lower base, shaft with a plaque, cornice
-    A.box('marble', mx - 1.9, mx + 1.9, 1.02, 1.7, mz - 1.9, mz + 1.9);
-    A.box('marble', mx - 1.45, mx + 1.45, 1.7, 4.9, mz - 1.45, mz + 1.45);
-    A.box('plaque', mx - 0.6, mx + 0.6, 2.6, 4.0, mz + 1.45, mz + 1.5);
-    A.box('marble', mx - 1.6, mx + 1.6, 4.9, 5.15, mz - 1.6, mz + 1.6);
-    // side blocks with bronze lotus-bud urns
+
+    // pedestal: moulded base, jointed marble shaft with a bronze plaque and emblem, two-step cornice
+    A.box('marble', mx - 2.0, mx + 2.0, 1.02, 1.35, mz - 2.0, mz + 2.0);
+    A.box('marble', mx - 1.8, mx + 1.8, 1.35, 1.7, mz - 1.8, mz + 1.8);
+    A.box('marble', mx - 1.45, mx + 1.45, 1.7, 4.75, mz - 1.45, mz + 1.45);
+    for (let y = 2.3; y < 4.7; y += 0.6) {                                              // stone courses
+      A.box('joint', mx - 1.46, mx + 1.46, y - 0.012, y + 0.012, mz + 1.44, mz + 1.455);
+      A.box('joint', mx - 1.46, mx + 1.46, y - 0.012, y + 0.012, mz - 1.455, mz - 1.44);
+      A.box('joint', mx + 1.44, mx + 1.455, y - 0.012, y + 0.012, mz - 1.46, mz + 1.46);
+      A.box('joint', mx - 1.455, mx - 1.44, y - 0.012, y + 0.012, mz - 1.46, mz + 1.46);
+    }
+    A.box('marble', mx - 1.55, mx + 1.55, 4.75, 4.9, mz - 1.55, mz + 1.55);
+    A.box('marble', mx - 1.65, mx + 1.65, 4.9, 5.15, mz - 1.65, mz + 1.65);
+    A.box('bronze', mx - 0.7, mx + 0.7, 2.3, 3.9, mz + 1.44, mz + 1.47);
+    A.box('plaque', mx - 0.65, mx + 0.65, 2.35, 3.85, mz + 1.45, mz + 1.5);
+    tube(A, 'bronze', [mx, 4.3, mz + 1.44], [mx, 4.3, mz + 1.52], 0.3, 0.3, 16);       // round emblem
+    tube(A, 'plaque', [mx, 4.3, mz + 1.5], [mx, 4.3, mz + 1.53], 0.22, 0.22, 16);
+
+    // side blocks with bronze lotus-bud urns on footed stands
     for (const s of [-1, 1]) {
       const bx = mx + s * 2.7;
-      A.box('marble', bx - 0.6, bx + 0.6, 1.02, 2.4, mz - 0.6, mz + 0.6);
-      A.cyl('bronze', bx, mz, 0.25, 2.4, 2.55, 10);
-      A.cyl('bronze', bx, mz, 0.42, 2.55, 3.1, 12);
-      A.cyl('bronze', bx, mz, 0.28, 3.1, 3.4, 10);
-      A.cyl('bronze', bx, mz, 0.08, 3.4, 3.8, 6);
+      A.box('marble', bx - 0.6, bx + 0.6, 1.02, 2.25, mz - 0.6, mz + 0.6);
+      A.box('marble', bx - 0.7, bx + 0.7, 2.25, 2.4, mz - 0.7, mz + 0.7);
+      lathe(A, 'bronze', bx, mz, [[0.3, 2.4], [0.3, 2.5], [0.14, 2.56], [0.11, 2.74], [0.34, 2.84], [0.38, 2.9], [0.16, 2.95],
+        [0.28, 3.08], [0.34, 3.25], [0.3, 3.45], [0.19, 3.64], [0.07, 3.82], [0, 3.92]], 16);
+      for (let k = 0; k < 8; k++) {                                                      // petal ridges
+        const a = (k / 8) * Math.PI * 2, c = Math.cos(a), sn = Math.sin(a);
+        chain(A, 'bronze', [[bx + c * 0.28, 3.06, mz + sn * 0.28, 0.025], [bx + c * 0.35, 3.25, mz + sn * 0.35, 0.025],
+          [bx + c * 0.2, 3.62, mz + sn * 0.2, 0.02], [bx + c * 0.05, 3.85, mz + sn * 0.05, 0.012]], 5);
+      }
     }
-    // statue: bronze standing figure facing south
-    const sy = 5.15;
-    A.box('bronze', mx - 0.35, mx + 0.35, sy, sy + 0.25, mz - 0.25, mz + 0.35);           // feet
-    A.box('bronze', mx - 0.38, mx + 0.38, sy + 0.25, sy + 1.2, mz - 0.25, mz + 0.25);     // lower robe
-    A.box('bronze', mx - 0.45, mx + 0.45, sy + 1.2, sy + 2.25, mz - 0.28, mz + 0.28);     // coat
-    A.box('bronze', mx - 0.55, mx + 0.55, sy + 2.0, sy + 2.3, mz - 0.25, mz + 0.25);      // shoulders
-    A.cyl('bronze', mx, mz, 0.09, sy + 2.3, sy + 2.45, 8);                                // neck
-    A.cyl('bronze', mx, mz, 0.2, sy + 2.45, sy + 2.85, 10);                               // head
-    A.box('bronze', mx + 0.48, mx + 0.6, sy + 0.4, sy + 2.0, mz - 0.08, mz + 0.08);        // arm with the sword
-    // draped tiered stand on the statue's right (viewer's left, west)
-    const dx = mx - 1.0;
-    A.box('bronze', dx - 0.45, dx + 0.45, sy, sy + 1.3, mz - 0.4, mz + 0.4);
-    A.cyl('bronze', dx, mz, 0.3, sy + 1.3, sy + 1.8, 10);
-    for (let k = 0; k < 4; k++) A.cyl('bronze', dx, mz, 0.24 - k * 0.05, sy + 1.8 + k * 0.3, sy + 2.1 + k * 0.3, 10);
-    A.cyl('bronze', dx, mz, 0.03, sy + 3.0, sy + 3.5, 6);
-    // boat-shaped offering tray in front
-    A.box('bronze', mx - 1.3, mx + 1.3, 1.02, 1.35, mz + 2.4, mz + 2.9);
-    A.box('bronze', mx - 1.6, mx - 1.3, 1.2, 1.55, mz + 2.45, mz + 2.85);
-    A.box('bronze', mx + 1.3, mx + 1.6, 1.2, 1.55, mz + 2.45, mz + 2.85);
-    // elephants on pedestals at both ends
+
+    // offering place in front: a rounded marble base, a bronze bowl, the boat-shaped candle tray on two legs
+    {
+      const N = 20, oz = mz + 1.9, R = 1.25;
+      const half = (r) => Array.from({ length: N + 1 }, (_, i) => { const t = (Math.PI * i) / N; return [mx + r * Math.cos(t), oz + r * Math.sin(t)]; });
+      A.prism('marble', half(R), 0.5, 1.45);
+      A.prism('marble', half(R + 0.08), 1.45, 1.53);
+      lathe(A, 'bronze', mx, oz + 0.6, [[0.26, 1.53], [0.34, 1.57], [0.42, 1.75], [0.45, 1.9], [0.41, 1.9], [0, 1.86]], 18);
+      blob(A, 'bronze', [mx, 2.12, oz + 0.15], 1.15, 0.08, 0.13, 14, 5);
+      for (const s of [-1, 1]) {
+        chain(A, 'bronze', [[mx + s * 1.05, 2.12, oz + 0.15, 0.06], [mx + s * 1.25, 2.2, oz + 0.15, 0.05], [mx + s * 1.36, 2.36, oz + 0.15, 0.035], [mx + s * 1.32, 2.48, oz + 0.15, 0.02]], 6);
+        tube(A, 'bronze', [mx + s * 0.55, 1.53, oz + 0.15], [mx + s * 0.55, 2.08, oz + 0.15], 0.04, 0.04, 6);
+        A.box('bronze', mx + s * 0.55 - 0.18, mx + s * 0.55 + 0.18, 1.53, 1.58, oz + 0.05, oz + 0.25);
+      }
+      for (let x = -0.9; x <= 0.91; x += 0.15) tube(A, 'bronze', [mx + x, 2.18, oz + 0.15], [mx + x, 2.28, oz + 0.15], 0.012, 0.006, 4);
+    }
+
+    // the statue, facing south: bare-headed, a long open frock coat with a sash over chong kraben, stockings and
+    // shoes; the right hand rests on the draped stand with the great crown, the left holds a sword point-down
+    const sy = 5.15, sz = mz;
+    const mark = Object.fromEntries(Object.entries(A.b).map(([k, B]) => [k, B.p.length]));
     for (const s of [-1, 1]) {
-      const ex = mx + s * 7.6, ez = mz + 1.0;
-      A.box('marble', ex - 0.9, ex + 0.9, 0.24, 1.8, ez - 1.0, ez + 1.0);
-      A.box('marble', ex - 1.0, ex + 1.0, 1.8, 2.0, ez - 1.1, ez + 1.1);
-      A.box('bronze', ex - 0.45, ex + 0.45, 2.5, 3.3, ez - 0.75, ez + 0.6);                  // body
-      for (const [lx, lz] of [[-0.3, -0.55], [0.3, -0.55], [-0.3, 0.45], [0.3, 0.45]]) A.box('bronze', ex + lx - 0.13, ex + lx + 0.13, 2.0, 2.6, ez + lz - 0.13, ez + lz + 0.13);
-      A.box('bronze', ex - 0.32, ex + 0.32, 2.9, 3.45, ez + 0.55, ez + 0.95);                 // head, facing south
-      A.box('bronze', ex - 0.08, ex + 0.08, 2.15, 3.0, ez + 0.9, ez + 1.06);                  // trunk
+      const lx = mx + s * 0.13;
+      blob(A, 'bronze', [lx, sy + 0.05, sz + 0.06], 0.085, 0.06, 0.16, 8, 4);            // shoe
+      tube(A, 'bronze', [lx, sy + 0.08, sz], [lx, sy + 0.7, sz], 0.065, 0.085);           // stocking
+      blob(A, 'bronze', [lx, sy + 0.92, sz], 0.15, 0.28, 0.16, 10, 6);                    // chong kraben leg
     }
-    // lamp posts with clusters of white globes
+    blob(A, 'bronze', [mx, sy + 1.15, sz], 0.29, 0.22, 0.19, 12, 6);
+    lathe(A, 'bronze', mx, sz, [[0.33, sy + 0.6], [0.31, sy + 0.9], [0.27, sy + 1.2], [0.25, sy + 1.33], [0.27, sy + 1.6], [0.3, sy + 1.86],
+      [0.26, sy + 1.98], [0.12, sy + 2.04], [0, sy + 2.05]], 16, 1, 0.62);                // coat
+    lathe(A, 'bronzeDark', mx, sz, [[0.262, sy + 1.3], [0.262, sy + 1.37]], 16, 1, 0.64);   // belt
+    // open coat front: the inner tunic down the middle and the lapels
+    A.box('bronzeDark', mx - 0.07, mx + 0.07, sy + 0.62, sy + 1.95, sz + 0.13, sz + 0.2);
+    for (const s of [-1, 1]) tube(A, 'bronze', [mx + s * 0.1, sy + 1.98, sz + 0.18], [mx + s * 0.08, sy + 0.62, sz + 0.2], 0.03, 0.025, 5);
+    tube(A, 'bronzeDark', [mx - 0.24, sy + 1.92, sz + 0.12], [mx + 0.25, sy + 1.32, sz + 0.17], 0.03, 0.03, 6);   // sash
+    lathe(A, 'bronze', mx, sz, [[0.1, sy + 2.0], [0.09, sy + 2.1], [0.07, sy + 2.14]], 10);                       // collar
+    tube(A, 'bronze', [mx, sy + 2.1, sz], [mx, sy + 2.2, sz + 0.01], 0.065, 0.06, 8);                            // neck
+    blob(A, 'bronze', [mx, sy + 2.31, sz + 0.02], 0.105, 0.135, 0.12, 12, 7);                                    // head
+    blob(A, 'bronzeDark', [mx, sy + 2.37, sz - 0.01], 0.108, 0.09, 0.115, 12, 5);                                // short hair
+    for (const s of [-1, 1]) blob(A, 'bronze', [mx + s * 0.105, sy + 2.3, sz + 0.01], 0.02, 0.04, 0.03, 6, 3);  // ears
+    blob(A, 'bronze', [mx, sy + 2.28, sz + 0.13], 0.025, 0.03, 0.03, 6, 3);                                       // nose
+    // arms (sleeves): the right on the stand (west), the left with the sword (east)
+    chain(A, 'bronze', [[mx - 0.29, sy + 1.9, sz, 0.08], [mx - 0.42, sy + 1.6, sz + 0.02, 0.075], [mx - 0.6, sy + 1.43, sz + 0.04, 0.06]]);
+    blob(A, 'bronze', [mx - 0.66, sy + 1.4, sz + 0.04], 0.07, 0.04, 0.06, 8, 4);
+    chain(A, 'bronze', [[mx + 0.29, sy + 1.9, sz, 0.08], [mx + 0.36, sy + 1.58, sz + 0.02, 0.075], [mx + 0.37, sy + 1.33, sz + 0.1, 0.06]]);
+    blob(A, 'bronze', [mx + 0.37, sy + 1.29, sz + 0.12], 0.05, 0.065, 0.05, 8, 4);
+    tube(A, 'bronze', [mx + 0.37, sy + 1.42, sz + 0.13], [mx + 0.42, sy + 0.05, sz + 0.2], 0.03, 0.022, 6);       // sword in its scabbard
+    A.box('bronze', mx + 0.3, mx + 0.44, sy + 1.2, sy + 1.24, sz + 0.1, sz + 0.16);                              // guard
+    // draped stand on the statue's right, the great crown of victory on top
+    {
+      const dx = mx - 0.88;
+      lathe(A, 'bronze', dx, sz, [[0.52, sy], [0.5, sy + 0.12], [0.41, sy + 0.55], [0.34, sy + 1.0], [0.3, sy + 1.25], [0.32, sy + 1.32], [0, sy + 1.34]], 20);
+      for (let k = 0; k < 10; k++) {                                                    // cloth folds
+        const a = (k / 10) * Math.PI * 2, c = Math.cos(a), s = Math.sin(a);
+        tube(A, 'bronze', [dx + c * 0.5, sy + 0.02, sz + s * 0.5], [dx + c * 0.3, sy + 1.22, sz + s * 0.3], 0.05, 0.02, 5);
+      }
+      lathe(A, 'bronze', dx, sz, [[0.19, sy + 1.34], [0.2, sy + 1.42], [0.16, sy + 1.45], [0.17, sy + 1.53], [0.12, sy + 1.56], [0.13, sy + 1.64],
+        [0.09, sy + 1.67], [0.1, sy + 1.74], [0.065, sy + 1.77], [0.05, sy + 1.9], [0.025, sy + 2.05], [0.012, sy + 2.12], [0, sy + 2.15]], 14);
+    }
+    // the figures are drawn at about life size above; the statue is larger than life (about 0.8 of the pedestal
+    // width tall in the photos), so scale everything drawn since `mark` about the statue's feet
+    const SC = 1.3;
+    for (const [k, B] of Object.entries(A.b)) for (let i = mark[k] || 0; i < B.p.length; i += 3) {
+      B.p[i] = mx + (B.p[i] - mx) * SC; B.p[i + 1] = sy + (B.p[i + 1] - sy) * SC; B.p[i + 2] = sz + (B.p[i + 2] - sz) * SC;
+    }
+
+    // bronze elephants on moulded pedestals at both ends, facing outwards, trunks raised
+    for (const s of [-1, 1]) {
+      const ex = mx + s * 7.6, ez = mz + 1.0, ey = 2.0;
+      A.box('marble', ex - 1.05, ex + 1.05, 0.24, 0.5, ez - 1.15, ez + 1.15);
+      A.box('marble', ex - 0.9, ex + 0.9, 0.5, 1.75, ez - 1.0, ez + 1.0);
+      A.box('marble', ex - 1.0, ex + 1.0, 1.75, ey, ez - 1.1, ez + 1.1);
+      A.box('plaque', ex - 0.5, ex + 0.5, 0.85, 1.4, ez + 1.0, ez + 1.03);
+      blob(A, 'bronze', [ex, ey + 0.95, ez], 0.62, 0.42, 0.38, 14, 7);                                          // body
+      for (const fx of [-0.33, 0.33]) for (const fz of [-0.2, 0.2])
+        tube(A, 'bronze', [ex + fx, ey, ez + fz], [ex + fx, ey + 0.8, ez + fz], 0.13, 0.14, 8);                  // legs
+      blob(A, 'bronze', [ex + s * 0.72, ey + 1.12, ez], 0.28, 0.32, 0.27, 12, 6);                               // head
+      for (const fz of [-1, 1]) blob(A, 'bronze', [ex + s * 0.6, ey + 1.15, ez + fz * 0.3], 0.07, 0.26, 0.2, 8, 5);   // ears
+      chain(A, 'bronze', [[ex + s * 0.94, ey + 0.98, ez, 0.1], [ex + s * 1.08, ey + 0.96, ez, 0.075], [ex + s * 1.2, ey + 1.18, ez, 0.06],
+        [ex + s * 1.16, ey + 1.45, ez, 0.05], [ex + s * 1.04, ey + 1.56, ez, 0.04]], 7);                        // trunk, raised
+      for (const fz of [-1, 1]) tube(A, 'bronze', [ex + s * 0.9, ey + 0.92, ez + fz * 0.1], [ex + s * 1.12, ey + 0.86, ez + fz * 0.13], 0.035, 0.015, 5);   // tusks
+      tube(A, 'bronze', [ex - s * 0.6, ey + 1.05, ez], [ex - s * 0.68, ey + 0.55, ez], 0.03, 0.02, 5);         // tail
+    }
+
+    // lamp posts: navy columns with a candelabra of nine white globes on tulip cups
     for (const s of [-1, 1]) {
       const lx = mx + s * 5.4, lz = mz - 1.6;
-      A.box('lampPost', lx - 0.09, lx + 0.09, 1.02, 4.2, lz - 0.09, lz + 0.09);
-      for (const [ox, oz, oy] of [[0, 0, 4.55], [0.55, 0, 4.15], [-0.55, 0, 4.15], [0, 0.55, 4.15], [0, -0.55, 4.15]]) {
-        A.box('lampPost', lx + Math.min(0, ox) - 0.03, lx + Math.max(0, ox) + 0.03, oy - 0.25, oy - 0.2, lz + Math.min(0, oz) - 0.03, lz + Math.max(0, oz) + 0.03);
-        A.cyl('globe', lx + ox, lz + oz, 0.2, oy - 0.2, oy + 0.2, 10);
+      lathe(A, 'navy', lx, lz, [[0.22, 1.02], [0.22, 1.3], [0.14, 1.4], [0.1, 1.6], [0.075, 3.5], [0.06, 4.3]], 10);
+      const globe = (x, y, z) => {
+        lathe(A, 'navy', x, z, [[0.025, y - 0.3], [0.04, y - 0.2], [0.13, y - 0.1], [0, y - 0.1]], 8);
+        blob(A, 'globe', [x, y + 0.07, z], 0.19, 0.19, 0.19, 10, 6);
+      };
+      globe(lx, 4.45, lz);
+      for (let k = 0; k < 4; k++) {
+        const a = Math.PI / 4 + (k * Math.PI) / 2, x = lx + Math.cos(a) * 0.45, z = lz + Math.sin(a) * 0.45;
+        chain(A, 'navy', [[lx, 3.85, lz, 0.035], [x, 3.88, z, 0.03], [x, 4.05, z, 0.025]], 5);
+        globe(x, 4.15, z);
+        const b = (k * Math.PI) / 2, x2 = lx + Math.cos(b) * 0.75, z2 = lz + Math.sin(b) * 0.75;
+        chain(A, 'navy', [[lx, 3.45, lz, 0.035], [lx + Math.cos(b) * 0.5, 3.42, lz + Math.sin(b) * 0.5, 0.03], [x2, 3.55, z2, 0.025], [x2, 3.65, z2, 0.025]], 5);
+        globe(x2, 3.75, z2);
       }
     }
   }
@@ -240,9 +382,12 @@ export function buildRoyal(owner) {
     pink: std({ color: '#c9a8a6', roughness: 0.8 }),
     hedge: std({ color: '#4e7d3a', roughness: 1 }),
     marble: std({ color: '#e3d6cf', roughness: 0.5 }),
+    marbleEdge: std({ color: '#cfc3bb', roughness: 0.5 }),
+    joint: std({ color: '#c4b8b0', roughness: 0.7 }),
     plaque: std({ color: '#2b2c2e', roughness: 0.5, metalness: 0.3 }),
     bronze: std({ color: '#4a3f33', roughness: 0.45, metalness: 0.7 }),
-    lampPost: std({ color: '#2a2b2d', roughness: 0.5, metalness: 0.5 }),
+    bronzeDark: std({ color: '#2f2822', roughness: 0.5, metalness: 0.6 }),
+    navy: std({ color: '#1f2a5c', roughness: 0.45, metalness: 0.4 }),
     globe: std({ color: '#ffffff', roughness: 0.3, emissive: new THREE.Color('#fff4d6'), emissiveIntensity: 0.25 }),
   };
   const meshes = [];
