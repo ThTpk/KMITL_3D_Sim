@@ -105,7 +105,7 @@ const TYPE_TH = {
   university: 'อาคารมหาวิทยาลัย', school: 'อาคารเรียน', office: 'สำนักงาน', dormitory: 'หอพัก', apartments: 'อพาร์ตเมนต์/หอพัก',
   residential: 'ที่พักอาศัย', house: 'บ้าน', terrace: 'ทาวน์เฮาส์', retail: 'ร้านค้า', commercial: 'อาคารพาณิชย์', temple: 'วัด/ศาสนสถาน',
   roof: 'หลังคา/โรงจอดรถ', garage: 'โรงรถ', carport: 'ที่จอดรถมีหลังคา', shed: 'โรงเก็บของ', industrial: 'อาคารอุตสาหกรรม', service: 'อาคารบริการ',
-  sports_centre: 'ศูนย์กีฬา', stadium: 'สนามกีฬา', train_station: 'สถานีรถไฟ', construction: 'กำลังก่อสร้าง', yes: 'อาคาร',
+  sports_centre: 'ศูนย์กีฬา', stadium: 'สนามกีฬา', train_station: 'สถานีรถไฟ', construction: 'กำลังก่อสร้าง', bridge: 'สะพาน', yes: 'อาคาร',
 };
 const labels = [];
 layers.labels = new THREE.Group();

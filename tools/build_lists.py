@@ -15,7 +15,7 @@ TYPE_TH = {
     'retail': 'ร้านค้า', 'commercial': 'อาคารพาณิชย์', 'temple': 'วัด/ศาสนสถาน', 'roof': 'หลังคา/โรงจอดรถ',
     'garage': 'โรงรถ', 'carport': 'ที่จอดรถมีหลังคา', 'shed': 'โรงเก็บของ', 'industrial': 'อาคารอุตสาหกรรม',
     'service': 'อาคารบริการ', 'sports_centre': 'ศูนย์กีฬา', 'stadium': 'สนามกีฬา', 'train_station': 'สถานีรถไฟ',
-    'construction': 'กำลังก่อสร้าง', 'yes': 'อาคาร',
+    'construction': 'กำลังก่อสร้าง', 'bridge': 'สะพาน', 'yes': 'อาคาร',
 }
 
 

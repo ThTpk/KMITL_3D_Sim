@@ -4,106 +4,107 @@
 
 สำรวจเมื่อ 2026-10-16 ถึงปัจจุบัน ภาพจาก Google Street View / Google Maps / ภาพดาวเทียม ใช้เป็นข้อมูลอ้างอิงในการขึ้นรูปเท่านั้น ไม่ได้แสดงในหน้าเว็บ รูปทรงทั้งหมดสร้างด้วยโค้ด
 
-## สรุปโมเดลเฉพาะ (96 หลัง)
+## สรุปโมเดลเฉพาะ (97 หลัง)
 
 | # | อาคาร | ไฟล์โมเดล | ชั้น | สูง (ม.) | OSM id |
 |---|---|---|---|---|---|
 | 1 | [โรงยิม](#gymn) | `js/models/gymn.js` | 1 | 13.8 | -1 |
 | 2 | [สระว่ายน้ำ สจล.](#pool) | `js/models/pool.js` | 1 | 9.6 | -2 |
 | 3 | [ทางเดินมีหลังคาริมทางรถไฟ](#railwalk) | `js/models/railwalk.js` | 1 | 3 | -3 |
-| 4 | [หอประชุมเจ้าพระยาสุรวงษ์ไวยวัฒน์ (วร บุนนาค)](#hall) | `js/models/hall.js` | 3 | 25 | 190697575 |
-| 5 | [อาคารปฏิบัติการรวมวิศวกรรม 1](#englab1) | `js/models/englab1.js` | 6 | 25.8 | 190886412 |
-| 6 | [ภาควิชาวิศวกรรมเกษตร](#ageng) | `js/models/deps.js` | 2 | 10.2 | 190890102 |
-| 7 | [SIIE - Faculty Of Engineering, International Program](#siie) | `js/models/siie.js` | 8 | 30.9 | 516204082 |
-| 8 | [ภาคโยธา](#civil) | `js/models/civil.js` | 2 | 10.3 | 516204085 |
-| 9 | [ตึกบูรณาการ](#integ) | `js/models/engw.js` | 5 | 23.2 | 190886413 |
-| 10 | [ลานจอดรถ](#carportinteg) | `js/models/carports.js` |  | 3.1 | 190886415 |
-| 11 | [ตึกที่ติดกับหอประชุมสถาปัตยกรรมศาสตร์](#archsouth) | `js/models/archs.js` | 4 | 16.3 | 190880792 |
-| 12 | [หอประชุมสถาปัตยกรรมศาสตร์](#archaud) | `js/models/archs.js` |  | 16.1 | 190881393 |
-| 13 | [อาคารเรียนรวมสถาปัตย์](#archlec) | `js/models/archs.js` | 3 | 16.3 | 516204090 |
-| 14 | [shop พลังงาน](#shoppower) | `js/models/shops.js` | 2 | 9 | 1243388144 |
-| 15 | [shop ไม้](#shopwood1) | `js/models/shops.js` | 2 | 9 | 1243388146 |
-| 16 | [shop Textile](#shoptextile) | `js/models/shops.js` | 2 | 9 | 1243388147 |
-| 17 | [shop ดำ](#shopblack) | `js/models/shops.js` | 2 | 9 | 1491133180 |
-| 18 | [shop furniture](#shopfurn1) | `js/models/shops.js` | 2 | 9 | 1491133181 |
-| 19 | [shop ส้ม](#shoporange) | `js/models/shops.js` | 2 | 9 | 1491133182 |
-| 20 | [shop เซรามิค](#shopceramic2) | `js/models/shops.js` | 2 | 9 | 1491133183 |
-| 21 | [shop เหล็ก](#shopsteel) | `js/models/shops.js` | 2 | 9 | 1491133184 |
-| 22 | [shop ไม้](#shopwood2) | `js/models/shops.js` | 2 | 9 | 1491133185 |
-| 23 | [shop plastic](#shopplastic) | `js/models/shops.js` | 2 | 9 | 1491133186 |
-| 24 | [shop jewelry](#shopjewel) | `js/models/shops.js` | 1 | 6 | 1491133187 |
-| 25 | [shop ส้มเล็ก](#shoporanges) | `js/models/shops.js` | 1 | 6 | 1491133188 |
-| 26 | [shop ceramic](#shopceramic1) | `js/models/shops.js` | 1 | 6 | 1491133189 |
-| 27 | [shop furniture](#shopfurn3) | `js/models/shops.js` | 1 | 6 | 1491133190 |
-| 28 | [shop furniture](#shopfurn2) | `js/models/shops.js` | 2 | 9 | 1491133191 |
-| 29 | [ลานเชียร์](#cheer) | `js/models/small.js` |  |  | 404292180 |
-| 30 | [ลานจอดรถ](#carportcanc2) | `js/models/carports.js` |  | 3.1 | 190886414 |
-| 31 | [ยิมเล็ก](#gym) | `js/models/engw.js` |  | 13.5 | 190886418 |
-| 32 | [ลานจอดรถ](#carportcanc1) | `js/models/carports.js` |  | 3.1 | 190886419 |
-| 33 | [ภาควิชาวิศวกรรมวัดและควบคุม](#control) | `js/models/deps.js` | 3 | 12.5 | 190889047 |
-| 34 | [เครื่องกล workshop](#workshopw) | `js/models/deps.js` | 2 | 8.4 | 190889049 |
-| 35 | [ภาควิชาวิศวกรรมเครื่องกล](#mech) | `js/models/engw.js` | 4 | 17.2 | 190889051 |
-| 36 | [เครื่องกล workshop](#workshope) | `js/models/deps.js` | 2 | 8.4 | 190889053 |
-| 37 | [โรงอาหาร 3 (C)](#canc) | `js/models/engw.js` | 2 | 10.8 | 190890100 |
-| 38 | [อาคารเรียนรวม คณะวิศวกรรมศาสตร์ (12 ชั้น)](#e12) | `js/models/e12.js` | 12 | 47.5 | 516204086 |
-| 39 | [ภาคอุตสาหการ](#indus) | `js/models/engw.js` | 3 | 14.5 | 516204087 |
-| 40 | [อัฒจันทร์ สนามกีฬากลาง](#stad) | `js/models/stad.js` | 3 | 17 | 1138463206 |
-| 41 | [หอพักนักศึกษา อาคาร 11](#dorm11) | `js/models/dorms.js` | 10 | 36.2 | 1206348758 |
-| 42 | [สำนักหอสมุดกลาง อาคารเฉลิมพระเกียรติ](#lib) | `js/models/lib.js` | 6 | 21 | 190697423 |
-| 43 | [หอประชุมวิศวะ](#eaud) | `js/models/eaud.js` | 2 | 17.4 | 190868497 |
-| 44 | [หอประชุมวิศวะ](#ewing) | `js/models/ewing.js` | 2 | 11.3 | 190868498 |
-| 45 | [ตึกโทรคมนาคม](#tel) | `js/models/tel.js` | 4 | 14.8 | 190868528 |
-| 46 | [ลานจอดรถ](#carportctrl1) | `js/models/carports.js` |  | 3.1 | 190870221 |
-| 47 | [ลานจอดรถ](#carportctrl2) | `js/models/carports.js` |  | 3.1 | 190870222 |
-| 48 | [ตึกบี](#bbld) | `js/models/bbld.js` | 4 | 13.6 | 190870224 |
-| 49 | [โรงอาหาร A คณะวิศวกรรมศาสตร์](#cana) | `js/models/cana.js` | 1 | 8.6 | 190880523 |
-| 50 | [หอประชุมจุฬาภรณ์วลับลักษณ์](#chaud) | `js/models/chaud.js` | 3 | 15.8 | 265574872 |
-| 51 | [จุฬาภรณ์วลัยลักษณ์ 2](#chula2) | `js/models/chula2.js` | 6 | 23.4 | 265574874 |
-| 52 | [ตึกปฏิบัติการณ์หลังใหม่](#newlab) | `js/models/newlab.js` | 10 | 38 | 265588799 |
-| 53 | [โรงอาหาร คณะวิทยาศาสตร์](#scican) | `js/models/scican.js` |  | 9.5 | 265596517 |
-| 54 | [ตึก วท.](#witt) | `js/models/witt.js` | 2 | 9.2 | 265596518 |
-| 55 | [สโมสรนักศึกษา](#club) | `js/models/small.js` | 2 |  | 265596519 |
-| 56 | [Lawson 108](#lawson) | `js/models/small.js` |  |  | 265596521 |
-| 57 | [A-Building](#abld) | `js/models/abld.js` | 6 | 21.8 | 292807567 |
-| 58 | [อาคารเฉลิมพระเกียรติ 55 พรรษา สมเด็จพระเทพฯ](#t55) | `js/models/t55.js` | 8 | 30 | 309556942 |
-| 59 | [โรงอาหาร ตึก L](#lcan) | `js/models/small.js` |  |  | 309557500 |
-| 60 | [ตึก ECC](#ecc) | `js/models/ecc.js` | 10 | 39.5 | 309557571 |
-| 61 | [โรงอาหาร ตึกพระเทพฯ](#thepcan) | `js/models/mid.js` | 2 | 10.7 | 309919518 |
-| 62 | [อาคารเรียนรวม สมเด็จพระเทพฯ](#thep) | `js/models/thep.js` | 2 | 9.4 | 309919519 |
-| 63 | [คณะทันตแพทยศาสตร์](#dent) | `js/models/dent.js` | 5 | 22.2 | 501351775 |
-| 64 | [สโมสรนักศึกษา คณะวิศวกรรมศาสตร์](#engclub) | `js/models/small.js` | 1 |  | 516204084 |
-| 65 | [ภาคอัตโนมัติ](#automation) | `js/models/mid.js` | 4 | 16 | 516204094 |
-| 66 | [ภาคไฟฟ้าและพลังงานไฟฟ้า](#elec) | `js/models/elec.js` | 2 | 11.6 | 516204095 |
-| 67 | [ธนาคารและไปรษณีย์](#bank) | `js/models/mid.js` | 1 | 4.3 | 516204096 |
-| 68 | [นาโน](#nano) | `js/models/mid.js` | 2 | 9 | 516204097 |
-| 69 | [คลินิกเวชกรรม สจล.](#clinic) | `js/models/mid.js` | 2 | 9.6 | 516204098 |
-| 70 | [ตึกกระจก](#glass) | `js/models/small.js` | 2 |  | 516204099 |
-| 71 | [อาคารจอมไตร](#jomtrai) | `js/models/jomtrai.js` | 3 | 13.4 | 516308731 |
-| 72 | [สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#pres) | `js/models/pres.js` | 10 | 38.8 | 516308733 |
-| 73 | [อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช](#royal) | `js/models/royal.js` | 1 | 22 | 516308734 |
-| 74 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
-| 75 | [CMKL University](#cmkl) | `js/models/cmkl.js` | 10 | 38.9 | 784091346 |
-| 76 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
-| 77 | [อินทนิล](#inthanin) | `js/models/small.js` |  |  | 1136346802 |
-| 78 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
-| 79 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
-| 80 | [7-Eleven](#seven) | `js/models/small.js` |  |  | 1138469403 |
-| 81 | [คาเฟ่ อเมซอน](#amazon) | `js/models/small.js` |  |  | 1138988422 |
-| 82 | [หอพักนักศึกษา อาคาร 9](#dorm9) | `js/models/dorms.js` | 10 | 36.2 | 1206348756 |
-| 83 | [อาคารนวัตกรรมการเรียนรู้](#innov) | `js/models/innov.js` | 4 | 14.7 | 1561993799 |
-| 84 | [สโมสรนักศึกษา คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี](#kruclub) | `js/models/small.js` |  |  | 1564107227 |
-| 85 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
-| 86 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
-| 87 | [KMITL Kosen Dormitory](#dormks) | `js/models/dorms.js` | 5 | 22.9 | 516204078 |
-| 88 | [สมาคมศิษย์เก่า](#alumni) | `js/models/mid.js` | 2 | 13.7 | 516204080 |
-| 89 | [โรงอาหารถิ่นชงโค](#tincan) | `js/models/small.js` |  |  | 1049724130 |
-| 90 | [KMITL Dormitory](#dormk) | `js/models/dorms.js` | 5 | 22.9 | 1116753937 |
-| 91 | [หอพักนักศึกษา อาคาร 10](#dorm10) | `js/models/dorms.js` | 10 | 36.2 | 1206348757 |
-| 92 | [หอพักนักศึกษา อาคาร 12](#dorm12) | `js/models/dorms.js` | 10 | 36.2 | 1206348759 |
-| 93 | [โรงอาหาร คณะเทคโนโลยีสารสนเทศ](#itcan) | `js/models/itcan.js` | 2 | 10.4 | 314205127 |
-| 94 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
-| 95 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
-| 96 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
+| 4 | [สะพานลอยหน้าอาคารนวัตกรรมการเรียนรู้](#footbridge) | `js/models/innov.js` | 1 | 8.6 | -4 |
+| 5 | [หอประชุมเจ้าพระยาสุรวงษ์ไวยวัฒน์ (วร บุนนาค)](#hall) | `js/models/hall.js` | 3 | 25 | 190697575 |
+| 6 | [อาคารปฏิบัติการรวมวิศวกรรม 1](#englab1) | `js/models/englab1.js` | 6 | 25.8 | 190886412 |
+| 7 | [ภาควิชาวิศวกรรมเกษตร](#ageng) | `js/models/deps.js` | 2 | 10.2 | 190890102 |
+| 8 | [SIIE - Faculty Of Engineering, International Program](#siie) | `js/models/siie.js` | 8 | 30.9 | 516204082 |
+| 9 | [ภาคโยธา](#civil) | `js/models/civil.js` | 2 | 10.3 | 516204085 |
+| 10 | [ตึกบูรณาการ](#integ) | `js/models/engw.js` | 5 | 23.2 | 190886413 |
+| 11 | [ลานจอดรถ](#carportinteg) | `js/models/carports.js` |  | 3.1 | 190886415 |
+| 12 | [ตึกที่ติดกับหอประชุมสถาปัตยกรรมศาสตร์](#archsouth) | `js/models/archs.js` | 4 | 16.3 | 190880792 |
+| 13 | [หอประชุมสถาปัตยกรรมศาสตร์](#archaud) | `js/models/archs.js` |  | 16.1 | 190881393 |
+| 14 | [อาคารเรียนรวมสถาปัตย์](#archlec) | `js/models/archs.js` | 3 | 16.3 | 516204090 |
+| 15 | [shop พลังงาน](#shoppower) | `js/models/shops.js` | 2 | 9 | 1243388144 |
+| 16 | [shop ไม้](#shopwood1) | `js/models/shops.js` | 2 | 9 | 1243388146 |
+| 17 | [shop Textile](#shoptextile) | `js/models/shops.js` | 2 | 9 | 1243388147 |
+| 18 | [shop ดำ](#shopblack) | `js/models/shops.js` | 2 | 9 | 1491133180 |
+| 19 | [shop furniture](#shopfurn1) | `js/models/shops.js` | 2 | 9 | 1491133181 |
+| 20 | [shop ส้ม](#shoporange) | `js/models/shops.js` | 2 | 9 | 1491133182 |
+| 21 | [shop เซรามิค](#shopceramic2) | `js/models/shops.js` | 2 | 9 | 1491133183 |
+| 22 | [shop เหล็ก](#shopsteel) | `js/models/shops.js` | 2 | 9 | 1491133184 |
+| 23 | [shop ไม้](#shopwood2) | `js/models/shops.js` | 2 | 9 | 1491133185 |
+| 24 | [shop plastic](#shopplastic) | `js/models/shops.js` | 2 | 9 | 1491133186 |
+| 25 | [shop jewelry](#shopjewel) | `js/models/shops.js` | 1 | 6 | 1491133187 |
+| 26 | [shop ส้มเล็ก](#shoporanges) | `js/models/shops.js` | 1 | 6 | 1491133188 |
+| 27 | [shop ceramic](#shopceramic1) | `js/models/shops.js` | 1 | 6 | 1491133189 |
+| 28 | [shop furniture](#shopfurn3) | `js/models/shops.js` | 1 | 6 | 1491133190 |
+| 29 | [shop furniture](#shopfurn2) | `js/models/shops.js` | 2 | 9 | 1491133191 |
+| 30 | [ลานเชียร์](#cheer) | `js/models/small.js` |  |  | 404292180 |
+| 31 | [ลานจอดรถ](#carportcanc2) | `js/models/carports.js` |  | 3.1 | 190886414 |
+| 32 | [ยิมเล็ก](#gym) | `js/models/engw.js` |  | 13.5 | 190886418 |
+| 33 | [ลานจอดรถ](#carportcanc1) | `js/models/carports.js` |  | 3.1 | 190886419 |
+| 34 | [ภาควิชาวิศวกรรมวัดและควบคุม](#control) | `js/models/deps.js` | 3 | 12.5 | 190889047 |
+| 35 | [เครื่องกล workshop](#workshopw) | `js/models/deps.js` | 2 | 8.4 | 190889049 |
+| 36 | [ภาควิชาวิศวกรรมเครื่องกล](#mech) | `js/models/engw.js` | 4 | 17.2 | 190889051 |
+| 37 | [เครื่องกล workshop](#workshope) | `js/models/deps.js` | 2 | 8.4 | 190889053 |
+| 38 | [โรงอาหาร 3 (C)](#canc) | `js/models/engw.js` | 2 | 10.8 | 190890100 |
+| 39 | [อาคารเรียนรวม คณะวิศวกรรมศาสตร์ (12 ชั้น)](#e12) | `js/models/e12.js` | 12 | 47.5 | 516204086 |
+| 40 | [ภาคอุตสาหการ](#indus) | `js/models/engw.js` | 3 | 14.5 | 516204087 |
+| 41 | [อัฒจันทร์ สนามกีฬากลาง](#stad) | `js/models/stad.js` | 3 | 17 | 1138463206 |
+| 42 | [หอพักนักศึกษา อาคาร 11](#dorm11) | `js/models/dorms.js` | 10 | 36.2 | 1206348758 |
+| 43 | [สำนักหอสมุดกลาง อาคารเฉลิมพระเกียรติ](#lib) | `js/models/lib.js` | 6 | 21 | 190697423 |
+| 44 | [หอประชุมวิศวะ](#eaud) | `js/models/eaud.js` | 2 | 17.4 | 190868497 |
+| 45 | [หอประชุมวิศวะ](#ewing) | `js/models/ewing.js` | 2 | 11.3 | 190868498 |
+| 46 | [ตึกโทรคมนาคม](#tel) | `js/models/tel.js` | 4 | 14.8 | 190868528 |
+| 47 | [ลานจอดรถ](#carportctrl1) | `js/models/carports.js` |  | 3.1 | 190870221 |
+| 48 | [ลานจอดรถ](#carportctrl2) | `js/models/carports.js` |  | 3.1 | 190870222 |
+| 49 | [ตึกบี](#bbld) | `js/models/bbld.js` | 4 | 13.6 | 190870224 |
+| 50 | [โรงอาหาร A คณะวิศวกรรมศาสตร์](#cana) | `js/models/cana.js` | 1 | 8.6 | 190880523 |
+| 51 | [หอประชุมจุฬาภรณ์วลับลักษณ์](#chaud) | `js/models/chaud.js` | 3 | 15.8 | 265574872 |
+| 52 | [จุฬาภรณ์วลัยลักษณ์ 2](#chula2) | `js/models/chula2.js` | 6 | 23.4 | 265574874 |
+| 53 | [ตึกปฏิบัติการณ์หลังใหม่](#newlab) | `js/models/newlab.js` | 10 | 38 | 265588799 |
+| 54 | [โรงอาหาร คณะวิทยาศาสตร์](#scican) | `js/models/scican.js` |  | 9.5 | 265596517 |
+| 55 | [ตึก วท.](#witt) | `js/models/witt.js` | 2 | 9.2 | 265596518 |
+| 56 | [สโมสรนักศึกษา](#club) | `js/models/small.js` | 2 |  | 265596519 |
+| 57 | [Lawson 108](#lawson) | `js/models/small.js` |  |  | 265596521 |
+| 58 | [A-Building](#abld) | `js/models/abld.js` | 6 | 21.8 | 292807567 |
+| 59 | [อาคารเฉลิมพระเกียรติ 55 พรรษา สมเด็จพระเทพฯ](#t55) | `js/models/t55.js` | 8 | 30 | 309556942 |
+| 60 | [โรงอาหาร ตึก L](#lcan) | `js/models/small.js` |  |  | 309557500 |
+| 61 | [ตึก ECC](#ecc) | `js/models/ecc.js` | 10 | 39.5 | 309557571 |
+| 62 | [โรงอาหาร ตึกพระเทพฯ](#thepcan) | `js/models/mid.js` | 2 | 10.7 | 309919518 |
+| 63 | [อาคารเรียนรวม สมเด็จพระเทพฯ](#thep) | `js/models/thep.js` | 2 | 9.4 | 309919519 |
+| 64 | [คณะทันตแพทยศาสตร์](#dent) | `js/models/dent.js` | 5 | 22.2 | 501351775 |
+| 65 | [สโมสรนักศึกษา คณะวิศวกรรมศาสตร์](#engclub) | `js/models/small.js` | 1 |  | 516204084 |
+| 66 | [ภาคอัตโนมัติ](#automation) | `js/models/mid.js` | 4 | 16 | 516204094 |
+| 67 | [ภาคไฟฟ้าและพลังงานไฟฟ้า](#elec) | `js/models/elec.js` | 2 | 11.6 | 516204095 |
+| 68 | [ธนาคารและไปรษณีย์](#bank) | `js/models/mid.js` | 1 | 4.3 | 516204096 |
+| 69 | [นาโน](#nano) | `js/models/mid.js` | 2 | 9 | 516204097 |
+| 70 | [คลินิกเวชกรรม สจล.](#clinic) | `js/models/mid.js` | 2 | 9.6 | 516204098 |
+| 71 | [ตึกกระจก](#glass) | `js/models/small.js` | 2 |  | 516204099 |
+| 72 | [อาคารจอมไตร](#jomtrai) | `js/models/jomtrai.js` | 3 | 13.4 | 516308731 |
+| 73 | [สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#pres) | `js/models/pres.js` | 10 | 38.8 | 516308733 |
+| 74 | [อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช](#royal) | `js/models/royal.js` | 1 | 22 | 516308734 |
+| 75 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
+| 76 | [CMKL University](#cmkl) | `js/models/cmkl.js` | 10 | 38.9 | 784091346 |
+| 77 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
+| 78 | [อินทนิล](#inthanin) | `js/models/small.js` |  |  | 1136346802 |
+| 79 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
+| 80 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
+| 81 | [7-Eleven](#seven) | `js/models/small.js` |  |  | 1138469403 |
+| 82 | [คาเฟ่ อเมซอน](#amazon) | `js/models/small.js` |  |  | 1138988422 |
+| 83 | [หอพักนักศึกษา อาคาร 9](#dorm9) | `js/models/dorms.js` | 10 | 36.2 | 1206348756 |
+| 84 | [อาคารนวัตกรรมการเรียนรู้](#innov) | `js/models/innov.js` | 11 | 45.7 | 1561993799 |
+| 85 | [สโมสรนักศึกษา คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี](#kruclub) | `js/models/small.js` |  |  | 1564107227 |
+| 86 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
+| 87 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
+| 88 | [KMITL Kosen Dormitory](#dormks) | `js/models/dorms.js` | 5 | 22.9 | 516204078 |
+| 89 | [สมาคมศิษย์เก่า](#alumni) | `js/models/mid.js` | 2 | 13.7 | 516204080 |
+| 90 | [โรงอาหารถิ่นชงโค](#tincan) | `js/models/small.js` |  |  | 1049724130 |
+| 91 | [KMITL Dormitory](#dormk) | `js/models/dorms.js` | 5 | 22.9 | 1116753937 |
+| 92 | [หอพักนักศึกษา อาคาร 10](#dorm10) | `js/models/dorms.js` | 10 | 36.2 | 1206348757 |
+| 93 | [หอพักนักศึกษา อาคาร 12](#dorm12) | `js/models/dorms.js` | 10 | 36.2 | 1206348759 |
+| 94 | [โรงอาหาร คณะเทคโนโลยีสารสนเทศ](#itcan) | `js/models/itcan.js` | 2 | 10.4 | 314205127 |
+| 95 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
+| 96 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
+| 97 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
 
 รูปทรง OSM ที่ซ่อนไว้เพราะเป็นส่วนของโมเดลเฉพาะ (`hide`): 1138463195, 1138463197, 1138463209, 1138463210
 
@@ -132,6 +133,13 @@
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-18 from Google Street View on the road beside it (looking east and west along it, and at the station gate) and Google Maps satellite imagery (its line, both ends; it follows the slight skew of the tracks).
 - ลักษณะอาคารที่บันทึก: ทางเดินมีหลังคาริมทางรถไฟ: ยาวราว 425 ม. จากถนนใหญ่ที่จุดตัดทางรถไฟถึงทางข้ามหน้าหอพัก / หลังคาโค้งแผ่นลอนสีเขียว เสาเหล็กสีเข้มบนฐานคอนกรีตริมถนนทุก 3 ม. / รั้วทางรถไฟด้านใต้ ผนังสีครีมสูงราว 1.1 ม. ซี่เหล็กสีส้มด้านบน
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): a paved walk about 3 m wide; dark steel posts on small concrete bases along the road edge every 3 m, an edge beam on them; a green corrugated barrel roof (a shallow arc) spanning from the posts to the fence the railway fence along the south side: a cream wall about 1.1 m high with orange vertical bars above it
+
+## สะพานลอยหน้าอาคารนวัตกรรมการเรียนรู้ <a id="footbridge"></a>
+
+- OSM id: -4 · ไฟล์: `js/models/innov.js` · ชั้น: 1 · สูง: 8.6 ม.
+- แหล่งภาพอ้างอิง: Street View ถนนฉลองกรุง (ไม่มีใน OSM) + ภาพดาวเทียม Google Maps
+- ลักษณะอาคารที่บันทึก: สะพานลอยข้ามถนนฉลองกรุง: ทางเดินเหล็กสูงราว 5.8 ม. แผงข้างสีขาว หลังคาเบา บันไดลงทางทิศตะวันตกทั้งสองฝั่ง
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): tower       x 255..273, z -271..-255: eleven storeys (a tall glazed ground floor, then ten of 3.8 m), each floor a projecting white slab; deep white vertical fins in front of dark glass on all faces terraces    lower wings stepping down to the east (x 273..291) and the south (z -255..-238), white slab edges and glass railings on every step steps       a broad white stepped plaza south of the building, x 261..297, z -238..-221, rising north canopy      a steel lattice sweeping from the top of the tower's east face down to a flat wedge-shaped tip about 7.5 m up at x 310, on a raking strut: chords along it, diagonal braces, cross ribs forecourt   paving with a triangle pattern and a round fountain east of the canopy, a hedge along the road signs       two dark sign walls with the faculty name on the road fence footbridge  a covered steel footbridge over ถนนฉลองกรุง at x 262..265, stairs down both footpaths
 
 ## หอประชุมเจ้าพระยาสุรวงษ์ไวยวัฒน์ (วร บุนนาค) <a id="hall"></a>
 
@@ -709,7 +717,7 @@
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผัง ลานยกพื้น ลานพระจอม ลานวงกลม) + Street View จากขอบลานพระจอมด้านใต้ (2 มุมที่ผู้ใช้ส่ง) + ภาพ 360 องศาบนแท่นอนุสาวรีย์ + ภาพถ่ายอนุสาวรีย์และด้านหน้าอาคารจาก trueplookpanya ที่ผู้ใช้ส่ง
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the U-shaped plan, the raised courtyard, the plaza, the loop road and the round court to the south), Google Street View from the south edge of the plaza (two views supplied by the user), a 360° photo on the monument platform, and a published photo of the monument and hall front supplied by the user.
 - ลักษณะอาคารที่บันทึก: หอพระราชประวัติฯ: หมู่อาคารทรงไทยผังรูปตัว U / ปีกตะวันตกและตะวันออกเป็นอาคารสองชั้นจั่วคู่หันหน้าทิศใต้ หลังคาเทาซ้อนสองชั้น ปั้นลมสีแดงเลือดหมู หน้าบันสีขาวมีหน้าต่างโค้งแหลมสีแดง กรอบหน้าต่างสีแดง / ลานกลางยกพื้นเป็นฐานสีขาว ราวลูกกรงด้านหน้า ประตูสีแดง หน้าต่างกลม บันไดสองข้าง ซุ้มประตูและอาคารประธานประดับสีทอง / ลานหน้าสีขาวมีบันไดลง / ลานพระจอมพื้นหินสีเทา ล้อมด้วยทางปูอิฐสีส้มและแนวพุ่มไม้ ลานวงกลมด้านใต้ / พระบรมราชานุสาวรีย์: แท่นหินอ่อนสีชมพูบนฐานขั้นบันได แผ่นจารึก รูปหล่อสำริดยืนข้างเครื่องสูง พานพุ่มสำริดสองข้าง เรือถวายเครื่องสักการะ ราวลูกกรงโค้งด้านหลัง ช้างสำริดบนแท่นสองข้าง เสาไฟโคมกลมสีขาว
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): wings        west x 33..53, east x 78..99: two Thai halls side by side, two storeys, white walls with maroon window frames, gables facing south with maroon bargeboards, white gable panels and a red arched gable window; grey roofs, two tiers; rear halls x 42.5..50.5 and 80..88 courtyard    x 51..79, z -379..-353.5: a white podium 3.8 m high, terracotta paving on top, a balustrade along the front, red doors and a round window in the front wall, two stairs up gate         a small gold-trimmed Thai pavilion on the podium at the centre of the front court pavilion and the main north hall (x 56..76, z -396..-379) stand on the podium, gold trim terrace      white, x 55..78, z -353.5..-344, steps down to the path ลานพระจอม    grey stone plaza x 57..76.5, z -329..-308 inside a terracotta-paved U and hedges; a round court (pink paving in a grey ring) to the south, centre 67.3, -289.8 monument     facing south at 66.6, -322: stepped platform, pink marble pedestal with a dark plaque, side blocks with bronze lotus-bud urns, the bronze standing statue beside a draped tiered stand, a bronze boat-shaped offering tray, a curved marble balustrade behind, bronze elephants on pedestals at both ends, two lamp posts with clusters of white globes
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): wings        west x 33..53, east x 78..99: two Thai halls side by side, two storeys, white walls with maroon window frames, gables facing south with maroon bargeboards, white gable panels and a red arched gable window; grey roofs, two tiers; rear halls x 42.5..50.5 and 80..88 courtyard    x 51..79, z -379..-353.5: a white podium 3.8 m high, terracotta paving on top, a balustrade along the front, red doors and a round window in the front wall, two stairs up gate         a small gold-trimmed Thai pavilion on the podium at the centre of the front court pavilion and the main north hall (x 56..76, z -396..-379) stand on the podium, gold trim terrace      white, x 55..78, z -353.5..-344, steps down to the path ลานพระจอม    grey stone plaza x 57..76.5, z -329..-308 inside a terracotta-paved U and hedges; a round court (pink paving in a grey ring) to the south, centre 67.3, -289.8 monument     facing south at 66.6, -322 (reworked 2026-10-18 in more detail from a Google Maps photo sphere in front of it and a published KMITL ceremony photo): a stepped marble platform with broad steps; a jointed marble pedestal with a bronze plaque, a round emblem and a two-step cornice; the larger-than-life bronze statue, bare-headed in a long open frock coat with a sash over chong kraben, the right hand on a cloth-draped stand topped by the tiered great crown, the left holding a sword point-down; a rounded offering base with a bronze bowl and a boat-shaped candle tray on legs; bronze lotus-bud urns on footed stands on side blocks; a curved balustrade of turned balusters behind; bronze elephants facing outwards with trunks raised on pedestals at both ends; two navy lamp posts each with a candelabra of nine white globes on tulip cups
 
 ## คณะแพทยศาสตร์ <a id="med"></a>
 
@@ -789,11 +797,10 @@
 
 ## อาคารนวัตกรรมการเรียนรู้ <a id="innov"></a>
 
-- OSM id: 1561993799 · ไฟล์: `js/models/innov.js` · ชั้น: 4 · สูง: 14.7 ม.
-- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (อาคารหลังคาแบนกับโครงหลังคาเหล็กโปร่งของซุ้มเสา) + Street View ลานจอดรถด้านตะวันตกและตะวันออก ทางเดินใต้ซุ้ม
-- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the flat-roofed block and the open steel lattice roof of the portico north-east of it) and Google Street View from the car parks on its west and east sides and the covered walks under the portico.
-- ลักษณะอาคารที่บันทึก: อาคารนวัตกรรมการเรียนรู้: เสากลมสีขาว กระจกสีเข้ม มีโครงหลังคาเหล็กเปิดโล่งด้านบน บันไดกว้างหน้าอาคาร
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): a four-storey white block with strip windows of dark glass and a brick corner a tall portico of square white columns, about 14 m high, carrying an open lattice of white steel beams with a small glazed pyramid; broad steps up to the block
+- OSM id: 1561993799 · ไฟล์: `js/models/innov.js` · ชั้น: 11 · สูง: 45.7 ม.
+- แหล่งภาพอ้างอิง: Street View ถนนฉลองกรุง (ด้านเหนือและโครงหลังคาจากหน้าอาคาร ด้านตะวันตกและสะพานลอยจากทางตะวันตก มุมเงยขึ้นตัวอาคาร) + ภาพดาวเทียม Google Maps (ผังตัวตึก ขั้นระเบียง โครงหลังคาเหล็ก ลานหน้าอาคารและน้ำพุ) ภาพ Street View ในวิทยาเขตถ่ายก่อนสร้างอาคาร
+- ลักษณะอาคารที่บันทึก: อาคารนวัตกรรมการเรียนรู้: ตึกสูง 11 ชั้นสีขาว พื้นแต่ละชั้นยื่นเป็นแผงขาว ครีบตั้งสีขาวหน้ากระจกสีเข้มทุกด้าน / ชั้นล่างลดหลั่นเป็นระเบียงไปทางตะวันออกและใต้ ราวกระจก / โครงเหล็กถักขนาดใหญ่โค้งจากยอดตึกด้านตะวันออกลงมาเป็นปลายแผ่นแบนสูงราว 7.5 ม. มีเสาค้ำเอียง / ลานหน้าอาคารลายสามเหลี่ยม น้ำพุวงกลม / ป้ายคณะครุศาสตร์อุตสาหกรรมและเทคโนโลยีสีดำตัวอักษรทองริมถนน / ขั้นบันไดกว้างสีขาวด้านใต้
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): tower       x 255..273, z -271..-255: eleven storeys (a tall glazed ground floor, then ten of 3.8 m), each floor a projecting white slab; deep white vertical fins in front of dark glass on all faces terraces    lower wings stepping down to the east (x 273..291) and the south (z -255..-238), white slab edges and glass railings on every step steps       a broad white stepped plaza south of the building, x 261..297, z -238..-221, rising north canopy      a steel lattice sweeping from the top of the tower's east face down to a flat wedge-shaped tip about 7.5 m up at x 310, on a raking strut: chords along it, diagonal braces, cross ribs forecourt   paving with a triangle pattern and a round fountain east of the canopy, a hedge along the road signs       two dark sign walls with the faculty name on the road fence footbridge  a covered steel footbridge over ถนนฉลองกรุง at x 262..265, stairs down both footpaths
 
 ## สโมสรนักศึกษา คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี <a id="kruclub"></a>
 

@@ -276,6 +276,31 @@ def main():
             for outer, holes in polygons_of(e):
                 parking.append({"o": outer, "h": holes, "k": "parking", "n": t.get("name")})
 
+    # roads drawn in the wrong place in OSM: overrides "_roadfix" moves the nodes of a named road by dz metres
+    # (north is negative) for x0 <= x <= x1, easing back to no shift over `ramp` metres beyond either end; other
+    # roads that join it at one of those nodes move with it
+    fixes = json.loads(ov_path.read_text(encoding="utf-8")).get("_roadfix", []) if ov_path.exists() else []
+    for f in fixes:
+        def weight(x):
+            d = max(f["x0"] - x, x - f["x1"], 0)
+            return max(0.0, 1 - d / f["ramp"])
+        moved = {}
+        for r in roads:
+            if r.get("n") != f["name"]:
+                continue
+            for p in r["p"]:
+                key = (p[0], p[1])
+                if key not in moved:
+                    moved[key] = round(f["dz"] * weight(p[0]), 2)
+                p[1] = round(p[1] + moved[key], 2)
+        for r in roads:
+            if r.get("n") == f["name"]:
+                continue
+            for p in r["p"]:
+                dz = moved.get((p[0], p[1]))
+                if dz:
+                    p[1] = round(p[1] + dz, 2)
+
     out = {
         "origin": ORIGIN,
         "generated_from": "OpenStreetMap contributors (ODbL) via Overpass API",

@@ -28,51 +28,7 @@
 //                two navy lamp posts each with a candelabra of nine white globes on tulip cups
 import * as THREE from 'three';
 import { Acc } from './ecc.js';
-
-// ---- curved pieces for the monument: turned profiles, tubes between two points, ellipsoids ----
-// lathe: a solid of revolution about the vertical axis at (cx, cz); prof = [[r, y], ...] from the bottom up,
-// sx / sz stretch it into an ellipse in plan
-function lathe(A, m, cx, cz, prof, seg = 16, sx = 1, sz = 1) {
-  const P = (t, r, y) => [cx + r * sx * Math.cos(t), y, cz + r * sz * Math.sin(t)];
-  for (let i = 0; i < seg; i++) {
-    const t0 = (i / seg) * Math.PI * 2, t1 = ((i + 1) / seg) * Math.PI * 2;
-    for (let k = 0; k < prof.length - 1; k++) {
-      const [ra, ya] = prof[k], [rb, yb] = prof[k + 1];
-      if (ra < 1e-4 && rb < 1e-4) continue;
-      if (ra < 1e-4) A.tri(m, P(t1, rb, yb), [cx, ya, cz], P(t0, rb, yb));
-      else if (rb < 1e-4) A.tri(m, P(t1, ra, ya), P(t0, ra, ya), [cx, yb, cz]);
-      else A.quad(m, P(t1, ra, ya), P(t0, ra, ya), P(t0, rb, yb), P(t1, rb, yb));
-    }
-    const [rt, yt] = prof[prof.length - 1];
-    if (rt > 1e-4) A.tri(m, [cx, yt, cz], P(t1, rt, yt), P(t0, rt, yt));
-  }
-}
-// tube: a frustum from p0 (radius r0) to p1 (radius r1), closed at both ends
-function tube(A, m, p0, p1, r0, r1 = r0, seg = 8) {
-  const d = [p1[0] - p0[0], p1[1] - p0[1], p1[2] - p0[2]], L = Math.hypot(...d) || 1;
-  const n = d.map((v) => v / L);
-  const h = Math.abs(n[1]) < 0.9 ? [0, 1, 0] : [1, 0, 0];
-  let u = [n[1] * h[2] - n[2] * h[1], n[2] * h[0] - n[0] * h[2], n[0] * h[1] - n[1] * h[0]];
-  const ul = Math.hypot(...u); u = u.map((v) => v / ul);
-  const v = [u[1] * n[2] - u[2] * n[1], u[2] * n[0] - u[0] * n[2], u[0] * n[1] - u[1] * n[0]];   // u × n, so u × v = -n
-  const P = (p, r, t) => [0, 1, 2].map((k) => p[k] + r * (Math.cos(t) * u[k] + Math.sin(t) * v[k]));
-  for (let i = 0; i < seg; i++) {
-    const t0 = (i / seg) * Math.PI * 2, t1 = ((i + 1) / seg) * Math.PI * 2;
-    A.quad(m, P(p0, r0, t1), P(p0, r0, t0), P(p1, r1, t0), P(p1, r1, t1));
-    A.tri(m, p1, P(p1, r1, t1), P(p1, r1, t0));
-    A.tri(m, p0, P(p0, r0, t0), P(p0, r0, t1));
-  }
-}
-// ellipsoid with radii rx, ry, rz centred on c
-function blob(A, m, c, rx, ry, rz, seg = 12, rings = 7) {
-  const prof = [];
-  for (let k = 0; k <= rings; k++) { const a = -Math.PI / 2 + (Math.PI * k) / rings; prof.push([Math.cos(a), c[1] + Math.sin(a) * ry]); }
-  lathe(A, m, c[0], c[2], prof, seg, rx, rz);
-}
-// a chain of tubes through points [[x, y, z, r], ...]
-function chain(A, m, pts, seg = 8) {
-  for (let i = 0; i < pts.length - 1; i++) tube(A, m, pts[i].slice(0, 3), pts[i + 1].slice(0, 3), pts[i][3], pts[i + 1][3], seg);
-}
+import { lathe, tube, blob, chain } from './kit.js';
 
 export function buildRoyal(owner) {
   const A = new Acc();
