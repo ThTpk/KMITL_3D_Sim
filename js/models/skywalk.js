@@ -69,7 +69,7 @@ export function buildSkywalk(owner) {
   for (const x of [LX0 + 0.3, LX1 - 0.3]) for (const z of [LZ0 + 0.3, LZ1 - 0.3]) tube(A, 'column', [x, YD, z], [x, YD + HR, z], 0.2, 0.2, 8);
   A.box('red', LX0, LX1, YD + HR - 0.4, YD + HR, LZ0 + 0.1, LZ0 + 0.4);
   A.barrelX('roof', LX0 - 0.3, LX1 + 0.3, (LZ0 + LZ1) / 2, (LZ1 - LZ0) / 2 + 0.4, YD + HR, 0.35, 10);
-  const ZS0 = -71.0, ZS1 = -69.2;                                               // both stairs run along the fence on the road side
+  const ZS0 = -71.6, ZS1 = -69.8;                                               // both stairs run along the fence on the road side
   const n = 22, x0 = LX0, x1 = LX0 - 17;
   for (let k = 0; k < n; k++) {
     const xa = x0 + ((x1 - x0) * k) / n, xb = x0 + ((x1 - x0) * (k + 1)) / n, y = YD - (YD * (k + 1)) / n;

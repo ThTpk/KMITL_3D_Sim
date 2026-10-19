@@ -10,6 +10,8 @@
 //   a paved walk about 3 m wide; dark steel posts on small concrete bases along the road edge every 3 m, an edge
 //   beam on them; a green corrugated barrel roof (a shallow arc) spanning from the posts to the fence
 //   the railway fence along the south side: a cream wall about 1.1 m high with orange vertical bars above it
+//   no roof, posts or beams where the Sky Walk's two stairs come down on the walk (x -144.5..-99.5, user's photos
+//   2026-10-19); the paving and the fence carry on
 import { Acc, mats, meshes, BASE_MATS } from './kit.js';
 
 const START = [-440, -64.1], END = [-15, -74.7];   // walkway line at its road (north) edge
@@ -19,6 +21,10 @@ const L = Math.hypot(END[0] - START[0], END[1] - START[1]);
 const UX = (END[0] - START[0]) / L, UZ = (END[1] - START[1]) / L, NX = -UZ, NZ = UX;   // N points south, to the fence
 const P = (s, t) => [START[0] + UX * s + NX * t, START[1] + UZ * s + NZ * t];
 const ring = (s0, s1, t0, t1) => [P(s0, t0), P(s1, t0), P(s1, t1), P(s0, t1)];
+// the roofed lengths: the walk is open where the Sky Walk stairs land (x -144.5..-99.5)
+const GAP = [(-144.5 - START[0]) / UX, (-99.5 - START[0]) / UX];
+const RUNS = [[0, GAP[0]], [GAP[1], L]];
+const roofed = (s) => s < GAP[0] || s > GAP[1];
 
 // a quad facing up (or down), whatever order its corners come in
 function face(A, m, a, b, c, d, up = true) {
@@ -33,12 +39,15 @@ export function buildRailWalk(owner) {
   // posts along the road edge, an edge beam, a beam along the fence
   const yB = 2.45, rise = 0.55;
   for (let s = 0.5; s <= L - 0.4; s += 3) {
+    if (!roofed(s)) continue;
     A.prism('concrete', ring(s - 0.18, s + 0.18, 0.05, 0.45), 0, 0.4);
     A.prism('post', ring(s - 0.06, s + 0.06, 0.19, 0.31), 0.4, yB);
     A.prism('post', ring(s - 0.04, s + 0.04, 0.25, W), yB - 0.12, yB - 0.04);       // rafter to the fence
   }
-  A.prism('post', ring(0, L, 0.17, 0.33), yB - 0.18, yB);
-  A.prism('post', ring(0, L, W - 0.12, W), yB - 0.18, yB);
+  for (const [r0, r1] of RUNS) {
+    A.prism('post', ring(r0, r1, 0.17, 0.33), yB - 0.18, yB);
+    A.prism('post', ring(r0, r1, W - 0.12, W), yB - 0.18, yB);
+  }
 
   // barrel roof: a shallow arc across the walk, overhanging the road edge
   const t0 = -0.35, t1 = W + 0.15, n = 8;
@@ -46,12 +55,15 @@ export function buildRailWalk(owner) {
   for (let i = 0; i < n; i++) {
     const ta = t0 + ((t1 - t0) * i) / n, tb = t0 + ((t1 - t0) * (i + 1)) / n;
     const v = (s, t) => { const [x, z] = P(s, t); return [x, ty(t), z]; };
-    face(A, 'roofGreen', v(0, ta), v(L, ta), v(L, tb), v(0, tb), true);
     const w = (s, t) => { const [x, z] = P(s, t); return [x, ty(t) - 0.03, z]; };
-    face(A, 'roofUnder', w(0, ta), w(L, ta), w(L, tb), w(0, tb), false);
+    for (const [r0, r1] of RUNS) {
+      face(A, 'roofGreen', v(r0, ta), v(r1, ta), v(r1, tb), v(r0, tb), true);
+      face(A, 'roofUnder', w(r0, ta), w(r1, ta), w(r1, tb), w(r0, tb), false);
+    }
   }
   // corrugation ribs across the roof
   for (let s = 0.25; s < L; s += 0.9) for (let i = 0; i < n; i++) {
+    if (!roofed(s - 0.06) || !roofed(s + 0.06)) continue;
     const ta = t0 + ((t1 - t0) * i) / n, tb = t0 + ((t1 - t0) * (i + 1)) / n;
     const v = (ss, t) => { const [x, z] = P(ss, t); return [x, ty(t) + 0.025, z]; };
     face(A, 'rib', v(s - 0.06, ta), v(s + 0.06, ta), v(s + 0.06, tb), v(s - 0.06, tb), true);
