@@ -1,12 +1,16 @@
 // Hand-built model of the Engineering Classroom Complex, 12 floors (อาคารเรียนรวม คณะวิศวกรรมศาสตร์ 12 ชั้น).
 // Surveyed 2026-10-16: Google Street View from the road north of the railway (whole north face) and from
 // the south entrance under the podium, Esri World Imagery for the plan and roof colours.
+// Re-coloured 2026-10-19 from the SIIE clip (youtu.be/lod-jYKKEZ0 5:07) and the Uni Tour clip
+// (youtu.be/XKpuIm42uQc 4:40), both from the lawn south of the podium: the tower is pale pink, and on its south
+// face dark-framed four-pane windows alternate with glass-block panels along every floor.
 // Photos were only looked at; everything here is procedural geometry.
 //
 // Built axis-aligned in local metres around the OSM centroid, then turned -1.83° to the OSM outline
 // (way 516204086). x = east, z = south, y = up.
-//   tower slab   x -650..-563   z 10.9..35   12 floors, salmon concrete, deep floor bands, ribbon windows
-//                                             with recessed AC balconies; gold banner panel on the west wing
+//   tower slab   x -650..-563   z 10.9..35   12 floors, pale pink concrete, deep floor bands; north face ribbon
+//                                             windows with recessed AC balconies, south face windows alternating
+//                                             with glass-block panels; gold banner panel on the west wing
 //   core         x -614.3..-601.7, projects 1.3 m north, rises above the roof, slit windows, blue sign
 //   east stair   x -563..-557   one floor lower (north half); stair towers at both south corners rise above
 //                                the roof; west end wall rises as a fin at its north end
@@ -66,8 +70,14 @@ function slabFace(A, f, { skip = [], banner = null, louvre = false } = {}) {
       let i = 0;
       for (let a = a0 + 0.5; a + 4.0 <= a1; a += 4.4, i++) {
         if (banner && k >= banner.k0 && a + 4 > banner.a0 && a < banner.a1) continue;
-        if (louvre && (i + k) % 3 === 1) {                                // light louvre screen over the window
-          onFace(A, 'louvre', f, a + 0.3, a + 3.7, y + 1.3, top - 0.45, 0.05, 0.12);
+        if (louvre && i % 2 === 1) {                                      // glass-block panel between the windows
+          onFace(A, 'gblock', f, a + 0.3, a + 3.7, y + 1.2, top - 0.4, 0, 0.06);
+          for (let yy = y + 1.5; yy < top - 0.45; yy += 0.3) onFace(A, 'gjoint', f, a + 0.3, a + 3.7, yy - 0.015, yy + 0.015, 0.06, 0.07);
+          for (let aa = a + 0.6; aa < a + 3.7; aa += 0.3) onFace(A, 'gjoint', f, aa - 0.015, aa + 0.015, y + 1.2, top - 0.4, 0.06, 0.07);
+        } else if (louvre) {                                              // dark-framed window in four panes
+          onFace(A, 'frame', f, a + 0.3, a + 3.7, y + 1.4, top - 0.55, 0, 0.04);
+          onFace(A, 'glass', f, a + 0.38, a + 3.62, y + 1.48, top - 0.63, 0.04, 0.06);
+          for (let j = 1; j < 4; j++) onFace(A, 'frame', f, a + 0.3 + j * 0.85 - 0.03, a + 0.3 + j * 0.85 + 0.03, y + 1.48, top - 0.63, 0.04, 0.08);
         } else if (!louvre && (i + k) % 4 === 3) {                        // recessed balcony with an AC unit
           onFace(A, 'rail', f, a + 0.2, a + 3.8, y + 1.15, y + 1.9, 0.5, 0.55);
           onFace(A, 'ac', f, a + 0.6, a + 1.5, y + 1.15, y + 1.85, 0.05, 0.6);
@@ -277,11 +287,14 @@ export function buildE12(owner) {
   const gDay = glassTex(false), gNight = glassTex(true), brick = brickTex();
   const std = (o) => new THREE.MeshStandardMaterial({ roughness: 0.85, metalness: 0.02, ...o });
   const MAT = {
-    wall: std({ color: '#ebc2a8' }),
-    band: std({ color: '#f0cdb6' }),
-    core: std({ color: '#efc6ac' }),
+    wall: std({ color: '#eccfc0' }),
+    band: std({ color: '#f1d6c8' }),
+    core: std({ color: '#efd9c9' }),
     shade: std({ color: '#a8887a' }),
-    recess: std({ color: '#e2b49b' }),
+    recess: std({ color: '#e5c4b4' }),
+    gblock: std({ color: '#d9dcdc', roughness: 0.45 }),
+    gjoint: std({ color: '#f2efea', roughness: 0.7 }),
+    frame: std({ color: '#2f3336', roughness: 0.5 }),
     louvre: std({ color: '#d4d6d3', roughness: 0.6, metalness: 0.2 }),
     glass: std({ color: '#3d5470', map: gDay, roughness: 0.35, emissive: new THREE.Color('#ffc978'), emissiveMap: gNight, emissiveIntensity: 0 }),
     rail: std({ color: '#6c6f72', roughness: 0.5, metalness: 0.4 }),

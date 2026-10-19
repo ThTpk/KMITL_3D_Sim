@@ -11,16 +11,17 @@
 //   ตึกบูรณาการ: five storeys; the lower three in salmon tile with punched windows under white sunshade
 //   louvres, the upper two in cream; a six-storey centre tower with a three-hexagon emblem, a deep tan canopy over
 //   the entrance on the north; light metal gabled roofs on the long wings
-//   ยิมเล็ก: a tall hall, orange walls to about 4 m, a band of white lattice vents above, grey-blue upper walls,
-//   a shallow metal gabled roof
-//   โรงอาหาร 3 (C): two storeys of pink render, shops on the ground floor, an open upper floor with a rail, a red
-//   metal hipped roof with deep eaves; a three-storey pink block on its east side
+//   ยิมเล็ก: a tall orange hall with a long band of white-framed windows on an orange ledge high up on both long
+//   sides, a light metal hipped roof with deep eaves (re-surveyed 2026-10-19, see buildGym)
+//   โรงอาหาร 3 (C): two storeys of pale peach render, shops on the ground floor under a solid cream band with a
+//   white rail, an open upper floor, a red metal hipped roof with deep eaves and a white clerestory box through
+//   it; a three-storey pink block on its east side (re-surveyed 2026-10-19, see buildCanC)
 //   ภาคอุตสาหการ: an L of two- and three-storey cream blocks with light metal gabled roofs
 import { Acc, F, onFace, facade, block, pilotis, hip, mats, meshes, BASE_MATS } from './kit.js';
 
 const SPEC = { ...BASE_MATS, wall: '#f0efeb', band: '#f7f6f2', brick: { color: '#b0573d' }, salmon: '#d9a383', cream: '#ece4d2',
-  tan: '#c9a26b', orange: '#e0843f', slate: '#7d8c98', pink: '#e7c2b2', red: { color: '#a8473a', roughness: 0.8 },
-  roofSheet: '#c3c5c4', emblem: '#3c4148', sign: '#e9e7e2', glass: { color: '#6f7d84' } };
+  tan: '#c9a26b', orange: '#e27f5a', slate: '#7d8c98', pink: '#ecd0bd', red: { color: '#a8473a', roughness: 0.8 },
+  roofSheet: '#c3c5c4', winFrame: '#f2f1ec', rail: '#f4f4f2', step: '#c9c6bf', emblem: '#3c4148', sign: '#e9e7e2', glass: { color: '#6f7d84' } };
 const done = (A, owner, top) => ({ meshes: meshes(A, mats(SPEC), owner), top });
 
 export function buildMech(owner) {
@@ -63,31 +64,64 @@ export function buildInteg(owner) {
   return done(A, owner, tc + 1);
 }
 
+// ยิมเล็ก (ยิมเนเซียม 1) re-surveyed 2026-10-19 from the clips youtu.be/xTK53jBjDFQ 0:05-0:08 and
+// youtu.be/lod-jYKKEZ0 5:50: the walls are orange up to about 5 m; above them a long band of white-framed
+// windows (two rows of small top-hung sashes) stands out on an orange ledge with a sloped underside and runs the
+// whole length of both long sides under the roof eave, where the steel roof ties show; a flat orange canopy on
+// steel hangers over the door on the south, with steps.
 export function buildGym(owner) {
   const A = new Acc();
-  const X0 = -498, X1 = -448, Z0 = 103, Z1 = 135, H = 10.5;
-  A.box('slate', X0, X1, 0, H, Z0, Z1);
-  A.box('orange', X0 - 0.05, X1 + 0.05, 0, 4.2, Z0 - 0.05, Z1 + 0.05);
-  A.box('band', X0 - 0.08, X1 + 0.08, 4.2, 6.4, Z0 - 0.08, Z1 + 0.08);
-  for (let x = X0 + 0.5; x < X1; x += 0.8) for (const z of [Z0 - 0.15, Z1 + 0.15]) A.box('slate', x, x + 0.12, 4.3, 6.3, z - 0.05, z + 0.05);
-  hip(A, 'roofSheet', X0, X1, Z0, Z1, H, 3.0, 0.8);
-  return done(A, owner, H + 3);
+  const X0 = -498, X1 = -448, Z0 = 103, Z1 = 135, H = 9.6, W0 = 5.2;
+  A.box('orange', X0, X1, 0, H, Z0, Z1);
+  for (const [f, a0, a1] of [[F('z', Z0, -1), X0, X1], [F('z', Z1, 1), X0, X1]]) {
+    onFace(A, 'orange', f, a0, a1, W0 - 0.6, W0, 0, 1.0);                                      // ledge
+    onFace(A, 'orange', f, a0, a1, W0 - 1.0, W0 - 0.6, 0, 0.5);                                // its sloped underside, stepped
+    onFace(A, 'winFrame', f, a0 + 0.3, a1 - 0.3, W0, H - 0.2, 0.55, 0.95);                    // window band
+    onFace(A, 'glass', f, a0 + 0.4, a1 - 0.4, W0 + 0.1, H - 0.3, 0.95, 0.98);
+    for (let a = a0 + 0.4; a < a1 - 0.3; a += 1.1) onFace(A, 'winFrame', f, a, a + 0.09, W0 + 0.1, H - 0.3, 0.95, 1.03);
+    for (const y of [W0 + 1.15, W0 + 2.3, W0 + 3.3]) onFace(A, 'winFrame', f, a0 + 0.4, a1 - 0.4, y - 0.05, y + 0.05, 0.95, 1.03);
+    for (let a = a0 + 2; a < a1 - 1; a += 3.3) onFace(A, 'winFrame', f, a, a + 0.9, W0 + 1.2, W0 + 1.26, 1.0, 1.4);  // open sashes
+  }
+  // door canopy and steps on the south side, near the west end
+  onFace(A, 'orange', F('z', Z1, 1), X0 + 4, X0 + 12, 3.6, 3.85, 0, 2.4);
+  onFace(A, 'metal', F('z', Z1, 1), X0 + 4.2, X0 + 4.3, 3.85, W0 - 0.6, 0, 2.3);
+  onFace(A, 'metal', F('z', Z1, 1), X0 + 11.7, X0 + 11.8, 3.85, W0 - 0.6, 0, 2.3);
+  onFace(A, 'glass', F('z', Z1, 1), X0 + 7, X0 + 8.8, 0.9, 3.2, 0, 0.05);
+  for (let s = 0; s < 5; s++) onFace(A, 'step', F('z', Z1, 1), X0 + 5.5, X0 + 10.5, 0, 0.18 * (5 - s), 0, 0.35 * (s + 1));
+  hip(A, 'roofSheet', X0, X1, Z0, Z1, H, 2.6, 1.6);
+  return done(A, owner, H + 2.6);
 }
 
+// โรงอาหาร 3 (C) re-surveyed 2026-10-19 from youtu.be/lod-jYKKEZ0 4:42 (the street front): pale peach columns,
+// shop fronts on the ground floor (7-Eleven, a copy shop), a solid cream band over them with a white rail along
+// its top, the open dining floor above, a red metal hipped roof with deep eaves and a white clerestory box with
+// windows rising through the middle of the roof under its own red roof.
 export function buildCanC(owner) {
   const A = new Acc();
   const X0 = -660, X1 = -622, Z0 = 103, Z1 = 131, G = 3.8;
   A.box('pink', X0 + 2, X1 - 2, 0, G, Z0 + 2, Z1 - 2);
+  for (const [f, a0, a1] of [[F('z', Z0, -1), X0 + 2, X1 - 2], [F('z', Z1, 1), X0 + 2, X1 - 2], [F('x', X0, -1), Z0 + 2, Z1 - 2], [F('x', X1, 1), Z0 + 2, Z1 - 2]]) {
+    const ff = { ...f, at: f.at - f.out * 2 };
+    for (let a = a0 + 0.8; a < a1 - 1; a += 6.3) onFace(A, 'glass', ff, a, a + 5, 0.1, G - 0.9, 0, 0.05);   // shop fronts
+  }
   for (let x = X0 + 0.4; x <= X1; x += 6.3) for (const z of [Z0 + 0.4, Z1 - 0.4]) A.box('pink', x - 0.3, x + 0.3, 0, 7.6, z - 0.3, z + 0.3);
-  A.box('pink', X0, X1, G - 0.3, G + 0.3, Z0, Z1);
-  A.box('pink', X0 + 3, X1 - 3, G + 0.3, 7.6, Z0 + 3, Z1 - 3);
-  for (const [f, a0, a1] of [[F('z', Z0, -1), X0, X1], [F('z', Z1, 1), X0, X1], [F('x', X0, -1), Z0, Z1], [F('x', X1, 1), Z0, Z1]])
-    onFace(A, 'metal', f, a0, a1, G + 1.0, G + 1.1, -0.05, 0.05);
+  A.box('cream', X0, X1, G - 0.6, G + 0.5, Z0, Z1);                                            // solid band over the shops
+  A.box('pink', X0 + 3, X1 - 3, G + 0.5, 7.6, Z0 + 3, Z1 - 3);
+  for (const [f, a0, a1] of [[F('z', Z0, -1), X0, X1], [F('z', Z1, 1), X0, X1], [F('x', X0, -1), Z0, Z1], [F('x', X1, 1), Z0, Z1]]) {
+    onFace(A, 'rail', f, a0, a1, G + 1.45, G + 1.55, -0.05, 0.05);
+    for (let a = a0; a <= a1; a += 1.2) onFace(A, 'rail', f, a, a + 0.05, G + 0.5, G + 1.5, -0.03, 0.03);
+  }
   hip(A, 'red', X0, X1, Z0, Z1, 7.6, 3.2, 2.0);
+  // white clerestory box through the middle of the roof
+  const cx0 = X0 + 13, cx1 = X1 - 10, cz0 = Z0 + 8, cz1 = Z1 - 8;
+  A.box('cream', cx0, cx1, 7.6, 12.2, cz0, cz1);
+  for (const [f, a0, a1] of [[F('z', cz0, -1), cx0, cx1], [F('z', cz1, 1), cx0, cx1]])
+    for (let a = a0 + 1; a < a1 - 1.5; a += 3.6) onFace(A, 'glass', f, a, a + 3, 10.4, 11.7, 0, 0.05);
+  hip(A, 'red', cx0, cx1, cz0, cz1, 12.2, 1.2, 0.6);
   // three-storey pink block east
   const t = block(A, -622, -610, 102, 131, { G: 3.8, FL: 3.6, n: 3, bay: 3.6, style: 'band', mats: { wall: 'pink' } }, { w: false });
   A.box('roof', -621.7, -610.3, t, t + 0.12, 102.3, 130.7);
-  return done(A, owner, 11);
+  return done(A, owner, 13.4);
 }
 
 export function buildIndus(owner) {

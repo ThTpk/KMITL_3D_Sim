@@ -9,7 +9,8 @@
 //   north face (east → west): white window grid | dark glazed stair core | balcony bay with white breeze-block
 //     balustrades and orange spandrels | thin blue fin | deep white egg-crate grid with a large framed panel
 //   roof parapet with the institute's name in blue; orange penthouse with the emblem over the core
-//   porte-cochère: orange-clad canopy on round white columns in front of the west half, name on its fascia
+//   porte-cochère: a white folded canopy rising to a ridge over the middle, on round white columns, in front of
+//   the west half; the name on a dark board beside the steps (2026-10-19)
 //   east end: brick panels in a white grid, few windows; west end: brick bays, balcony bays, central glazed core
 //   rising above the roof; south face: continuous balcony slabs with rails in a white frame, the west part with
 //   orange-brick balcony fronts on floors 2-7, the institute's name on the south parapet too (south face reworked
@@ -123,10 +124,23 @@ export function buildPres(owner) {
   A.cyl('rail', -30, -328, 0.1, ROOF + 5, ROOF + 12, 6);
 
   // ---- porte-cochère on the north side of the west half ----
+  // re-surveyed 2026-10-19 from youtu.be/lod-jYKKEZ0 5:47: a white folded slab, its edges rising from the sides
+  // to a ridge over the middle (running north-south), on round white columns; the building's name on a dark
+  // board beside the steps
   const PC = [-70, -48, -358, ZN];
-  A.box('orange', PC[0], PC[1], 6.2, 7.6, PC[2], PC[3] - 0.6);
-  A.box('soffit', PC[0] + 0.2, PC[1] - 0.2, 5.9, 6.2, PC[2] + 0.2, PC[3] - 0.8, false);
-  for (const x of [PC[0] + 2.5, (PC[0] + PC[1]) / 2, PC[1] - 2.5]) for (const z of [PC[2] + 2.5, PC[2] + 10]) A.cyl('column', x, z, 0.45, 0, 5.9, 16);
+  {
+    const xm = (PC[0] + PC[1]) / 2, z0 = PC[2], z1 = PC[3] - 0.6, yE = 6.0, yR = 8.6, t = 0.45;
+    for (const [xa, xb] of [[PC[0] - 1.5, xm], [xm, PC[1] + 1.5]]) {
+      const ya = xa === xm ? yR : yE, yb = xb === xm ? yR : yE;
+      A.quad('white', [xa, ya + t, z1], [xb, yb + t, z1], [xb, yb + t, z0], [xa, ya + t, z0]);    // top
+      A.quad('white', [xa, ya, z0], [xb, yb, z0], [xb, yb, z1], [xa, ya, z1]);                    // soffit
+      A.quad('white', [xa, ya, z0], [xa, ya + t, z0], [xb, yb + t, z0], [xb, yb, z0]);            // front edge
+      A.quad('white', [xb, yb, z1], [xb, yb + t, z1], [xa, ya + t, z1], [xa, ya, z1]);
+    }
+    for (const x of [PC[0] - 1.5, PC[1] + 1.5]) A.box('white', Math.min(x, x + 0.01), Math.max(x, x + 0.01) + 0.01, yE, yE + t, z0, z1);
+    A.box('dark', PC[1] + 2, PC[1] + 5.5, 0.4, 2.2, PC[2] + 1.5, PC[2] + 1.7);                    // name board
+  }
+  for (const x of [PC[0] + 2.5, (PC[0] + PC[1]) / 2, PC[1] - 2.5]) for (const z of [PC[2] + 2.5, PC[2] + 10]) A.cyl('column', x, z, 0.55, 0, 6.0 + 2.6 * (1 - Math.abs(x - (PC[0] + PC[1]) / 2) / ((PC[1] - PC[0]) / 2 + 1.5)), 16);
   A.box('paving', PC[0] + 1, PC[1] - 1, 0, 0.3, PC[2] + 1, PC[3]);
 
   // ===== materials & meshes =====
@@ -151,6 +165,8 @@ export function buildPres(owner) {
     panel: std({ color: '#cdbb8a', roughness: 0.8 }),
     brick: std({ color: '#d79a7f', map: brick, roughness: 0.95 }),
     rail: std({ color: '#d8d8d4', roughness: 0.6, metalness: 0.3 }),
+    white: std({ color: '#f4f4f1', roughness: 0.7, side: THREE.DoubleSide }),
+    dark: std({ color: '#2b2d30', roughness: 0.6 }),
     soffit: std({ color: '#5a4f48', roughness: 0.9, side: THREE.DoubleSide }),
     paving: std({ color: '#cfc8bd', roughness: 1 }),
     roofDark: std({ color: '#5d6266', roughness: 0.9 }),
@@ -181,7 +197,7 @@ export function buildPres(owner) {
     add(g, new THREE.MeshStandardMaterial({ map: tex, transparent: true, alphaTest: 0.3, roughness: 0.8 }));
   };
   signN(textTex('สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง', { color: '#2f5fb0', h: 150 }), -12, -60, ROOF + 0.2, ROOF + 1.3, ZN - 0.03);
-  signN(textTex('อาคารสำนักงานอธิการบดี', { color: '#2f5fb0', h: 150 }), -51, -67, 6.45, 7.35, PC[2] - 0.03);
+  signN(textTex('อาคารกรมหลวงนราธิวาสราชนครินทร์', { color: '#e9d8a6', h: 150 }), PC[1] + 5.4, PC[1] + 2.1, 1.1, 1.7, PC[2] + 1.47);   // on the dark board
   const emblem = (() => {
     const cv = document.createElement('canvas'); cv.width = cv.height = 256;
     const g = cv.getContext('2d');

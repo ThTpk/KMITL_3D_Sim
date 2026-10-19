@@ -55,5 +55,5 @@
 - ยังไม่มีโมเดล: อาคาร AMC ([Nz0CGlfBw1w](https://youtu.be/Nz0CGlfBw1w) ภาพมุมสูง), อาคาร HM
 
 ## คลิปที่ยังไม่ได้ดู
-- [KMITL Open House พาทัวร์](https://youtu.be/YwpNnu7pV9g) (ไลฟ์ 2 ชม. 18 นาที) ดูถึงนาทีที่ 55 มีแต่ภาพในอาคาร
+- [KMITL Open House พาทัวร์](https://youtu.be/YwpNnu7pV9g) ไม่ใช้เป็นข้อมูลอ้างอิง (ตามที่ผู้ใช้บอก 19 ต.ค. 2026) ส่วนที่เปิดดูเป็นภาพในอาคารเกือบทั้งหมด
 - [Cinematic EP.4 บริหาร](https://youtu.be/yoRYy_4kPyA) ข้ามไปเพราะภาพซ้ำกับคลิป mfGSrcOlX6g

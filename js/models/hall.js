@@ -9,7 +9,7 @@
 //   main hall  x 90..192, z 95..149: tall plain white box under a barrel roof (ridge east-west at z 122)
 //   south front x 69..214, z 151..190: foyer block under a wing roof in four bays whose eave sags between the
 //     seams and sweeps up at both outer corners; tall white columns with V struts carry the overhang;
-//     two-storey glass wall with a white band above; the hall's name on a white board, emblem above;
+//     two-storey glass wall with a white band above; the hall's name in blue on a pale blue board, emblem above;
 //     both ends in red brick with white-framed windows and white floor bands
 //   north strip x 60..190, z 87..95: white ground floor (windows, louvres), recessed balconies, brick piers
 //   north-west wing x 48..78, z 94..137: white, ribbon windows, flat overhanging roof, brick name tower
@@ -231,8 +231,8 @@ export function buildHall(owner) {
       strut('strut', [x + s * 0.4, 9.2, ZC + 0.4], [xe, roofY(xe, RZ1 - 0.6) - 0.05, RZ1 - 0.6], 0.13);
     }
   }
-  // name board between the columns, emblem on the white band above
-  A.box('wall', 113.5, 168.5, 9.0, 12.4, 185.1, 185.4);
+  // name board between the columns (pale blue, seen in youtu.be/-hBd_k2Ld5E 21:00), emblem on the white band above
+  A.box('board', 113.5, 168.5, 9.0, 12.4, 185.1, 185.4);
   A.box('frame', 139.2, 144.6, 12.9, 17.0, ZF + 0.1, ZF + 0.35);
 
   // ===== steel carport at the west end =====
@@ -262,7 +262,8 @@ export function buildHall(owner) {
     joint: std({ color: '#d6d5d0' }),
     frame: std({ color: '#f7f7f5', roughness: 0.6 }),
     column: std({ color: '#f4f4f2', roughness: 0.6 }),
-    strut: std({ color: '#dfe2e5', roughness: 0.4, metalness: 0.5 }),
+    strut: std({ color: '#cfd4d8', roughness: 0.3, metalness: 0.7 }),
+    board: std({ color: '#c3d4ea', roughness: 0.6 }),
     glass: std({ color: '#3f5f63', map: gDay, roughness: 0.3, emissive: new THREE.Color('#ffc978'), emissiveMap: gNight, emissiveIntensity: 0 }),
     brick: std({ color: '#c06a50', map: brick, roughness: 0.95 }),
     rail: std({ color: '#d8d8d4', roughness: 0.6, metalness: 0.3 }),

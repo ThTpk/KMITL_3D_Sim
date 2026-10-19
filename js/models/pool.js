@@ -12,7 +12,8 @@
 //   a 50 m pool, eight lanes; its west 30 m under an open-sided steel shelter: white round columns, a light
 //   gabled roof (ridge east-west) of white sheet with green translucent strips running down both slopes, a ridge
 //   cap, steel tie beams under it; the east 20 m open to the sky
-//   a single-storey red-brick entrance block at the west end with a white-framed glass door and a thin flat roof,
+//   a single-storey entrance block at the west end, clad in brown timber boards (red brick until a refit) with a
+//   band of dark louvre windows above, a white-framed glass door and a thin flat roof,
 //   reached by a small concrete bridge with steps over the ditch along the road
 //   east of the pool: a flat-roofed grey service block and an open shed with a rusty corrugated mono-pitch roof
 //   the Wellness & Sports Center south of the pool: brick below, grey cladding with a high window band above,
@@ -84,8 +85,13 @@ export function buildPool(owner) {
   // ---- brick entrance block at the west end, with its bridge over the ditch ----
   const EX0 = -306, EX1 = -298, EZ0 = -282.5, EZ1 = -270.5, EH = DECK + 3.6;
   A.box('concrete', EX0, EX1, 0, DECK, EZ0, EZ1);
-  A.box('brick', EX0, EX1, DECK, EH, EZ0, EZ1);
-  A.box('white', EX0 - 0.8, EX1 + 0.4, EH, EH + 0.3, EZ0 - 0.8, EZ1 + 0.8);
+  // re-surveyed 2026-10-19 from youtu.be/lod-jYKKEZ0 8:10: the block is now clad in brown timber boards with the
+  // pool's name and an "O3 KMITL" logo on its north face, and a band of dark louvre windows runs above it
+  A.box('timber', EX0, EX1, DECK, EH, EZ0, EZ1);
+  for (let y = DECK + 0.3; y < EH; y += 0.3) A.box('timberJoint', EX0 - 0.02, EX1 + 0.02, y - 0.02, y, EZ0 - 0.02, EZ1 + 0.02);
+  A.box('louvreDark', EX0 + 0.1, EX1 - 0.1, EH, EH + 1.3, EZ0 + 0.1, EZ1 - 0.1);
+  for (let y = EH + 0.15; y < EH + 1.3; y += 0.18) A.box('white', EX0, EX1, y, y + 0.03, EZ0, EZ1);
+  A.box('white', EX0 - 0.8, EX1 + 0.4, EH + 1.3, EH + 1.6, EZ0 - 0.8, EZ1 + 0.8);
   A.box('deck', EX1, -296, 0, DECK, EZ0, EZ1);
   const W = F('x', EX0, -1);
   onFace(A, 'white', W, -280.6, -276.2, DECK, EH - 0.4, 0, 0.08);
@@ -130,6 +136,7 @@ export function buildPool(owner) {
   A.box('white', -264, -255, 3.0, 3.25, -257, -254.5);                                // canopy over the door
 
   const MAT = mats({ ...BASE_MATS,
+    timber: { color: '#9a5f3a', roughness: 0.75 }, timberJoint: { color: '#6b3f26', roughness: 0.8 }, louvreDark: { color: '#3a4447', roughness: 0.5 },
     deck: { color: '#d8d3c8', roughness: 0.95 }, concrete: { color: '#c9c5bc', roughness: 1 },
     pool: { color: '#3fb1c9', roughness: 0.12, metalness: 0.1 }, lane: '#f2f2ee',
     rail: { color: '#d9dcdd', roughness: 0.5, metalness: 0.3 }, railDark: { color: '#2b2d30', roughness: 0.6 },
