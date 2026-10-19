@@ -13,8 +13,12 @@
 //               over the entrance steps, behind it a high open hall with a low gabled roof
 //   west block  x -273..-257, z 96..122: cream walls with windows, flat white roof
 //   south annex x -246..-232, z 117..126: low service block
+//   garden east of the hall: two steel umbrella shades over outdoor tables, dark panels on radial ribs round a
+//   central column (SIIE "Key locations" film 1:45, 2026-10-19; their places and sizes from the round shadows in the
+//   satellite imagery at x -215 / z 95 and under the trees south-east of it)
 import * as THREE from 'three';
 import { Acc, onFace, glassTex } from './ecc.js';
+import { lathe } from './kit.js';
 
 const P = 1.2, EAVE = 4.9;                               // plinth, eave height
 const EH = [-245.5, -224.5, 96, 117], CH = [-257, -245.5, 89.5, 120], WB = [-273, -257, 96, 122], SA = [-246, -232, 117, 126];
@@ -94,6 +98,22 @@ export function buildCanA(owner) {
     A.box('roofGrey', x0 - 0.3, x1 + 0.3, 3.6, 3.75, z0, z1 + 0.3);
   }
 
+  // ---- steel umbrella shades in the garden east of the hall ----
+  for (const [x, z, R] of [[-215.5, 95, 4.6], [-209, 102.5, 3.6]]) {
+    A.cyl('steel', x, z, 0.18, 0, 5.4, 10);
+    lathe(A, 'shade', x, z, [[0, 5.9], [R * 0.5, 5.55], [R, 4.75], [R, 4.6]], 16);
+    lathe(A, 'shade', x, z, [[R, 4.6], [R * 0.5, 5.4], [0, 5.75]], 16);              // underside
+    for (let i = 0; i < 8; i++) {
+      const t = (i / 8) * Math.PI * 2, c = Math.cos(t), s_ = Math.sin(t);
+      A.box('steel', x + c * R * 0.5 - 0.06, x + c * R * 0.5 + 0.06, 5.3, 5.62, z + s_ * R * 0.5 - 0.06, z + s_ * R * 0.5 + 0.06);
+    }
+    for (let i = 0; i < 4; i++) {                                                     // tables under it
+      const t = (i / 4) * Math.PI * 2 + 0.4, tx = x + Math.cos(t) * R * 0.55, tz = z + Math.sin(t) * R * 0.55;
+      A.box('plinth', tx - 0.7, tx + 0.7, 0.7, 0.78, tz - 0.4, tz + 0.4);
+      A.box('plinth', tx - 0.15, tx + 0.15, 0, 0.7, tz - 0.15, tz + 0.15);
+    }
+  }
+
   // ===== materials & meshes =====
   const gDay = glassTex(false), gNight = glassTex(true);
   const std = (o) => new THREE.MeshStandardMaterial({ roughness: 0.85, metalness: 0.02, ...o });
@@ -112,6 +132,8 @@ export function buildCanA(owner) {
     vent: std({ color: '#8d8f90', roughness: 0.7 }),
     roofGrey: std({ color: '#8f9294', roughness: 0.8, metalness: 0.2, side: THREE.DoubleSide }),
     roofWhite: std({ color: '#e7e5df', roughness: 0.9 }),
+    steel: std({ color: '#6b7075', roughness: 0.5, metalness: 0.5 }),
+    shade: std({ color: '#5a6066', roughness: 0.4, metalness: 0.3, transparent: true, opacity: 0.85, side: THREE.DoubleSide }),
   };
   const meshes = [];
   for (const [k, B] of Object.entries(A.b)) {

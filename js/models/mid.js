@@ -17,13 +17,17 @@
 //   a covered walk along its east side
 //   คลินิกเวชกรรม: a two-storey brick-faced block behind a tall white frame of slender square columns carrying a
 //   deep roof slab; a low wing with a long covered drop-off
-//   ภาคอัตโนมัติ: four storeys, white walls with cream floor bands and panels of grey louvres
+//   ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9,
+//   from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on
+//   the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed
+//   glazing, an orange sign box with the department's name over the entrance on the east front
 import * as THREE from 'three';
 import { Acc, F, onFace, block, pilotis, solar, hip, mats, meshes, BASE_MATS } from './kit.js';
 import { textTex } from './ecc.js';
 
 const SPEC = { ...BASE_MATS, wall: '#f1f0ec', band: '#f7f6f2', brick: { color: '#b0573d' }, cream: '#e9dcc0', louvre: { color: '#9a9ea0' },
-  glassGreen: { color: '#4f7f74', roughness: 0.25, metalness: 0.3 }, glassRoof: { color: '#a8bcc6', roughness: 0.2, metalness: 0.3 }, roofSheet: '#c3c5c4' };
+  glassGreen: { color: '#4f7f74', roughness: 0.25, metalness: 0.3 }, glassRoof: { color: '#a8bcc6', roughness: 0.2, metalness: 0.3 }, roofSheet: '#c3c5c4',
+  charcoal: '#41464b', slate: '#4f6c8a', slat: { color: '#8c9196', roughness: 0.6, metalness: 0.3 }, rust: '#c9622e', orangeSign: '#ef6a1f' };
 const done = (A, owner, top, extra = []) => ({ meshes: [...meshes(A, mats(SPEC), owner), ...extra], top });
 
 export function buildAlumni(owner) {
@@ -134,11 +138,44 @@ export function buildClinic(owner) {
 
 export function buildAutomation(owner) {
   const A = new Acc();
-  const o = { G: 4.2, FL: 3.6, n: 4, bay: 3.8, style: 'band', mats: { band: 'cream' } };
-  const t = block(A, -167, -139, -163, -138, o, {});
-  for (const f of [F('z', -138, 1), F('z', -163, -1)]) for (const x of [-160, -148]) onFace(A, 'louvre', f, x, x + 3.6, 4.2, t - 0.4, 0, 0.15);
-  A.box('roof', -166.7, -139.3, t, t + 0.12, -162.7, -138.3);
-  return done(A, owner, t + 0.9);
+  const X0 = -167, X1 = -139, Z0 = -163, Z1 = -138, G = 4.6, FL = 4.0, T = G + 2 * FL;   // three storeys
+  A.box('slate', X0, X1, 0, G, Z0, Z1);
+  A.box('charcoal', X0, X1, G, T + 1.0, Z0, Z1);
+  A.box('roof', X0 + 0.3, X1 - 0.3, T + 1.0, T + 1.1, Z0 + 0.3, Z1 - 0.3);
+  const faces = [[F('x', X1, 1), Z0, Z1, true], [F('z', Z0, -1), X0, X1, true], [F('z', Z1, 1), X0, X1, true], [F('x', X0, -1), Z0, Z1, false]];
+  for (const [f, a0, a1, front] of faces) {
+    for (const y of [G, G + FL, T + 0.85]) onFace(A, 'rust', f, a0 - 0.1, a1 + 0.1, y - 0.15, y + 0.2, 0, 0.35);   // orange floor edges
+    if (!front) { for (let a = a0 + 2; a < a1 - 3; a += 5) onFace(A, 'glass', f, a, a + 2.4, G + 1.2, T - 1.0, 0, 0.04); continue; }
+    // big slat screens on the upper floors, glazing behind
+    for (const [b0, b1] of [[a0 + 1.2, (a0 + a1) / 2 - 1.5], [(a0 + a1) / 2 + 1.5, a1 - 1.2]]) {
+      onFace(A, 'glass', f, b0, b1, G + 0.6, T - 0.4, 0, 0.04);
+      for (let a = b0; a <= b1; a += 0.45) onFace(A, 'slat', f, a - 0.06, a + 0.06, G + 0.3, T + 0.6, 0.1, 0.55);
+    }
+    // ground floor: dark-framed glazing in the slate-blue wall
+    for (let a = a0 + 1.5; a < a1 - 3; a += 4.2) {
+      onFace(A, 'glass', f, a, a + 3.2, 0.5, G - 0.8, 0, 0.04);
+      onFace(A, 'charcoal', f, a - 0.12, a + 3.32, G - 0.8, G - 0.65, 0, 0.08);
+    }
+  }
+  // entrance canopy and the orange sign box on the east front
+  const E = F('x', X1, 1), zc = (Z0 + Z1) / 2;
+  onFace(A, 'charcoal', E, zc - 4, zc + 4, G - 1.0, G - 0.6, 0, 2.6);
+  onFace(A, 'orangeSign', E, zc - 4.5, zc + 1.5, G + 0.9, G + 3.1, 0.3, 0.9);
+  const x = X1 + 0.92, y0 = G + 1.1, y1 = G + 2.9, zS = zc + 1.3, zN = zc - 4.3;                    // faces east: south on the left
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute([x, y0, zS, x, y0, zN, x, y1, zN, x, y0, zS, x, y1, zN, x, y1, zS], 3));
+  g.setAttribute('uv', new THREE.Float32BufferAttribute([0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1], 2));
+  g.computeVertexNormals();
+  g.userData.owner = new Int32Array(2).fill(owner);
+  const cv = document.createElement('canvas'); cv.width = 1024; cv.height = 320;
+  const c = cv.getContext('2d');
+  c.fillStyle = '#ffffff'; c.textAlign = 'center'; c.textBaseline = 'middle';
+  c.font = '600 92px "IBM Plex Sans Thai", sans-serif'; c.fillText('ภาควิชาวิศวกรรมอัตโนมัติ', 512, 115);
+  c.font = '500 70px "IBM Plex Sans Thai", sans-serif'; c.fillText('Automation Engineering', 512, 225);
+  const tex = new THREE.CanvasTexture(cv); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
+  const sign = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ map: tex, transparent: true, alphaTest: 0.3, roughness: 0.7 }));
+  sign.userData.kind = 'building';
+  return done(A, owner, T + 1.1, [sign]);
 }
 
 const rect = (x0, x1, z0, z1) => [[x0, z0], [x1, z0], [x1, z1], [x0, z1], [x0, z0]];

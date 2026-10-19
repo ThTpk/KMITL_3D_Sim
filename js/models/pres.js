@@ -11,7 +11,9 @@
 //   roof parapet with the institute's name in blue; orange penthouse with the emblem over the core
 //   porte-cochère: orange-clad canopy on round white columns in front of the west half, name on its fascia
 //   east end: brick panels in a white grid, few windows; west end: brick bays, balcony bays, central glazed core
-//   rising above the roof; south face: continuous balcony slabs with rails
+//   rising above the roof; south face: continuous balcony slabs with rails in a white frame, the west part with
+//   orange-brick balcony fronts on floors 2-7, the institute's name on the south parapet too (south face reworked
+//   2026-10-19 from the SIIE "Key locations" film, 5:40, looking north across the garden)
 import * as THREE from 'three';
 import { Acc, onFace, glassTex, brickTex, textTex } from './ecc.js';
 
@@ -73,6 +75,9 @@ export function buildPres(owner) {
     onFace(A, 'rail', S, X0, X1, y + 0.45, y + 1.05, 1.5, 1.55);
   }
   for (let x = X0; x <= X1 + 0.01; x += 6.6) onFace(A, 'wall', S, Math.max(X0, x - 0.3), Math.min(X1, x + 0.3), G - 0.2, ROOF, 0, 1.6);
+  // west part: orange-brick balcony fronts on floors 2-7, white slabs between them
+  for (let k = 2; k <= 7; k++) onFace(A, 'brick', S, X0 + 0.3, X0 + 19.5, lvY(k) + 0.05, lvY(k) + 1.05, 1.56, 1.62);
+  onFace(A, 'wall', S, X0 - 0.1, X1 + 0.1, ROOF - 0.2, ROOF + 1.4, 0, 1.7);                                     // deep white top frame
 
   // ---- east end: brick panels in a white grid (3 bays), few small windows, glazed entrance at the north ----
   {
@@ -184,6 +189,14 @@ export function buildPres(owner) {
     g.strokeStyle = '#a77a22'; g.lineWidth = 10; g.beginPath(); g.arc(128, 128, 96, 0, Math.PI * 2); g.stroke();
     const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; return t;
   })();
+  // the name on the south parapet (faces south: viewer looks north, so west is on the left)
+  {
+    const g = new THREE.BufferGeometry(), z = ZS + 1.73, y0 = ROOF - 0.05, y1 = ROOF + 1.2, xw = -62, xe = -16;
+    g.setAttribute('position', new THREE.Float32BufferAttribute([xw, y0, z, xe, y0, z, xe, y1, z, xw, y0, z, xe, y1, z, xw, y1, z], 3));
+    g.setAttribute('uv', new THREE.Float32BufferAttribute([0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1], 2));
+    g.computeVertexNormals();
+    add(g, new THREE.MeshStandardMaterial({ map: textTex('สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง', { color: '#2f5fb0', h: 150 }), transparent: true, alphaTest: 0.3, roughness: 0.8 }));
+  }
   const ex = (PH[0] + PH[1]) / 2;
   signN(emblem, ex + 1.6, ex - 1.6, ROOF + 0.9, ROOF + 4.1, PH[2] - 0.03);
   return { meshes, top: ROOF + 6 };

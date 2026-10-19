@@ -6,7 +6,7 @@
 // (the KLLC tower and its entrance). Photos were only looked at.
 //
 // x = east, z = south, y = up.
-//   library x 66..110 / z -10..44: five storeys of red brick with recessed strip windows of grey glass, a white
+//   library x 66..110 / z -10..44: four tall storeys (KMITL building register LI-01) of red brick with recessed strip windows of grey glass, a white
 //   roof edge, a long raised skylight on the roof
 //   KLLC tower x 32..60 / z 30..62: seven storeys of cream render with full-height vertical fins and horizontal
 //   louvre screens over the windows, a glazed ground-floor entrance on the west
@@ -16,7 +16,7 @@ import { Acc, F, onFace, facade, block, solar, mats, meshes, BASE_MATS } from '.
 export function buildLib(owner) {
   const A = new Acc();
   // library: brick with strip windows
-  const ob = { G: 4.4, FL: 3.9, n: 5, bay: 5, style: 'band', mats: { wall: 'brick', band: 'white', pier: 'brick', glass: 'glass' } };
+  const ob = { G: 5.0, FL: 5.0, n: 4, bay: 5, style: 'band', mats: { wall: 'brick', band: 'white', pier: 'brick', glass: 'glass' } };
   const tl = block(A, 66, 110, -10, 44, ob, { w: { style: 'brick' } });
   A.box('glassRoof', 85, 97, tl, tl + 1.8, -2, 29);
   A.box('white', 84.6, 97.4, tl + 1.8, tl + 2.0, -2.4, 29.4);
