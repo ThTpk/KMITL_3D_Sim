@@ -3,17 +3,23 @@
 // Google Street View on the road along the south face: close up at the west end (entrance steps, car-park
 // ramp, open ground floor) and from 22 m beyond the east end (whole east elevation and the south face in
 // perspective; height from the floor count, about 30 m). The north face is not visible from any road and
-// follows the end walls. Photos were only looked at; everything here is procedural.
+// follows the end walls.
+// This is also the HM building (อาคารเฉลิมพระเกียรติ 7 รอบ, "His Majesty the King's 7th Cycle Birthday
+// Anniversary Building"): the SIIE film (youtu.be/lod-jYKKEZ0 1:52-2:02) shows the SIIE logo on the brick pier
+// in its entrance, and the map in youtu.be/XKpuIm42uQc 2:22 puts both names on this footprint. The south face
+// was reworked from those frames on 2026-10-19. Photos were only looked at; everything here is procedural.
 //
 // x = east, z = south, y = up. Footprint x -347..-255, z 138..163 (OSM outline).
 //   ground floor 5 m, open behind square white columns, with broad steps up from the road and a car-park
 //   ramp at the west; seven floors of 3.55 m above
-//   south face: white floor slabs, dark-brown vertical louvre screens in front of the glass, lighter open
-//   balconies with rails on floors 2-3, a white pleated panel at the base of the east part
+//   south face: white floor slabs; on floors 3-7 open balconies behind cream parapets with a rusty rail on top,
+//   and vertical strips of horizontal brown slats standing off them every 5.6 m; open balconies with rails on
+//   floors 1-2; a white pleated panel at the base of the east part; the building's English name in blue
+//   on the south fascia
 //   ends and north: beige walls in a white frame (floor bands, corner strips), small punched windows
 //   stair/lift core at x -292..-281 a little above the roof, lightning mast
 import * as THREE from 'three';
-import { Acc, onFace, glassTex } from './ecc.js';
+import { Acc, onFace, glassTex, textTex } from './ecc.js';
 
 const X0 = -347, X1 = -255, Z0 = 138, Z1 = 163, G = 5.0, FL = 3.55, NF = 7, ROOF = G + NF * FL;   // 29.85
 const CORE = [-292, -281];
@@ -39,15 +45,25 @@ export function buildSiie(owner) {
   for (let k = 1; k <= NF; k++) {
     const y = lvY(k), top = k === NF ? ROOF : lvY(k + 1);
     onFace(A, 'white', S, X0, X1, y - 0.15, y + 0.35, 0, 0.9);                       // floor slab edge
-    onFace(A, 'glass', S, X0 + 1, X1 - 1, y + 0.35, top - 0.15, -0.6, -0.55);
+    if (k <= 2) onFace(A, 'glass', S, X0 + 1, X1 - 1, y + 0.35, top - 0.15, -0.6, -0.55);
+    else {                                                                            // cream back wall, windows
+      onFace(A, 'cream', S, X0 + 1, X1 - 1, y + 0.35, top - 0.15, -0.6, -0.55);
+      for (let x = X0 + 1.6; x < X1 - 3; x += 4.2) if (x + 2.6 < CORE[0] || x > CORE[1]) onFace(A, 'glass', S, x, x + 2.6, y + 1.0, top - 0.6, -0.55, -0.5);
+    }
     if (k <= 2) {                                                                     // open balconies, rails
       onFace(A, 'rail', S, X0 + 1, X1 - 1, y + 0.35, y + 1.4, 0.7, 0.75);
-    } else {                                                                          // louvre screens
-      for (let x = X0 + 1.2; x < X1 - 1; x += 0.55) {
-        if (x > CORE[0] && x < CORE[1]) continue;
-        onFace(A, 'louvre', S, x, x + 0.12, y + 0.35, top - 0.15, 0.15, 0.6);
+    } else {                                                                          // cream balcony parapets
+      for (const [a0, a1] of [[X0 + 1, CORE[0]], [CORE[1], X1 - 1]]) {
+        onFace(A, 'cream', S, a0, a1, y + 0.35, y + 1.35, 0.55, 0.75);
+        onFace(A, 'rust', S, a0, a1, y + 1.35, y + 1.5, 0.55, 0.78);                   // rusty rail on top
       }
     }
+  }
+  // vertical strips of horizontal brown slats standing off the balconies, floors 3 to the roof
+  for (let x = X0 + 2.5; x < X1 - 2; x += 5.6) {
+    if (x + 2.1 > CORE[0] && x < CORE[1]) continue;
+    for (let y = lvY(3) - 0.3; y < ROOF - 0.4; y += 0.24) onFace(A, 'louvre', S, x, x + 2.1, y, y + 0.11, 0.85, 1.0);
+    for (const xx of [x, x + 2.0]) onFace(A, 'louvre', S, xx, xx + 0.1, lvY(3) - 0.3, ROOF - 0.4, 0.78, 0.85);
   }
   onFace(A, 'white', S, CORE[0], CORE[1], G, ROOF + 1.6, 0, 1.0);                    // core faced in white
   for (let k = 1; k <= NF; k++) onFace(A, 'glass', S, CORE[0] + 4, CORE[1] - 4, lvY(k) + 0.6, lvY(k) + 2.8, 1.0, 1.05);
@@ -84,7 +100,9 @@ export function buildSiie(owner) {
     plinth: std({ color: '#cfcbc3', roughness: 1 }),
     dark: std({ color: '#2a2a2a', roughness: 1 }),
     glass: std({ color: '#44535c', map: gDay, roughness: 0.3, emissive: new THREE.Color('#ffc978'), emissiveMap: gNight, emissiveIntensity: 0 }),
-    louvre: std({ color: '#5a4a3f', roughness: 0.6, metalness: 0.2 }),
+    louvre: std({ color: '#6a4f45', roughness: 0.6, metalness: 0.2 }),
+    cream: std({ color: '#ece4d4' }),
+    rust: std({ color: '#8c4a35', roughness: 0.8 }),
     rail: std({ color: '#d9dcdf', roughness: 0.4, metalness: 0.5 }),
     roof: std({ color: '#8d8f8f', roughness: 0.95 }),
     plant: std({ color: '#bfc0bf', roughness: 0.8 }),
@@ -101,6 +119,17 @@ export function buildSiie(owner) {
     mesh.castShadow = mesh.receiveShadow = true;
     mesh.userData.kind = 'building';
     meshes.push(mesh);
+  }
+  // the building's name in blue on the south fascia
+  {
+    const z = Z1 + 1.02, y0 = ROOF - 0.05, y1 = ROOF + 0.95, xa = -340, xb = -296;
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute([xa, y0, z, xb, y0, z, xb, y1, z, xa, y0, z, xb, y1, z, xa, y1, z], 3));
+    g.setAttribute('uv', new THREE.Float32BufferAttribute([0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1], 2));
+    g.computeVertexNormals();
+    const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ map: textTex("His Majesty the King's 7th Cycle Birthday Anniversary Building", { color: '#2f45b5', font: 'Times New Roman', weight: 700 }), transparent: true, alphaTest: 0.3 }));
+    m.userData.kind = 'building'; m.geometry.userData.owner = new Int32Array(2).fill(owner);
+    meshes.push(m);
   }
   return { meshes, top: ROOF + 6 };
 }
