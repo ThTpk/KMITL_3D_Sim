@@ -16,6 +16,10 @@
 //   the track edge
 //   banks: low grassed embankment round the rest of the oval
 //   four lattice floodlight towers; a scoreboard on the north bank
+//   from KMITL Channel+ "KMITL Share Lo" EP.5 (youtu.be/z4VKHaCeOK0, drone and ground shots, 2026-10-19): the KMITL
+//   letters are big, slanted and fill the lower tier; the VIP stand is crowned by a white peaked frame with the crest;
+//   two groups of six flagpoles with Thai flags on brick bases at the south end; a red-brick pavilion tower with a
+//   white top in the radial garden east of the track, on the stand's axis
 import * as THREE from 'three';
 import { Acc, textTex, canvasTex } from './ecc.js';
 
@@ -50,8 +54,8 @@ export function buildStad(owner) {
   const letter = (() => {
     const cv = document.createElement('canvas'); cv.width = COLS; cv.height = ROWS;
     const g = cv.getContext('2d'); g.fillStyle = '#000'; g.fillRect(0, 0, COLS, ROWS);
-    g.fillStyle = '#fff'; g.font = 'bold 7px Arial'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    for (const x0 of [0.08, 0.6]) ['K', 'M', 'I', 'T', 'L'].forEach((ch, j) => g.fillText(ch, (x0 + j * 0.068 + 0.03) * COLS, ROWS - 4.4));
+    g.fillStyle = '#fff'; g.font = 'italic bold 10px Arial'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    for (const x0 of [0.06, 0.57]) ['K', 'M', 'I', 'T', 'L'].forEach((ch, j) => g.fillText(ch, (x0 + j * 0.074 + 0.035) * COLS, ROWS - 3.6));
     const d = g.getImageData(0, 0, COLS, ROWS).data;
     return (x, y) => {
       if (x < 0 || x >= COLS || y < 0 || y >= ROWS) return null;
@@ -131,6 +135,14 @@ export function buildStad(owner) {
     A.box('win', X + 0.62, X + 0.66, 6.9, 8.6, Z - 3.6, Z + 3.6);
     A.box('railW', X + 0.4, X + 0.6, 9.6, 10.6, Z - 4.4, Z + 4.4);
     A.box('white', X - 7.2, X - 6.6, 9.6, 13.4, Z - 4.6, Z + 4.6);                 // banner board
+    // white peaked frame over the VIP box (two raking members meeting over the crest)
+    for (const sd of [-1, 1]) {
+      const n = 8;
+      for (let i = 0; i < n; i++) {
+        const za = Z + sd * (5.2 - (5.2 * i) / n), zb = Z + sd * (5.2 - (5.2 * (i + 1)) / n), ya = 9.6 + (5.2 * i) / n, yb = 9.6 + (5.2 * (i + 1)) / n;
+        A.box('white', X - 7.6, X + 0.8, Math.min(ya, yb), Math.max(ya, yb) + 0.5, Math.min(za, zb), Math.max(za, zb));
+      }
+    }
     plane(textTex('KMITL SPORT WORLD', { w: 1024, h: 120, color: '#8e8e8a' }), X + 2.62, 3.4, 4.6, Z + 4.4, Z - 4.4);
     plane(canvasTex(512, 256, (g, w, h) => {                                        // the crest banner: blue and yellow with the shield
       g.fillStyle = '#2f5e8e'; g.fillRect(0, 0, w, h);
@@ -196,6 +208,30 @@ export function buildStad(owner) {
     A.quad('lamp', [hc[0] - px * 2.5, H, hc[1] - pz * 2.5], [hc[0] + px * 2.5, H, hc[1] + pz * 2.5], [hc[0] + px * 2.5, H + 3.2, hc[1] + pz * 2.5], [hc[0] - px * 2.5, H + 3.2, hc[1] - pz * 2.5]);
     A.box('mast', x - 2.6, x + 2.6, H - 0.2, H, z - 2.6, z + 2.6);
   }
+  // ---- two groups of six flagpoles on brick bases at the south end ----
+  for (const x0 of [-660, -604]) {
+    A.box('brickBase', x0 - 1, x0 + 13, 0, 0.9, -170.5, -168.5);
+    for (let i = 0; i < 6; i++) {
+      const x = x0 + i * 2.4;
+      A.cyl('mast', x, -169.5, 0.1, 0.9, 16, 6);
+      for (let k = 0; k < 3; k++) A.box(k === 1 ? 'flagBlue' : k === 0 ? 'flagRed' : 'flagRed', x + 0.1, x + 2.2, 14.2 + k * 0.45 - (k === 1 ? 0 : 0), 14.65 + k * 0.45, -169.52, -169.48);
+      A.box('flagWhite', x + 0.1, x + 2.2, 14.55, 14.65, -169.53, -169.47);
+      A.box('flagWhite', x + 0.1, x + 2.2, 15.1, 15.2, -169.53, -169.47);
+    }
+  }
+  // ---- red-brick pavilion tower with a white top, east of the track on the stand's axis ----
+  {
+    const x = -548, z = -256;
+    A.box('brickBase', x - 3, x + 3, 0, 6.5, z - 3, z + 3);
+    for (const [a, b] of [[-3, -1], [1, 3]]) for (const [c, d] of [[-3, -1], [1, 3]]) A.box('frameW', x + a, x + b, 6.5, 11.5, z + c, z + d);
+    A.box('frameW', x - 3.3, x + 3.3, 11.5, 12.6, z - 3.3, z + 3.3);
+    A.box('frameW', x - 2.2, x + 2.2, 12.6, 14.2, z - 2.2, z + 2.2);
+    A.box('gold', x - 0.6, x + 0.6, 14.2, 15.6, z - 0.6, z + 0.6);
+    for (let i = 0; i < 12; i++) {                                                 // radial garden paths
+      const t = (i / 12) * Math.PI * 2, c = Math.cos(t), sn = Math.sin(t);
+      for (let r = 6; r < 26; r += 2) A.box('path', x + c * r - 0.6, x + c * r + 0.6, 0, 0.06, z + sn * r - 0.6, z + sn * r + 0.6);
+    }
+  }
   // ---- scoreboard on the north bank ----
   A.box('frameW', -637, -619, 0, 7.5, -353.5, -352.6);
   A.box('board', -635.6, -620.4, 4.0, 7.0, -352.6, -352.5);
@@ -230,6 +266,8 @@ export function buildStad(owner) {
     mast: std({ color: '#d8dadc', roughness: 0.4, metalness: 0.6 }),
     lamp: std({ color: '#f5f3e8', emissive: new THREE.Color('#fff6d8'), emissiveIntensity: 0.15, side: THREE.DoubleSide }),
     frameW: std({ color: '#f2f2f0' }),
+    brickBase: std({ color: '#b5533c', roughness: 0.95 }), gold: std({ color: '#d4a63a', metalness: 0.5, roughness: 0.4 }),
+    flagRed: std({ color: '#d1263b', side: THREE.DoubleSide }), flagBlue: std({ color: '#283a8f', side: THREE.DoubleSide }), flagWhite: std({ color: '#f4f4f4', side: THREE.DoubleSide }),
     board: std({ color: '#1d1f22', emissive: new THREE.Color('#c0392b'), emissiveIntensity: 0.25 }),
   };
   const meshes = [];
