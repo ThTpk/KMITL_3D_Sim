@@ -4,7 +4,7 @@
 
 สำรวจเมื่อ 2026-10-16 ถึงปัจจุบัน ภาพจาก Google Street View / Google Maps / ภาพดาวเทียม ใช้เป็นข้อมูลอ้างอิงในการขึ้นรูปเท่านั้น ไม่ได้แสดงในหน้าเว็บ รูปทรงทั้งหมดสร้างด้วยโค้ด
 
-## สรุปโมเดลเฉพาะ (98 หลัง)
+## สรุปโมเดลเฉพาะ (102 หลัง)
 
 | # | อาคาร | ไฟล์โมเดล | ชั้น | สูง (ม.) | OSM id |
 |---|---|---|---|---|---|
@@ -12,100 +12,104 @@
 | 2 | [สระว่ายน้ำ สจล.](#pool) | `js/models/pool.js` | 1 | 9.6 | -2 |
 | 3 | [ทางเดินมีหลังคาริมทางรถไฟ](#railwalk) | `js/models/railwalk.js` | 1 | 3 | -3 |
 | 4 | [สะพานลอยหน้าอาคารนวัตกรรมการเรียนรู้](#footbridge) | `js/models/innov.js` | 1 | 8.6 | -4 |
-| 5 | [หอประชุมเจ้าพระยาสุรวงษ์ไวยวัฒน์ (วร บุนนาค)](#hall) | `js/models/hall.js` | 3 | 25 | 190697575 |
-| 6 | [อาคารปฏิบัติการรวมวิศวกรรม 1](#englab1) | `js/models/englab1.js` | 6 | 25.8 | 190886412 |
-| 7 | [ภาควิชาวิศวกรรมเกษตร](#ageng) | `js/models/deps.js` | 2 | 10.2 | 190890102 |
-| 8 | [SIIE - Faculty Of Engineering, International Program](#siie) | `js/models/siie.js` | 8 | 30.9 | 516204082 |
-| 9 | [ภาคโยธา](#civil) | `js/models/civil.js` | 2 | 10.3 | 516204085 |
-| 10 | [ตึกบูรณาการ](#integ) | `js/models/engw.js` | 5 | 23.2 | 190886413 |
-| 11 | [ลานจอดรถ](#carportinteg) | `js/models/carports.js` |  | 3.1 | 190886415 |
-| 12 | [ตึกที่ติดกับหอประชุมสถาปัตยกรรมศาสตร์](#archsouth) | `js/models/archs.js` | 4 | 16.3 | 190880792 |
-| 13 | [หอประชุมสถาปัตยกรรมศาสตร์](#archaud) | `js/models/archs.js` |  | 16.1 | 190881393 |
-| 14 | [อาคารเรียนรวมสถาปัตย์](#archlec) | `js/models/archs.js` | 3 | 16.3 | 516204090 |
-| 15 | [shop พลังงาน](#shoppower) | `js/models/shops.js` | 2 | 9 | 1243388144 |
-| 16 | [shop ไม้](#shopwood1) | `js/models/shops.js` | 2 | 9 | 1243388146 |
-| 17 | [shop Textile](#shoptextile) | `js/models/shops.js` | 2 | 9 | 1243388147 |
-| 18 | [shop ดำ](#shopblack) | `js/models/shops.js` | 2 | 9 | 1491133180 |
-| 19 | [shop furniture](#shopfurn1) | `js/models/shops.js` | 2 | 9 | 1491133181 |
-| 20 | [shop ส้ม](#shoporange) | `js/models/shops.js` | 2 | 9 | 1491133182 |
-| 21 | [shop เซรามิค](#shopceramic2) | `js/models/shops.js` | 2 | 9 | 1491133183 |
-| 22 | [shop เหล็ก](#shopsteel) | `js/models/shops.js` | 2 | 9 | 1491133184 |
-| 23 | [shop ไม้](#shopwood2) | `js/models/shops.js` | 2 | 9 | 1491133185 |
-| 24 | [shop plastic](#shopplastic) | `js/models/shops.js` | 2 | 9 | 1491133186 |
-| 25 | [shop jewelry](#shopjewel) | `js/models/shops.js` | 1 | 6 | 1491133187 |
-| 26 | [shop ส้มเล็ก](#shoporanges) | `js/models/shops.js` | 1 | 6 | 1491133188 |
-| 27 | [shop ceramic](#shopceramic1) | `js/models/shops.js` | 1 | 6 | 1491133189 |
-| 28 | [shop furniture](#shopfurn3) | `js/models/shops.js` | 1 | 6 | 1491133190 |
-| 29 | [shop furniture](#shopfurn2) | `js/models/shops.js` | 2 | 9 | 1491133191 |
-| 30 | [ลานเชียร์](#cheer) | `js/models/small.js` |  |  | 404292180 |
-| 31 | [ลานจอดรถ](#carportcanc2) | `js/models/carports.js` |  | 3.1 | 190886414 |
-| 32 | [ยิมเล็ก](#gym) | `js/models/engw.js` |  | 13.5 | 190886418 |
-| 33 | [ลานจอดรถ](#carportcanc1) | `js/models/carports.js` |  | 3.1 | 190886419 |
-| 34 | [ภาควิชาวิศวกรรมวัดและควบคุม](#control) | `js/models/deps.js` | 3 | 12.5 | 190889047 |
-| 35 | [เครื่องกล workshop](#workshopw) | `js/models/deps.js` | 2 | 8.4 | 190889049 |
-| 36 | [ภาควิชาวิศวกรรมเครื่องกล](#mech) | `js/models/engw.js` | 4 | 17.2 | 190889051 |
-| 37 | [เครื่องกล workshop](#workshope) | `js/models/deps.js` | 2 | 8.4 | 190889053 |
-| 38 | [โรงอาหาร 3 (C)](#canc) | `js/models/engw.js` | 2 | 10.8 | 190890100 |
-| 39 | [อาคารเรียนรวม คณะวิศวกรรมศาสตร์ (12 ชั้น)](#e12) | `js/models/e12.js` | 12 | 47.5 | 516204086 |
-| 40 | [ภาคอุตสาหการ](#indus) | `js/models/engw.js` | 3 | 14.5 | 516204087 |
-| 41 | [อัฒจันทร์ สนามกีฬากลาง](#stad) | `js/models/stad.js` | 3 | 17 | 1138463206 |
-| 42 | [หอพักนักศึกษา อาคาร 11](#dorm11) | `js/models/dorms.js` | 10 | 36.2 | 1206348758 |
-| 43 | [สำนักหอสมุดกลาง อาคารเฉลิมพระเกียรติ](#lib) | `js/models/lib.js` | 4 | 21 | 190697423 |
-| 44 | [หอประชุมวิศวะ](#eaud) | `js/models/eaud.js` | 2 | 17.4 | 190868497 |
-| 45 | [หอประชุมวิศวะ](#ewing) | `js/models/ewing.js` | 2 | 11.3 | 190868498 |
-| 46 | [ตึกโทรคมนาคม](#tel) | `js/models/tel.js` | 4 | 14.8 | 190868528 |
-| 47 | [ลานจอดรถ](#carportctrl1) | `js/models/carports.js` |  | 3.1 | 190870221 |
-| 48 | [ลานจอดรถ](#carportctrl2) | `js/models/carports.js` |  | 3.1 | 190870222 |
-| 49 | [ตึกบี](#bbld) | `js/models/bbld.js` | 4 | 13.6 | 190870224 |
-| 50 | [โรงอาหาร A คณะวิศวกรรมศาสตร์](#cana) | `js/models/cana.js` | 1 | 8.6 | 190880523 |
-| 51 | [หอประชุมจุฬาภรณ์วลับลักษณ์](#chaud) | `js/models/chaud.js` | 3 | 15.8 | 265574872 |
-| 52 | [จุฬาภรณ์วลัยลักษณ์ 2](#chula2) | `js/models/chula2.js` | 6 | 23.4 | 265574874 |
-| 53 | [ตึกปฏิบัติการณ์หลังใหม่](#newlab) | `js/models/newlab.js` | 10 | 38 | 265588799 |
-| 54 | [โรงอาหาร คณะวิทยาศาสตร์](#scican) | `js/models/scican.js` |  | 9.5 | 265596517 |
-| 55 | [ตึก วท.](#witt) | `js/models/witt.js` | 2 | 9.2 | 265596518 |
-| 56 | [สโมสรนักศึกษา](#club) | `js/models/small.js` | 2 |  | 265596519 |
-| 57 | [Lawson 108](#lawson) | `js/models/small.js` |  |  | 265596521 |
-| 58 | [A-Building](#abld) | `js/models/abld.js` | 6 | 21.8 | 292807567 |
-| 59 | [อาคารเฉลิมพระเกียรติ 55 พรรษา สมเด็จพระเทพฯ](#t55) | `js/models/t55.js` | 8 | 30 | 309556942 |
-| 60 | [โรงอาหาร ตึก L](#lcan) | `js/models/small.js` |  |  | 309557500 |
-| 61 | [ตึก ECC](#ecc) | `js/models/ecc.js` | 10 | 39.5 | 309557571 |
-| 62 | [โรงอาหาร ตึกพระเทพฯ](#thepcan) | `js/models/mid.js` | 2 | 10.7 | 309919518 |
-| 63 | [อาคารเรียนรวม สมเด็จพระเทพฯ](#thep) | `js/models/thep.js` | 2 | 9.4 | 309919519 |
-| 64 | [คณะทันตแพทยศาสตร์](#dent) | `js/models/dent.js` | 5 | 22.2 | 501351775 |
-| 65 | [สโมสรนักศึกษา คณะวิศวกรรมศาสตร์](#engclub) | `js/models/small.js` | 1 |  | 516204084 |
-| 66 | [ภาคอัตโนมัติ](#automation) | `js/models/mid.js` | 3 | 16 | 516204094 |
-| 67 | [ภาคไฟฟ้าและพลังงานไฟฟ้า](#elec) | `js/models/elec.js` | 2 | 11.6 | 516204095 |
-| 68 | [ธนาคารและไปรษณีย์](#bank) | `js/models/mid.js` | 1 | 4.3 | 516204096 |
-| 69 | [นาโน](#nano) | `js/models/mid.js` | 2 | 9 | 516204097 |
-| 70 | [คลินิกเวชกรรม สจล.](#clinic) | `js/models/mid.js` | 2 | 9.6 | 516204098 |
-| 71 | [ตึกกระจก](#glass) | `js/models/small.js` | 2 |  | 516204099 |
-| 72 | [อาคารจอมไตร](#jomtrai) | `js/models/jomtrai.js` | 3 | 13.4 | 516308731 |
-| 73 | [สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#pres) | `js/models/pres.js` | 10 | 38.8 | 516308733 |
-| 74 | [อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช](#royal) | `js/models/royal.js` | 1 | 22 | 516308734 |
-| 75 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
-| 76 | [CMKL University](#cmkl) | `js/models/cmkl.js` | 10 | 38.9 | 784091346 |
-| 77 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
-| 78 | [อินทนิล](#inthanin) | `js/models/small.js` |  |  | 1136346802 |
-| 79 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
-| 80 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
-| 81 | [7-Eleven](#seven) | `js/models/small.js` |  |  | 1138469403 |
-| 82 | [คาเฟ่ อเมซอน](#amazon) | `js/models/small.js` |  |  | 1138988422 |
-| 83 | [หอพักนักศึกษา อาคาร 9](#dorm9) | `js/models/dorms.js` | 10 | 36.2 | 1206348756 |
-| 84 | [อาคารนวัตกรรมการเรียนรู้](#innov) | `js/models/innov.js` | 11 | 45.7 | 1561993799 |
-| 85 | [สโมสรนักศึกษา คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี](#kruclub) | `js/models/small.js` |  |  | 1564107227 |
-| 86 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
-| 87 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
-| 88 | [KMITL Kosen Dormitory](#dormks) | `js/models/dorms.js` | 5 | 22.9 | 516204078 |
-| 89 | [สมาคมศิษย์เก่า](#alumni) | `js/models/mid.js` | 2 | 13.7 | 516204080 |
-| 90 | [โรงอาหารถิ่นชงโค](#tincan) | `js/models/small.js` |  |  | 1049724130 |
-| 91 | [KMITL Dormitory](#dormk) | `js/models/dorms.js` | 5 | 22.9 | 1116753937 |
-| 92 | [หอพักนักศึกษา อาคาร 10](#dorm10) | `js/models/dorms.js` | 10 | 36.2 | 1206348757 |
-| 93 | [หอพักนักศึกษา อาคาร 12](#dorm12) | `js/models/dorms.js` | 10 | 36.2 | 1206348759 |
-| 94 | [โรงอาหาร คณะเทคโนโลยีสารสนเทศ](#itcan) | `js/models/itcan.js` | 2 | 10.4 | 314205127 |
-| 95 | [คณะบริหารธุรกิจ](#kbs) | `js/models/kbs.js` | 6 | 29.6 | 516308732 |
-| 96 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
-| 97 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
-| 98 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
+| 5 | [ตึก L คณะวิศวกรรมศาสตร์](#lbld) | `js/models/lbld.js` | 4 | 17.8 | -5 |
+| 6 | [Sky Walk สจล. (สะพานลอยข้ามทางรถไฟ)](#skywalk) | `js/models/skywalk.js` | 1 | 10.2 | -6 |
+| 7 | [หอประชุมเจ้าพระยาสุรวงษ์ไวยวัฒน์ (วร บุนนาค)](#hall) | `js/models/hall.js` | 3 | 25 | 190697575 |
+| 8 | [อาคารปฏิบัติการรวมวิศวกรรม 1](#englab1) | `js/models/englab1.js` | 6 | 25.8 | 190886412 |
+| 9 | [ภาควิชาวิศวกรรมเกษตร](#ageng) | `js/models/deps.js` | 2 | 10.2 | 190890102 |
+| 10 | [SIIE - Faculty Of Engineering, International Program](#siie) | `js/models/siie.js` | 8 | 30.9 | 516204082 |
+| 11 | [ภาคโยธา](#civil) | `js/models/civil.js` | 2 | 10.3 | 516204085 |
+| 12 | [ตึกบูรณาการ](#integ) | `js/models/engw.js` | 5 | 23.2 | 190886413 |
+| 13 | [ลานจอดรถ](#carportinteg) | `js/models/carports.js` |  | 3.1 | 190886415 |
+| 14 | [ตึกที่ติดกับหอประชุมสถาปัตยกรรมศาสตร์](#archsouth) | `js/models/archs.js` | 4 | 16.3 | 190880792 |
+| 15 | [หอประชุมสถาปัตยกรรมศาสตร์](#archaud) | `js/models/archs.js` |  | 16.1 | 190881393 |
+| 16 | [อาคารเรียนรวมสถาปัตย์](#archlec) | `js/models/archs.js` | 3 | 16.3 | 516204090 |
+| 17 | [shop พลังงาน](#shoppower) | `js/models/shops.js` | 2 | 9 | 1243388144 |
+| 18 | [shop ไม้](#shopwood1) | `js/models/shops.js` | 2 | 9 | 1243388146 |
+| 19 | [shop Textile](#shoptextile) | `js/models/shops.js` | 2 | 9 | 1243388147 |
+| 20 | [shop ดำ](#shopblack) | `js/models/shops.js` | 2 | 9 | 1491133180 |
+| 21 | [shop furniture](#shopfurn1) | `js/models/shops.js` | 2 | 9 | 1491133181 |
+| 22 | [shop ส้ม](#shoporange) | `js/models/shops.js` | 2 | 9 | 1491133182 |
+| 23 | [shop เซรามิค](#shopceramic2) | `js/models/shops.js` | 2 | 9 | 1491133183 |
+| 24 | [shop เหล็ก](#shopsteel) | `js/models/shops.js` | 2 | 9 | 1491133184 |
+| 25 | [shop ไม้](#shopwood2) | `js/models/shops.js` | 2 | 9 | 1491133185 |
+| 26 | [shop plastic](#shopplastic) | `js/models/shops.js` | 2 | 9 | 1491133186 |
+| 27 | [shop jewelry](#shopjewel) | `js/models/shops.js` | 1 | 6 | 1491133187 |
+| 28 | [shop ส้มเล็ก](#shoporanges) | `js/models/shops.js` | 1 | 6 | 1491133188 |
+| 29 | [shop ceramic](#shopceramic1) | `js/models/shops.js` | 1 | 6 | 1491133189 |
+| 30 | [shop furniture](#shopfurn3) | `js/models/shops.js` | 1 | 6 | 1491133190 |
+| 31 | [shop furniture](#shopfurn2) | `js/models/shops.js` | 2 | 9 | 1491133191 |
+| 32 | [ลานเชียร์](#cheer) | `js/models/small.js` |  |  | 404292180 |
+| 33 | [ลานจอดรถ](#carportcanc2) | `js/models/carports.js` |  | 3.1 | 190886414 |
+| 34 | [ยิมเล็ก](#gym) | `js/models/engw.js` |  | 13.5 | 190886418 |
+| 35 | [ลานจอดรถ](#carportcanc1) | `js/models/carports.js` |  | 3.1 | 190886419 |
+| 36 | [ภาควิชาวิศวกรรมวัดและควบคุม](#control) | `js/models/deps.js` | 3 | 12.5 | 190889047 |
+| 37 | [เครื่องกล workshop](#workshopw) | `js/models/deps.js` | 2 | 8.4 | 190889049 |
+| 38 | [ภาควิชาวิศวกรรมเครื่องกล](#mech) | `js/models/engw.js` | 4 | 17.2 | 190889051 |
+| 39 | [เครื่องกล workshop](#workshope) | `js/models/deps.js` | 2 | 8.4 | 190889053 |
+| 40 | [โรงอาหาร 3 (C)](#canc) | `js/models/engw.js` | 2 | 10.8 | 190890100 |
+| 41 | [อาคารเรียนรวม คณะวิศวกรรมศาสตร์ (12 ชั้น)](#e12) | `js/models/e12.js` | 12 | 47.5 | 516204086 |
+| 42 | [ภาคอุตสาหการ](#indus) | `js/models/engw.js` | 3 | 14.5 | 516204087 |
+| 43 | [อัฒจันทร์ สนามกีฬากลาง](#stad) | `js/models/stad.js` | 3 | 17 | 1138463206 |
+| 44 | [หอพักนักศึกษา อาคาร 11](#dorm11) | `js/models/dorms.js` | 10 | 36.2 | 1206348758 |
+| 45 | [สำนักหอสมุดกลาง อาคารเฉลิมพระเกียรติ](#lib) | `js/models/lib.js` | 4 | 21 | 190697423 |
+| 46 | [หอประชุมวิศวะ](#eaud) | `js/models/eaud.js` | 2 | 17.4 | 190868497 |
+| 47 | [หอประชุมวิศวะ](#ewing) | `js/models/ewing.js` | 2 | 11.3 | 190868498 |
+| 48 | [ตึกโทรคมนาคม](#tel) | `js/models/tel.js` | 4 | 14.8 | 190868528 |
+| 49 | [ลานจอดรถ](#carportctrl1) | `js/models/carports.js` |  | 3.1 | 190870221 |
+| 50 | [ลานจอดรถ](#carportctrl2) | `js/models/carports.js` |  | 3.1 | 190870222 |
+| 51 | [ตึกบี](#bbld) | `js/models/bbld.js` | 4 | 13.6 | 190870224 |
+| 52 | [โรงอาหาร A คณะวิศวกรรมศาสตร์](#cana) | `js/models/cana.js` | 1 | 8.6 | 190880523 |
+| 53 | [หอประชุมจุฬาภรณ์วลับลักษณ์](#chaud) | `js/models/chaud.js` | 3 | 15.8 | 265574872 |
+| 54 | [จุฬาภรณ์วลัยลักษณ์ 2](#chula2) | `js/models/chula2.js` | 6 | 23.4 | 265574874 |
+| 55 | [ตึกปฏิบัติการณ์หลังใหม่](#newlab) | `js/models/newlab.js` | 10 | 38 | 265588799 |
+| 56 | [โรงอาหาร คณะวิทยาศาสตร์](#scican) | `js/models/scican.js` |  | 9.5 | 265596517 |
+| 57 | [ตึก วท.](#witt) | `js/models/witt.js` | 2 | 9.2 | 265596518 |
+| 58 | [สโมสรนักศึกษา](#club) | `js/models/small.js` | 2 |  | 265596519 |
+| 59 | [Lawson 108](#lawson) | `js/models/small.js` |  |  | 265596521 |
+| 60 | [A-Building](#abld) | `js/models/abld.js` | 6 | 21.8 | 292807567 |
+| 61 | [อาคารเฉลิมพระเกียรติ 55 พรรษา สมเด็จพระเทพฯ](#t55) | `js/models/t55.js` | 8 | 30 | 309556942 |
+| 62 | [โรงอาหาร ตึก L](#lcan) | `js/models/small.js` |  |  | 309557500 |
+| 63 | [ตึก ECC](#ecc) | `js/models/ecc.js` | 10 | 39.5 | 309557571 |
+| 64 | [โรงอาหาร ตึกพระเทพฯ](#thepcan) | `js/models/mid.js` | 2 | 10.7 | 309919518 |
+| 65 | [อาคารเรียนรวม สมเด็จพระเทพฯ](#thep) | `js/models/thep.js` | 2 | 9.4 | 309919519 |
+| 66 | [คณะทันตแพทยศาสตร์](#dent) | `js/models/dent.js` | 5 | 22.2 | 501351775 |
+| 67 | [สโมสรนักศึกษา คณะวิศวกรรมศาสตร์](#engclub) | `js/models/small.js` | 1 |  | 516204084 |
+| 68 | [ภาคอัตโนมัติ](#automation) | `js/models/mid.js` | 3 | 16 | 516204094 |
+| 69 | [ภาคไฟฟ้าและพลังงานไฟฟ้า](#elec) | `js/models/elec.js` | 2 | 11.6 | 516204095 |
+| 70 | [ธนาคารและไปรษณีย์](#bank) | `js/models/mid.js` | 1 | 4.3 | 516204096 |
+| 71 | [นาโน](#nano) | `js/models/mid.js` | 2 | 9 | 516204097 |
+| 72 | [คลินิกเวชกรรม สจล.](#clinic) | `js/models/mid.js` | 2 | 10.9 | 516204098 |
+| 73 | [ตึกกระจก](#glass) | `js/models/small.js` | 2 |  | 516204099 |
+| 74 | [อาคารจอมไตร](#jomtrai) | `js/models/jomtrai.js` | 3 | 13.4 | 516308731 |
+| 75 | [สำนักงานอธิการบดี สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#pres) | `js/models/pres.js` | 10 | 38.8 | 516308733 |
+| 76 | [อาคารหอพระราชประวัติพระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว พระสยามเทวมหามกุฏวิทยมหาราช](#royal) | `js/models/royal.js` | 1 | 22 | 516308734 |
+| 77 | [คณะแพทยศาสตร์](#med) | `js/models/med.js` | 3 | 14.2 | 592798785 |
+| 78 | [CMKL University](#cmkl) | `js/models/cmkl.js` | 10 | 38.9 | 784091346 |
+| 79 | [โรงเรียนสาธิตนานาชาติพระจอมเกล้าลาดกระบัง](#kmids) | `js/models/kmids.js` | 6 | 25.4 | 1008793634 |
+| 80 | [อินทนิล](#inthanin) | `js/models/small.js` |  |  | 1136346802 |
+| 81 | [ตึก A](#tka) | `js/models/tka.js` | 5 | 21.2 | 1137554506 |
+| 82 | [อาคารมหาวิทยาลัย](#uni) | `js/models/uni.js` | 2 | 13.2 | 1138463196 |
+| 83 | [อาคารธนาคาร](#bankw) | `js/models/mid.js` | 1 | 5.4 | 1138463212 |
+| 84 | [ธนาคารกรุงศรีอยุธยา (สาขา สจล.)](#krungsri) | `js/models/mid.js` | 1 | 6.3 | 1138463213 |
+| 85 | [7-Eleven](#seven) | `js/models/small.js` |  |  | 1138469403 |
+| 86 | [คาเฟ่ อเมซอน](#amazon) | `js/models/small.js` |  |  | 1138988422 |
+| 87 | [หอพักนักศึกษา อาคาร 9](#dorm9) | `js/models/dorms.js` | 10 | 36.2 | 1206348756 |
+| 88 | [อาคารนวัตกรรมการเรียนรู้](#innov) | `js/models/innov.js` | 11 | 45.7 | 1561993799 |
+| 89 | [สโมสรนักศึกษา คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี](#kruclub) | `js/models/small.js` |  |  | 1564107227 |
+| 90 | [Lita cafe & roaster - KMITL](#lita) | `js/models/lita.js` | 1 | 4.8 | 1564107231 |
+| 91 | [คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง](#it) | `js/models/it.js` | 8 | 32.2 | 314204881 |
+| 92 | [KMITL Kosen Dormitory](#dormks) | `js/models/dorms.js` | 5 | 22.9 | 516204078 |
+| 93 | [สมาคมศิษย์เก่า](#alumni) | `js/models/mid.js` | 2 | 13.7 | 516204080 |
+| 94 | [โรงอาหารถิ่นชงโค](#tincan) | `js/models/small.js` |  |  | 1049724130 |
+| 95 | [KMITL Dormitory](#dormk) | `js/models/dorms.js` | 5 | 22.9 | 1116753937 |
+| 96 | [หอพักนักศึกษา อาคาร 10](#dorm10) | `js/models/dorms.js` | 10 | 36.2 | 1206348757 |
+| 97 | [หอพักนักศึกษา อาคาร 12](#dorm12) | `js/models/dorms.js` | 10 | 36.2 | 1206348759 |
+| 98 | [โรงอาหาร คณะเทคโนโลยีสารสนเทศ](#itcan) | `js/models/itcan.js` | 2 | 10.4 | 314205127 |
+| 99 | [คณะบริหารธุรกิจ](#kbs) | `js/models/kbs.js` | 6 | 29.6 | 516308732 |
+| 100 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
+| 101 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
+| 102 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
 
 รูปทรง OSM ที่ซ่อนไว้เพราะเป็นส่วนของโมเดลเฉพาะ (`hide`): 1138463195, 1138463197, 1138463209, 1138463210
 
@@ -113,9 +117,9 @@
 
 - OSM id: -1 · ไฟล์: `js/models/gymn.js` · ชั้น: 1 · สูง: 13.8 ม.
 - แหล่งภาพอ้างอิง: ขอบเขตอาคารจากผู้ใช้ (ไม่มีใน OSM) + ภาพดาวเทียม Google Maps (หลังคาสองช่วงกับแผงโซลาร์ อาคารต่อด้านตะวันออก) + Street View ถนนด้านใต้ สนามหญ้าด้านตะวันตก ถนนด้านตะวันออก
-- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (a long hall under two light roofs with solar panels, an annex at the east end) and Google Street View from the road along the south side (the whole south face, the entrance portico at the south-west corner), the west lawn (the west gable end) and the east road (the annex). The user's outline also takes in the road and forecourt; the model follows the building in the imagery. The end towers and the canted upper walls were added 2026-10-19 from the KMITL Virtual Tour (ศูนย์กีฬา 1 and 3, at the road corner and on the walk by the football pitch) and the SIIE "Key locations" film (7:15).
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (a long hall under two light roofs with solar panels, an annex at the east end) and Google Street View from the road along the south side (the whole south face, the entrance portico at the south-west corner), the west lawn (the west gable end) and the east road (the annex). The user's outline also takes in the road and forecourt; the model follows the building in the imagery. The end towers and the canted upper walls were added 2026-10-19 from the KMITL Virtual Tour (ศูนย์กีฬา 1 and 3, at the road corner and on the walk by the football pitch) and the SIIE "Key locations" film (7:15); the east end from the user's Virtual Tour photo (สนามแบดมินตัน, from the road corner south-east of the hall).
 - ลักษณะอาคารที่บันทึก: โรงยิม: ผนังล่างสีส้มสูงราว 5.5 ม. แถบผนังบนสีเทายื่นเล็กน้อย หน้าต่างบานใหญ่กรอบขาวสองแถวกับบานเกล็ดทั้งสองด้านยาว / หน้าจั่วสีเทาฐานส้ม หลังคาโลหะจั่วต่ำมีแผงโซลาร์ / ซุ้มทางเข้ากรอบเหลี่ยมผิวหินแกรนิตมุมตะวันตกเฉียงใต้ / อาคาร 2 ชั้นด้านตะวันออก
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): a tall hall: orange walls to about 5.5 m, then a grey upper band leaning out over them on a sloped ledge, with two rows of large white-framed windows and louvres along both long sides; grey gable ends with an orange base, each with a square grey tower rising above the roof that carries a round cross-barred window and a grid of small square vents; a shallow light metal gabled roof with solar panels, ridge east-west, in two lengths a portico of square granite-faced frames over the entrance at the south-west corner a two-storey annex at the east end: orange ground floor, grey upper floor with windows
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): a tall hall: orange walls to about 5.5 m, then a grey upper band leaning out over them on a sloped ledge, with two rows of large white-framed windows and louvres along both long sides; grey gable ends with an orange base, each with a square grey tower at the south corner rising above the roof that carries a round cross-barred window and a grid of small square vents (a smaller tower with a round window at the north-east corner); a shallow light metal gabled roof with solar panels, ridge east-west, in two lengths a portico of square granite-faced frames over the entrance at the south-west corner a two-storey annex across the whole east end: orange ground floor with small top-hung windows and AC units, a grey upper floor with big windows in groups, a grey louvred plant box on its roof against the hall's gable
 
 ## สระว่ายน้ำ สจล. <a id="pool"></a>
 
@@ -141,6 +145,26 @@
 - แหล่งภาพอ้างอิง: Street View ถนนฉลองกรุง (ไม่มีใน OSM) + ภาพดาวเทียม Google Maps
 - ลักษณะอาคารที่บันทึก: สะพานลอยข้ามถนนฉลองกรุง: ทางเดินเหล็กสูงราว 5.8 ม. แผงข้างสีขาว หลังคาเบา บันไดลงทางทิศตะวันตกทั้งสองฝั่ง
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): tower       x 255..273, z -271..-255: eleven storeys (a tall glazed ground floor, then ten of 3.8 m), each floor a projecting white slab; deep white vertical fins in front of dark glass on all faces terraces    lower wings stepping down to the east (x 273..291) and the south (z -255..-238), white slab edges and glass railings on every step steps       a broad white stepped plaza south of the building, x 261..297, z -238..-221, rising north canopy      a steel lattice sweeping from the top of the tower's east face down to a flat wedge-shaped tip about 7.5 m up at x 310, on a raking strut: chords along it, diagonal braces, cross ribs forecourt   paving with a triangle pattern and a round fountain east of the canopy, a hedge along the road signs       two dark sign walls with the faculty name on the road fence footbridge  a covered steel footbridge over ถนนฉลองกรุง at x 262..265, stairs down both footpaths
+
+## ตึก L คณะวิศวกรรมศาสตร์ <a id="lbld"></a>
+
+*Engineering Lecture Building L*
+
+- OSM id: -5 · ไฟล์: `js/models/lbld.js` · ชั้น: 4 · สูง: 17.8 ม.
+- แหล่งภาพอ้างอิง: ผังจากภาพดาวเทียม Google Maps (ไม่มีใน OSM) + ภาพ KMITL Virtual Tour ที่ผู้ใช้ส่งมา 19 ต.ค. 2026 (ด้านหน้าทิศใต้จากทางเดินมีหลังคาริมทางรถไฟ) ทะเบียนอาคาร EN-21
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-19 from the user's KMITL Virtual Tour photos (the south front from under the covered walk along the railway) and the imagery (flat roof with a square skylight in the middle, a row of dark plant pits along the south side).
+- ลักษณะอาคารที่บันทึก: ตึก L: อาคาร 4 ชั้นผนังขาวเรียบ ด้านหน้าทิศใต้ยื่นเข้าออก ช่วงกลางร่นเข้ามีหน้าต่างชั้นละสามบาน ทางเข้ากระจกใต้กันสาดเหล็กสีเข้ม ช่วงยื่นสองข้างหน้าต่างบานใหญ่แบ่งช่อง ปลายสองด้านหน้าต่างแคบ / หลังคาแบนมีช่องแสงสี่เหลี่ยมกลางหลังคา
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): four storeys of plain white render; the south front steps in and out: a set-back middle with three windows a floor over a glazed entrance under a dark steel canopy, two bays standing forward on either side with big gridded windows, narrow slots of windows at the ends; steps across the entrance
+
+## Sky Walk สจล. (สะพานลอยข้ามทางรถไฟ) <a id="skywalk"></a>
+
+*KMITL Sky Walk*
+
+- OSM id: -6 · ไฟล์: `js/models/skywalk.js` · ชั้น: 1 · สูง: 10.2 ม.
+- แหล่งภาพอ้างอิง: เส้นทางจากภาพดาวเทียม Google Maps (ไม่มีใน OSM) + ภาพบันไดและด้านข้างสะพานที่ผู้ใช้ส่งมา + KMITL Virtual Tour สำนักบริหารข้อมูลดิจิทัล 1-8 (บนสะพาน)
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-19 from the user's photo of the north stair and the bridge's west side, and from the KMITL Virtual Tour (สำนักบริหารข้อมูลดิจิทัล 1-8, on the deck: the "SKY WALK" boards, the orange frames, the lift tower).
+- ลักษณะอาคารที่บันทึก: Sky Walk: สะพานทางเดินมีหลังคาสูงราว 6.8 ม. ข้ามทางรถไฟและถนนฉลองกรุง จากหน้าธนาคารและไปรษณีย์ไปสำนักบริหารข้อมูลดิจิทัลและหอสมุด / เสากลมสีขาวตั้งสลับเอียง คานสีแดงส้ม หลังคาโลหะ โครงถักเหล็กใต้พื้น ราวสเตนเลส / ตัวอักษร KMITL สีส้มด้านตะวันตก บันไดเหล็กลงข้างรั้วทางรถไฟด้านเหนือ
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): deck about 6.8 m up, 4 m wide, a grey steel truss under it, a stainless rail each side a row of white round columns along each side, alternately upright and leaning, carrying a shallow metal roof on red-orange beams big orange "KMITL" letters on the west side over the railway fence by the north end north end: the deck reaches over the road; a straight steel stair runs down westward between the covered walk and the railway fence route: north-south from z -84 to z 6 (x -125..-121), then east to x -90, then south-east to the library
 
 ## หอประชุมเจ้าพระยาสุรวงษ์ไวยวัฒน์ (วร บุนนาค) <a id="hall"></a>
 
@@ -618,7 +642,7 @@
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคาปั้นหยา แผงโซลาร์ ครีบรอบอาคาร) + Street View ทางเดินริมสระด้านใต้ (ด้านหน้า)
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks round each one.
 - ลักษณะอาคารที่บันทึก: โรงอาหารตึกพระเทพฯ: 2 ชั้นหันหน้าทางใต้ริมสระ / ชั้นล่างโรงอาหารกระจกหลังเสาขาว เสาอิฐแดงที่มุมใต้ บันไดขึ้นจากทางเดินริมสระ / แผ่นพื้นขาว ชั้นบนหลังครีบขาวลึกเรียงรอบอาคาร ยอดครีบเป็นฟันเลื่อย / หลังคาปั้นหยาสีเทามีแผงโซลาร์ด้านใต้
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: two storeys facing south over a pond: a glazed ground-floor canteen behind white columns with red-brick piers at the south corners and steps up from the pond walk; a white slab; the upper floor behind a ring of deep white fins whose tops rise outward into a sawtooth skyline; a grey hipped roof with solar panels on its south slope; a small service block east (front from Street View on the pond walk) นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side คลินิกเวชกรรม: a two-storey brick-faced block behind a tall white frame of slender square columns carrying a deep roof slab; a low wing with a long covered drop-off ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9, from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed glazing, an orange sign box with the department's name over the entrance on the east front
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: two storeys facing south over a pond: a glazed ground-floor canteen behind white columns with red-brick piers at the south corners and steps up from the pond walk; a white slab; the upper floor behind a ring of deep white fins whose tops rise outward into a sawtooth skyline; a grey hipped roof with solar panels on its south slope; a small service block east (front from Street View on the pond walk) นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side; its south end is a bank hall with a light-blue fascia and ATMs under the overhang. Beside it on the road (OSM 1138463213, 1138463212; added 2026-10-19 from the user's Virtual Tour photos): a Krungsri pavilion with a grey-and-yellow fascia, a glazed ATM front on a raised plinth and a tall yellow pylon sign, and a white bank pavilion with a deep flat fascia and pale green glazing คลินิกเวชกรรม (signed โรงพยาบาลพระจอมเกล้าเจ้าคุณทหาร): white, two storeys; the west block has three tall bays of pale glazing in a white frame with the name in red on its parapet; a set-back glazed entrance with wide steps, a slab over it and an open loggia on square columns above; a single-storey colonnade over the drop-off to the east with solar panels on top (re-surveyed 2026-10-19 from the user's Virtual Tour photos) ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9, from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed glazing, an orange sign box with the department's name over the entrance on the east front
 
 ## อาคารเรียนรวม สมเด็จพระเทพฯ <a id="thep"></a>
 
@@ -652,7 +676,7 @@
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคาสี่เหลี่ยม) + KMITL Virtual Tour ไปรษณีย์ 5-9 (หลังปรับปรุง 2026)
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks round each one.
 - ลักษณะอาคารที่บันทึก: ภาคอัตโนมัติ (ปรับปรุงใหม่ BM EN-24): 3 ชั้น ผนังหุ้มสีเทาเข้ม แผงระแนงเทาแนวตั้งชั้นบน ขอบพื้นและขอบหลังคาสีส้มสนิม ชั้นล่างสีน้ำเงินเทาหน้าต่างกรอบดำ ป้ายสีส้มชื่อภาควิชาเหนือทางเข้าด้านตะวันออก
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: two storeys facing south over a pond: a glazed ground-floor canteen behind white columns with red-brick piers at the south corners and steps up from the pond walk; a white slab; the upper floor behind a ring of deep white fins whose tops rise outward into a sawtooth skyline; a grey hipped roof with solar panels on its south slope; a small service block east (front from Street View on the pond walk) นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side คลินิกเวชกรรม: a two-storey brick-faced block behind a tall white frame of slender square columns carrying a deep roof slab; a low wing with a long covered drop-off ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9, from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed glazing, an orange sign box with the department's name over the entrance on the east front
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: two storeys facing south over a pond: a glazed ground-floor canteen behind white columns with red-brick piers at the south corners and steps up from the pond walk; a white slab; the upper floor behind a ring of deep white fins whose tops rise outward into a sawtooth skyline; a grey hipped roof with solar panels on its south slope; a small service block east (front from Street View on the pond walk) นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side; its south end is a bank hall with a light-blue fascia and ATMs under the overhang. Beside it on the road (OSM 1138463213, 1138463212; added 2026-10-19 from the user's Virtual Tour photos): a Krungsri pavilion with a grey-and-yellow fascia, a glazed ATM front on a raised plinth and a tall yellow pylon sign, and a white bank pavilion with a deep flat fascia and pale green glazing คลินิกเวชกรรม (signed โรงพยาบาลพระจอมเกล้าเจ้าคุณทหาร): white, two storeys; the west block has three tall bays of pale glazing in a white frame with the name in red on its parapet; a set-back glazed entrance with wide steps, a slab over it and an open loggia on square columns above; a single-storey colonnade over the drop-off to the east with solar panels on top (re-surveyed 2026-10-19 from the user's Virtual Tour photos) ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9, from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed glazing, an orange sign box with the department's name over the entrance on the east front
 
 ## ภาคไฟฟ้าและพลังงานไฟฟ้า <a id="elec"></a>
 
@@ -667,8 +691,8 @@
 - OSM id: 516204096 · ไฟล์: `js/models/mid.js` · ชั้น: 1 · สูง: 4.3 ม.
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคายาวแคบ) + Street View ทางเดินมีหลังคา
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks round each one.
-- ลักษณะอาคารที่บันทึก: ธนาคารและไปรษณีย์: แถวร้านค้าชั้นเดียวยาว หลังคาคอนกรีตแบน ทางเดินมีหลังคาด้านตะวันออก
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: two storeys facing south over a pond: a glazed ground-floor canteen behind white columns with red-brick piers at the south corners and steps up from the pond walk; a white slab; the upper floor behind a ring of deep white fins whose tops rise outward into a sawtooth skyline; a grey hipped roof with solar panels on its south slope; a small service block east (front from Street View on the pond walk) นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side คลินิกเวชกรรม: a two-storey brick-faced block behind a tall white frame of slender square columns carrying a deep roof slab; a low wing with a long covered drop-off ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9, from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed glazing, an orange sign box with the department's name over the entrance on the east front
+- ลักษณะอาคารที่บันทึก: ธนาคารและไปรษณีย์: แถวร้านค้าชั้นเดียวยาว หลังคาคอนกรีตแบน ทางเดินมีหลังคาด้านตะวันออก / ปลายด้านใต้เป็นโถงธนาคาร ป้ายชายคาสีฟ้า ตู้ ATM ใต้ชายคา (Virtual Tour 2026)
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: two storeys facing south over a pond: a glazed ground-floor canteen behind white columns with red-brick piers at the south corners and steps up from the pond walk; a white slab; the upper floor behind a ring of deep white fins whose tops rise outward into a sawtooth skyline; a grey hipped roof with solar panels on its south slope; a small service block east (front from Street View on the pond walk) นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side; its south end is a bank hall with a light-blue fascia and ATMs under the overhang. Beside it on the road (OSM 1138463213, 1138463212; added 2026-10-19 from the user's Virtual Tour photos): a Krungsri pavilion with a grey-and-yellow fascia, a glazed ATM front on a raised plinth and a tall yellow pylon sign, and a white bank pavilion with a deep flat fascia and pale green glazing คลินิกเวชกรรม (signed โรงพยาบาลพระจอมเกล้าเจ้าคุณทหาร): white, two storeys; the west block has three tall bays of pale glazing in a white frame with the name in red on its parapet; a set-back glazed entrance with wide steps, a slab over it and an open loggia on square columns above; a single-storey colonnade over the drop-off to the east with solar panels on top (re-surveyed 2026-10-19 from the user's Virtual Tour photos) ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9, from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed glazing, an orange sign box with the department's name over the entrance on the east front
 
 ## นาโน <a id="nano"></a>
 
@@ -676,15 +700,15 @@
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (สองส่วน แผงโซลาร์) + Street View ถนนด้านเหนือและด้านตะวันตก
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks round each one.
 - ลักษณะอาคารที่บันทึก: นาโน: 2 ชั้นอิฐแดงแถบพื้นขาว กระจกสีเขียว ซุ้มทางเข้าโค้ง
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: two storeys facing south over a pond: a glazed ground-floor canteen behind white columns with red-brick piers at the south corners and steps up from the pond walk; a white slab; the upper floor behind a ring of deep white fins whose tops rise outward into a sawtooth skyline; a grey hipped roof with solar panels on its south slope; a small service block east (front from Street View on the pond walk) นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side คลินิกเวชกรรม: a two-storey brick-faced block behind a tall white frame of slender square columns carrying a deep roof slab; a low wing with a long covered drop-off ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9, from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed glazing, an orange sign box with the department's name over the entrance on the east front
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: two storeys facing south over a pond: a glazed ground-floor canteen behind white columns with red-brick piers at the south corners and steps up from the pond walk; a white slab; the upper floor behind a ring of deep white fins whose tops rise outward into a sawtooth skyline; a grey hipped roof with solar panels on its south slope; a small service block east (front from Street View on the pond walk) นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side; its south end is a bank hall with a light-blue fascia and ATMs under the overhang. Beside it on the road (OSM 1138463213, 1138463212; added 2026-10-19 from the user's Virtual Tour photos): a Krungsri pavilion with a grey-and-yellow fascia, a glazed ATM front on a raised plinth and a tall yellow pylon sign, and a white bank pavilion with a deep flat fascia and pale green glazing คลินิกเวชกรรม (signed โรงพยาบาลพระจอมเกล้าเจ้าคุณทหาร): white, two storeys; the west block has three tall bays of pale glazing in a white frame with the name in red on its parapet; a set-back glazed entrance with wide steps, a slab over it and an open loggia on square columns above; a single-storey colonnade over the drop-off to the east with solar panels on top (re-surveyed 2026-10-19 from the user's Virtual Tour photos) ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9, from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed glazing, an orange sign box with the department's name over the entrance on the east front
 
 ## คลินิกเวชกรรม สจล. <a id="clinic"></a>
 
-- OSM id: 516204098 · ไฟล์: `js/models/mid.js` · ชั้น: 2 · สูง: 9.6 ม.
-- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคาเทาเข้มขอบขาว) + Street View ลานจอดรถด้านเหนือและด้านตะวันออก
+- OSM id: 516204098 · ไฟล์: `js/models/mid.js` · ชั้น: 2 · สูง: 10.9 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคาแบนขอบขาว) + ภาพ KMITL Virtual Tour ที่ผู้ใช้ส่งมา 19 ต.ค. 2026 (ด้านหน้าทิศเหนือ จุดรับส่งผู้ป่วย)
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks round each one.
-- ลักษณะอาคารที่บันทึก: คลินิกเวชกรรม: อาคาร 2 ชั้นผิวอิฐหลังโครงเสาเหลี่ยมขาวเรียวสูงรับแผ่นหลังคาลึก ปีกเตี้ยกับหลังคาที่ส่งผู้โดยสารยาว
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: two storeys facing south over a pond: a glazed ground-floor canteen behind white columns with red-brick piers at the south corners and steps up from the pond walk; a white slab; the upper floor behind a ring of deep white fins whose tops rise outward into a sawtooth skyline; a grey hipped roof with solar panels on its south slope; a small service block east (front from Street View on the pond walk) นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side คลินิกเวชกรรม: a two-storey brick-faced block behind a tall white frame of slender square columns carrying a deep roof slab; a low wing with a long covered drop-off ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9, from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed glazing, an orange sign box with the department's name over the entrance on the east front
+- ลักษณะอาคารที่บันทึก: คลินิกเวชกรรม (ป้าย โรงพยาบาลพระจอมเกล้าเจ้าคุณทหาร): อาคารขาว 2 ชั้น ฝั่งตะวันตกผนังกระจกสีอ่อนสูงสามช่องในกรอบขาว ชื่อสีแดงบนขอบหลังคา / ทางเข้ากระจกร่นเข้า บันไดกว้าง แผ่นพื้นยื่น ชั้นบนระเบียงโล่งเสาเหลี่ยม / ฝั่งตะวันออกทางเดินมีหลังคาชั้นเดียวที่จอดรับส่ง แผงโซลาร์บนหลังคา
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: two storeys facing south over a pond: a glazed ground-floor canteen behind white columns with red-brick piers at the south corners and steps up from the pond walk; a white slab; the upper floor behind a ring of deep white fins whose tops rise outward into a sawtooth skyline; a grey hipped roof with solar panels on its south slope; a small service block east (front from Street View on the pond walk) นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side; its south end is a bank hall with a light-blue fascia and ATMs under the overhang. Beside it on the road (OSM 1138463213, 1138463212; added 2026-10-19 from the user's Virtual Tour photos): a Krungsri pavilion with a grey-and-yellow fascia, a glazed ATM front on a raised plinth and a tall yellow pylon sign, and a white bank pavilion with a deep flat fascia and pale green glazing คลินิกเวชกรรม (signed โรงพยาบาลพระจอมเกล้าเจ้าคุณทหาร): white, two storeys; the west block has three tall bays of pale glazing in a white frame with the name in red on its parapet; a set-back glazed entrance with wide steps, a slab over it and an open loggia on square columns above; a single-storey colonnade over the drop-off to the east with solar panels on top (re-surveyed 2026-10-19 from the user's Virtual Tour photos) ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9, from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed glazing, an orange sign box with the department's name over the entrance on the east front
 
 ## ตึกกระจก <a id="glass"></a>
 
@@ -742,9 +766,9 @@
 
 - OSM id: 1008793634 · ไฟล์: `js/models/kmids.js` · ชั้น: 6 · สูง: 25.4 ม.
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผัง แผงโซลาร์ ขั้นบันไดด้านใต้ อาคารเตี้ย) + ภาพ 360 องศาที่ประตูทางเข้าด้านเหนือ (ด้านเหนือ มองเงยขึ้น) ภาพ Street View จากถนนถ่ายก่อนสร้างโรงเรียน
-- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the main block with solar arrays on its roof, the stepped seating along its south side, the low south wing, the stairs at the east end) and a 360° photo at the north gate (the north face from the drop-off, looking up). Every Street View car pano here predates the school (it shows a pond on the site).
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (the main block with solar arrays on its roof, the stepped seating along its south side, the low south wing, the stairs at the east end) and a 360° photo at the north gate (the north face from the drop-off, looking up). Every Street View car pano here predates the school (it shows a pond on the site). The south and west faces and the storey count were reworked 2026-10-19 from a photo the user took across the swimming pool to the south-west.
 - ลักษณะอาคารที่บันทึก: โรงเรียนสาธิตนานาชาติ (KMIDS): ชั้นล่างสีเทาเข้มร่นเข้า ชั้น 2 ผนังอิฐแดงหน้าต่างกรอบขาวบนเสาเหลี่ยม / ชั้นบน 4 ชั้นผนังกระจกหลังโครงสีขาวพับไปมา ขอบพื้นแต่ละชั้นเป็นฟันปลาและค้ำเฉียงเชื่อมชั้นต่อชั้นเป็นลายข้าวหลามตัด / หลังคาเหล็กบางยื่นรอบด้าน ลาดสูงขึ้นทางทิศเหนือ ป้าย KMIDS สีทองที่เชิงชาย แผงโซลาร์บนหลังคา / หลังคาคลุมที่ส่งผู้โดยสารด้านตะวันตกเฉียงเหนือบนเสาเหล็กเอียง / ด้านใต้อัฒจันทร์ขั้นบันไดลงสวน อาคารเตี้ย 2 ชั้น / บันไดด้านตะวันออก
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): for the lean). ground floor dark grey, set back; second floor red brick with white-framed windows on square columns four upper floors of glass behind a folded white frame: every slab edge zig-zags out and in, and diagonal struts join the points of one floor to the next, so the face reads as a lattice of diamonds thin steel roof overhanging on all sides, rising to the north, with the gold KMIDS sign on its fascia; solar panel rows on top north-west: a deep canopy over the drop-off on slanted steel columns south: stepped seating down to the garden, a low two-storey wing x -189..-146, z -333..-324
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): for the lean). ground floor dark grey, set back; second floor red brick with white-framed windows on square columns five upper floors of glass; on the north face behind a folded white frame: every slab edge zig-zags out and in, and diagonal struts join the points of one floor to the next, so the face reads as a lattice of diamonds south face: a pale pink rendered bay with punched windows at each end (the west one standing forward), between them a screen of terracotta vertical fins whose depth swells and shrinks in waves over floors 2-5, and the top two floors glazed behind white V struts under the roof; the west and east ends pale pink render with punched windows thin steel roof overhanging on all sides, rising to the north, with the gold KMIDS sign on its fascia; solar panel rows on top north-west: a deep canopy over the drop-off on slanted steel columns south: stepped seating down to the garden, a low two-storey wing x -189..-146, z -333..-324
 
 ## อินทนิล <a id="inthanin"></a>
 
@@ -769,6 +793,24 @@
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (an eight-sided white pyramid roof over the north half, a flat roof over the south half, the link and the porch) and three Google Street View angles supplied by the user: from the junction south-east of it, from the road along its east side (close up), and from the garden to the west.
 - ลักษณะอาคารที่บันทึก: อาคารมหาวิทยาลัย: อาคาร 2 ชั้นระหว่างสำนักงานอธิการบดีกับตึก A / ชั้นล่างกระจกร่นหลังเสากลมสีขาว ใต้แถบชายคาบานเกล็ดสีเทา / ชั้นบนอิฐแดงในกรอบเสาและพื้นสีขาว ระเบียงมีคอยล์ร้อนแอร์ที่มุมตะวันออกเฉียงเหนือ / หลังคาปิรามิดแปดเหลี่ยมสีขาวเทาครึ่งเหนือ หลังคาแบนครึ่งใต้ / ซุ้มทางเข้าด้านใต้หลังคาฟันปลาสีขาว แผ่นโปร่งแสงสีเขียว / ทางเดินมีหลังคาเชื่อมไปอาคารสำนักงานอธิการบดี
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): body x -30..-9.3, z -306.6..-267: ground floor glazed, set back behind round white columns under a grey louvred soffit band; upper storey red brick in a white frame of columns and floor slabs, balcony with AC units at the north-east corner; white roof edge north half: low eight-sided pyramid roof, light grey; south half: flat roof, dark porch x -28.8..-17, z -267..-257: white zig-zag canopy with a green translucent roof on white columns, steps; covered link x -29.8..-9.3, z -316.5..-306.6: flat roof on columns to the President building
+
+## อาคารธนาคาร <a id="bankw"></a>
+
+- OSM id: 1138463212 · ไฟล์: `js/models/mid.js` · ชั้น: 1 · สูง: 5.4 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps + ภาพ KMITL Virtual Tour ที่ผู้ใช้ส่งมา 19 ต.ค. 2026
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks round each one.
+- ลักษณะอาคารที่บันทึก: อาคารธนาคารสีขาวชั้นเดียว ชายคาแบนลึก ผนังกระจกสีเขียวอ่อน
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: two storeys facing south over a pond: a glazed ground-floor canteen behind white columns with red-brick piers at the south corners and steps up from the pond walk; a white slab; the upper floor behind a ring of deep white fins whose tops rise outward into a sawtooth skyline; a grey hipped roof with solar panels on its south slope; a small service block east (front from Street View on the pond walk) นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side; its south end is a bank hall with a light-blue fascia and ATMs under the overhang. Beside it on the road (OSM 1138463213, 1138463212; added 2026-10-19 from the user's Virtual Tour photos): a Krungsri pavilion with a grey-and-yellow fascia, a glazed ATM front on a raised plinth and a tall yellow pylon sign, and a white bank pavilion with a deep flat fascia and pale green glazing คลินิกเวชกรรม (signed โรงพยาบาลพระจอมเกล้าเจ้าคุณทหาร): white, two storeys; the west block has three tall bays of pale glazing in a white frame with the name in red on its parapet; a set-back glazed entrance with wide steps, a slab over it and an open loggia on square columns above; a single-storey colonnade over the drop-off to the east with solar panels on top (re-surveyed 2026-10-19 from the user's Virtual Tour photos) ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9, from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed glazing, an orange sign box with the department's name over the entrance on the east front
+
+## ธนาคารกรุงศรีอยุธยา (สาขา สจล.) <a id="krungsri"></a>
+
+*Krungsri*
+
+- OSM id: 1138463213 · ไฟล์: `js/models/mid.js` · ชั้น: 1 · สูง: 6.3 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps + ภาพ KMITL Virtual Tour ที่ผู้ใช้ส่งมา 19 ต.ค. 2026
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks round each one.
+- ลักษณะอาคารที่บันทึก: กรุงศรี: ศาลาชั้นเดียวบนฐานยก หน้ากระจกมีตู้ ATM สีเหลือง ป้ายชายคาลึกสีเทากับเหลือง เสาป้ายสีเหลืองสูงที่มุมตะวันตกเฉียงใต้
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: two storeys facing south over a pond: a glazed ground-floor canteen behind white columns with red-brick piers at the south corners and steps up from the pond walk; a white slab; the upper floor behind a ring of deep white fins whose tops rise outward into a sawtooth skyline; a grey hipped roof with solar panels on its south slope; a small service block east (front from Street View on the pond walk) นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side; its south end is a bank hall with a light-blue fascia and ATMs under the overhang. Beside it on the road (OSM 1138463213, 1138463212; added 2026-10-19 from the user's Virtual Tour photos): a Krungsri pavilion with a grey-and-yellow fascia, a glazed ATM front on a raised plinth and a tall yellow pylon sign, and a white bank pavilion with a deep flat fascia and pale green glazing คลินิกเวชกรรม (signed โรงพยาบาลพระจอมเกล้าเจ้าคุณทหาร): white, two storeys; the west block has three tall bays of pale glazing in a white frame with the name in red on its parapet; a set-back glazed entrance with wide steps, a slab over it and an open loggia on square columns above; a single-storey colonnade over the drop-off to the east with solar panels on top (re-surveyed 2026-10-19 from the user's Virtual Tour photos) ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9, from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed glazing, an orange sign box with the department's name over the entrance on the east front
 
 ## 7-Eleven <a id="seven"></a>
 
@@ -843,7 +885,7 @@
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคา ปิรามิดกระจกกลาง ปีกด้านใต้) + Street View ถนนด้านเหนือ (ด้านหน้ามีชื่อสมาคม) และด้านตะวันออก
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks round each one.
 - ลักษณะอาคารที่บันทึก: สมาคมศิษย์เก่า: 2 ชั้น แผงหน้าอาคารสีขาวลึกมีชื่อสมาคมสีแดง (ไทยและอังกฤษ) ชั้นล่างกระจกหลังเสาขาวเรียว กันสาดหน้าประตู / ปิรามิดกระจกกลางหลังคา
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: two storeys facing south over a pond: a glazed ground-floor canteen behind white columns with red-brick piers at the south corners and steps up from the pond walk; a white slab; the upper floor behind a ring of deep white fins whose tops rise outward into a sawtooth skyline; a grey hipped roof with solar panels on its south slope; a small service block east (front from Street View on the pond walk) นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side คลินิกเวชกรรม: a two-storey brick-faced block behind a tall white frame of slender square columns carrying a deep roof slab; a low wing with a long covered drop-off ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9, from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed glazing, an orange sign box with the department's name over the entrance on the east front
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): สมาคมศิษย์เก่า: two storeys; a deep white fascia across the north front with the association's name in red (Thai above English), a glazed ground floor behind slim white columns, a canopy over the door; a glazed pyramid over the middle of the roof; a wing south โรงอาหาร ตึกพระเทพฯ: two storeys facing south over a pond: a glazed ground-floor canteen behind white columns with red-brick piers at the south corners and steps up from the pond walk; a white slab; the upper floor behind a ring of deep white fins whose tops rise outward into a sawtooth skyline; a grey hipped roof with solar panels on its south slope; a small service block east (front from Street View on the pond walk) นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof, a covered walk along its east side; its south end is a bank hall with a light-blue fascia and ATMs under the overhang. Beside it on the road (OSM 1138463213, 1138463212; added 2026-10-19 from the user's Virtual Tour photos): a Krungsri pavilion with a grey-and-yellow fascia, a glazed ATM front on a raised plinth and a tall yellow pylon sign, and a white bank pavilion with a deep flat fascia and pale green glazing คลินิกเวชกรรม (signed โรงพยาบาลพระจอมเกล้าเจ้าคุณทหาร): white, two storeys; the west block has three tall bays of pale glazing in a white frame with the name in red on its parapet; a set-back glazed entrance with wide steps, a slab over it and an open loggia on square columns above; a single-storey colonnade over the drop-off to the east with solar panels on top (re-surveyed 2026-10-19 from the user's Virtual Tour photos) ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9, from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed glazing, an orange sign box with the department's name over the entrance on the east front
 
 ## โรงอาหารถิ่นชงโค <a id="tincan"></a>
 

@@ -2,13 +2,18 @@
 // Surveyed 2026-10-17 from Google Maps satellite imagery (the main block with solar arrays on its roof, the
 // stepped seating along its south side, the low south wing, the stairs at the east end) and a 360° photo at the
 // north gate (the north face from the drop-off, looking up). Every Street View car pano here predates the school
-// (it shows a pond on the site). Photos were only looked at; everything here is procedural.
+// (it shows a pond on the site). The south and west faces and the storey count were reworked 2026-10-19 from a
+// photo the user took across the swimming pool to the south-west. Photos were only looked at; everything here is
+// procedural.
 //
 // x = east, z = south, y = up. Main block x -227..-141, z -370..-337 (roof traced on the imagery, moved south
 // for the lean).
 //   ground floor dark grey, set back; second floor red brick with white-framed windows on square columns
-//   four upper floors of glass behind a folded white frame: every slab edge zig-zags out and in, and diagonal
-//   struts join the points of one floor to the next, so the face reads as a lattice of diamonds
+//   five upper floors of glass; on the north face behind a folded white frame: every slab edge zig-zags out and in,
+//   and diagonal struts join the points of one floor to the next, so the face reads as a lattice of diamonds
+//   south face: a pale pink rendered bay with punched windows at each end (the west one standing forward), between
+//   them a screen of terracotta vertical fins whose depth swells and shrinks in waves over floors 2-5, and the top two
+//   floors glazed behind white V struts under the roof; the west and east ends pale pink render with punched windows
 //   thin steel roof overhanging on all sides, rising to the north, with the gold KMIDS sign on its fascia;
 //   solar panel rows on top
 //   north-west: a deep canopy over the drop-off on slanted steel columns
@@ -16,8 +21,8 @@
 import * as THREE from 'three';
 import { Acc, onFace, glassTex, brickTex, textTex } from './ecc.js';
 
-const X0 = -227, X1 = -141, ZN = -370, ZS = -337, G = 4.0, L2 = 7.6, FL = 3.8, NUP = 4;
-const TOP = L2 + NUP * FL;                                       // 22.8
+const X0 = -227, X1 = -141, ZN = -370, ZS = -337, G = 4.0, L2 = 7.6, FL = 3.8, NUP = 5;
+const TOP = L2 + NUP * FL;                                       // 26.6, seven storeys
 
 export function buildKmids(owner) {
   const A = new Acc();
@@ -42,12 +47,12 @@ export function buildKmids(owner) {
   A.box('glass', X0 + 0.3, X1 - 0.3, L2, TOP, ZN + 0.3, ZS - 0.3);
   const P = 6.0, OUT = 1.6;                                      // zig-zag period along the face, depth out
   // zig-zag slab edges and diamond struts on a face running along 'x' (north/south) or 'z' (east/west)
-  const folded = (f, a0, a1) => {
+  const folded = (f, a0, a1, kMin = 0) => {
     const pt = (a, k, out) => {                                  // point on the face at position a, floor k
       const y = L2 + k * FL, d = f.at + f.out * out;
       return f.ax === 'z' ? [a, y, d] : [d, y, a];
     };
-    for (let k = 0; k <= NUP; k++) {
+    for (let k = kMin; k <= NUP; k++) {
       const ph = (k % 2) * P / 2;                                 // alternate floors shift by half a period
       for (let a = a0 - ph; a < a1; a += P) {
         const s0 = Math.max(a0, a), s1 = Math.min(a1, a + P / 2), s2 = Math.min(a1, a + P);
@@ -77,9 +82,38 @@ export function buildKmids(owner) {
     }
   };
   folded(N, X0, X1);
-  folded(S, X0, X1);
-  folded(W, ZN, ZS);
-  folded(E, ZN, ZS);
+  // ---- south, west and east: pink render bays with punched windows, a wavy terracotta fin screen between ----
+  const SB0 = X0 + 14, SB1 = X1 - 18;                                     // fin-screen span on the south face
+  const pinkBay = (x0, x1, z0, z1) => {                                   // a rendered block from the slab up to the roof
+    A.box('pink', x0, x1, G + 0.2, TOP + 0.6, z0, z1);
+    for (const [f, a0, a1] of [[F('z', z1, 1), x0, x1], [F('x', x0, -1), z0, z1], [F('x', x1, 1), z0, z1]]) {
+      const n = Math.max(1, Math.round((a1 - a0) / 4.2));
+      for (let k = 0; k <= NUP; k++) {
+        const yb = k === 0 ? G + 0.2 : L2 + (k - 1) * FL, yt = k === 0 ? L2 : L2 + k * FL;
+        for (let i = 0; i < n; i++) {
+          const a = a0 + ((i + 0.5) * (a1 - a0)) / n;
+          onFace(A, 'glass', f, a - 0.75, a + 0.75, yb + 1.0, yt - 0.9, 0, 0.04);
+          onFace(A, 'frame', f, a - 0.85, a + 0.85, yb + 0.9, yb + 1.0, 0, 0.12);
+        }
+      }
+    }
+  };
+  pinkBay(X0 - 1.5, SB0, ZS - 10, ZS + 1.5);                              // west bay stands forward
+  pinkBay(SB1, X1, ZS - 8, ZS);
+  pinkBay(X0, X0 + 0.6, ZN, ZS - 10);                                     // west end
+  pinkBay(X1 - 0.6, X1, ZN, ZS - 8);                                      // east end
+  // fin screen over floors 2-5: depth swells and shrinks in waves along the face and up it
+  const yF0 = G + 0.2, yF1 = L2 + 3 * FL;
+  A.box('dark', SB0, SB1, yF0, yF1, ZS - 0.4, ZS - 0.3);
+  for (let x = SB0 + 0.3, i = 0; x < SB1; x += 0.7, i++) {
+    for (let j = 0; j < 6; j++) {
+      const y0 = yF0 + ((yF1 - yF0) * j) / 6, y1 = yF0 + ((yF1 - yF0) * (j + 1)) / 6;
+      const d = 0.35 + 0.65 * (0.5 + 0.5 * Math.sin(x * 0.32 + j * 0.55));
+      A.box('fin', x - 0.08, x + 0.08, y0, y1, ZS - 0.3, ZS - 0.3 + d);
+    }
+  }
+  // top two floors glazed behind white V struts
+  folded(F('z', ZS, 1), SB0, SB1, NUP - 2);
 
   // ---- thin steel roof, rising to the north, overhanging; solar rows; sign ----
   const yS = TOP + 0.9, yN = TOP + 2.6, OV = 3.0;
@@ -142,6 +176,8 @@ export function buildKmids(owner) {
     step: std({ color: '#c3c1bb', roughness: 1 }),
     wing: std({ color: '#ecebe7' }),
     roofLight: std({ color: '#d9d8d3', roughness: 0.9 }),
+    pink: std({ color: '#ecd9d2' }),
+    fin: std({ color: '#9a5b3f', roughness: 0.8 }),
   };
   const meshes = [];
   const add = (g, mat) => {

@@ -14,9 +14,14 @@
 //   solar panels on its south slope; a small service block east (front from Street View on the pond walk)
 //   นาโน: two storeys of red brick with white floor bands and green-tinted glass, an arched entrance portico
 //   ธนาคารและไปรษณีย์: a long single-storey row of shops (bank, post office, coffee) under a flat concrete roof,
-//   a covered walk along its east side
-//   คลินิกเวชกรรม: a two-storey brick-faced block behind a tall white frame of slender square columns carrying a
-//   deep roof slab; a low wing with a long covered drop-off
+//   a covered walk along its east side; its south end is a bank hall with a light-blue fascia and ATMs under the
+//   overhang. Beside it on the road (OSM 1138463213, 1138463212; added 2026-10-19 from the user's Virtual Tour photos):
+//   a Krungsri pavilion with a grey-and-yellow fascia, a glazed ATM front on a raised plinth and a tall yellow pylon
+//   sign, and a white bank pavilion with a deep flat fascia and pale green glazing
+//   คลินิกเวชกรรม (signed โรงพยาบาลพระจอมเกล้าเจ้าคุณทหาร): white, two storeys; the west block has three tall bays of pale
+//   glazing in a white frame with the name in red on its parapet; a set-back glazed entrance with wide steps, a slab
+//   over it and an open loggia on square columns above; a single-storey colonnade over the drop-off to the east with
+//   solar panels on top (re-surveyed 2026-10-19 from the user's Virtual Tour photos)
 //   ภาคอัตโนมัติ (BM EN-24, three storeys): refurbished - re-surveyed 2026-10-19 from the KMITL Virtual Tour (ไปรษณีย์ 5-9,
 //   from the road and the post-office walk east of it): charcoal cladding with big screens of grey vertical slats on
 //   the upper floors, orange trim on every floor edge and the parapet, a slate-blue ground floor with dark-framed
@@ -26,7 +31,7 @@ import { Acc, F, onFace, block, pilotis, solar, hip, mats, meshes, BASE_MATS } f
 import { textTex } from './ecc.js';
 
 const SPEC = { ...BASE_MATS, wall: '#f1f0ec', band: '#f7f6f2', brick: { color: '#b0573d' }, cream: '#e9dcc0', louvre: { color: '#9a9ea0' },
-  glassGreen: { color: '#4f7f74', roughness: 0.25, metalness: 0.3 }, glassRoof: { color: '#a8bcc6', roughness: 0.2, metalness: 0.3 }, roofSheet: '#c3c5c4',
+  glassGreen: { color: '#4f7f74', roughness: 0.25, metalness: 0.3 }, glassRoof: { color: '#a8bcc6', roughness: 0.2, metalness: 0.3 }, roofSheet: '#c3c5c4', glassPale: { color: '#b9c4c4', roughness: 0.3 }, white: '#f2f1ed', skyBlue: '#48b4e0', atm: '#2a8fd0', ksYellow: '#f4b81c', ksGrey: '#55595d',
   charcoal: '#41464b', slate: '#4f6c8a', slat: { color: '#8c9196', roughness: 0.6, metalness: 0.3 }, rust: '#c9622e', orangeSign: '#ef6a1f' };
 const done = (A, owner, top, extra = []) => ({ meshes: [...meshes(A, mats(SPEC), owner), ...extra], top });
 
@@ -119,21 +124,104 @@ export function buildBank(owner) {
   A.box('band', -130.5, -114.5, 3.8, 4.3, -174.5, -87.5);
   for (let z = -172; z < -88; z += 4.2) A.box('wall', -115.5, -115, 0, 3.8, z, z + 0.4);
   A.box('paving', -122, -115, 0, 0.2, -174, -88);
-  return done(A, owner, 4.3);
+  // bank hall at the south end: light-blue fascia over the overhang, ATMs under it
+  A.box('white', -130.6, -114.4, 3.3, 4.6, -100, -87.2);
+  onFace(A, 'skyBlue', F('z', -87.2, 1), -130.6, -114.4, 3.6, 4.5, 0, 0.06);
+  onFace(A, 'skyBlue', F('x', -114.4, 1), -100, -87.2, 3.6, 4.5, 0, 0.06);
+  for (const z of [-96, -94.5, -93]) A.box('atm', -122.4, -121.6, 0.2, 2.0, z, z + 0.9);
+  return done(A, owner, 4.6);
+}
+
+// Krungsri pavilion on the corner west of the bank row
+export function buildKrungsri(owner) {
+  const A = new Acc();
+  const X0 = -140, X1 = -129.5, Z0 = -107, Z1 = -82, H = 4.6;
+  A.box('paving', X0 - 0.6, X1 + 0.6, 0, 0.6, Z0, Z1 + 1.5);
+  for (let s2 = 0; s2 < 2; s2++) A.box('paving', X0, X1, 0, 0.3 - s2 * 0.15, Z1 + 1.5, Z1 + 2.1 + s2 * 0.5);
+  A.box('wall', X0 + 0.5, X1 - 0.5, 0.6, H, Z0 + 0.5, Z1 - 1.5);
+  onFace(A, 'glass', F('z', Z1 - 1.5, 1), X0 + 1.5, X1 - 1.5, 0.8, H - 0.4, 0, 0.05);
+  onFace(A, 'glass', F('x', X1 - 0.5, 1), Z0 + 4, Z1 - 2, 0.8, H - 0.4, 0, 0.05);
+  for (const x of [X0 + 1.2, X0 + 2.4, X0 + 3.6]) A.box('ksYellow', x, x + 0.9, 0.6, 2.4, Z1 - 2.4, Z1 - 1.6);           // ATMs
+  for (const [x, z] of [[X0 + 0.3, Z1 - 0.3], [X1 - 0.3, Z1 - 0.3], [X1 - 0.3, Z0 + 4]]) A.box('wall', x - 0.25, x + 0.25, 0.6, H, z - 0.25, z + 0.25);
+  // deep fascia: grey on the west half of the front, yellow on the rest and round the east side
+  A.box('ksGrey', X0 - 0.4, X1 + 0.4, H, H + 1.6, Z0, Z1 + 0.4);
+  onFace(A, 'ksYellow', F('z', Z1 + 0.4, 1), X0 + 4.5, X1 + 0.4, H, H + 1.6, 0, 0.05);
+  onFace(A, 'ksYellow', F('x', X1 + 0.4, 1), Z0, Z1 + 0.4, H, H + 1.6, 0, 0.05);
+  A.box('roof', X0 - 0.2, X1 + 0.2, H + 1.6, H + 1.7, Z0 + 0.2, Z1 + 0.2);
+  // tall yellow pylon sign at the south-west corner
+  A.box('wall', X0 - 0.8, X0 - 0.4, 0, 6.0, Z1 + 1.6, Z1 + 2.0);
+  A.box('ksYellow', X0 - 1.1, X0 - 0.1, 5.6, 9.6, Z1 + 1.2, Z1 + 2.4);
+  // the KRUNGSRI name on the grey fascia (faces south: viewer looks north, west on the left)
+  const g = new THREE.BufferGeometry(), z = Z1 + 0.43, x0 = X0 + 0.2, x1 = X0 + 4.3, y0 = H + 0.35, y1 = H + 1.25;
+  g.setAttribute('position', new THREE.Float32BufferAttribute([x0, y0, z, x1, y0, z, x1, y1, z, x0, y0, z, x1, y1, z, x0, y1, z], 3));
+  g.setAttribute('uv', new THREE.Float32BufferAttribute([0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1], 2));
+  g.computeVertexNormals();
+  g.userData.owner = new Int32Array(2).fill(owner);
+  const sign = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ map: textTex('krungsri', { w: 512, h: 150, color: '#ffffff', font: 'Arial', weight: 700 }), transparent: true, alphaTest: 0.3, roughness: 0.7 }));
+  sign.userData.kind = 'building';
+  return done(A, owner, H + 1.7, [sign]);
+}
+
+// white bank pavilion east of the bank row
+export function buildBankW(owner) {
+  const A = new Acc();
+  const X0 = -114.5, X1 = -103, Z0 = -108, Z1 = -80, H = 4.0;
+  A.box('paving', X0, X1 + 0.5, 0, 0.5, Z0, Z1 + 1);
+  A.box('wall', X0 + 1, X1 - 1, 0.5, H, Z0 + 1, Z1 - 1.5);
+  onFace(A, 'glassPale', F('z', Z1 - 1.5, 1), X0 + 1.5, X1 - 1.5, 0.6, H - 0.3, 0, 0.05);
+  onFace(A, 'glassPale', F('x', X1 - 1, 1), Z0 + 3, Z1 - 2, 0.6, H - 0.3, 0, 0.05);
+  for (let z = Z0 + 3; z < Z1 - 2; z += 4) onFace(A, 'wall', F('x', X1 - 1, 1), z - 0.2, z + 0.2, 0.5, H, 0, 0.1);
+  A.box('white', X0 - 0.3, X1 + 0.3, H, H + 1.3, Z0, Z1 + 0.3);
+  A.box('roof', X0, X1, H + 1.3, H + 1.4, Z0 + 0.3, Z1);
+  return done(A, owner, H + 1.4);
 }
 
 export function buildClinic(owner) {
+  // re-surveyed 2026-10-19 from the user's KMITL Virtual Tour photos of the north front and the drop-off
   const A = new Acc();
-  const t = block(A, -86, -60, -180, -164, { G: 4.4, FL: 3.8, n: 2, bay: 4, style: 'band', mats: { wall: 'brick', pier: 'brick' } }, {});
-  // tall white frame on the north
-  for (let x = -86; x <= -60; x += 3.25) A.box('band', x - 0.3, x + 0.3, 0, t + 0.6, -184, -183.4);
-  A.box('band', -86.5, -59.5, t, t + 0.9, -184.5, -163.5);
-  for (let s = 0; s < 3; s++) A.box('paving', -84, -62, 0, 0.5 - s * 0.15, -186 - s * 0.6, -184);
-  // low wing and covered drop-off
-  block(A, -60, -38, -182, -161, { G: 4.2, n: 1, bay: 4, style: 'band' }, { w: false });
-  A.box('band', -60, -38, 3.6, 4.0, -188, -182);
-  for (let x = -58; x <= -40; x += 6) A.box('band', x - 0.25, x + 0.25, 0, 3.6, -187.8, -187.3);
-  return done(A, owner, t + 0.9);
+  const X0 = -91, XM0 = -63, XM1 = -50, X1 = -42, ZN = -188, ZS = -165, T = 10.4, G = 4.6, LT = 5.2;
+  const N = F('z', ZN, -1);
+  // west block: tall glazed bays in a white frame
+  A.box('wall', X0, XM0, 0, T, ZN + 0.6, ZS);
+  A.box('band', X0, XM0, 0, 0.9, ZN, ZN + 0.6);
+  A.box('band', X0, XM0, T - 1.7, T + 0.4, ZN, ZN + 0.6);
+  for (let i = 0; i < 3; i++) {
+    const a0 = X0 + 1.4 + i * 8.6, a1 = a0 + 7.2;
+    onFace(A, 'glassPale', F('z', ZN + 0.6, -1), a0, a1, 0.9, T - 1.7, 0, 0.05);
+    for (let x = a0; x <= a1 + 0.01; x += 1.8) onFace(A, 'band', F('z', ZN + 0.6, -1), x - 0.05, x + 0.05, 0.9, T - 1.7, 0, 0.1);
+    for (const y of [3.4, 6.2]) onFace(A, 'band', F('z', ZN + 0.6, -1), a0, a1, y - 0.05, y + 0.05, 0, 0.1);
+    onFace(A, 'band', N, a1 - 0.0, a1 + 1.4, 0.9, T - 1.7, -0.6, 0);
+  }
+  onFace(A, 'band', N, X0, X0 + 1.4, 0.9, T - 1.7, -0.6, 0);
+  // middle: set-back glazed entrance, slab, open loggia with square columns above, steps
+  A.box('wall', XM0, XM1, 0, T, ZN + 5, ZS);
+  onFace(A, 'glass', F('z', ZN + 5, -1), XM0 + 1, XM1 - 1, 0.6, G - 0.4, 0, 0.05);
+  onFace(A, 'glass', F('z', ZN + 5, -1), XM0 + 1, XM1 - 1, G + 0.8, T - 1.4, 0, 0.05);
+  A.box('band', XM0, XM1 + 8, G - 0.3, G + 0.3, ZN - 1.2, ZN + 5);
+  A.box('band', XM0, XM1, T - 1.4, T + 0.4, ZN, ZN + 5);
+  for (const x of [XM0 + 0.4, (XM0 + XM1) / 2, XM1 - 0.4]) A.box('band', x - 0.45, x + 0.45, 0, T - 1.4, ZN + 0.1, ZN + 1.0);
+  for (let s2 = 0; s2 < 5; s2++) A.box('paving', XM0 - 3 - s2 * 0.4, XM1 + 3 + s2 * 0.4, 0, 0.9 - s2 * 0.18, ZN - 0.2 - s2 * 0.45, ZN + 5);
+  // east: single-storey colonnade over the drop-off, tilted solar panels on its roof
+  A.box('wall', XM1, X1, 0, LT, ZN + 6, ZS - 3);
+  A.box('band', XM1, X1 + 0.6, LT - 0.9, LT + 0.5, ZN - 0.6, ZS);
+  for (let x = XM1 + 2.5; x <= X1 + 0.3; x += 4.2) for (const z of [ZN - 0.2, ZS - 0.8]) A.box('band', x - 0.35, x + 0.35, 0, LT - 0.9, z - 0.35, z + 0.35);
+  for (let z = ZN + 1; z < ZS - 3; z += 4.2) A.box('band', X1 + 0.1, X1 + 0.8, 0, LT - 0.9, z - 0.35, z + 0.35);
+  for (let x = XM1 + 1; x < X1 - 2; x += 3.2) {
+    A.quad('solar', [x, LT + 0.7, ZN + 3], [x + 2.6, LT + 0.7, ZN + 3], [x + 2.6, LT + 2.0, ZN + 5], [x, LT + 2.0, ZN + 5]);
+    A.quad('solar', [x, LT + 2.0, ZN + 5], [x + 2.6, LT + 2.0, ZN + 5], [x + 2.6, LT + 0.7, ZN + 3], [x, LT + 0.7, ZN + 3]);
+  }
+  // covered walk along the south side
+  A.box('band', X0, X1, 3.6, 4.0, ZS, ZS + 3);
+  A.box('roof', X0 + 0.3, XM1 - 0.3, T + 0.4, T + 0.5, ZN + 0.3, ZS - 0.3);
+  // the hospital's name in red on the west block's parapet (faces north: viewer looks south, east on the left)
+  const g = new THREE.BufferGeometry(), z = ZN - 0.03, x0 = XM0 - 3, x1 = X0 + 3, y0 = T - 1.45, y1 = T + 0.15;
+  g.setAttribute('position', new THREE.Float32BufferAttribute([x0, y0, z, x1, y0, z, x1, y1, z, x0, y0, z, x1, y1, z, x0, y1, z], 3));
+  g.setAttribute('uv', new THREE.Float32BufferAttribute([0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1], 2));
+  g.computeVertexNormals();
+  g.userData.owner = new Int32Array(2).fill(owner);
+  const sign = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ map: textTex('โรงพยาบาลพระจอมเกล้าเจ้าคุณทหาร', { w: 2048, h: 180, color: '#c0392b' }), transparent: true, alphaTest: 0.3, roughness: 0.7 }));
+  sign.userData.kind = 'building';
+  return done(A, owner, T + 0.5, [sign]);
 }
 
 export function buildAutomation(owner) {
@@ -183,5 +271,7 @@ export const ALUMNI_OUTLINE = [[-372, -370], [-340, -370], [-340, -338], [-344, 
 export const THEPCAN_OUTLINE = [[-247, -247], [-201, -247], [-201, -240], [-192, -240], [-192, -226], [-201, -226], [-201, -219], [-247, -219], [-247, -247]];
 export const NANO_OUTLINE = [[-100, -137], [-76, -137], [-76, -132], [-48, -132], [-48, -114], [-76, -114], [-76, -101], [-100, -101], [-100, -137]];
 export const BANK_OUTLINE = rect(-130, -115, -174, -88);
-export const CLINIC_OUTLINE = [[-86, -184], [-60, -184], [-60, -188], [-38, -188], [-38, -161], [-60, -161], [-60, -164], [-86, -164], [-86, -184]];
+export const KRUNGSRI_OUTLINE = rect(-141.1, -129.1, -107, -79.6);
+export const BANKW_OUTLINE = rect(-114.8, -102.7, -108, -79.7);
+export const CLINIC_OUTLINE = [[-91, -189], [-41.2, -189], [-41.2, -162], [-91, -162], [-91, -189]];
 export const AUTOMATION_OUTLINE = rect(-167, -139, -163, -138);
