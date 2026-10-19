@@ -4,7 +4,7 @@
 
 สำรวจเมื่อ 2026-10-16 ถึงปัจจุบัน ภาพจาก Google Street View / Google Maps / ภาพดาวเทียม ใช้เป็นข้อมูลอ้างอิงในการขึ้นรูปเท่านั้น ไม่ได้แสดงในหน้าเว็บ รูปทรงทั้งหมดสร้างด้วยโค้ด
 
-## สรุปโมเดลเฉพาะ (97 หลัง)
+## สรุปโมเดลเฉพาะ (98 หลัง)
 
 | # | อาคาร | ไฟล์โมเดล | ชั้น | สูง (ม.) | OSM id |
 |---|---|---|---|---|---|
@@ -102,9 +102,10 @@
 | 92 | [หอพักนักศึกษา อาคาร 10](#dorm10) | `js/models/dorms.js` | 10 | 36.2 | 1206348757 |
 | 93 | [หอพักนักศึกษา อาคาร 12](#dorm12) | `js/models/dorms.js` | 10 | 36.2 | 1206348759 |
 | 94 | [โรงอาหาร คณะเทคโนโลยีสารสนเทศ](#itcan) | `js/models/itcan.js` | 2 | 10.4 | 314205127 |
-| 95 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
-| 96 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
-| 97 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
+| 95 | [คณะบริหารธุรกิจ](#kbs) | `js/models/kbs.js` | 6 | 29.6 | 516308732 |
+| 96 | [KOSEN-KMITL](#kosen) | `js/models/kosen.js` | 4 | 24.4 | 1322811831 |
+| 97 | [อาคารเจ้าคุณทหาร คณะเทคโนโลยีการเกษตร](#agri) | `js/models/agri.js` | 4 | 20.4 | 2573865 |
+| 98 | [จุฬาภรณ์วลัยลักษณ์ 1](#chula1) | `js/models/chula1.js` | 7 | 28 | 3568617 |
 
 รูปทรง OSM ที่ซ่อนไว้เพราะเป็นส่วนของโมเดลเฉพาะ (`hide`): 1138463195, 1138463197, 1138463209, 1138463210
 
@@ -349,7 +350,7 @@
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคาโลหะกว้าง) + Street View ทางเดินด้านตะวันตก
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
 - ลักษณะอาคารที่บันทึก: ลานเชียร์: โถงเปิดพื้นคอนกรีตยก เสาโครงเหล็ก หลังคาโลหะกว้าง ผ้าใบสีเข้มที่ขอบหลังคา
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves Lawson: a small white shop box with a glazed front and the brand colours in stripes on the fascia โรงอาหาร ตึก L + 7-Eleven: see lHalf below (rebuilt 2026-10-19 from the user's KMITL Virtual Tour photos) club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
 
 ## ลานจอดรถ <a id="carportcanc2"></a>
 
@@ -442,10 +443,10 @@
 ## อัฒจันทร์ สนามกีฬากลาง <a id="stad"></a>
 
 - OSM id: 1138463206 · ไฟล์: `js/models/stad.js` · ชั้น: 3 · สูง: 17 ม.
-- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผังอัฒจันทร์ แผงโซลาร์ คันดิน ทางเดิน) + Street View บนลู่วิ่งฝั่งตะวันตก (มองอัฒจันทร์ มองข้ามสนาม มองตามลู่วิ่งไปทางเหนือ) ตำแหน่งเสาไฟประมาณจากภาพ
-- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (curved grandstand plan, solar panels on its roof, the banks and their radial stair paths, the gates) and a Google Street View pano on the west straight of the track (looking west at the grandstand, east across the pitch, north along the track).
-- ลักษณะอาคารที่บันทึก: สนามกีฬากลาง: อัฒจันทร์ฝั่งตะวันตกผังโค้ง ฐานทาสีส้มมีหน้าต่างเล็กและคอยล์แอร์ ราวสีขาว ที่นั่งไล่ระดับสีแดงอมน้ำตาล หลังคายื่นบนคานเอียง ห้องสื่อมวลชนใต้หลังคากลางอัฒจันทร์ แผงโซลาร์บนหลังคา ซุ้มประธานหลังคาเขียวกับบันได ที่พักนักกีฬาสีน้ำเงินสองหลัง / รอบลู่วิ่งเป็นคันดินหญ้าเตี้ยมีทางเดินบันไดแนวรัศมี ประตูทางเข้าเหนือ-ใต้ / เสาไฟสนามโครงเหล็กถัก 4 ต้น ป้ายคะแนนด้านเหนือ
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): grandstand: curved in plan, about 105 m long and 20 m deep; orange-painted podium with small windows and AC units behind a white rail; raked red-brown seating; a cantilevered roof on raking beams over the back columns, a press box under the roof in the middle, solar panels on the roof; a central VIP stand with a green canopy and stairs, two blue dugouts at the track edge banks: low grassed embankment round the rest of the oval four lattice floodlight towers; a scoreboard on the north bank
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผังอัฒจันทร์ แผงโซลาร์ คันดิน ทางเดิน) + Street View บนลู่วิ่งฝั่งตะวันตก (มองอัฒจันทร์ มองข้ามสนาม มองตามลู่วิ่งไปทางเหนือ) + ภาพ KMITL Virtual Tour "ทางเข้าอัฒจันทร์" ที่ผู้ใช้ส่งมา 19 ต.ค. 2026 (ด้านหน้าอัฒจันทร์) ตำแหน่งเสาไฟประมาณจากภาพ
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (curved grandstand plan, solar panels on its roof, the banks and their radial stair paths, the gates) and a Google Street View pano on the west straight of the track (looking west at the grandstand, east across the pitch, north along the track). The grandstand front was reworked 2026-10-19 from two photos of the KMITL Virtual Tour (ทางเข้าอัฒจันทร์, from the track in front of the stand).
+- ลักษณะอาคารที่บันทึก: สนามกีฬากลาง: อัฒจันทร์ฝั่งตะวันตกผังโค้ง ฐานผนังสีน้ำเงินเทามีหน้าต่างและคอยล์แอร์ ราวสีน้ำเงิน ที่นั่งสีน้ำเงินสองชั้นคั่นด้วยทางเดิน ชั้นล่างที่นั่งสีส้มเรียงเป็นตัวอักษร KMITL สองข้างของซุ้มกลาง ผนังปิดหัวท้ายสีขาว หลังคายื่นห้อยจากคานคอนกรีตเอียง ใต้หลังคาสีเทาเข้ม ขอบหลังคาสีน้ำเงินมีราว ห้องสื่อมวลชนกระจกใต้หลังคากลางอัฒจันทร์ แผงโซลาร์บนหลังคา ซุ้มประธานสีขาวมีป้าย KMITL SPORT WORLD ป้ายตราด้านบน บันไดลงสองข้างราวสีน้ำเงิน ที่พักนักกีฬาโปร่งแสงสีเขียวสองหลัง ม้านั่งสีแดง / รอบลู่วิ่งเป็นคันดินหญ้าเตี้ยมีทางเดินบันไดแนวรัศมี ประตูทางเข้าเหนือ-ใต้ / เสาไฟสนามโครงเหล็กถัก 4 ต้น ป้ายคะแนนด้านเหนือ
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): grandstand: curved in plan, about 105 m long and 20 m deep; a slate-blue podium with windows and AC units, a blue rail along its top; blue seats in two tiers split by a walkway, the lower tier spelling "KMITL" in orange on each side of the centre; white end walls; a cantilevered roof (dark soffit, blue fascia, a rail along the edge) hung from raking concrete beams over the back columns, solar panels on top; a glazed press box under the roof in the middle; a white VIP stand in front of it with "KMITL SPORT WORLD" on its face, the institute crest on a banner above and stairs down both sides; green see-through dugouts and red benches at the track edge banks: low grassed embankment round the rest of the oval four lattice floodlight towers; a scoreboard on the north bank
 
 ## หอพักนักศึกษา อาคาร 11 <a id="dorm11"></a>
 
@@ -567,7 +568,7 @@
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคาจั่วกระเบื้องแดงสองส่วน) + Street View ถนนด้านเหนือ (ต้นไม้บังมาก)
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
 - ลักษณะอาคารที่บันทึก: สโมสรนักศึกษา: อาคาร 1-2 ชั้นผนังขาว หลังคาจั่วกระเบื้องแดง
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves Lawson: a small white shop box with a glazed front and the brand colours in stripes on the fascia โรงอาหาร ตึก L + 7-Eleven: see lHalf below (rebuilt 2026-10-19 from the user's KMITL Virtual Tour photos) club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
 
 ## Lawson 108 <a id="lawson"></a>
 
@@ -575,7 +576,7 @@
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps + Street View ทางเดินมีหลังคาข้างร้าน
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
 - ลักษณะอาคารที่บันทึก: Lawson 108: ร้านชั้นเดียวสีขาว หน้าร้านกระจก แถบสีน้ำเงินที่ชายคา
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves Lawson: a small white shop box with a glazed front and the brand colours in stripes on the fascia โรงอาหาร ตึก L + 7-Eleven: see lHalf below (rebuilt 2026-10-19 from the user's KMITL Virtual Tour photos) club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
 
 ## A-Building <a id="abld"></a>
 
@@ -596,10 +597,10 @@
 ## โรงอาหาร ตึก L <a id="lcan"></a>
 
 - OSM id: 309557500 · ไฟล์: `js/models/small.js` · ชั้น:  · สูง:  ม.
-- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps + Street View ถนนด้านตะวันออก
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผัง) + ภาพจาก KMITL Virtual Tour ที่ผู้ใช้ส่งมา 19 ต.ค. 2026 (ด้านหน้าทิศตะวันตก มุมตะวันตกเฉียงใต้ ด้านหลัง)
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
-- ลักษณะอาคารที่บันทึก: โรงอาหารตึก L: ชั้นเดียวเปิดโล่งบนเสา หลังคาโลหะ ห้องครัวสีครีม
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
+- ลักษณะอาคารที่บันทึก: โรงอาหารตึก L: อาคารเดียวกับ 7-Eleven ผนังสีครีม แนวเสาเหลี่ยมสีน้ำตาลอ่อนด้านหน้าทิศตะวันตกและด้านใต้ หน้าต่างบานเกล็ดแนวยาวด้านบน / หลังคาแบนช่วงกลาง ปลายทั้งสองด้านยกสูง หลังคาลาดขึ้นไปทางปลาย พับลงที่มุมเป็นแผงสามเหลี่ยมโลหะลอนสีเทา
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves Lawson: a small white shop box with a glazed front and the brand colours in stripes on the fascia โรงอาหาร ตึก L + 7-Eleven: see lHalf below (rebuilt 2026-10-19 from the user's KMITL Virtual Tour photos) club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
 
 ## ตึก ECC <a id="ecc"></a>
 
@@ -643,7 +644,7 @@
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps + Street View ถนนด้านเหนือและลานด้านตะวันออก
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
 - ลักษณะอาคารที่บันทึก: สโมสรนักศึกษาคณะวิศวกรรมศาสตร์: 2 ชั้นคอนกรีตสีขาวเก่า หลังคาแบน
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves Lawson: a small white shop box with a glazed front and the brand colours in stripes on the fascia โรงอาหาร ตึก L + 7-Eleven: see lHalf below (rebuilt 2026-10-19 from the user's KMITL Virtual Tour photos) club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
 
 ## ภาคอัตโนมัติ <a id="automation"></a>
 
@@ -691,7 +692,7 @@
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps + Street View ถนนด้านเหนือและด้านตะวันตก
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
 - ลักษณะอาคารที่บันทึก: ตึกกระจก: 2 ชั้นผนังขาว หน้าต่างกระจกบานใหญ่กรอบเทา
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves Lawson: a small white shop box with a glazed front and the brand colours in stripes on the fascia โรงอาหาร ตึก L + 7-Eleven: see lHalf below (rebuilt 2026-10-19 from the user's KMITL Virtual Tour photos) club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
 
 ## อาคารจอมไตร <a id="jomtrai"></a>
 
@@ -751,7 +752,7 @@
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps เท่านั้น (ภาพ Street View ถ่ายก่อนสร้างร้าน)
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
 - ลักษณะอาคารที่บันทึก: อินทนิล: ร้านกาแฟชั้นเดียว หน้ากระจก หลังคาแบน แถบสีเขียวที่ชายคา
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves Lawson: a small white shop box with a glazed front and the brand colours in stripes on the fascia โรงอาหาร ตึก L + 7-Eleven: see lHalf below (rebuilt 2026-10-19 from the user's KMITL Virtual Tour photos) club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
 
 ## ตึก A <a id="tka"></a>
 
@@ -772,10 +773,10 @@
 ## 7-Eleven <a id="seven"></a>
 
 - OSM id: 1138469403 · ไฟล์: `js/models/small.js` · ชั้น:  · สูง:  ม.
-- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps + Street View ถนนด้านตะวันออก
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผัง) + ภาพจาก KMITL Virtual Tour ที่ผู้ใช้ส่งมา 19 ต.ค. 2026
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
-- ลักษณะอาคารที่บันทึก: 7-Eleven: ร้านชั้นเดียวสีขาว หน้าร้านกระจก แถบสีส้ม เขียว แดงที่ชายคา
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
+- ลักษณะอาคารที่บันทึก: 7-Eleven: ครึ่งใต้ของอาคารโรงอาหารตึก L หน้าร้านกระจกหลังแนวเสาสีน้ำตาลอ่อน บันไดขึ้นจากถนนด้านตะวันตก ป้าย 7-ELEVEN บนแถบบานเกล็ด
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves Lawson: a small white shop box with a glazed front and the brand colours in stripes on the fascia โรงอาหาร ตึก L + 7-Eleven: see lHalf below (rebuilt 2026-10-19 from the user's KMITL Virtual Tour photos) club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
 
 ## คาเฟ่ อเมซอน <a id="amazon"></a>
 
@@ -785,7 +786,7 @@
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps เท่านั้น (ภาพ Street View ถ่ายก่อนสร้างร้าน)
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
 - ลักษณะอาคารที่บันทึก: คาเฟ่อเมซอน: ร้านชั้นเดียว หน้ากระจก หลังคาแบน แถบสีเขียวที่ชายคา
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves Lawson: a small white shop box with a glazed front and the brand colours in stripes on the fascia โรงอาหาร ตึก L + 7-Eleven: see lHalf below (rebuilt 2026-10-19 from the user's KMITL Virtual Tour photos) club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
 
 ## หอพักนักศึกษา อาคาร 9 <a id="dorm9"></a>
 
@@ -808,7 +809,7 @@
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps + Street View ถนนด้านใต้
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
 - ลักษณะอาคารที่บันทึก: สโมสรนักศึกษาคณะครุศาสตร์ฯ: 2 ชั้นผนังขาว บานเกล็ดสีแดง หลังคาโลหะลอน
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves Lawson: a small white shop box with a glazed front and the brand colours in stripes on the fascia โรงอาหาร ตึก L + 7-Eleven: see lHalf below (rebuilt 2026-10-19 from the user's KMITL Virtual Tour photos) club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
 
 ## Lita cafe & roaster - KMITL <a id="lita"></a>
 
@@ -850,7 +851,7 @@
 - แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (หลังคาโลหะ) + Street View ถนนด้านตะวันตก
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plans and roofs) and Google Street View from the roads and walks beside them where it reaches them; Café Amazon and Inthanin are newer than Street View there and follow the imagery.
 - ลักษณะอาคารที่บันทึก: โรงอาหารถิ่นชงโค: ชั้นเดียว ผนังครีม หลังคาโลหะลอนชายคาลึก
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves 7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves Lawson: a small white shop box with a glazed front and the brand colours in stripes on the fascia โรงอาหาร ตึก L + 7-Eleven: see lHalf below (rebuilt 2026-10-19 from the user's KMITL Virtual Tour photos) club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled gables café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
 
 ## KMITL Dormitory <a id="dormk"></a>
 
@@ -885,6 +886,16 @@
 - การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (a square two-storey block, solar panels round a central light well with a raised roof, a round stair at the south-west corner) and Google Street View from the road to the west and the main road to the south (the block behind trees, its west front and steps).
 - ลักษณะอาคารที่บันทึก: โรงอาหารคณะไอที: 2 ชั้น ชั้นล่างโล่งมีร้านค้าหลังเสาขาว ชั้นบนผนังขาวหน้าต่างแถบ / แผงโซลาร์รอบหลังคายกช่องแสงกลาง / บันไดวงกลมที่มุม
 - รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): two storeys: an open ground floor of shops and tables behind white columns, a white upper floor with a strip of windows; solar panels round a raised clerestory roof over the central well; a round stair at the corner
+
+## คณะบริหารธุรกิจ <a id="kbs"></a>
+
+*KMITL Business School (KBS)*
+
+- OSM id: 516308732 · ไฟล์: `js/models/kbs.js` · ชั้น: 6 · สูง: 29.6 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผัง หลังคาโซลาร์ หอกลาง ทางเชื่อมขั้นบันได) + คลิป #ที่นี่ลาดกระบัง KMITL Business School (youtu.be/mfGSrcOlX6g 0:02-0:16 ด้านหน้าทิศเหนือหลังปรับปรุง) + Street View ถนนรอบอาคาร (ภาพก่อนปรับปรุง ใช้กับปีกใต้)
+- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-19 from Google Maps satellite imagery (plan, roofs: solar panels on the wings, the tower's flat roof between them, the stepped link to the south wing) and the faculty's 2026 film "#ที่นี่ลาดกระบัง KMITL Business School" (youtu.be/mfGSrcOlX6g, 0:02-0:16: the north front from across the lawn and car park to the north-east, the arched screen, the tower top). Street View on the roads round it predates the refurbishment (white banded walls); it was used for the south wing and the floor count.
+- ลักษณะอาคารที่บันทึก: คณะบริหารธุรกิจ: ปีกเหนือ 5 ชั้นผนังขาวหน้าต่างแนวยาว ชั้นล่างมีแนวซุ้มโค้งสีชมพูแซลมอน ป้าย KMITL BUSINESS SCHOOL บนขอบหลังคา / หอกลาง 6 ชั้นหุ้มสีดินเผา แถบกระจกกลาง กล่องขาวบนยอดมีตราและโครงเหล็กลาดเอียง / ปีกตะวันออก 3 ชั้นหลังผนังสีชมพูแซลมอนเจาะซุ้มโค้งสูงสองซุ้ม แผงสีเทาฟ้ามีชื่อคณะ กันสาดทางเข้า / ปีกใต้ 4 ชั้นแถบขาว ครีบด้านตะวันออก
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): north wing x 356..418, z -220..-199: five storeys of white render with ribbon windows, in two parts joined by a recessed link at x 381..386; a salmon-pink arcade of small arches in front of the ground floor; "KMITL BUSINESS SCHOOL" on the parapet; solar panels on both roofs tower x 419..436: six storeys clad in terracotta with a glazed strip up the middle, a white top box with the emblem and a sloping steel trellis over it east block x 438..466: three storeys behind a salmon-pink screen wall with two tall arches, a blue-grey fascia with "คณะบริหารธุรกิจ" on top, a white canopy over the entrance south wing x 437..465, z -183..-135: four storeys of white bands, deep fins down the east face, solar roof, joined to the east block by a two-storey link with a stepped roof
 
 ## KOSEN-KMITL <a id="kosen"></a>
 

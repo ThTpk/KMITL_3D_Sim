@@ -8,16 +8,21 @@
 //
 // x = east, z = south, y = up.
 //   canteens: single storey, cream walls or open sides on columns, corrugated metal roofs with deep eaves
-//   7-Eleven and Lawson: small white shop boxes with a glazed front and the brand colours in stripes on the fascia
+//   Lawson: a small white shop box with a glazed front and the brand colours in stripes on the fascia
+//   โรงอาหาร ตึก L + 7-Eleven: see lHalf below (rebuilt 2026-10-19 from the user's KMITL Virtual Tour photos)
 //   club buildings: one or two storeys of weathered white concrete with flat roofs; the faculty club has red tiled
 //   gables
 //   café kiosks: single storey, glazed fronts under a flat roof with a coloured fascia
 //   ตึกกระจก: two storeys of white render with large grids of glazing in grey frames; ลานเชียร์: an open hall of steel posts under a broad roof
+import * as THREE from 'three';
 import { Acc, F, onFace, block, hip, gable, mats, meshes, BASE_MATS } from './kit.js';
+import { textTex } from './ecc.js';
 
 const SPEC = { ...BASE_MATS, wall: '#efede6', cream: '#ece3cf', roofSheet: '#bfc2c1', tile: { color: '#a8473a', roughness: 0.85 },
   steel: { color: '#6a7076', metalness: 0.5, roughness: 0.5 }, orange: '#f08a24', green: '#1f8a4c', red: '#d32f2f', blue: '#2a5caa',
-  amazon: '#3d6b35', glass: { color: '#6f7d84' } };
+  amazon: '#3d6b35', glass: { color: '#6f7d84' },
+  tan: '#d6a373', louvre: { color: '#a9adae', roughness: 0.6, metalness: 0.2 }, brown: '#8a6a52', greyClad: { color: '#8f9395', roughness: 0.6, metalness: 0.3 },
+  signBack: '#e9e6dd' };
 const done = (A, owner, top) => ({ meshes: meshes(A, mats(SPEC), owner), top });
 const rect = (x0, x1, z0, z1) => [[x0, z0], [x1, z0], [x1, z1], [x0, z1], [x0, z0]];
 
@@ -34,8 +39,64 @@ function shop(A, x0, x1, z0, z1, stripes, front) {
 }
 
 export function buildTincan(owner) { const A = new Acc(); hall(A, -364, -336, 6, 32, 4.0); return done(A, owner, 6.4); }
-export function buildLcan(owner) { const A = new Acc(); hall(A, -304, -283, -110, -90, 3.8, 'roofSheet', false); A.box('cream', -302, -285, 0, 3.8, -108, -103); return done(A, owner, 6.2); }
-export function buildSeven(owner) { const A = new Acc(); shop(A, -304, -283, -90, -75, ['orange', 'green', 'red'], F('x', -283, 1)); return done(A, owner, 4.2); }
+// โรงอาหาร ตึก L and the 7-Eleven are one building facing west onto the road: a cream hall with a tan colonnade of
+// square piers along the west and south fronts, a band of louvred clerestory windows above it, a flat-roofed middle,
+// and at each end a raised block whose roof slopes up to the outer end and folds down at the outer corners into
+// grey ribbed triangular prows. The canteen is the north half, the 7-Eleven the south half.
+const LX0 = -313, LX1 = -290, LZN = -115, LZS = -78, LG = 4.2, LT = 8.0, LZM = -92;
+function lHalf(A, z0, z1, end) {
+  const W = F('x', LX0, -1), E = F('x', LX1, 1);
+  A.box('paving', LX0 - 2.2, LX1, 0, 0.6, z0, z1);
+  A.box('glass', LX0 + 2.0, LX1, 0.6, LG, z0, z1);                                  // glazed ground floor set back
+  A.box('cream', LX0, LX1, LG, LT, z0, z1);
+  onFace(A, 'louvre', W, z0 + 0.6, z1 - 0.6, LG + 1.0, LT - 1.2, 0, 0.05);           // clerestory louvres
+  onFace(A, 'louvre', E, z0 + 0.6, z1 - 0.6, LG + 1.6, LT - 1.2, 0, 0.05);
+  onFace(A, 'brown', E, z0, z1, 0, 3.2, 0, 0.05);
+  // colonnade: tan beam over square piers along the west front
+  onFace(A, 'tan', W, z0, z1, LG - 0.4, LG + 0.5, 0, 0.8);
+  for (let z = z0 + 0.4; z < z1 - 0.3; z += 4.2) A.box('tan', LX0 - 0.1, LX0 + 0.7, 0.6, LG, z, z + 0.7);
+  if (!end) return;
+  // raised end block: roof slopes up to the outer end, grey cladding above the walls, prows at the outer corners
+  const dir = end === 'n' ? -1 : 1, zo = end === 'n' ? z0 : z1, zi = zo - dir * 9, yi = LT + 0.4, yo = LT + 3.4;
+  const y = (z) => yi + ((yo - yi) * (z - zi)) / (zo - zi);
+  const both = (m, a, b, c, d) => { A.quad(m, a, b, c, d); A.quad(m, d, c, b, a); };
+  const xa = LX0 - 1.4, xb = LX1 + 1.2, ze = zo + dir * 1.0;
+  both('roofSheet', [xa, y(zi) + 0.25, zi], [xb, y(zi) + 0.25, zi], [xb, y(ze) + 0.25, ze], [xa, y(ze) + 0.25, ze]);
+  both('greyClad', [xa, y(zi), zi], [xb, y(zi), zi], [xb, y(ze), ze], [xa, y(ze), ze]);
+  for (const x of [LX0, LX1]) both('greyClad', [x, LT, zi], [x, LT, zo], [x, y(zo), zo], [x, y(zi), zi]);
+  both('greyClad', [LX0, LT, zo], [LX1, LT, zo], [LX1, y(zo), zo], [LX0, y(zo), zo]);
+  for (const x of [xa, xb]) {
+    const zt = ze - dir * 4.8;
+    A.tri('greyClad', [x, y(ze), ze], [x, y(zt), zt], [x, 0.6, ze - dir * 0.4]);
+    A.tri('greyClad', [x, 0.6, ze - dir * 0.4], [x, y(zt), zt], [x, y(ze), ze]);
+  }
+  // the colonnade turns the outer end
+  const O = F('z', zo, dir);
+  onFace(A, 'tan', O, LX0, LX1, LG - 0.4, LG + 0.5, 0, 0.8);
+  for (let x = LX0 + 0.2; x < LX1 - 0.5; x += 4.5) A.box('tan', x, x + 0.7, 0.6, LG, zo + dir * 0.1, zo + dir * 0.8);
+  onFace(A, 'louvre', O, LX0 + 0.8, LX1 - 0.8, LG + 1.0, LT - 1.2, 0, 0.05);
+}
+export function buildLcan(owner) { const A = new Acc(); lHalf(A, LZN, LZM, 'n'); return done(A, owner, LT + 3.7); }
+export function buildSeven(owner) {
+  const A = new Acc();
+  lHalf(A, LZM, LZS, 's');
+  for (let s = 0; s < 4; s++) A.box('paving', LX0 - 2.2 - (4 - s) * 0.35, LX0 - 2.2, 0, 0.15 * (s + 1), -91, -83);     // steps up to the shop
+  // the 7-ELEVEN sign on the clerestory band, the brand stripes under it
+  onFace(A, 'signBack', F('x', LX0, -1), -86.5, -80.5, LG + 1.2, LG + 2.2, 0.06, 0.14);
+  onFace(A, 'orange', F('x', LX0, -1), -86.5, -80.5, LG + 1.08, LG + 1.2, 0.06, 0.14);
+  // west-facing text (viewer looks east, north on the left)
+  const x = LX0 - 0.16, y0 = LG + 1.25, y1 = LG + 2.15, zN = -86.3, zS = -80.7;
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute([x, y0, zN, x, y0, zS, x, y1, zS, x, y0, zN, x, y1, zS, x, y1, zN], 3));
+  g.setAttribute('uv', new THREE.Float32BufferAttribute([0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1], 2));
+  g.computeVertexNormals();
+  g.userData.owner = new Int32Array(2).fill(owner);
+  const sign = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ map: textTex('7-ELEVEN', { w: 1024, h: 170, color: '#0f7b45', weight: 700 }), transparent: true, alphaTest: 0.3, roughness: 0.7 }));
+  sign.userData.kind = 'building';
+  const out = done(A, owner, LT + 3.7);
+  out.meshes.push(sign);
+  return out;
+}
 export function buildEngClub(owner) {
   const A = new Acc();
   block(A, -301, -280, 102, 114, { G: 3.8, FL: 3.4, n: 2, bay: 3.6, style: 'punched' }, {});
@@ -85,8 +146,8 @@ export function buildInthanin(owner) {
 }
 
 export const TINCAN_OUTLINE = rect(-364, -336, 6, 32);
-export const LCAN_OUTLINE = rect(-304, -283, -110, -90);
-export const SEVEN_OUTLINE = rect(-304, -283, -90, -75);
+export const LCAN_OUTLINE = rect(LX0 - 2.2, LX1, LZN - 1, LZM);
+export const SEVEN_OUTLINE = rect(LX0 - 2.2, LX1, LZM, LZS + 1);
 export const ENGCLUB_OUTLINE = rect(-301, -280, 102, 114);
 export const AMAZON_OUTLINE = rect(-313, -297, -370, -352);
 export const CHEER_OUTLINE = rect(431, 471, 190, 210);
