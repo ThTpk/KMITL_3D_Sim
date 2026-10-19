@@ -7,10 +7,9 @@
 //   a ten-storey tower of blue-green curtain-wall glass in the north-west, its north-east corner cut at an angle
 //   a seven-storey cream block south of it with horizontal louvre screens, stepping down in solar-panelled roofs
 //   curved stepped terraces (an outdoor amphitheatre) opening south-east toward the library
-//   signs (added 2026-10-19 from the SIIE "Key locations" film, 9:05, seen from the road to the north): a white blade
-//   at the north-east corner carrying "KMITL" in tall red letters stacked one above the other, a white panel with
-//   the CMKL logo on the cut corner and a dark "42 Bangkok" panel below it. Their exact placement is a best guess
-//   from that one low-resolution frame.
+//   signs (2026-10-19, placed from the drone shots in KMITL Channel+ "KMITL Share Lo" EP.4): a white block at the west
+//   end of the north face carrying "KMITL" in tall red letters stacked one above the other at its west edge, the CMKL
+//   panel beside them and a dark "42 Bangkok" panel below it
 import * as THREE from 'three';
 import { Acc, F, onFace, facade, block, solar, mats, meshes, BASE_MATS } from './kit.js';
 import { canvasTex } from './ecc.js';
@@ -54,31 +53,30 @@ export function buildCmkl(owner) {
     const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ map: tex, roughness: 0.7, side: THREE.DoubleSide }));
     m.userData.kind = 'building'; extra.push(m);
   };
-  // white blade at the north-east corner, "KMITL" stacked in red, facing north
-  A.box('white', 38.4, 42.0, 0, H + 1.0, -16.2, -13.8);
+  // white block at the west end of the north face (KMITL Channel+ "KMITL Share Lo" EP.4 drone shots, 0:02-0:40):
+  // "KMITL" stacked in red at its west edge, the CMKL panel beside it and the dark 42 Bangkok panel under that
+  A.box('white', 21.6, 32.5, 0, H + 1.0, -15.4, -10);
   sign(canvasTex(128, 640, (g, w, h) => {
     g.fillStyle = '#f4f2ec'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#d6332b'; g.font = '700 112px Arial, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
     [...'KMITL'].forEach((ch, i) => g.fillText(ch, w / 2, h * (0.1 + i * 0.2)));
-  }, 1, 1), [41.8, -16.2], [38.6, -16.2], 6, H - 1, [0, -1], 0.04);
-  // CMKL panel on the cut corner (faces north-east), the 42 Bangkok panel below it
-  const n45 = [Math.SQRT1_2, -Math.SQRT1_2], c0 = [48, -6], c1 = [40, -14];
+  }, 1, 1), [25.4, -15.4], [22.0, -15.4], 7, H - 1, [0, -1], 0.04);
   sign(canvasTex(512, 384, (g, w, h) => {
     g.fillStyle = '#f4f2ec'; g.fillRect(0, 0, w, h);
     g.strokeStyle = '#c8202f'; g.lineWidth = 14; g.beginPath(); g.arc(w * 0.2, h * 0.32, 44, 0, Math.PI * 2); g.stroke();
     g.fillStyle = '#c8202f'; g.font = '700 84px Arial, sans-serif'; g.textBaseline = 'middle'; g.fillText('CMKL', w * 0.36, h * 0.32);
     g.fillStyle = '#4a4a4a'; g.font = '500 30px Arial, sans-serif';
     ['CMKL University', 'Carnegie Mellon', 'KMITL'].forEach((t, i) => g.fillText(t, w * 0.1, h * (0.62 + i * 0.12)));
-  }, 1, 1), c0, c1, 21, 31, n45);
+  }, 1, 1), [32.0, -15.4], [26.4, -15.4], 25, 33, [0, -1]);
   sign(canvasTex(512, 256, (g, w, h) => {
     g.fillStyle = '#1d1f22'; g.fillRect(0, 0, w, h);
     g.fillStyle = '#f2f2f2'; g.font = '800 150px Arial, sans-serif'; g.textBaseline = 'middle'; g.fillText('42', w * 0.12, h * 0.5);
     g.font = '500 44px Arial, sans-serif'; g.fillText('Bangkok', w * 0.5, h * 0.52);
-  }, 1, 1), [46.5, -7.5], [41.5, -12.5], 13.5, 17.5, n45);
+  }, 1, 1), [32.0, -15.4], [26.4, -15.4], 17, 21, [0, -1]);
 
   const MAT = mats({ ...BASE_MATS, curtain: { color: '#4f8a95', roughness: 0.2, metalness: 0.4 }, mullion: { color: '#d4dadc', metalness: 0.4, roughness: 0.4 },
     white: '#f1efea', cream: '#ece3cf', louvre: { color: '#c9c7c0', roughness: 0.6, metalness: 0.2 }, lawn: { color: '#6c8b4b', roughness: 1 } });
   return { meshes: [...meshes(A, MAT, owner), ...extra], top: H + 1 };
 }
 
-export const CMKL_OUTLINE = [[22, -14], [40, -14], [48, -6], [48, 10], [52, 10], [52, 32], [22, 32], [22, -14]];
+export const CMKL_OUTLINE = [[21.6, -15.4], [32.5, -15.4], [32.5, -14], [40, -14], [48, -6], [48, 10], [52, 10], [52, 32], [22, 32], [22, -14]];

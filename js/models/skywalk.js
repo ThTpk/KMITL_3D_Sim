@@ -115,4 +115,52 @@ export function buildSkywalk(owner) {
   return { meshes: [...meshes(A, MAT, owner), ...extra], top: YD + HR + 0.2 };
 }
 
+// KMITL Sky Walk at CMKL (overrides.json id -7): a straight bridge from the road north of the railway over the tracks
+// and Chalong Krung Road, landing on the north face of CMKL. From the drone shots in KMITL Channel+ "KMITL Share Lo"
+// EP.4 (youtu.be/HfCKpGCRyCo, 0:02-0:40) and its line on the satellite imagery (x 22..28, z -128..-16): a white
+// steel truss on both sides, a white roof whose curved section rises and falls along the length in a long wave, grey
+// columns in pairs; a straight stair down northward at the north end.
+export function buildSkywalkCmkl(owner) {
+  const A = new Acc();
+  const X0 = 22.8, X1 = 27.2, ZN = -116, ZS = -16, D = 7.0, XC = (X0 + X1) / 2;
+  A.box('deck', X0, X1, D - 0.3, D, ZN, ZS);
+  for (const x of [X0 + 0.05, X1 - 0.05]) {
+    A.box('white', x - 0.08, x + 0.08, D - 1.2, D - 1.0, ZN, ZS);                    // bottom chord
+    A.box('white', x - 0.08, x + 0.08, D + 2.0, D + 2.2, ZN, ZS);                    // top chord
+    for (let z = ZN; z < ZS; z += 2.5) {
+      A.box('white', x - 0.07, x + 0.07, D - 1.2, D + 2.2, z - 0.07, z + 0.07);
+      tube(A, 'white', [x, D - 1.0, z], [x, D + 2.0, Math.min(ZS, z + 2.5)], 0.06, 0.06, 5);
+    }
+    A.box('rail', x - 0.03, x + 0.03, D + 1.0, D + 1.08, ZN, ZS);
+  }
+  // wave roof: an arched section whose crown height rises and falls along the bridge
+  const crown = (z) => D + 3.2 + 1.4 * Math.sin(((z - ZN) / (ZS - ZN)) * Math.PI * 2.0);
+  const seg = 8, w = (X1 - X0) / 2 + 0.6;
+  for (let z = ZN; z < ZS; z += 2) {
+    const z1 = Math.min(ZS, z + 2);
+    for (let i = 0; i < seg; i++) {
+      const t0 = (i / seg) * Math.PI, t1 = ((i + 1) / seg) * Math.PI;
+      const P = (t, zz) => [XC - w * Math.cos(t), D + 2.2 + (crown(zz) - D - 2.2) * Math.sin(t), zz];
+      A.quad('white', P(t0, z), P(t1, z), P(t1, z1), P(t0, z1));
+      A.quad('soffit', P(t0, z1), P(t1, z1), P(t1, z), P(t0, z));
+    }
+  }
+  // grey columns in pairs, skipping the tracks and the road
+  for (let z = ZN + 2; z <= ZS - 2; z += 12) {
+    if (z > -80 && z < -26) continue;
+    for (const x of [X0 + 0.4, X1 - 0.4]) A.box('pier', x - 0.35, x + 0.35, 0, D - 1.2, z - 0.35, z + 0.35);
+  }
+  // stair down northward at the north end
+  const n = 24;
+  for (let k = 0; k < n; k++) {
+    const za = ZN - (14 * k) / n, zb = ZN - (14 * (k + 1)) / n, y = D - (D * (k + 1)) / n;
+    A.box('stairs', X0 + 0.6, X1 - 0.6, y - D / n - 0.05, y, zb, za);
+  }
+  for (const x of [X0 + 0.6, X1 - 0.6]) tube(A, 'rail', [x, D + 1.0, ZN], [x, 1.0, ZN - 14], 0.04, 0.04, 5);
+  const MAT = mats({ ...BASE_MATS, deck: '#9a9ea2', white: { color: '#f1f2f0', roughness: 0.5, side: 2 }, soffit: { color: '#c9ccce', side: 2 },
+    rail: { color: '#d7dadc', metalness: 0.7, roughness: 0.3 }, pier: '#a7abae', stairs: { color: '#8d9297', metalness: 0.4, roughness: 0.6 } });
+  return { meshes: meshes(A, MAT, owner), top: D + 4.8 };
+}
+export const SKYWALK_CMKL_OUTLINE = [[22.2, -130], [27.8, -130], [27.8, -15.6], [22.2, -15.6], [22.2, -130]];
+
 export const SKYWALK_OUTLINE = [[-143.5, -71.2], [-100.5, -71.2], [-100.5, -69.2], [-119.5, -69.2], [-119.5, -64.8], [-121, -64.8], [-121, 7], [-90, 7], [-64, 35], [-68, 38], [-91, 11], [-125, 11], [-125, -64.8], [-126.5, -64.8], [-126.5, -69.2], [-143.5, -69.2], [-143.5, -71.2]];

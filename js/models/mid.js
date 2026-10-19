@@ -32,7 +32,7 @@ import { textTex } from './ecc.js';
 
 const SPEC = { ...BASE_MATS, wall: '#f1f0ec', band: '#f7f6f2', brick: { color: '#b0573d' }, cream: '#e9dcc0', louvre: { color: '#9a9ea0' },
   glassGreen: { color: '#4f7f74', roughness: 0.25, metalness: 0.3 }, glassRoof: { color: '#a8bcc6', roughness: 0.2, metalness: 0.3 }, roofSheet: '#c3c5c4', glassPale: { color: '#b9c4c4', roughness: 0.3 }, white: '#f2f1ed', skyBlue: '#48b4e0', atm: '#2a8fd0', ksYellow: '#f4b81c', ksGrey: '#55595d',
-  charcoal: '#41464b', slate: '#4f6c8a', slat: { color: '#8c9196', roughness: 0.6, metalness: 0.3 }, rust: '#c9622e', orangeSign: '#ef6a1f' };
+  charcoal: '#41464b', green: '#22a04b', slate: '#4f6c8a', slat: { color: '#8c9196', roughness: 0.6, metalness: 0.3 }, rust: '#c9622e', orangeSign: '#ef6a1f' };
 const done = (A, owner, top, extra = []) => ({ meshes: [...meshes(A, mats(SPEC), owner), ...extra], top });
 
 export function buildAlumni(owner) {
@@ -193,6 +193,24 @@ export function buildClinic(owner) {
     onFace(A, 'band', N, a1 - 0.0, a1 + 1.4, 0.9, T - 1.7, -0.6, 0);
   }
   onFace(A, 'band', N, X0, X0 + 1.4, 0.9, T - 1.7, -0.6, 0);
+  // west face (user's photo from the ramp, 2026-10-19): two tall glazed bays at the north end wrapping the corner, then
+  // orange brick with a white band at the floor line, the KMC HOSPITAL sign and a green cross; a ramp with white rails
+  const Wf = F('x', X0, -1);
+  for (const [z0, z1] of [[ZN + 1.6, ZN + 6.4]]) {
+    onFace(A, 'glassPale', Wf, z0, z1, 0.9, T - 1.7, 0, 0.05);
+    for (let z = z0; z <= z1 + 0.01; z += 1.6) onFace(A, 'band', Wf, z - 0.05, z + 0.05, 0.9, T - 1.7, 0, 0.1);
+    onFace(A, 'band', Wf, z0, z1, 4.6, 4.75, 0, 0.1);
+  }
+  onFace(A, 'band', Wf, ZN + 6.4, ZN + 7.8, 0.6, T - 1.7, 0, 0.3);
+  onFace(A, 'brick', Wf, ZN + 7.8, ZS, 0.6, T - 1.7, 0, 0.05);
+  onFace(A, 'band', Wf, ZN + 7.8, ZS, 4.6, 5.6, 0, 0.08);
+  onFace(A, 'band', Wf, ZS - 8, ZS + 1, 3.4, 3.7, 0, 2.6);                     // white canopy over the south door
+  onFace(A, 'band', Wf, ZN, ZS, T - 1.7, T + 0.4, 0, 0.08);
+  onFace(A, 'green', Wf, ZN + 9.0, ZN + 10.0, 7.6, 7.9, 0.08, 0.14);
+  onFace(A, 'green', Wf, ZN + 9.35, ZN + 9.65, 7.25, 8.25, 0.08, 0.14);
+  A.box('paving', X0 - 3.2, X0, 0, 0.6, ZN + 9, ZS + 2);
+  for (const x of [X0 - 3.1, X0 - 0.1]) for (let z = ZN + 9.5; z < ZS + 2; z += 1.8) A.box('band', x - 0.04, x + 0.04, 0.6, 1.6, z - 0.04, z + 0.04);
+  for (const x of [X0 - 3.1, X0 - 0.1]) A.box('band', x - 0.05, x + 0.05, 1.5, 1.6, ZN + 9.5, ZS + 2);
   // middle: set-back glazed entrance, slab, open loggia with square columns above, steps
   A.box('wall', XM0, XM1, 0, T, ZN + 5, ZS);
   onFace(A, 'glass', F('z', ZN + 5, -1), XM0 + 1, XM1 - 1, 0.6, G - 0.4, 0, 0.05);
@@ -200,6 +218,13 @@ export function buildClinic(owner) {
   A.box('band', XM0, XM1 + 8, G - 0.3, G + 0.3, ZN - 1.2, ZN + 5);
   A.box('band', XM0, XM1, T - 1.4, T + 0.4, ZN, ZN + 5);
   for (const x of [XM0 + 0.4, (XM0 + XM1) / 2, XM1 - 0.4]) A.box('band', x - 0.45, x + 0.45, 0, T - 1.4, ZN + 0.1, ZN + 1.0);
+  // white triangular fins under the top band of the loggia (SIIE film 6:20-6:30)
+  for (let x = XM0 + 1.4; x < XM1 - 0.8; x += 2.2) {
+    const y1 = T - 1.4, y0 = y1 - 2.0, z0 = ZN + 0.2, z1 = ZN + 4.6, side = (xx) => {
+      A.tri('band', [xx, y1, z0], [xx, y1, z1], [xx, y0, z0]); A.tri('band', [xx, y0, z0], [xx, y1, z1], [xx, y1, z0]); };
+    side(x - 0.1); side(x + 0.1);
+    A.quad('band', [x - 0.1, y0, z0], [x + 0.1, y0, z0], [x + 0.1, y1, z1], [x - 0.1, y1, z1]);
+  }
   for (let s2 = 0; s2 < 5; s2++) A.box('paving', XM0 - 3 - s2 * 0.4, XM1 + 3 + s2 * 0.4, 0, 0.9 - s2 * 0.18, ZN - 0.2 - s2 * 0.45, ZN + 5);
   // east: single-storey colonnade over the drop-off, tilted solar panels on its roof
   A.box('wall', XM1, X1, 0, LT, ZN + 6, ZS - 3);
@@ -219,9 +244,21 @@ export function buildClinic(owner) {
   g.setAttribute('uv', new THREE.Float32BufferAttribute([0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1], 2));
   g.computeVertexNormals();
   g.userData.owner = new Int32Array(2).fill(owner);
-  const sign = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ map: textTex('โรงพยาบาลพระจอมเกล้าเจ้าคุณทหาร', { w: 2048, h: 180, color: '#c0392b' }), transparent: true, alphaTest: 0.3, roughness: 0.7 }));
+  const sign = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ map: textTex('โรงพยาบาลพระจอมเกล้าเจ้าคุณทหาร', { w: 2048, h: 180, color: '#e8641e' }), transparent: true, alphaTest: 0.3, roughness: 0.7 }));
   sign.userData.kind = 'building';
-  return done(A, owner, T + 0.5, [sign]);
+  // KMC HOSPITAL on the west brick (faces west: the viewer looks east, north on the left)
+  const g2 = new THREE.BufferGeometry(), xw = X0 - 0.1, za = ZN + 8.0, zb = ZN + 11.0;
+  g2.setAttribute('position', new THREE.Float32BufferAttribute([xw, 5.9, za, xw, 5.9, zb, xw, 7.1, zb, xw, 5.9, za, xw, 7.1, zb, xw, 7.1, za], 3));
+  g2.setAttribute('uv', new THREE.Float32BufferAttribute([0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1], 2));
+  g2.computeVertexNormals();
+  g2.userData.owner = new Int32Array(2).fill(owner);
+  const cv = document.createElement('canvas'); cv.width = 512; cv.height = 200;
+  const c = cv.getContext('2d'); c.fillStyle = '#f4f4f2'; c.font = '500 80px Arial, sans-serif'; c.textAlign = 'right'; c.textBaseline = 'middle';
+  c.fillText('KMC', 500, 55); c.fillText('HOSPITAL', 500, 150);
+  const t2 = new THREE.CanvasTexture(cv); t2.colorSpace = THREE.SRGBColorSpace;
+  const kmc = new THREE.Mesh(g2, new THREE.MeshStandardMaterial({ map: t2, transparent: true, alphaTest: 0.3, roughness: 0.7 }));
+  kmc.userData.kind = 'building';
+  return done(A, owner, T + 0.5, [sign, kmc]);
 }
 
 export function buildAutomation(owner) {
