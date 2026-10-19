@@ -20,7 +20,7 @@
 | 10 | [อาคารปฏิบัติการรวมวิศวกรรม 1](#englab1) | `js/models/englab1.js` | 6 | 25.8 | 190886412 |
 | 11 | [ภาควิชาวิศวกรรมเกษตร](#ageng) | `js/models/deps.js` | 2 | 10.2 | 190890102 |
 | 12 | [อาคาร HM (อาคารเฉลิมพระเกียรติ 7 รอบ) - SIIE คณะวิศวกรรมศาสตร์ หลักสูตรนานาชาติ](#siie) | `js/models/siie.js` | 8 | 30.9 | 516204082 |
-| 13 | [ภาคโยธา](#civil) | `js/models/civil.js` | 2 | 10.3 | 516204085 |
+| 13 | [ภาคโยธา](#civil) | `js/models/civil.js` | 4 | 15.6 | 516204085 |
 | 14 | [ตึกบูรณาการ](#integ) | `js/models/engw.js` | 5 | 23.2 | 190886413 |
 | 15 | [ลานจอดรถ](#carportinteg) | `js/models/carports.js` |  | 3.1 | 190886415 |
 | 16 | [ตึกที่ติดกับหอประชุมสถาปัตยกรรมศาสตร์](#archsouth) | `js/models/archs.js` | 4 | 16.3 | 190880792 |
@@ -221,11 +221,10 @@
 
 ## ภาคโยธา <a id="civil"></a>
 
-- OSM id: 516204085 · ไฟล์: `js/models/civil.js` · ชั้น: 2 · สูง: 10.3 ม.
-- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผังและหลังคาทุกหลัง) + Street View ถนนด้านเหนือ (มองตะวันตกเฉียงใต้ ใต้ ตะวันออกเฉียงใต้) ลานกลางและโรงปฏิบัติการด้านตะวันตกและใต้ไม่มีภาพจากถนน
-- การสำรวจ (จากหัวไฟล์โมเดล): Surveyed 2026-10-17 from Google Maps satellite imagery (plan and roofs) and Google Street View from the road along the north side (one car pano, looking south-west, south and south-east). The courtyard and the west and south halls are not visible from any road; they follow the roofs and the north wing.
-- ลักษณะอาคารที่บันทึก: ภาคโยธา: กลุ่มอาคารเตี้ยรอบลานต้นไม้ / ปีกเหนือ 2 ชั้น ผนังครีมระหว่างเสาอิฐส้ม ประตูม้วนสีเขียวชั้นล่าง บันไดเปิดปลายตะวันออก แถบเชิงชายสีเทา หลังคาปั้นหยาสีแดง / ถัดไปทางตะวันออก อาคาร 2 ชั้นสีครีมมีป้ายภาควิชา หลังคาจั่วสีเทา และโรงปฏิบัติการหลังคาจั่วเหล็กสีอ่อน / โรงปฏิบัติการชั้นเดียวด้านตะวันตกและด้านใต้ หลังคาเหล็กลอนจั่ว / อาคารเล็กหลังคาแบนสองหลังข้างลาน
-- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): north wing  x -419..-395, z 89..108: two storeys, cream walls between orange-brick piers, green roller shutters on the ground floor, an open stair at the east end, grey fascia band, red hipped roof north-east  x -395..-381, z 89..111: two storeys, cream walls with the department sign, grey gable roof x -381..-365, z 90..109: workshop, light metal gable roof west hall   x -441..-424, z 105..152 and south hall x -418..-370, z 125..140: single-storey workshops, light corrugated metal gable roofs two small flat-roofed blocks off the courtyard
+- OSM id: 516204085 · ไฟล์: `js/models/civil.js` · ชั้น: 4 · สูง: 15.6 ม.
+- แหล่งภาพอ้างอิง: ภาพดาวเทียม Google Maps (ผังและหลังคา) + Street View รอบอาคารทั้ง 4 ด้าน (ถนนด้านเหนือ 8 จุด ซอยด้านตะวันตก 6 จุด ซอยด้านตะวันออก 5 จุด ถนนด้านใต้ 6 จุด หลายทิศและหลายมุมก้มเงย) สำรวจใหม่ 2026-10-19
+- ลักษณะอาคารที่บันทึก: ภาคโยธา: กลุ่มอาคารรอบลานต้นไม้ / ปีกเหนือ 2 ชั้น เสาอิฐส้มสลับแผงครีม ประตูม้วนสีเขียวเข้มใต้แถบทับหลังครีม หน้าต่างชั้นบนระหว่างเสา หลังคาจั่วแดง ม้านั่งและโต๊ะหน้าอาคาร / หอบันไดสีครีมสูง / อาคารทางเข้า: โถงเปิดสูง 2 ชั้นขึ้นบันได ใต้ป้ายสีเข้ม 'ภาควิชาวิศวกรรมโยธา / DEPARTMENT OF CIVIL ENGINEERING' หลังคาจั่วเทา / อาคารตะวันออก: ผนังครีมทึบสูงด้านเหนือ ด้านตะวันออก 2 ชั้นเสาชมพู หน้าต่างบานเกล็ดสีเขียวอมฟ้า ระเบียงชั้นบนแผงขาว เชิงผนังชมพูมีตัวอักษร DEPARTMENT OF CIVIL ENGINEERING / อาคารใต้ 4 ชั้น หน้าต่างแถบยาว แผงใต้หน้าต่างสีน้ำตาล ครีบกันแดด เชิงชายขาว บันไดทางเข้าปลายตะวันออก / โรงปฏิบัติการสีขาวด้านตะวันตก ประตูม้วนเทาใต้กันสาดคอนกรีต ช่องเกล็ดระบายอากาศ หลังคาจั่วเหล็ก / อาคารเล็กหลังคาแบนสองหลังข้างลาน
+- รูปทรงที่สร้าง (จากหัวไฟล์โมเดล): north wing   x -420..-396, z 96..116: two storeys, orange-brick piers with cream panels, dark green roller shutters under a cream lintel band, upper windows between the piers, red gable roof; benches, tables and a poster board out front stair tower  x -397..-393, z 94.5..100: tall plain cream tower between the wing and the entrance block entrance     x -394..-382, z 94..116.5: cream, an open double-height hall up a flight of steps under a deep fascia carrying the dark sign "ภาควิชาวิศวกรรมโยธา / DEPARTMENT OF CIVIL ENGINEERING", grey gable east block   x -382..-371.5, z 97..118: blank tall cream north wall with a green rail at its foot; the east face two storeys of tan render between pink pilasters, teal louvred windows below, a recessed upper balcony with white panels and air-conditioners, a pink parapet lettered DEPARTMENT OF CIVIL ENGINEERING; light metal gable behind south block  x -422..-372.5, z 134..149: four storeys facing the south road, tan render, ribbon windows with brown spandrels, concrete sun-shade fins on the upper floors, white top fascia, entrance steps at the east end; light metal roof west halls   x -446..-425, z 112.5..155.5: tall white workshop halls, grey roller shutters under concrete canopies, louvre vents, metal gable roofs eaving to the west lane two small flat-roofed blocks off the courtyard
 
 ## ตึกบูรณาการ <a id="integ"></a>
 
