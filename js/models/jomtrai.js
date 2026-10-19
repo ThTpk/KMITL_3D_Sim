@@ -11,7 +11,9 @@
 //   west block around a planted courtyard; a long walkway block x 300..312 running the whole length; the east
 //   blocks around a second courtyard; the south block
 //   a single-storey hall with a red hipped roof and a two-storey annex with solar panels south-west
-import { Acc, F, onFace, facade, block, solar, hip, mats, meshes, BASE_MATS } from './kit.js';
+//   north end (2026-10-19): broad steps, a four-storey glass building under a large flat steel canopy on four
+//   white round columns branching into steel struts
+import { Acc, F, onFace, facade, block, solar, hip, tube, mats, meshes, BASE_MATS } from './kit.js';
 
 const G = 4.4, FL = 4.0, N = 3;
 const TOP = G + (N - 1) * FL;                                    // 12.4
@@ -32,12 +34,32 @@ export function buildJomtrai(owner) {
   block(A, 256.5, 262, -176, -168, { G, FL, n: N + 1, style: 'brick', mats: { wall: 'brick' } });
   // long walkway block along x 300..312
   block(A, 300, 312, -242, -106, { ...o, style: 'corridor', spandrel: null }, { n: brick, s: brick });
-  // north hall: blank brick with tall slits
-  A.box('brick', 312, 347, 0, TOP + 1, -242, -212);
-  A.box('base', 311.8, 347.2, 0, 1.2, -242.2, -211.8);
-  for (let x = 315; x < 345; x += 4) onFace(A, 'dark', F('z', -242, -1), x, x + 1.2, 1.6, TOP - 0.6, 0, 0.04);
-  facade(A, F('x', 347, 1), -242, -212, { G, FL, n: N, bay: 4, spandrel: 'brick' });
-  A.box('roof', 312.3, 346.7, TOP + 1, TOP + 1.12, -241.7, -212.3);
+  // north end (reworked 2026-10-19 from the SIET tour clip, youtu.be/wuoE9wXu3mA 0:30, looking south from the
+  // triangle-paved forecourt; the satellite shows one flat grey roof over x 312..347): a broad flight of steps
+  // up to a raised entrance terrace, a four-storey glass building with white floor slabs and glass balcony rails
+  // set back under a large flat steel canopy, carried on four white round columns that branch into steel struts
+  for (let s = 0; s < 8; s++) A.box('step', 314, 345, 0, 0.2 * (s + 1), -242 + s * 0.6, -212);
+  A.box('stone', 311.5, 314, 0, 1.8, -242, -228);                                    // dark stone cheek walls
+  A.box('stone', 345, 347.5, 0, 1.8, -242, -228);
+  const GB = [315, 344, -233, -212], LV = [1.6, 5.8, 9.6, 13.4, 17.2];
+  A.box('glassDark', GB[0] + 0.6, GB[1] - 0.6, LV[0], LV[4], GB[2] + 0.6, GB[3]);
+  for (let k = 1; k < LV.length; k++) {
+    A.box('wall', GB[0], GB[1], LV[k] - 0.35, LV[k], GB[2], GB[3]);                  // white slab
+    if (k < LV.length - 1) A.box('balRail', GB[0], GB[1], LV[k], LV[k] + 1.05, GB[2] - 0.02, GB[2] + 0.05);
+  }
+  for (const x of [GB[0], GB[1] - 0.6]) A.box('wall', x, x + 0.6, LV[0], LV[4], GB[2], GB[3]);
+  for (let x = GB[0] + 4; x < GB[1] - 1; x += 4.2) A.box('mullion', x, x + 0.12, LV[0], LV[4] - 0.4, GB[2] + 0.5, GB[2] + 0.62);
+  // canopy: deep flat slab with a grey soffit, edged by a thin white fascia
+  const CY = 20.5;
+  A.box('canopy', 311, 348, CY, CY + 0.9, -244, -211, false);                     // keep the underside
+  A.box('wall', 310.8, 348.2, CY + 0.9, CY + 1.05, -244.2, -210.8);
+  // four round columns along the front, each branching into six struts under the slab
+  for (const x of [319, 326.5, 334, 341.5]) {
+    const z = -237.5, yb = 11.5;
+    tube(A, 'wall', [x, 1.6, z], [x, yb, z], 0.55, 0.55, 14);
+    for (const [dx, dz] of [[-3.6, -4], [3.6, -4], [-3.6, 4], [3.6, 4], [0, -5.5], [0, 5.5]])
+      tube(A, 'steel', [x, yb, z], [x + dx, CY, z + dz], 0.16, 0.12, 6);
+  }
   // east blocks around the second courtyard
   block(A, 312, 350, -212, -200, o, { e: brick });
   block(A, 330, 350, -200, -150, o, { n: false, e: { spandrel: 'brick' } });
@@ -54,8 +76,11 @@ export function buildJomtrai(owner) {
   solar(A, 263, 275, -156, -128, ta + 0.1);
 
   const MAT = mats({ ...BASE_MATS, wall: '#eeece6', band: '#f5f4f0', glass: { color: '#7d8a8f' }, base: '#e9e7e1',
-    tile: { color: '#a8493a', roughness: 0.9 }, lawn: { color: '#6c8b4b', roughness: 1 }, skylight: { color: '#c9d2d6', roughness: 0.3, metalness: 0.2 } });
-  return { meshes: meshes(A, MAT, owner), top: G + N * FL };
+    tile: { color: '#a8493a', roughness: 0.9 }, lawn: { color: '#6c8b4b', roughness: 1 }, skylight: { color: '#c9d2d6', roughness: 0.3, metalness: 0.2 },
+    step: { color: '#b9b6b0', roughness: 0.95 }, stone: { color: '#4b4d50', roughness: 0.8 }, glassDark: { color: '#5d6d77', roughness: 0.25, metalness: 0.3 },
+    balRail: { color: '#b8c7cc', roughness: 0.2, metalness: 0.2, transparent: true, opacity: 0.5 }, mullion: { color: '#2e3134', roughness: 0.5 },
+    canopy: { color: '#b4b8bb', roughness: 0.6, metalness: 0.3 }, steel: { color: '#cdd2d6', roughness: 0.4, metalness: 0.4 } });
+  return { meshes: meshes(A, MAT, owner), top: 21.6 };
 }
 
 export const JOMTRAI_OUTLINE = [
