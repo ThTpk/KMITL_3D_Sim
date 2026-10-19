@@ -12,8 +12,8 @@
 //   เครื่องกล workshops: tall single-storey halls with strip windows under a deep metal roof overhang, roller doors
 import { Acc, F, onFace, block, hip, mats, meshes, BASE_MATS } from './kit.js';
 
-const SPEC = { ...BASE_MATS, wall: '#f0efea', band: '#f6f5f1', roofSheet: '#c3c5c4', shutter: { color: '#7d868d', metalness: 0.4, roughness: 0.5 },
-  louvre: { color: '#d8d9d6', roughness: 0.6 }, glassBlock: { color: '#b9c1c3', roughness: 0.5 }, glass: { color: '#6f7d84' } };
+const SPEC = { ...BASE_MATS, wall: '#f0efea', band: '#f6f5f1', roofSheet: '#c3c5c4', shutter: { color: '#a3a9ad', metalness: 0.4, roughness: 0.5 },
+  louvre: { color: '#cdb8a2', roughness: 0.6 }, glassBlock: { color: '#b9c1c3', roughness: 0.5 }, glass: { color: '#6f7d84' } };
 const done = (A, owner, top) => ({ meshes: meshes(A, mats(SPEC), owner), top });
 
 export function buildControl(owner) {
@@ -26,23 +26,39 @@ export function buildControl(owner) {
   return done(A, owner, t + 0.9);
 }
 
+// Re-surveyed 2026-10-19 from the Uni Tour clip (youtu.be/XKpuIm42uQc 5:04, the long face with the department's
+// name): per bay a full-width roller shutter, a white band, tan horizontal louvres over the whole lower half of
+// the upper floor, a plain white strip, then a row of black-framed top-hung windows or glass block (in runs
+// along the face), under a deep flat white roof slab.
 export function buildAgEng(owner) {
   const A = new Acc();
-  const X0 = -609, X1 = -567, Z0 = 141, Z1 = 168, G = 4.4, T = 8.4;
+  const X0 = -609, X1 = -567, Z0 = 141, Z1 = 168, T = 8.6;
   A.box('wall', X0, X1, 0, T, Z0, Z1);
   for (const [f, a0, a1] of [[F('z', Z0, -1), X0, X1], [F('z', Z1, 1), X0, X1], [F('x', X0, -1), Z0, Z1], [F('x', X1, 1), Z0, Z1]]) {
-    const n = Math.round((a1 - a0) / 5.2), w = (a1 - a0) / n;
+    const n = Math.round((a1 - a0) / 6), w = (a1 - a0) / n;
     for (let i = 0; i < n; i++) {
-      const b0 = a0 + i * w;
-      onFace(A, 'band', f, b0 - 0.25, b0 + 0.25, 0, T, 0, 0.3);
-      onFace(A, 'shutter', f, b0 + 0.4, b0 + w - 0.4, 0, 3.4, 0, 0.05);
-      for (let y = G + 0.2; y < G + 2.2; y += 0.3) onFace(A, i % 3 ? 'louvre' : 'glassBlock', f, b0 + 0.4, b0 + w - 0.4, y, y + 0.18, 0, 0.12);
-      onFace(A, 'glass', f, b0 + 0.4, b0 + w - 0.4, G + 2.4, T - 0.4, 0, 0.05);
+      const b0 = a0 + i * w, c0 = b0 + 0.3, c1 = b0 + w - 0.3;
+      onFace(A, 'band', f, b0 - 0.3, b0 + 0.3, 0, T, 0, 0.35);                              // white frame columns
+      onFace(A, 'shutter', f, c0, c1, 0, 3.6, 0, 0.05);
+      for (let y = 4.3; y < 6.5; y += 0.22) onFace(A, 'louvre', f, c0, c1, y, y + 0.13, 0, 0.14);
+      if (i % 5 < 3) {                                                                         // windows in runs of three bays
+        onFace(A, 'dark', f, c0, c1, 7.3, 8.3, 0, 0.04);
+        onFace(A, 'glass', f, c0 + 0.08, c1 - 0.08, 7.38, 8.22, 0.04, 0.06);
+        for (let x = c0 + (c1 - c0) / 3; x < c1 - 0.2; x += (c1 - c0) / 3) onFace(A, 'dark', f, x - 0.04, x + 0.04, 7.38, 8.22, 0.04, 0.08);
+        for (let x = c0; x < c1 - 0.2; x += (c1 - c0) / 3) {                                    // top-hung sashes pushed out
+          onFace(A, 'dark', f, x + 0.06, x + (c1 - c0) / 3 - 0.06, 7.4, 7.47, 0.06, 0.3);
+        }
+      } else {
+        onFace(A, 'glassBlock', f, c0, c1, 7.2, 8.4, 0, 0.06);
+        for (let y = 7.5; y < 8.4; y += 0.3) onFace(A, 'band', f, c0, c1, y - 0.02, y + 0.02, 0.06, 0.07);
+        for (let x = c0 + 0.3; x < c1; x += 0.3) onFace(A, 'band', f, x - 0.02, x + 0.02, 7.2, 8.4, 0.06, 0.07);
+      }
     }
-    onFace(A, 'band', f, a0, a1, G - 0.3, G + 0.2, 0, 0.3);
+    onFace(A, 'band', f, a0, a1, 3.6, 4.2, 0, 0.3);
   }
-  hip(A, 'roofSheet', X0, X1, Z0, Z1, T, 1.8, 1.0);
-  return done(A, owner, T + 1.8);
+  A.box('band', X0 - 1.4, X1 + 1.4, T, T + 0.35, Z0 - 1.4, Z1 + 1.4);                          // deep flat roof slab
+  hip(A, 'roofSheet', X0 + 2, X1 - 2, Z0 + 2, Z1 - 2, T + 0.35, 0.8, 0);
+  return done(A, owner, T + 1.2);
 }
 
 function workshop(owner, x0, x1, z0, z1) {

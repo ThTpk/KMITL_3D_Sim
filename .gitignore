@@ -3,3 +3,6 @@ __pycache__/
 .claude/settings.local.json
 .DS_Store
 Thumbs.db
+
+# video frames used as modelling reference only (not served, not committed)
+ref_frames/

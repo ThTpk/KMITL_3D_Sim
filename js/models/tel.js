@@ -3,11 +3,16 @@
 // Street View coverage here is thin and mostly under covered walkways: the south face was read through trees
 // from the parking road, the ground floor of the north face across the pond, and the tower from Soi Chalong
 // Krung 1 north of the site (its height from the viewing angle, about 46 m to the top platform's mast).
+// Re-coloured 2026-10-19 from the Uni Tour clip (youtu.be/XKpuIm42uQc 2:24-2:34, the south face from the car park
+// with the "อาคาร T" board and the "LAST SUPER '21" clock pillar): the walls are cream over a salmon-orange base,
+// not blue, and every floor of the long faces has a sloped red-orange tiled canopy on timber-coloured brackets
+// instead of a flat ledge; the roof edge is a deeper tiled eave. The tower is unchanged.
 // Photos were only looked at; everything here is procedural.
 //
 // x = east, z = south, y = up. Footprint x -226.3..-177, z 32.9..56.4 (satellite roof outline moved 2.2 m
 // south for the imagery's lean; the OSM outline is offset).
-//   four storeys, painted royal blue, a cantilevered ledge at every floor on the long faces
+//   four storeys, cream render over a salmon-orange base; a sloped red-orange tiled canopy on brackets at every
+//   floor on the long faces (narrower on the ends), a deeper tiled eave at the roof edge
 //   south face: ribbon windows in white frames with AC units, stair tower at the east end
 //   north face: punched windows with AC units
 //   cream parapet all round; flat roof over the west bay, low gabled metal roof over the rest
@@ -42,14 +47,22 @@ export function buildTel(owner) {
 
   // ---- body ----
   A.box('wall', X0, X1, 0, ROOF, Z0, Z1);
-  // floor ledges on the long faces, a thin band on the ends
-  for (let k = 1; k <= NF; k++) {
-    const y = k * FL;
-    for (const f of [N, S]) onFace(A, 'ledge', f, X0, X1, y - 0.25, y, 0, 0.7);
-    for (const f of [W, E]) onFace(A, 'ledge', f, Z0, Z1, y - 0.25, y, 0, 0.15);
+  // sloped tiled canopy along a face: from the wall at height y down to y - drop at depth d, with brackets
+  const canopy = (f, a0, a1, y, d, drop) => {
+    const P = (a, yy, dd) => (f.ax === 'z' ? [a, yy, f.at + f.out * dd] : [f.at + f.out * dd, yy, a]);
+    A.quad('tile', P(a0, y, 0), P(a1, y, 0), P(a1, y - drop, d), P(a0, y - drop, d));
+    onFace(A, 'tile', f, a0, a1, y - drop - 0.18, y - drop, d - 0.05, d + 0.02);              // fascia
+    for (let a = a0 + 0.4; a < a1; a += 3.0) {
+      onFace(A, 'bracket', f, a - 0.08, a + 0.08, y - drop - 0.05, y - 0.05, 0, d * 0.85);    // rafter
+      bar('bracket', P(a, y - 1.1, 0.02), P(a, y - drop - 0.05, d * 0.7), 0.06, 4);           // strut
+    }
+  };
+  for (let k = 1; k < NF; k++) {
+    const y = k * FL + 0.15;
+    for (const f of [N, S]) canopy(f, X0 - 0.3, X1 + 0.3, y, 1.5, 0.55);
+    for (const f of [W, E]) canopy(f, Z0, Z1, y, 0.9, 0.35);
   }
-  onFace(A, 'base', S, X0, X1, 0, 0.5, 0, 0.1);
-  onFace(A, 'base', N, X0, X1, 0, 0.5, 0, 0.1);
+  for (const f of [N, S, W, E]) onFace(A, 'base', f, f.ax === 'z' ? X0 : Z0, f.ax === 'z' ? X1 : Z1, 0, 1.3, 0, 0.04);
 
   // ---- south face: ribbon windows with white frames, AC units; stair tower at the east end ----
   const SE = X1 - 4.5;
@@ -78,7 +91,9 @@ export function buildTel(owner) {
     onFace(A, 'glass', f, ZR - 0.75, ZR + 0.75, k * FL + 1.52, k * FL + 2.48, 0.06, 0.09);
   }
 
-  // ---- roof: cream parapet, flat west bay, low gabled metal roof over the rest ----
+  // ---- roof: deep tiled eave all round, cream parapet, flat west bay, low gabled metal roof over the rest ----
+  for (const f of [N, S]) canopy(f, X0 - 1.6, X1 + 1.6, ROOF + 0.9, 1.6, 0.75);
+  for (const f of [W, E]) canopy(f, Z0, Z1, ROOF + 0.9, 1.6, 0.75);
   const P = 1.2;
   A.box('coping', X0, X1, ROOF, ROOF + P, Z0, Z0 + 0.35);
   A.box('coping', X0, X1, ROOF, ROOF + P, Z1 - 0.35, Z1);
@@ -98,6 +113,17 @@ export function buildTel(owner) {
   }
   A.box('plant', -224, -221.5, ROOF, ROOF + 1.4, Z0 + 1.5, Z0 + 4);              // water tanks / plant
   A.box('plant', -215, -212, ROOF, ROOF + 1.0, Z1 - 4, Z1 - 1.5);
+
+  // ---- "LAST SUPER '21" clock pillar on the lawn south-east of the building, in front of the "อาคาร T" board ----
+  const [cx, cz] = [-196, 62.5];
+  A.box('stone', cx - 0.45, cx + 0.45, 0, 6.2, cz - 0.45, cz + 0.45);
+  A.box('stone', cx - 0.55, cx + 0.55, 6.2, 6.45, cz - 0.55, cz + 0.55);
+  for (const [dx, dz] of [[0, 1], [0, -1], [1, 0], [-1, 0]]) {
+    const ox = cx + dx * 0.46, oz = cz + dz * 0.46;
+    if (dx) { A.box('dark', ox - 0.03, ox + 0.03, 5.15, 5.95, cz - 0.4, cz + 0.4); A.box('white', ox - 0.05 + 0.04 * dx, ox + 0.05 + 0.04 * dx, 5.22, 5.88, cz - 0.33, cz + 0.33); }
+    else { A.box('dark', cx - 0.4, cx + 0.4, 5.15, 5.95, oz - 0.03, oz + 0.03); A.box('white', cx - 0.33, cx + 0.33, 5.22, 5.88, oz - 0.05 + 0.04 * dz, oz + 0.05 + 0.04 * dz); }
+  }
+  A.box('board', -191, -188.6, 0.3, 1.5, Z1 + 0.15, Z1 + 0.25);                                // "อาคาร T" board
 
   // ---- telecom tower ----
   const [tx, tz] = TW, TOP = 44;
@@ -129,14 +155,18 @@ export function buildTel(owner) {
   const gDay = glassTex(false), gNight = glassTex(true);
   const std = (o) => new THREE.MeshStandardMaterial({ roughness: 0.85, metalness: 0.02, ...o });
   const MAT = {
-    wall: std({ color: '#2e52b8' }),
-    ledge: std({ color: '#3558bd' }),
-    base: std({ color: '#25428f' }),
+    wall: std({ color: '#ede3cd' }),
+    base: std({ color: '#d98c66' }),
+    tile: std({ color: '#a4472b', roughness: 0.8, side: THREE.DoubleSide }),
+    bracket: std({ color: '#a8522f', roughness: 0.8 }),
+    stone: std({ color: '#e6e0d5', roughness: 0.7 }),
+    dark: std({ color: '#3c3f42', roughness: 0.6 }),
+    board: std({ color: '#38a3d6', roughness: 0.6 }),
     frame: std({ color: '#eef0f2', roughness: 0.6 }),
     glass: std({ color: '#4d6474', map: gDay, roughness: 0.3, emissive: new THREE.Color('#ffc978'), emissiveMap: gNight, emissiveIntensity: 0 }),
     ac: std({ color: '#e4e4e0', roughness: 0.7 }),
     louvre: std({ color: '#c9cdd3', roughness: 0.6, metalness: 0.3 }),
-    coping: std({ color: '#e6d3c3', roughness: 0.8 }),
+    coping: std({ color: '#efe6d3', roughness: 0.8 }),
     roofFlat: std({ color: '#9a9c9c', roughness: 0.95 }),
     metal: std({ color: '#a4abb5', roughness: 0.5, metalness: 0.4, side: THREE.DoubleSide }),
     plant: std({ color: '#c3c4c2', roughness: 0.8 }),
