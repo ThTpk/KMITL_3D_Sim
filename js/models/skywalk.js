@@ -10,15 +10,17 @@
 //   a row of white round columns along each side, alternately upright and leaning, carrying a shallow metal roof
 //   on red-orange beams
 //   big orange "KMITL" letters on the west side over the railway fence by the north end
-//   north end: the deck reaches over the road; a straight steel stair runs down westward between the covered walk and
-//   the railway fence
+//   north end (corrected 2026-10-19 from the user's photos taken from the bank across the road): the bridge stops at the
+//   railway fence and does not cross the road; a landing on one square grey column under an arched roof on white posts,
+//   an open steel stair down westward and a covered stair (pitched roof, solid white side) down eastward, both running
+//   along the fence
 //   route: north-south from z -84 to z 6 (x -125..-121), then east to x -90, then south-east to the library
 import * as THREE from 'three';
 import { Acc, tube, mats, meshes, BASE_MATS } from './kit.js';
 import { canvasTex } from './ecc.js';
 
 const YD = 6.8, W = 2.0, HR = 3.2;                                              // deck height, half width, roof height over the deck
-const ROUTE = [[-123, -84], [-123, 9], [-90, 9], [-66, 36]];
+const ROUTE = [[-123, -66], [-123, 9], [-90, 9], [-66, 36]];
 
 export function buildSkywalk(owner) {
   const A = new Acc();
@@ -59,17 +61,42 @@ export function buildSkywalk(owner) {
       A.box('pier', p[0] - 0.4, p[0] + 0.4, 0, YD - 1.1, p[2] - 0.4, p[2] + 0.4);
     }
   }
-  // north end over the road; the stair down westward between the covered walk and the railway fence
-  A.box('pier', -124.6, -121.4, 0, YD - 1.1, -84.6, -84.0);
-  const ZS0 = -68.4, ZS1 = -66.4;
-  const n = 22, x0 = -126, x1 = -143;
+  // north landing by the fence: one square grey column, an arched roof on white posts
+  const LX0 = -126.5, LX1 = -119.5, LZ0 = -71.2, LZ1 = -64.8;
+  A.box('pier', -124.2, -121.8, 0, YD - 1.0, -69.2, -66.8);
+  A.box('steel', LX0, LX1, YD - 1.0, YD - 0.25, LZ0, LZ1);
+  A.box('deck', LX0, LX1, YD - 0.25, YD, LZ0, LZ1);
+  for (const x of [LX0 + 0.3, LX1 - 0.3]) for (const z of [LZ0 + 0.3, LZ1 - 0.3]) tube(A, 'column', [x, YD, z], [x, YD + HR, z], 0.2, 0.2, 8);
+  A.box('red', LX0, LX1, YD + HR - 0.4, YD + HR, LZ0 + 0.1, LZ0 + 0.4);
+  A.barrelX('roof', LX0 - 0.3, LX1 + 0.3, (LZ0 + LZ1) / 2, (LZ1 - LZ0) / 2 + 0.4, YD + HR, 0.35, 10);
+  const ZS0 = -71.0, ZS1 = -69.2;                                               // both stairs run along the fence on the road side
+  const n = 22, x0 = LX0, x1 = LX0 - 17;
   for (let k = 0; k < n; k++) {
     const xa = x0 + ((x1 - x0) * k) / n, xb = x0 + ((x1 - x0) * (k + 1)) / n, y = YD - (YD * (k + 1)) / n;
     A.box('stairs', Math.min(xa, xb), Math.max(xa, xb), y - YD / n - 0.05, y, ZS0, ZS1);
   }
   A.box('steel', x1, x0, 0, 0.4, ZS0 + 0.2, ZS1 - 0.2);
   for (const z of [ZS0 - 0.1, ZS1 + 0.1]) tube(A, 'rail', [x1, 1.0, z], [x0, YD + 1.0, z], 0.04, 0.04, 5);
-  for (const x of [-129, -134, -139]) A.box('steel', x - 0.1, x + 0.1, 0, (YD * (x - x1)) / (x0 - x1), ZS0 + 0.9, ZS0 + 1.1);     // posts under the stair
+  for (const x of [x0 - 3, x0 - 8, x0 - 13]) A.box('steel', x - 0.1, x + 0.1, 0, (YD * (x - x1)) / (x0 - x1), ZS0 + 0.9, ZS0 + 1.1);     // posts under the stair
+  // covered stair down eastward: solid white side, pitched roof on posts
+  {
+    const e0 = LX1, e1 = LX1 + 19, m = 26;
+    for (let k = 0; k < m; k++) {
+      const xa = e0 + ((e1 - e0) * k) / m, xb = e0 + ((e1 - e0) * (k + 1)) / m, y = YD - (YD * (k + 1)) / m;
+      A.box('stairs', xa, xb, y - YD / m - 0.05, y, ZS0, ZS1);
+    }
+    const yAt = (x) => YD - (YD * (x - e0)) / (e1 - e0);
+    for (const [z, m2] of [[ZS0 - 0.1, 'column'], [ZS1 + 0.1, 'column']]) {        // white side panels following the slope
+      A.quad(m2, [e0, yAt(e0) - 0.6, z], [e1, -0.6, z], [e1, 1.0, z], [e0, yAt(e0) + 1.0, z]);
+      A.quad(m2, [e0, yAt(e0) + 1.0, z], [e1, 1.0, z], [e1, -0.6, z], [e0, yAt(e0) - 0.6, z]);
+    }
+    for (let x = e0 + 1; x <= e1; x += 3.6) for (const z of [ZS0 - 0.15, ZS1 + 0.15]) tube(A, 'steel', [x, yAt(x), z], [x, yAt(x) + 2.6, z], 0.06, 0.06, 5);
+    const zc = (ZS0 + ZS1) / 2, w = (ZS1 - ZS0) / 2 + 0.5;
+    for (const sd of [-1, 1]) {
+      A.quad('roof', [e0, yAt(e0) + 2.6, zc + sd * w], [e1, 2.6, zc + sd * w], [e1, 3.2, zc], [e0, yAt(e0) + 3.2, zc]);
+      A.quad('roof', [e0, yAt(e0) + 3.2, zc], [e1, 3.2, zc], [e1, 2.6, zc + sd * w], [e0, yAt(e0) + 2.6, zc + sd * w]);
+    }
+  }
 
   // orange KMITL letters on the west side, just south of the north landing
   const g = new THREE.BufferGeometry(), x = -123 - W - 0.5, y0 = YD - 1.0, y1 = YD + 2.6, zA = -64, zB = -52;   // faces west: the viewer looks east, so north is on the left
@@ -88,4 +115,4 @@ export function buildSkywalk(owner) {
   return { meshes: [...meshes(A, MAT, owner), ...extra], top: YD + HR + 0.2 };
 }
 
-export const SKYWALK_OUTLINE = [[-125, -86], [-121, -86], [-121, 7], [-90, 7], [-64, 35], [-68, 38], [-91, 11], [-125, 11], [-125, -66.4], [-143, -66.4], [-143, -68.4], [-125, -68.4], [-125, -86]];
+export const SKYWALK_OUTLINE = [[-143.5, -71.2], [-100.5, -71.2], [-100.5, -69.2], [-119.5, -69.2], [-119.5, -64.8], [-121, -64.8], [-121, 7], [-90, 7], [-64, 35], [-68, 38], [-91, 11], [-125, 11], [-125, -64.8], [-126.5, -64.8], [-126.5, -69.2], [-143.5, -69.2], [-143.5, -71.2]];
