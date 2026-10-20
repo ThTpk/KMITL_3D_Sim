@@ -43,7 +43,7 @@ const BAGS = ['#1f2a44', '#2d2d2f', '#6b2b2b', '#3d5a3a', '#7a6a55', '#3a5f8f', 
 const SHOP = ['#1f2f52', '#5a1f27', '#28452e', '#2a2f38'];   // faculty workshop shirts (เสื้อช็อป)
 // part: [colour, pivotX, pivotY, centreY (from the pivot), centreZ, w, h, d, swing]
 // swing: 1 / -1 = left / right leg, 2 / -2 = left / right arm, 0 = rigid with the body
-function figure(R, female) {
+export function figure(R, female) {
   const k = (female ? 0.94 : 1) * (0.95 + R() * 0.1);
   const skin = SKIN[Math.floor(R() * SKIN.length)], hair = HAIR[Math.floor(R() * HAIR.length)];
   const shirt = !female && R() < 0.18 ? SHOP[Math.floor(R() * SHOP.length)] : '#f4f4f1';

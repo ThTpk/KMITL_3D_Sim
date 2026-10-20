@@ -9,6 +9,7 @@ import {
 import { buildTraffic } from './traffic.js';
 import { buildPlanes } from './planes.js';
 import { buildStudents } from './students.js';
+import { buildDisasters, DISASTERS } from './disaster.js';
 
 const DATA = window.KMITL_DATA;
 const [LAT0, LON0] = DATA.origin;
@@ -386,6 +387,22 @@ document.getElementById('compass').addEventListener('click', () => {
   flyTo(t.x, t.z, d, THREE.MathUtils.radToDeg(controls.getPolarAngle()), 0);
 });
 
+// ---------- disasters and recovery ----------
+// pick a disaster to wreck random campus buildings; recovery sends crews of students to build them back
+const disasters = buildDisasters({ scene, group: layers.buildings, meta: buildingMeta, inCampus, flyTo, camera });
+{
+  const sel = document.getElementById('disaster-type'), go = document.getElementById('disaster-go');
+  const fix = document.getElementById('disaster-fix'), msg = document.getElementById('disaster-msg');
+  sel.innerHTML = '<option value="random">🎲 สุ่ม</option>' + DISASTERS.map((d) => `<option value="${d.id}">${d.th}</option>`).join('');
+  go.addEventListener('click', () => { stopOrbit(); closeInfo(); disasters.trigger(sel.value); });
+  fix.addEventListener('click', () => { stopOrbit(); disasters.recover(); });
+  disasters.onChange((s) => {
+    go.disabled = s.busy || s.rebuilding;
+    fix.disabled = s.busy || s.rebuilding || !s.destroyed;
+    msg.textContent = s.text;
+  });
+}
+
 // ---------- layer toggles ----------
 // defaults: buildings, satellite imagery and shadows; everything else can be switched on in the panel
 const layerState = { buildings: true, labels: false, roadLabels: false, traffic: false, students: false, satellite: true, shadows: true };
@@ -500,6 +517,8 @@ function loop(manual = false) {
   if (layers.students.visible) students.update(dt);
   if (orbiting && !tween) controls.target.lerp(new THREE.Vector3(campusCentre[0], 0, campusCentre[1]), 0.01);
   controls.update();
+  disasters.update(dt, camera.position.distanceTo(controls.target));
+  camera.position.add(disasters.shakeOffset);   // camera shake, taken off again after rendering
   // keep the shadow frustum centred on what we're looking at
   const t = controls.target;
   const dist = camera.position.distanceTo(t);
@@ -525,6 +544,7 @@ function loop(manual = false) {
   if (frame++ % 6 === 0) updateLabels();
   renderer.render(scene, camera);
   labelRenderer.render(scene, camera);
+  camera.position.sub(disasters.shakeOffset);
   if (!manual) requestAnimationFrame(() => loop());
 }
 
@@ -544,4 +564,4 @@ renderer.setAnimationLoop(null);
 loop();
 document.getElementById('loading').classList.add('done');
 // debugging hook: advance n frames synchronously (useful when the tab is in the background)
-window.__kmitl = { scene, camera, controls, buildingMeta, select, flyTo, setTime, traffic, students, step: (n = 20) => { for (let i = 0; i < n; i++) loop(true); } };
+window.__kmitl = { scene, camera, controls, buildingMeta, select, flyTo, setTime, traffic, students, disasters, step: (n = 20) => { for (let i = 0; i < n; i++) loop(true); } };

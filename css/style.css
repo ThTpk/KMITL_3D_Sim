@@ -101,3 +101,12 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); c
   #time { width: 140px; }
   #compass { bottom: auto; top: 128px; }
 }
+#controls .disaster { gap: 6px 8px; }
+#controls select { font: inherit; font-size: 12.5px; padding: 5px 8px; border-radius: 7px; border: 1px solid var(--line); background: transparent; color: var(--text); cursor: pointer; }
+#controls select option { color: #111; }
+#controls button.danger:not(:disabled) { border-color: #e2483d; color: #d63a2f; }
+#controls button.danger:not(:disabled):hover { background: #e2483d; color: #fff; }
+#controls button.heal:not(:disabled) { border-color: #3fae5a; color: #2f9a4a; }
+#controls button.heal:not(:disabled):hover { background: #3fae5a; color: #fff; }
+#controls button:disabled { opacity: 0.4; cursor: default; }
+#disaster-msg { font-size: 12.5px; color: var(--muted, #b9bec8); }
