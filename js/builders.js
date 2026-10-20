@@ -52,7 +52,7 @@ import { buildPool, POOL_OUTLINE } from './models/pool.js';
 import { buildRailWalk, RAILWALK_OUTLINE } from './models/railwalk.js';
 import { buildKbs, KBS_OUTLINE } from './models/kbs.js';
 import { buildLbld, LBLD_OUTLINE } from './models/lbld.js';
-import { buildSkywalk, SKYWALK_OUTLINE, buildSkywalkCmkl, SKYWALK_CMKL_OUTLINE } from './models/skywalk.js';
+import { buildSkywalk, SKYWALK_OUTLINE, buildSkywalkCmkl, SKYWALK_CMKL_OUTLINE, SKYWALK_ROUTES } from './models/skywalk.js';
 import { buildScib, SCIB_OUTLINE, buildCourtBlock, COURTBLOCK_OUTLINE } from './models/scib.js';
 
 // Buildings modelled by hand from the Street View / satellite survey (overrides.json "model")
@@ -763,12 +763,23 @@ export function elevationFn(r, L, base) {
   return (s) => base + H * Math.min(1, s / ramp, (L - s) / ramp);
 }
 
+// OSM maps the sky walk as thin bridge footways a few metres off the satellite line; the hand-built deck replaces them
+function onSkywalk(r) {
+  if (!r.br || r.k !== 'footway') return false;
+  const dist = ([x, z]) => Math.min(...SKYWALK_ROUTES.flatMap((pts) => pts.slice(1).map((b, i) => {
+    const a = pts[i], dx = b[0] - a[0], dz = b[1] - a[1], t = Math.max(0, Math.min(1, ((x - a[0]) * dx + (z - a[1]) * dz) / (dx * dx + dz * dz)));
+    return Math.hypot(x - a[0] - dx * t, z - a[1] - dz * t);
+  })));
+  return r.p.every((p, i) => dist(p) < 12 && (!i || dist([(p[0] + r.p[i - 1][0]) / 2, (p[1] + r.p[i - 1][1]) / 2]) < 12));
+}
+
 export function buildRoads(data) {
   const s = new Soup(false), marks = new Soup(false), walks = new Soup(false);
   const pillars = [];
   const white = C('#f2f0ea'), yellow = C('#e8c547'), curb = C('#bdb9b0');
   const sorted = [...data.roads].sort((a, b) => (ROAD_Y[a.k] || 0.2) - (ROAD_Y[b.k] || 0.2));
   for (const r of sorted) {
+    if (onSkywalk(r)) continue;
     const base = ROAD_Y[r.k] ?? 0.2;
     let L = 0;
     for (let i = 1; i < r.p.length; i++) L += Math.hypot(r.p[i][0] - r.p[i - 1][0], r.p[i][1] - r.p[i - 1][1]);

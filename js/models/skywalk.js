@@ -1,41 +1,52 @@
-// Hand-built model of the KMITL Sky Walk: the covered footbridge from the bank and post-office corner north of the
-// railway, over the tracks and Chalong Krung Road, to the digital-data office and on to the library. It is not in
-// OpenStreetMap; its route is traced on Google Maps satellite imagery and its outline is stored in overrides.json
-// (id -6, "ll"). Surveyed 2026-10-19 from the user's photo of the north stair and the bridge's west side, and from
-// the KMITL Virtual Tour (สำนักบริหารข้อมูลดิจิทัล 1-8, on the deck: the "SKY WALK" boards, the orange frames, the
-// lift tower). Photos were only looked at; everything here is procedural.
+// Hand-built model of the KMITL Sky Walk: the covered footbridges that join up across the railway and Chalong Krung
+// Road. It is not in OpenStreetMap; its route is traced on satellite imagery (Esri World Imagery zoom 19 and the
+// user's Google Maps screenshots, 2026-10-20) and the overrides.json entries (ids -6 and -7) only carry the names.
+// Surveyed 2026-10-19 from the user's photo of the north stair and the bridge's west side, and from the KMITL Virtual
+// Tour (สำนักบริหารข้อมูลดิจิทัล 1-8, on the deck: the "SKY WALK" boards, the orange frames, the lift tower). Photos
+// were only looked at; everything here is procedural.
 //
 // x = east, z = south, y = up.
-//   deck about 6.8 m up, 4 m wide, a grey steel truss under it, a stainless rail each side
-//   a row of white round columns along each side, alternately upright and leaning, carrying a shallow metal roof
-//   on red-orange beams
+//   one cross-section for the whole network: deck 6.8 m up and 4 m wide, roof 5.2 m wide (the white band on the
+//   satellite photo is 4.5-5.5 m, a little more than one lane pair of Chalong Krung Road)
+//   west walk: a grey steel truss under the deck, a stainless rail each side, a row of white round columns along each
+//   side, alternately upright and leaning, carrying a shallow metal roof on red-orange beams
 //   big orange "KMITL" letters on the west side over the railway fence by the north end
 //   north end (corrected 2026-10-19 from the user's photos taken from the bank across the road): the bridge stops at the
 //   railway fence and does not cross the road; a landing on one square grey column under an arched roof on white posts,
 //   an open steel stair down westward and a covered stair (pitched roof, solid white side) down eastward, both running
 //   along the fence
-//   route: north-south from z -84 to z 6 (x -125..-121), then east to x -90, then south-east to the library
+//   route: north-south from z -66 to z 11.5 (x -123), east to x -91, south-east to x -66, then straight east over
+//   Chalong Krung Road into the west face of the library (x 20, z 34.6)
 import * as THREE from 'three';
 import { Acc, tube, mats, meshes, BASE_MATS } from './kit.js';
 import { canvasTex } from './ecc.js';
 
 const YD = 6.8, W = 2.0, HR = 3.2;                                              // deck height, half width, roof height over the deck
-const ROUTE = [[-123, -66], [-123, 9], [-90, 9], [-66, 36]];
+const ROUTE = [[-123, -66], [-123, 11.5], [-91, 11.5], [-66, 34.6], [20, 34.6]];
+// stretches (metres from the start of each segment) with no piers: the railway and the roads
+const NO_PIERS = [[[0, 58]], [], [], [[66, 82]]];
 
-export function buildSkywalk(owner) {
-  const A = new Acc();
-  const extra = [];
-  for (let s = 0; s < ROUTE.length - 1; s++) {
-    const [ax, az] = ROUTE[s], [bx, bz] = ROUTE[s + 1];
-    const L = Math.hypot(bx - ax, bz - az), ux = (bx - ax) / L, uz = (bz - az) / L, nx = -uz, nz = ux;
-    const P = (t, o, y) => [ax + ux * t + nx * o, y, az + uz * t + nz * o];
-    const q = (m, t0, t1, o0, o1, y0, y1) => {                                  // a slab between two offsets, t0..t1 along
-      A.quad(m, P(t0, o0, y1), P(t0, o1, y1), P(t1, o1, y1), P(t1, o0, y1));
-      A.quad(m, P(t1, o0, y0), P(t1, o1, y0), P(t0, o1, y0), P(t0, o0, y0));
-      for (const o of [o0, o1]) { A.quad(m, P(t0, o, y0), P(t1, o, y0), P(t1, o, y1), P(t0, o, y1)); A.quad(m, P(t1, o, y1), P(t1, o, y0), P(t0, o, y0), P(t0, o, y1)); }
-    };
-    q('deck', 0, L, -W, W, YD - 0.25, YD);
-    q('steel', 0, L, -W + 0.2, W - 0.2, YD - 1.1, YD - 0.9);                    // bottom chord of the truss
+const MAT_SPEC = { ...BASE_MATS, deck: '#9a9ea2', steel: { color: '#6d7378', metalness: 0.5, roughness: 0.5 }, rail: { color: '#d7dadc', metalness: 0.7, roughness: 0.3 },
+  column: '#f2f2f0', red: '#d8462a', roof: { color: '#7b7f82', metalness: 0.4, roughness: 0.5 }, pier: '#cfcbc2', stairs: { color: '#7d8287', metalness: 0.4, roughness: 0.6 },
+  white: { color: '#f1f2f0', roughness: 0.5, side: 2 }, soffit: { color: '#c9ccce', side: 2 }, greyPier: '#a7abae' };
+
+// One straight span of covered walk from a to b. e0/e1 run the deck and roof on past the ends so the corners close;
+// skip lists the stretches with no piers. style 'orange': white columns and red beams under a flat metal roof;
+// 'white': white steel trusses for sides and an arched white roof whose crown rises and falls along the length.
+function span(A, a, b, style, e0, e1, skip) {
+  const [ax, az] = a, [bx, bz] = b;
+  const L = Math.hypot(bx - ax, bz - az), ux = (bx - ax) / L, uz = (bz - az) / L, nx = -uz, nz = ux;
+  const P = (t, o, y) => [ax + ux * t + nx * o, y, az + uz * t + nz * o];
+  const q = (m, t0, t1, o0, o1, y0, y1) => {                                    // a slab between two offsets, t0..t1 along
+    A.quad(m, P(t0, o0, y1), P(t0, o1, y1), P(t1, o1, y1), P(t1, o0, y1));
+    A.quad(m, P(t1, o0, y0), P(t1, o1, y0), P(t0, o1, y0), P(t0, o0, y0));
+    for (const o of [o0, o1]) { A.quad(m, P(t0, o, y0), P(t1, o, y0), P(t1, o, y1), P(t0, o, y1)); A.quad(m, P(t1, o, y1), P(t1, o, y0), P(t0, o, y0), P(t0, o, y1)); }
+  };
+  q('deck', -e0, L + e1, -W, W, YD - 0.25, YD);
+  q('steel', -e0, L + e1, -W + 0.2, W - 0.2, YD - 1.1, YD - 0.9);                // bottom chord of the truss
+  const piers = [];
+  for (let t = 6; t <= L - 2; t += 13) if (!skip.some(([s0, s1]) => t > s0 && t < s1)) piers.push(t);
+  if (style === 'orange') {
     for (let t = 0; t < L; t += 2.4) {                                          // truss diagonals under the deck
       for (const o of [-W + 0.2, W - 0.2]) tube(A, 'steel', P(t, o, YD - 1.0), P(Math.min(L, t + 2.4), o, YD - 0.25), 0.05, 0.05, 5);
     }
@@ -52,15 +63,70 @@ export function buildSkywalk(owner) {
       }
       if (i % 2 === 0) q('red', t - 0.12, t + 0.12, -W - 0.4, W + 0.4, YD + HR - 0.35, YD + HR);
     }
-    for (const o of [-W - 0.3, W + 0.3]) q('red', 0, L, o - 0.1, o + 0.1, YD + HR - 0.45, YD + HR);
-    q('roof', -0.3, L + 0.3, -W - 0.6, W + 0.6, YD + HR, YD + HR + 0.12);
-    // concrete piers every ~13 m (skipping the tracks and the road)
-    for (let t = 0; t <= L; t += 13) {
-      const p = P(t, 0, 0);
-      if (s === 0 && p[2] > -72 && p[2] < -8) continue;
-      A.box('pier', p[0] - 0.4, p[0] + 0.4, 0, YD - 1.1, p[2] - 0.4, p[2] + 0.4);
+    for (const o of [-W - 0.3, W + 0.3]) q('red', -e0, L + e1, o - 0.1, o + 0.1, YD + HR - 0.45, YD + HR);
+    q('roof', -e0 - 0.3, L + e1 + 0.3, -W - 0.6, W + 0.6, YD + HR, YD + HR + 0.12);
+    for (const t of piers) { const p = P(t, 0, 0); A.box('pier', p[0] - 0.4, p[0] + 0.4, 0, YD - 1.1, p[2] - 0.4, p[2] + 0.4); }
+    return;
+  }
+  for (const o of [-W + 0.05, W - 0.05]) {
+    q('white', -e0, L + e1, o - 0.08, o + 0.08, YD - 1.2, YD - 1.0);              // bottom and top chords
+    q('white', -e0, L + e1, o - 0.08, o + 0.08, YD + 2.0, YD + 2.2);
+    for (let t = 0; t < L; t += 2.5) {
+      q('white', t - 0.07, t + 0.07, o - 0.07, o + 0.07, YD - 1.2, YD + 2.2);
+      tube(A, 'white', P(t, o, YD - 1.0), P(Math.min(L, t + 2.5), o, YD + 2.0), 0.06, 0.06, 5);
+    }
+    q('rail', 0, L, o - 0.03, o + 0.03, YD + 1.0, YD + 1.08);
+  }
+  const amp = 1.4 * Math.min(1, L / 80);
+  const crown = (t) => YD + 3.4 + amp * Math.sin((t / L) * Math.PI * 2.0);
+  const seg = 8, w = W + 0.6;
+  for (let t = -e0; t < L + e1; t += 2) {
+    const t1 = Math.min(L + e1, t + 2);
+    for (let i = 0; i < seg; i++) {
+      const a0 = (i / seg) * Math.PI, a1 = ((i + 1) / seg) * Math.PI;
+      const R = (ang, tt) => P(tt, -w * Math.cos(ang), YD + 2.2 + (crown(tt) - YD - 2.2) * Math.sin(ang));
+      A.quad('white', R(a0, t), R(a1, t), R(a1, t1), R(a0, t1));
+      A.quad('soffit', R(a0, t1), R(a1, t1), R(a1, t), R(a0, t));
     }
   }
+  for (const t of piers) for (const o of [-W + 0.4, W - 0.4]) { const p = P(t, o, 0); A.box('greyPier', p[0] - 0.35, p[0] + 0.35, 0, YD - 1.2, p[2] - 0.35, p[2] + 0.35); }
+}
+
+function route(A, pts, style, noPiers) {
+  for (let s = 0; s < pts.length - 1; s++) span(A, pts[s], pts[s + 1], style, s ? W : 0, s < pts.length - 2 ? W : 0, noPiers[s] || []);
+}
+
+// a straight stair from (x, z) at deck height down to the ground, dir the unit step along the ground, width w
+function stair(A, x, z, dx, dz, len, w, m = 'stairs') {
+  const n = Math.round(len / 0.55), nx = -dz, nz = dx;
+  for (let k = 0; k < n; k++) {
+    const t0 = (len * k) / n, t1 = (len * (k + 1)) / n, y = YD - (YD * (k + 1)) / n;
+    const c = (t, o) => [x + dx * t + nx * o, z + dz * t + nz * o];
+    const pts = [c(t0, -w / 2), c(t1, -w / 2), c(t1, w / 2), c(t0, w / 2)];
+    A.box(m, Math.min(...pts.map((p) => p[0])), Math.max(...pts.map((p) => p[0])), y - YD / n - 0.05, y, Math.min(...pts.map((p) => p[1])), Math.max(...pts.map((p) => p[1])));
+  }
+  for (const o of [-w / 2, w / 2]) tube(A, 'rail', [x + nx * o, YD + 1.0, z + nz * o], [x + dx * len + nx * o, 1.0, z + dz * len + nz * o], 0.04, 0.04, 5);
+}
+
+// the outline of a walk of half width h along pts (mitred corners), as a closed ring
+function band(pts, h) {
+  const off = (sign) => pts.map((p, i) => {
+    const a = pts[Math.max(0, i - 1)], b = pts[Math.min(pts.length - 1, i + 1)];
+    const d0 = i ? norm(p[0] - a[0], p[1] - a[1]) : norm(b[0] - p[0], b[1] - p[1]);
+    const d1 = i < pts.length - 1 ? norm(b[0] - p[0], b[1] - p[1]) : d0;
+    const mx = -(d0[1] + d1[1]), mz = d0[0] + d1[0], ml = Math.hypot(mx, mz);
+    const cos = (mx * -d1[1] + mz * d1[0]) / ml;                               // miter: offset h / cos(half angle)
+    return [+(p[0] + (sign * mx / ml) * (h / cos)).toFixed(1), +(p[1] + (sign * mz / ml) * (h / cos)).toFixed(1)];
+  });
+  const ring = [...off(1), ...off(-1).reverse()];
+  return [...ring, ring[0]];
+}
+function norm(x, z) { const l = Math.hypot(x, z); return [x / l, z / l]; }
+
+export function buildSkywalk(owner) {
+  const A = new Acc();
+  const extra = [];
+  route(A, ROUTE, 'orange', NO_PIERS);
   // north landing by the fence: one square grey column, an arched roof on white posts
   const LX0 = -126.5, LX1 = -119.5, LZ0 = -71.2, LZ1 = -64.8;
   A.box('pier', -124.2, -121.8, 0, YD - 1.0, -69.2, -66.8);
@@ -110,57 +176,40 @@ export function buildSkywalk(owner) {
   const sign = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ map: tex, transparent: true, alphaTest: 0.3, roughness: 0.6, side: THREE.DoubleSide }));
   sign.userData.kind = 'building'; extra.push(sign);
 
-  const MAT = mats({ ...BASE_MATS, deck: '#9a9ea2', steel: { color: '#6d7378', metalness: 0.5, roughness: 0.5 }, rail: { color: '#d7dadc', metalness: 0.7, roughness: 0.3 },
-    column: '#f2f2f0', red: '#d8462a', roof: { color: '#7b7f82', metalness: 0.4, roughness: 0.5 }, pier: '#cfcbc2', stairs: { color: '#7d8287', metalness: 0.4, roughness: 0.6 } });
-  return { meshes: [...meshes(A, MAT, owner), ...extra], top: YD + HR + 0.2 };
+  return { meshes: [...meshes(A, mats(MAT_SPEC), owner), ...extra], top: YD + HR + 0.2 };
 }
 
-// KMITL Sky Walk at CMKL (overrides.json id -7): a straight bridge from the road north of the railway over the tracks
-// and Chalong Krung Road, landing on the north face of CMKL. From the drone shots in KMITL Channel+ "KMITL Share Lo"
-// EP.4 (youtu.be/HfCKpGCRyCo, 0:02-0:40) and its line on the satellite imagery (x 22..28, z -128..-16): a white
-// steel truss on both sides, a white roof whose curved section rises and falls along the length in a long wave, grey
-// columns in pairs; a straight stair down northward at the north end.
+// KMITL Sky Walk at CMKL (overrides.json id -7), traced on the satellite imagery 2026-10-20: it leaves the south side
+// of the clinic (คลินิกเวชกรรม) on a landing with a stair down southward, runs east along the north side of the
+// courtyard, bends south-east across Chalong Krung Road where the road curves, lands on the east side of the road
+// (a stair down northward at the corner) and runs straight south beside the road, over the frontage road, the railway
+// and the road south of the tracks, into the north face of the CMKL tower at deck level. From the drone shots in
+// KMITL Channel+ "KMITL Share Lo" EP.4 (youtu.be/HfCKpGCRyCo, 0:02-0:40): a white steel truss on both sides, a white
+// roof whose curved section rises and falls along the length in a long wave, grey columns in pairs.
+const CM_ROUTE = [[-73, -157], [-10, -162.5], [26.5, -143], [31.2, -14]];
+const CM_NO_PIERS = [[], [[16, 40]], [[57, 68], [78, 119]]];
+
 export function buildSkywalkCmkl(owner) {
   const A = new Acc();
-  const X0 = 22.8, X1 = 27.2, ZN = -116, ZS = -16, D = 7.0, XC = (X0 + X1) / 2;
-  A.box('deck', X0, X1, D - 0.3, D, ZN, ZS);
-  for (const x of [X0 + 0.05, X1 - 0.05]) {
-    A.box('white', x - 0.08, x + 0.08, D - 1.2, D - 1.0, ZN, ZS);                    // bottom chord
-    A.box('white', x - 0.08, x + 0.08, D + 2.0, D + 2.2, ZN, ZS);                    // top chord
-    for (let z = ZN; z < ZS; z += 2.5) {
-      A.box('white', x - 0.07, x + 0.07, D - 1.2, D + 2.2, z - 0.07, z + 0.07);
-      tube(A, 'white', [x, D - 1.0, z], [x, D + 2.0, Math.min(ZS, z + 2.5)], 0.06, 0.06, 5);
-    }
-    A.box('rail', x - 0.03, x + 0.03, D + 1.0, D + 1.08, ZN, ZS);
+  route(A, CM_ROUTE, 'white', CM_NO_PIERS);
+  // landing at the clinic: from the walk's west end north to the clinic's south wall, a stair down southward
+  const X0 = -73 - W - 0.4, X1 = -73 + W + 0.4, ZN = -165, ZS = -155;
+  A.box('steel', X0, X1, YD - 1.1, YD - 0.25, ZN, ZS);
+  A.box('deck', X0, X1, YD - 0.25, YD, ZN, ZS);
+  A.box('white', X0 - 0.4, X1 + 0.4, YD + 2.6, YD + 2.8, ZN, ZS);
+  for (const x of [X0, X1]) {
+    A.box('white', x - 0.08, x + 0.08, YD + 1.0, YD + 1.1, ZN, ZS);
+    for (const z of [ZN + 0.4, ZS - 0.4]) A.box('white', x - 0.1, x + 0.1, YD, YD + 2.6, z - 0.1, z + 0.1);
   }
-  // wave roof: an arched section whose crown height rises and falls along the bridge
-  const crown = (z) => D + 3.2 + 1.4 * Math.sin(((z - ZN) / (ZS - ZN)) * Math.PI * 2.0);
-  const seg = 8, w = (X1 - X0) / 2 + 0.6;
-  for (let z = ZN; z < ZS; z += 2) {
-    const z1 = Math.min(ZS, z + 2);
-    for (let i = 0; i < seg; i++) {
-      const t0 = (i / seg) * Math.PI, t1 = ((i + 1) / seg) * Math.PI;
-      const P = (t, zz) => [XC - w * Math.cos(t), D + 2.2 + (crown(zz) - D - 2.2) * Math.sin(t), zz];
-      A.quad('white', P(t0, z), P(t1, z), P(t1, z1), P(t0, z1));
-      A.quad('soffit', P(t0, z1), P(t1, z1), P(t1, z), P(t0, z));
-    }
-  }
-  // grey columns in pairs, skipping the tracks and the road
-  for (let z = ZN + 2; z <= ZS - 2; z += 12) {
-    if (z > -80 && z < -26) continue;
-    for (const x of [X0 + 0.4, X1 - 0.4]) A.box('pier', x - 0.35, x + 0.35, 0, D - 1.2, z - 0.35, z + 0.35);
-  }
-  // stair down northward at the north end
-  const n = 24;
-  for (let k = 0; k < n; k++) {
-    const za = ZN - (14 * k) / n, zb = ZN - (14 * (k + 1)) / n, y = D - (D * (k + 1)) / n;
-    A.box('stairs', X0 + 0.6, X1 - 0.6, y - D / n - 0.05, y, zb, za);
-  }
-  for (const x of [X0 + 0.6, X1 - 0.6]) tube(A, 'rail', [x, D + 1.0, ZN], [x, 1.0, ZN - 14], 0.04, 0.04, 5);
-  const MAT = mats({ ...BASE_MATS, deck: '#9a9ea2', white: { color: '#f1f2f0', roughness: 0.5, side: 2 }, soffit: { color: '#c9ccce', side: 2 },
-    rail: { color: '#d7dadc', metalness: 0.7, roughness: 0.3 }, pier: '#a7abae', stairs: { color: '#8d9297', metalness: 0.4, roughness: 0.6 } });
-  return { meshes: meshes(A, MAT, owner), top: D + 4.8 };
+  for (const x of [X0 + 0.5, X1 - 0.5]) A.box('greyPier', x - 0.35, x + 0.35, 0, YD - 1.1, ZN + 1.0, ZN + 1.7);
+  stair(A, -73, -155, 0, 1, 12, 2.6);
+  A.box('white', -73 - 1.8, -73 + 1.8, 3.2, 3.35, -155, -138);                   // canopy over the stair foot
+  for (const z of [-150, -144, -138.3]) for (const x of [-73 - 1.6, -73 + 1.6]) A.box('white', x - 0.07, x + 0.07, 0, 3.2, z - 0.07, z + 0.07);
+  // stair down northward at the corner east of the road
+  stair(A, 31.2, -145.4, 0.27, -0.963, 12, 2.4);
+  return { meshes: meshes(A, mats(MAT_SPEC), owner), top: YD + 4.8 };
 }
-export const SKYWALK_CMKL_OUTLINE = [[22.2, -130], [27.8, -130], [27.8, -15.6], [22.2, -15.6], [22.2, -130]];
 
-export const SKYWALK_OUTLINE = [[-143.5, -71.2], [-100.5, -71.2], [-100.5, -69.2], [-119.5, -69.2], [-119.5, -64.8], [-121, -64.8], [-121, 7], [-90, 7], [-64, 35], [-68, 38], [-91, 11], [-125, 11], [-125, -64.8], [-126.5, -64.8], [-126.5, -69.2], [-143.5, -69.2], [-143.5, -71.2]];
+export const SKYWALK_ROUTES = [ROUTE, CM_ROUTE];
+export const SKYWALK_CMKL_OUTLINE = band([[-73, -165], ...CM_ROUTE], W + 0.6);
+export const SKYWALK_OUTLINE = band([[-123, -71.2], ...ROUTE.slice(1)], W + 0.6);

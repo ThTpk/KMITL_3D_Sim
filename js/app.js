@@ -388,7 +388,7 @@ document.getElementById('compass').addEventListener('click', () => {
 
 // ---------- layer toggles ----------
 // defaults: buildings, satellite imagery and shadows; everything else can be switched on in the panel
-const layerState = { buildings: true, labels: false, roadLabels: false, traffic: false, students: true, satellite: true, shadows: true };
+const layerState = { buildings: true, labels: false, roadLabels: false, traffic: false, students: false, satellite: true, shadows: true };
 function applyLayers() {
   layers.buildings.visible = layerState.buildings;
   layers.labels.visible = layerState.buildings && layerState.labels;
