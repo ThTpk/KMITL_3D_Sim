@@ -169,8 +169,29 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
     P.free = (i0, k) => { for (let i = i0; i < i0 + k; i++) mesh.setMatrixAt(i, ZERO); mesh.instanceMatrix.needsUpdate = true; if (--P.live <= 0) { P.live = 0; P.next = 0; } };
     return P;
   }
-  const rubbleP = pool(9000), scaffP = pool(9000, { color: '#c8c3b4', metalness: 0.4, roughness: 0.5 }), crewP = pool(5000, { roughness: 0.8 });
-  const debrisP = pool(1600);
+  // the pools (and the sprites below) are only made when the first disaster starts, so the feature costs
+  // nothing until it is used
+  let rubbleP, scaffP, crewP, debrisP, smokeS, fireS, fxReady = false;
+  function ensureFx() {
+    if (fxReady) return;
+    fxReady = true;
+    rubbleP = pool(9000); scaffP = pool(9000, { color: '#c8c3b4', metalness: 0.4, roughness: 0.5 }); crewP = pool(5000, { roughness: 0.8 });
+    debrisP = pool(1600);
+    smokeS = spritePool(520, THREE.NormalBlending); fireS = spritePool(300, THREE.AdditiveBlending);
+  }
+  // free the geometry, materials and textures of a finished monster / saucer / wave (not the shared ones)
+  const SHARED = new Set();
+  function disposeTree(obj) {
+    root.remove(obj);
+    obj.traverse((o) => {
+      if (o.geometry && !SHARED.has(o.geometry)) o.geometry.dispose();
+      for (const m of [].concat(o.material || [])) {
+        if (SHARED.has(m)) continue;
+        for (const k of ['map', 'bumpMap', 'emissiveMap']) if (m[k] && !SHARED.has(m[k])) m[k].dispose();
+        m.dispose();
+      }
+    });
+  }
 
   // ---------- rubble heaps ----------
   function makeRubble(st) {
@@ -272,7 +293,6 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
       },
     };
   }
-  const smokeS = spritePool(520, THREE.NormalBlending), fireS = spritePool(300, THREE.AdditiveBlending);
   const C = (h) => new THREE.Color(h);
   const COL = { smoke: C('#3a3734'), dust: C('#c4b8a2'), spray: C('#f2f7fa'), f0: C('#ffd27a'), f1: C('#ff3d0a'), blue0: C('#bfe8ff'), blue1: C('#2a7bff') };
   function puff(kind, x, y, z, vx, vy, vz, extra = {}) {
@@ -328,6 +348,7 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
   const fx = [];
   const ringGeo = new THREE.RingGeometry(0.85, 1, 64).rotateX(-Math.PI / 2);
   const sphereGeo = new THREE.SphereGeometry(1, 24, 16);
+  [ringGeo, sphereGeo, BOX, PUFF, GLOW, STREAK, CRATER, SCORCH].forEach((x) => SHARED.add(x));
   function explosion(x, y, z, R, col = '#ffb36b') {
     const flash = new THREE.Mesh(sphereGeo, new THREE.MeshBasicMaterial({ color: col, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }));
     flash.position.set(x, y, z);
@@ -646,7 +667,7 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
           }
           if (e >= 1) {
             it.hit = true;
-            root.remove(it.rock, it.glow);
+            disposeTree(it.rock); disposeTree(it.glow);
             const { st } = it;
             explosion(st.cx, 6, st.cz, 55);
             decal(CRATER, st.cx, st.cz, Math.max(14, st.R * 0.9));
@@ -733,42 +754,61 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
       g.add(A);
       return A;
     });
-    // thick neck and a small head, mouth open
-    add(g, cyl(4.6, 5.8, 8), skin, [0, 40.5, 2.6], [1, 1, 1], [0.35, 0, 0]);
+    // neck: two overlapping swells that run smoothly from the shoulders up into the head (no hard edge)
+    add(g, sph, skin, [0, 39.5, 2.2], [5.6, 6.2, 5.2], [0.3, 0, 0]);
+    add(g, sph, skin, [0, 43, 3.8], [4.3, 4.4, 4.4], [0.4, 0, 0]);
+    // head, tilted up as on the figure: round skull, heavy brows over yellow eyes, wide cheeks at the hinge,
+    // a tapering snout, the jaw dropped wide open on a red mouth lined with white teeth
     const head = new THREE.Group();
-    head.position.set(0, 44.8, 5);
-    add(head, sph, skin, [0, 1.2, 0.8], [3.3, 3, 3.8]);                                               // skull
-    add(head, sph, skin, [0, 1, 4.3], [2.4, 1.4, 3.2], [0.12, 0, 0]);                                 // upper jaw
-    add(head, sph, skin, [0, 2.5, 2.6], [2.7, 0.8, 1.4]);                                              // brow ridge
-    add(head, new THREE.BoxGeometry(4, 0.4, 4.8), mouthM, [0, -0.35, 4.3]);                             // roof of the mouth
-    for (let i = 0; i < 6; i++) for (const s of [-1, 1]) add(head, toothGeo, tooth, [s * 1.9, -0.5, 2.4 + i * 0.75], [1, 1, 1], [Math.PI, 0, 0]);
-    for (const s of [-1, 1]) add(head, new THREE.BoxGeometry(0.7, 0.45, 0.5), eye, [s * 2.3, 1.9, 3]);
+    head.position.set(0, 45.2, 5.2);
+    add(head, sph, skin, [0, 1.3, 0.4], [3.2, 2.9, 3.6]);                                             // skull
+    for (const s of [-1, 1]) {
+      add(head, sph, skin, [s * 1.85, 0.1, 1.9], [1.55, 1.6, 2.3]);                                    // cheek
+      add(head, sph, skin, [s * 1.25, 2.55, 2.9], [1.35, 0.62, 1.7], [0.25, s * 0.35, s * 0.2]);       // brow ridge
+      add(head, sph, eye, [s * 1.75, 1.85, 3.55], [0.42, 0.32, 0.3]);                                  // eye
+      add(head, sph, skin, [s * 2.1, 1.6, -1.4], [0.7, 1.2, 0.8]);                                     // ear bump
+    }
+    add(head, sph, skin, [0, 1.05, 4.5], [2.15, 1.25, 3.3], [0.1, 0, 0]);                              // snout
+    add(head, sph, skin, [0, 1.25, 7.4], [1.3, 0.8, 0.9]);                                             // nose
+    add(head, sph, mouthM, [0, -0.05, 3.6], [1.85, 0.75, 3.1]);                                        // roof of the mouth
+    // upper teeth follow the curve of the snout, longest at the front corners
+    for (let i = 0; i < 7; i++) for (const s of [-1, 1]) {
+      const z = 1.8 + i * 0.78, x = s * (1.95 - Math.max(0, i - 3) * 0.33);
+      add(head, toothGeo, tooth, [x, -0.45, z], [1, i === 5 ? 1.6 : 1.1, 1], [Math.PI, 0, 0]);
+    }
     const jaw = new THREE.Group();
-    jaw.position.set(0, -0.6, 1.8);
-    add(jaw, sph, skin, [0, -0.8, 2.6], [2.2, 0.75, 3]);
-    add(jaw, new THREE.BoxGeometry(3.6, 0.3, 5), mouthM, [0, -0.15, 2.6]);
-    for (let i = 0; i < 6; i++) for (const s of [-1, 1]) add(jaw, toothGeo, tooth, [s * 1.7, 0.2, 0.8 + i * 0.75]);
-    jaw.rotation.x = 0.35;
+    jaw.position.set(0, -0.4, 1.4);
+    add(jaw, sph, skin, [0, -0.85, 2.9], [2.05, 0.72, 3.2]);                                           // lower jaw
+    add(jaw, sph, skin, [0, -1.3, 1.2], [1.8, 0.8, 1.6]);                                              // throat under the jaw
+    add(jaw, sph, mouthM, [0, -0.3, 2.9], [1.65, 0.35, 2.8]);                                          // tongue
+    for (let i = 0; i < 6; i++) for (const s of [-1, 1]) {
+      const z = 1.1 + i * 0.78, x = s * (1.7 - Math.max(0, i - 2) * 0.3);
+      add(jaw, toothGeo, tooth, [x, -0.05, z], [1, i === 4 ? 1.5 : 1, 1]);
+    }
+    jaw.rotation.x = 0.45;
     head.add(jaw);
-    head.rotation.x = -0.1;
+    head.rotation.x = -0.22;
     g.add(head);
     // dorsal plates from the neck down to the hips, largest in the middle of the back
     for (let k = 0; k < 9; k++) {
       const f = k / 8, y = 43 - k * 3.4, z = -3.2 - Math.sin(f * Math.PI) * 4.6 - f * 1.5;
       plates(g, y, z, 3.5 + Math.sin(Math.min(1, f * 1.4) * Math.PI) * 5.5, -0.45);
     }
-    // tail: a chain of tapering segments, each a child of the one before (so a small sway per joint adds up);
-    // it droops to the ground and the last joints bend it back up
+    // tail: a chain of tapering segments, each a child of the one before (so a small sway per joint adds up).
+    // As on the figure it is an S: down from the hips to lie along the ground, then rising steeply at the end.
+    // Each joint's pitch is relative to the one before (negative = down).
+    const PITCH = [-0.6, 0.07, 0.07, 0.07, 0.17, 0.17, 0.17, 0.3, 0.3, 0.3, 0.3];
     const tail = [];
     let parent = g, pos = [0, 17, -7];
-    for (let k = 0; k < 11; k++) {
+    for (let k = 0; k < PITCH.length; k++) {
       const T = new THREE.Group();
       T.position.set(...pos);
-      T.rotation.x = k === 0 ? -0.9 : k < 4 ? 0.12 : k < 7 ? 0.1 : 0.4;
-      const r0 = 5.2 * (1 - k / 11.5), r1 = 5.2 * (1 - (k + 1) / 11.5), len = 6.4;
+      T.rotation.x = PITCH[k];
+      const r0 = 5.4 * (1 - k / 12), r1 = 5.4 * (1 - (k + 1) / 12), len = 6.4;
       add(T, cyl(r1, r0, len), skin, [0, 0, -len / 2], [1, 1, 1], [Math.PI / 2, 0, 0]);
-      add(T, sph, belly, [0, -r0 * 0.55, -len / 2], [r0 * 0.75, r0 * 0.4, len * 0.45]);
-      if (k < 9) plates(T, r0 * 0.85, -len / 2, 2.6 * (1 - k / 10) + 0.6, -0.6);
+      add(T, sph, belly, [0, -r0 * 0.55, -len / 2], [r0 * 0.75, r0 * 0.4, len * 0.45]);             // lighter underside
+      for (let j = 0; j < 2; j++) add(T, sph, skin, [0, 0, -len * (0.25 + j * 0.5)], [r0 * 1.04, r0 * 1.04, 0.5]);   // ring ridges
+      plates(T, r0 * 0.85, -len / 2, 2.6 * (1 - k / 11) + 0.5, -0.6);
       parent.add(T);
       tail.push(T);
       parent = T; pos = [0, 0, -len];
@@ -817,7 +857,7 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
           const want = Math.atan2(last.cx - pos.x, last.cz - pos.y);
           yaw += clamp(want - yaw, -dt, dt);
           K.plate.emissiveIntensity = smooth(mt / 1.6) * 3;
-          K.jaw.rotation.x = 0.35 + smooth(mt / 1.6) * 0.35;
+          K.jaw.rotation.x = 0.45 + smooth(mt / 1.6) * 0.3;
           if (mt > 1.8) {
             mode = 'breath'; mt = 0;
             beam = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 1, 16, 1, true).translate(0, 0.5, 0).rotateX(Math.PI / 2), new THREE.MeshBasicMaterial({ color: '#7fd0ff', transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide }));
@@ -839,9 +879,9 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
           if (mt > 1.8) { mode = 'leave'; mt = 0; root.remove(beam); beam.geometry.dispose(); beam.material.dispose(); }
         } else if (mode === 'leave') {
           K.plate.emissiveIntensity *= Math.exp(-dt * 2);
-          K.jaw.rotation.x = 0.35 + (K.jaw.rotation.x - 0.35) * Math.exp(-dt * 3);
+          K.jaw.rotation.x = 0.45 + (K.jaw.rotation.x - 0.45) * Math.exp(-dt * 3);
           walkTo(exit[0], exit[1], dt);
-          if (mt > 5) { K.g.position.y -= dt * 16; if (mt > 9) { root.remove(K.g); return true; } }
+          if (mt > 5) { K.g.position.y -= dt * 16; if (mt > 9) { disposeTree(K.g); return true; } }
         }
         // pose
         K.g.position.x = pos.x; K.g.position.z = pos.y;
@@ -940,7 +980,7 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
         } else if (mode === 'away') {
           const e = mt / 3;
           U.g.position.lerpVectors(from, to, e * e);
-          if (e >= 1) { root.remove(U.g, beam, laser); return true; }
+          if (e >= 1) { disposeTree(U.g); disposeTree(beam); disposeTree(laser); return true; }
         }
         U.g.position.y += Math.sin(t * 2) * 0.03;
         return false;
@@ -1048,7 +1088,7 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
           collapse(st, { spin: (rnd() < 0.5 ? -1 : 1) * (1 + rnd()), tilt: 0.25, dur: 1.5, lift: 4, push: [-Math.sin(a) * 18, Math.cos(a) * 18] });
           ripped++;
         }
-        if (wi >= way.length) { root.remove(g); geo.dispose(); return true; }
+        if (wi >= way.length) { disposeTree(g); return true; }
         return false;
       },
     };
@@ -1106,7 +1146,7 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
             collapse(st, { dir: d, tilt: 0.55 + rnd() * 0.3, dur: 1.6, push: [d[0] * 22, d[1] * 22] });
           }
         }
-        if (level <= 0 && front >= u1) { root.remove(wave, flood); waveGeo.dispose(); return true; }
+        if (level <= 0 && front >= u1) { disposeTree(wave); disposeTree(flood); return true; }
         return false;
       },
     };
@@ -1139,6 +1179,7 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
     },
     trigger(id) {
       if (script || api.rebuilding()) return false;
+      ensureFx();
       if (id === 'random' || !SCRIPTS[id]) id = pick(DISASTERS).id;
       const s = SCRIPTS[id]();
       if (!s) return false;
@@ -1163,6 +1204,7 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
     // camDist: camera to orbit target, so the shake reads the same zoomed in or out
     update(dt, camDist = 500) {
       dt = Math.min(dt, 0.1);
+      if (!fxReady) return;
       const before = JSON.stringify(api.status());
       if (script && script.update(dt)) { script = null; scriptId = null; }
       updateBuildings(dt);

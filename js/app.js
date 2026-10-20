@@ -10,6 +10,7 @@ import { buildTraffic } from './traffic.js';
 import { buildPlanes } from './planes.js';
 import { buildStudents } from './students.js';
 import { buildDisasters, DISASTERS } from './disaster.js';
+import { slim } from './memory.js';
 
 const DATA = window.KMITL_DATA;
 const [LAT0, LON0] = DATA.origin;
@@ -103,7 +104,10 @@ layers.traffic.add(planes.group);
 const students = buildStudents(DATA);
 layers.students = students.group;
 for (const k of ['areas', 'water', 'roads', 'rails', 'campus', 'buildings', 'traffic', 'students']) scene.add(layers[k]);
-console.log(`world built in ${(performance.now() - t0).toFixed(0)} ms – ${buildingMeta.length} buildings`);
+// drop the JS copies of vertex data that is never read again once it is on the graphics card; buildings keep
+// their positions (picking, disasters) and vertex colours (rubble)
+const freed = slim(layers.buildings, ['position', 'color']) + ['areas', 'water', 'roads', 'rails', 'campus'].reduce((s, k) => s + slim(layers[k]), 0);
+console.log(`world built in ${(performance.now() - t0).toFixed(0)} ms – ${buildingMeta.length} buildings, ~${(freed / 1e6).toFixed(0)} MB of vertex copies to free`);
 
 // ---------- labels ----------
 const TYPE_TH = {
@@ -564,4 +568,4 @@ renderer.setAnimationLoop(null);
 loop();
 document.getElementById('loading').classList.add('done');
 // debugging hook: advance n frames synchronously (useful when the tab is in the background)
-window.__kmitl = { scene, camera, controls, buildingMeta, select, flyTo, setTime, traffic, students, disasters, step: (n = 20) => { for (let i = 0; i < n; i++) loop(true); } };
+window.__kmitl = { renderer, scene, camera, controls, buildingMeta, select, flyTo, setTime, traffic, students, disasters, step: (n = 20) => { for (let i = 0; i < n; i++) loop(true); } };
