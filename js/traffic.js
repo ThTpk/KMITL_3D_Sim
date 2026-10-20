@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { elevationFn, ROAD_Y, rng } from './builders.js';
 
 // ---------- polyline with arc-length sampling ----------
-class Path {
+export class Path {
   constructor(pts) { // pts: [[x, y, z], ...]
     this.p = pts;
     this.cum = [0];
@@ -37,7 +37,7 @@ class Path {
 
 const lenOf = (p) => { let L = 0; for (let i = 1; i < p.length; i++) L += Math.hypot(p[i][0] - p[i - 1][0], p[i][1] - p[i - 1][1]); return L; };
 // 3D points following the same elevation (bridges / ramps) as the drawn road or track
-function lift(way, base, extra) {
+export function lift(way, base, extra) {
   const L = lenOf(way.p), yf = elevationFn(way, L, base);
   let acc = 0;
   return way.p.map((q, i) => { if (i) acc += Math.hypot(q[0] - way.p[i - 1][0], q[1] - way.p[i - 1][1]); return [q[0], yf(acc, L) + extra, q[1]]; });

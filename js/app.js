@@ -8,6 +8,7 @@ import {
 } from './builders.js';
 import { buildTraffic } from './traffic.js';
 import { buildPlanes } from './planes.js';
+import { buildStudents } from './students.js';
 
 const DATA = window.KMITL_DATA;
 const [LAT0, LON0] = DATA.origin;
@@ -97,7 +98,10 @@ layers.traffic = traffic.group;
 // airliners over the stadium and the 12-storey building share the trains/cars toggle
 const planes = buildPlanes();
 layers.traffic.add(planes.group);
-for (const k of ['areas', 'water', 'roads', 'rails', 'campus', 'buildings', 'traffic']) scene.add(layers[k]);
+// students on the footways and under the open ground floors (inside the campus fence only)
+const students = buildStudents(DATA);
+layers.students = students.group;
+for (const k of ['areas', 'water', 'roads', 'rails', 'campus', 'buildings', 'traffic', 'students']) scene.add(layers[k]);
 console.log(`world built in ${(performance.now() - t0).toFixed(0)} ms – ${buildingMeta.length} buildings`);
 
 // ---------- labels ----------
@@ -384,12 +388,13 @@ document.getElementById('compass').addEventListener('click', () => {
 
 // ---------- layer toggles ----------
 // defaults: buildings, satellite imagery and shadows; everything else can be switched on in the panel
-const layerState = { buildings: true, labels: false, roadLabels: false, traffic: false, satellite: true, shadows: true };
+const layerState = { buildings: true, labels: false, roadLabels: false, traffic: false, students: true, satellite: true, shadows: true };
 function applyLayers() {
   layers.buildings.visible = layerState.buildings;
   layers.labels.visible = layerState.buildings && layerState.labels;
   layers.roadLabels.visible = layerState.roadLabels;
   layers.traffic.visible = layerState.traffic;
+  layers.students.visible = layerState.students;
   layers.areas.visible = !layerState.satellite;
   if (satMesh) satMesh.visible = layerState.satellite;
   document.getElementById('sat-attrib').hidden = !layerState.satellite;
@@ -492,6 +497,7 @@ function loop(manual = false) {
   stepTween(dt);
   layers.water.userData.surface.material.uniforms.time.value += dt * 0.6;
   if (layers.traffic.visible) { traffic.update(dt); planes.update(dt); }
+  if (layers.students.visible) students.update(dt);
   if (orbiting && !tween) controls.target.lerp(new THREE.Vector3(campusCentre[0], 0, campusCentre[1]), 0.01);
   controls.update();
   // keep the shadow frustum centred on what we're looking at
@@ -538,4 +544,4 @@ renderer.setAnimationLoop(null);
 loop();
 document.getElementById('loading').classList.add('done');
 // debugging hook: advance n frames synchronously (useful when the tab is in the background)
-window.__kmitl = { scene, camera, controls, buildingMeta, select, flyTo, setTime, traffic, step: (n = 20) => { for (let i = 0; i < n; i++) loop(true); } };
+window.__kmitl = { scene, camera, controls, buildingMeta, select, flyTo, setTime, traffic, students, step: (n = 20) => { for (let i = 0; i < n; i++) loop(true); } };
