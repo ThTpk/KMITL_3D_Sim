@@ -132,9 +132,9 @@ export function buildGlass(owner) {
 }
 export function buildKruClub(owner) {
   const A = new Acc();
-  const t = block(A, 272, 295, -110, -101, { G: 3.4, FL: 3.0, n: 2, bay: 3.6, style: 'punched' }, {});
-  for (const x of [284, 288]) onFace(A, 'red', F('z', -101, 1), x, x + 3.6, 3.8, 6.0, 0, 0.12);
-  gable(A, 'roofSheet', 272, 295, -110, -101, t, 1.3, { eave: 0.9 });
+  const t = block(A, 272, 290.5, -110, -101, { G: 3.4, FL: 3.0, n: 2, bay: 3.6, style: 'punched' }, {});
+  for (const x of [280, 284.5]) onFace(A, 'red', F('z', -101, 1), x, x + 3.6, 3.8, 6.0, 0, 0.12);
+  gable(A, 'roofSheet', 272, 290.5, -110, -101, t, 1.3, { eave: 0.9 });
   return done(A, owner, t + 1.3);
 }
 export function buildLawson(owner) { const A = new Acc(); shop(A, 44, 55, -134, -120, ['blue', 'wall'], F('x', 44, -1)); return done(A, owner, 4.2); }
@@ -153,6 +153,6 @@ export const AMAZON_OUTLINE = rect(-313, -297, -370, -352);
 export const CHEER_OUTLINE = rect(431, 471, 190, 210);
 export const CLUB_OUTLINE = [[109, -122], [136, -122], [136, -110], [146, -110], [146, -93], [124, -93], [124, -104], [109, -104], [109, -122]];
 export const GLASS_OUTLINE = rect(-40, -10, -104, -88);
-export const KRUCLUB_OUTLINE = rect(272, 295, -110, -101);
+export const KRUCLUB_OUTLINE = rect(272, 290.5, -110, -101);
 export const LAWSON_OUTLINE = rect(44, 55, -134, -120);
 export const INTHANIN_OUTLINE = rect(-192, -179, -234, -226);
