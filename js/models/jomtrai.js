@@ -12,7 +12,7 @@
 //   blocks around a second courtyard; the south block
 //   a single-storey hall with a red hipped roof and a two-storey annex with solar panels south-west
 //   south-east (2026-10-20): two five-storey blocks with brick south walls, the east one with a deep egg-crate on
-//   the east road; the old two-storey workshops round the service yard are gone (bare slab)
+//   the east road; the two-storey white workshop range round a service yard south of them, with deep eaves
 //   a low two-storey white building with a louvred upper floor between the hall and the five-storey block
 //   north end (2026-10-19): broad steps, a four-storey glass building under a large flat steel canopy on four
 //   white round columns branching into steel struts
@@ -94,11 +94,44 @@ export function buildJomtrai(owner) {
   A.box('lawn', 312, 330, 0, 0.08, -200, -180);
   solar(A, 318, 341, -211, -201, TOP + 0.1);
   solar(A, 331, 349, -199, -151, T5 + 0.1);
-  // the two-storey workshop wings that stood round a service yard south of x 313..352 (white, brick panels,
-  // deep eaves on brackets, a raised loading walk) have been demolished: a bare concrete slab with rubble
-  A.box('slab', 313, 352, 0, 0.2, -148, -101);
-  for (const [x, z, w, h] of [[322, -140, 3, 0.8], [338, -127, 4, 0.6], [330, -108, 5, 1.0], [344, -112, 2.5, 0.7], [318, -118, 2, 0.5]])
-    A.box('rubble', x, x + w, 0.2, 0.2 + h, z, z + w * 0.7);
+  // the two-storey white workshop range round a service yard, x 313..352 (from the user's Street View on the
+  // south and east roads; the newest satellite images show it cleared, but the user asked for it as in Street
+  // View): white render, barred / louvred windows on the ground floor, a projecting first-floor ledge edged with
+  // roof tiles, tall windows between red-brick panels upstairs, a deep corrugated roof overhang on steel brackets
+  // and diagonal struts; a raised concrete loading walk along the south road; a carport over the yard
+  const W2 = { G: 3.8, FL: 3.4, n: 2, bay: 3.6, style: 'punched' }, WT = 3.8 + 3.4;   // eaves at 7.2
+  const wing = (x0, x1, z0, z1, faces) => block(A, x0, x1, z0, z1, W2, faces);
+  wing(313, 352, -110, -101, {});                                                      // south, on the road
+  wing(344, 352, -122, -110, { n: { style: 'punched' }, s: false });                  // its return on the east road
+  wing(313, 322, -141, -110, { s: false, n: false });                                  // west, across the yard
+  wing(313, 352, -150, -141, { n: false });                                            // north, below the brick wall
+  gable(A, 'roofSheet', 313, 352, -110, -101, WT, 1.1, { eave: 2.2 });
+  gable(A, 'roofSheet', 313, 352, -150, -141, WT, 1.1, { eave: 2.2 });
+  hip(A, 'roofSheet', 344, 352, -122, -110, WT, 1.0, 1.6);
+  hip(A, 'roofSheet', 313, 322, -141, -110, WT, 1.0, 1.4);
+  // first-floor ledge with a tile lip on the street faces
+  A.box('wall', 312, 353.2, 3.6, 3.95, -101, -99.9);
+  A.box('tile', 312, 353.2, 3.95, 4.15, -100.1, -99.8);
+  for (const [z0, z1] of [[-150, -141], [-122, -100]]) {                             // east road, both sides of the gateway
+    A.box('wall', 352, 353.2, 3.6, 3.95, z0, z1);
+    A.box('tile', 352.9, 353.2, 3.95, 4.15, z0, z1);
+  }
+  // red-brick panels between the upper windows on the east road and on the yard faces
+  for (const [z0, z1] of [[-150, -141], [-122, -101]]) for (let z = z0 + 0.6; z < z1 - 1.6; z += 3.6) A.box('brick', 352, 352.12, 4.6, 6.6, z, z + 1.2);
+  for (let x = 324; x < 351; x += 3.6) { A.box('brick', x + 0.2, x + 1.4, 4.6, 6.6, -141.12, -141); A.box('brick', x + 0.2, x + 1.4, 4.6, 6.6, -110, -109.88); }
+  // steel struts under the overhangs on the road
+  for (let x = 315; x < 352; x += 4.5) {
+    tube(A, 'steel', [x, 4.2, -101], [x, WT - 0.3, -99.2], 0.07, 0.07, 5);
+    tube(A, 'steel', [x, 4.2, -150], [x, WT - 0.3, -151.8], 0.07, 0.07, 5);
+  }
+  // raised loading walk along the south road, concrete with a stained edge
+  A.box('stone', 313, 352, 0, 0.9, -101, -99.4);
+  A.box('base', 313, 352, 0.9, 1.0, -101, -99.4);
+  // the yard: brick paving, and a carport roof on steel posts spanning it
+  A.box('paving', 322, 344, 0, 0.45, -141, -110);
+  A.box('paving', 344, 352.5, 0, 0.45, -141, -122);
+  A.box('roofSheet', 324, 344, 4.6, 4.75, -134, -116);
+  for (const x of [324.3, 334, 343.7]) for (const z of [-133.7, -116.3]) A.box('steel', x - 0.12, x + 0.12, 0, 4.6, z - 0.12, z + 0.12);
   // hall with a red hipped roof, two-storey annex with solar panels
   block(A, 276, 292, -160, -128, { G: 5, n: 1, style: 'punched', bay: 4 }, {});
   hip(A, 'tile', 276, 292, -160, -128, 5, 4.2, 1.2);
@@ -111,11 +144,11 @@ export function buildJomtrai(owner) {
     balRail: { color: '#b8c7cc', roughness: 0.2, metalness: 0.2, transparent: true, opacity: 0.5 }, mullion: { color: '#2e3134', roughness: 0.5 },
     canopy: { color: '#b4b8bb', roughness: 0.6, metalness: 0.3 }, steel: { color: '#cdd2d6', roughness: 0.4, metalness: 0.4 },
     greenhouse: { color: '#dfe6e3', roughness: 0.3, transparent: true, opacity: 0.45 }, letter: { color: '#77756f', roughness: 0.7 },
-    slab: { color: '#a9a49b', roughness: 1 }, louvre: '#f1f0eb', greenRoof: { color: '#6f9a6a', roughness: 0.7 }, rubble: { color: '#8a8278', roughness: 1 } });
+    roofSheet: { color: '#9ea4a6', roughness: 0.6, metalness: 0.3 }, paving: { color: '#b88d70', roughness: 1 }, louvre: '#f1f0eb', greenRoof: { color: '#6f9a6a', roughness: 0.7 } });
   return { meshes: meshes(A, MAT, owner), top: 21.6 };
 }
 
 export const JOMTRAI_OUTLINE = [
-  [262, -213], [300, -213], [300, -242], [347, -242], [350, -212], [350, -150], [313, -150], [313, -101], [291, -101],
+  [262, -213], [300, -213], [300, -242], [347, -242], [350, -212], [350, -150], [352, -150], [352, -101], [291, -101],
   [291, -127], [262, -127], [262, -160], [292, -160], [292, -168], [256.5, -168], [256.5, -176], [262, -176], [262, -213],
 ];
