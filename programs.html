@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>เส้นทางหลักสูตร | KMITL 3D</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/programs.css?v=20261022a" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <main id="layout">
+    <section id="stage-wrap">
+      <div id="stage"></div>
+      <div id="top">
+        <header id="head">
+          <a class="logo" href="index.html" title="กลับไปแผนที่">KMITL</a>
+          <div>
+            <div id="prog-name" class="title"></div>
+            <div id="prog-sub" class="subtitle"></div>
+          </div>
+        </header>
+        <div id="opts">
+          <button id="gender" data-f="0">นักศึกษาชาย</button>
+          <select id="track" aria-label="แนวทางการศึกษาปี 4"></select>
+          <a id="source" target="_blank" rel="noopener">เล่ม มคอ.2</a>
+        </div>
+      </div>
+      <div id="toast" role="status"></div>
+      <ul id="inventory" aria-label="ไอเทมที่ได้รับ"></ul>
+      <nav id="steps">
+        <button id="prev" aria-label="เทอมก่อนหน้า">‹</button>
+        <div id="timeline"></div>
+        <button id="next" aria-label="เทอมถัดไป">›</button>
+        <button id="play">▶ เล่นอัตโนมัติ</button>
+      </nav>
+    </section>
+    <aside id="panel">
+      <div id="progress"></div>
+      <div id="radar"></div>
+      <p id="plo-tip" class="tip">ชี้ที่ชื่อ PLO เพื่ออ่านผลลัพธ์การเรียนรู้เต็ม</p>
+      <div id="panel-body"></div>
+      <p class="note">ข้อมูลจากเล่มรายละเอียดหลักสูตร (มคอ.2) ที่รวบรวมไว้ในหน้าหลักสูตรของสำนักงานประกันคุณภาพ สจล. แกนของเรดาร์คือหน่วยกิตสะสมของรายวิชาที่ตาราง Curriculum Mapping ระบุว่ารับผิดชอบ PLO นั้น ไอเทมแบ่งตามกลุ่มวิชาเพื่อการนำเสนอ</p>
+    </aside>
+  </main>
+  <script type="module" src="js/programs/app.js?v=20261022a"></script>
+</body>
+</html>
