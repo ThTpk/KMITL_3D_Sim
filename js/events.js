@@ -16,6 +16,7 @@ import { buildLoyKrathong } from './loykrathong.js';
 import { buildFootball } from './football.js';
 import { buildExpo } from './expo.js';
 import { buildGraduation } from './graduation.js';
+import { buildAgriFair } from './agrifair.js';
 
 // speed: the default playback speed for the scene
 export const EVENTS = [                         // in calendar order from the start of the academic year
@@ -23,6 +24,7 @@ export const EVENTS = [                         // in calendar order from the st
   { id: 'expo', th: '🔬 ลาดกระบังนิทรรศน์ / KMITL EXPO (ปลาย ส.ค.–ก.ย.)', speed: 2 },
   { id: 'loykrathong', th: '🪷 ลอยกระทง สจล. (พ.ย.)', speed: 1 },
   { id: 'graduation', th: '🎓 พิธีพระราชทานปริญญาบัตร (พ.ย.–ก.พ.)', speed: 2 },
+  { id: 'agrifair', th: '🌱 เกษตรเจ้าคุณทหารแฟร์ (ก.พ.)', speed: 1 },
   { id: 'football', th: '⚽ ฟุตบอลประเพณี 3 พระจอมเกล้า (ก.พ.–มี.ค.)', speed: 1 },
 ];
 
@@ -325,7 +327,7 @@ function buildFirstStep({ data, say }) {
 }
 
 // ---------- the event player: one scene at a time ----------
-const MAKERS = { firststep: buildFirstStep, loykrathong: buildLoyKrathong, football: buildFootball, expo: buildExpo, graduation: buildGraduation };
+const MAKERS = { firststep: buildFirstStep, loykrathong: buildLoyKrathong, football: buildFootball, expo: buildExpo, graduation: buildGraduation, agrifair: buildAgriFair };
 // ctx: { data, setTime(h), getTime() } from app.js
 export function buildEvents(ctx) {
   const group = new THREE.Group();

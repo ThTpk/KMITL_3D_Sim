@@ -51,6 +51,7 @@
 - ลาดกระบังนิทรรศน์ / KMITL EXPO (`js/expo.js`)
 - พิธีพระราชทานปริญญาบัตร (`js/graduation.js`)
 - ฟุตบอลประเพณี 3 พระจอมเกล้า (`js/football.js`)
+- เกษตรเจ้าคุณทหารแฟร์ (`js/agrifair.js`)
 
 ## สถานที่จัดกิจกรรมหลัก (เรียงตามจำนวนกิจกรรม)
 
@@ -89,6 +90,30 @@
 ยังไม่พบข้อมูล: ค่ายของคณะเกษตร คณะศิลปศาสตร์ (นอกจาก workshop ใน EXPO) วิทยาลัยนวัตกรรมการผลิตขั้นสูง (AMI) และวิทยาลัยเทคโนโลยีและนวัตกรรมวัสดุ
 
 แหล่งอ้างอิงหลัก: [expo.kmitl.ac.th](https://expo.kmitl.ac.th/en/activities), [Engineering Open House](https://dekuni.com/openhouse-engkmitl68/), [AAD Thesis Expo 2025](https://www.kmitl.ac.th/event/aad-thesis-expo-2025), [Pre-Bee](https://www.aad.kmitl.ac.th/pre-bee-camp-2024/), [SIET Open House](https://events.kmitl.ac.th/events/14/subevents/384), [เกษตรแฟร์](https://www.agri.kmitl.ac.th/main/?p=8524), [Science Open House](https://www.kmitl.ac.th/event/open-house-คณะวิทยาศาสตร์), [Food Industry](https://kmitl.ac.th/article/เปิดบ้านคณะอุตสาหกรรมอาหาร-kmitl), [ToBeIT](https://www.camphub.in.th/tobeit69/), [KBS Open House](https://www.kbs.kmitl.ac.th/en/open-house/), [MD Open House](https://md.kmitl.ac.th/mdkmitl-open-house-2025-2/), [DentKMITL](https://www.kmitl.ac.th/article/open-house-dentkmitl), [IAAI](https://kmitl.ac.th/article/iaai-open-house-2025), [IMSE](https://imse.kmitl.ac.th/en/2363/), [KOSEN](https://www.kmitl.ac.th/event/kosen-open-house-2025), [KMIDS](https://www.kmids.ac.th/open-house-2024/)
+
+### กิจกรรมของคณะ เพิ่มเติม (ค้นรอบสอง 2026-10-22)
+
+| คณะ | กิจกรรม | ทำอะไร | สถานที่ | เดือน | วันที่ที่พบ |
+|---|---|---|---|---|---|
+| วิศวกรรมศาสตร์ | K-ENGINEERING World Tour & Workshop | workshop 50+ แข่งขัน stamp rally เยี่ยมแล็บ 12 ภาควิชา | คณะวิศวะ, หอประชุมวิศวะ, FACTory Classroom | ก.ค.–ส.ค. | 1–3 ส.ค. 2568, 3–5 ก.ค. 2569 |
+| วิศวกรรมศาสตร์ | ค่ายของภาควิชา: CEL Camp (เคมี), E-gear (อิเล็กทรอนิกส์), IE Bilingual Camp, NextGen AI Camp (คอมพิวเตอร์), COMM-HACK และ Cansat 101 (โทรคมนาคม) | ค่ายแนะแนวสำหรับนักเรียน ม.ปลาย | ภาควิชา | หลายช่วง | 2567–2569 |
+| วิทยาศาสตร์ | นิทรรศการวันวิทยาศาสตร์ | เปิดภาควิชา workshop ประกวดโครงงานวิทยาศาสตร์ ม.ปลาย ชิงถ้วยพระราชทาน ประกวดสิ่งประดิษฐ์ ตอบปัญหา | คณะวิทยาศาสตร์ | ต้น–กลาง ส.ค. | 4–5 ส.ค. 2566 |
+| วิทยาศาสตร์ | CS CAMP | ค่ายเขียนโปรแกรมฟรีสำหรับ ม.4–5 ของภาควิทยาการคอมพิวเตอร์ | คณะวิทยาศาสตร์ | เม.ย. | 21–26 เม.ย. 2569 |
+| ศิลปศาสตร์ | ประกวดสุนทรพจน์ภาษาจีนระดับมัธยม ชิงถ้วยพระราชทาน | แข่งสุนทรพจน์ ม.4–6 | คณะศิลปศาสตร์ | ส.ค.–ก.ย. | 8 ส.ค. 2568 |
+| ศิลปศาสตร์ | LA Open House | บูธภาษา: เขียนอักษรญี่ปุ่น Chinese Impression ฐานภาษาอังกฤษ | อาคารนวัตกรรมการเรียนรู้ของคณะ | พ.ย. | พ.ย. 2568 |
+| ศิลปศาสตร์ | KMITL-TEP | สอบวัดระดับภาษาอังกฤษ หลายรอบต่อปี | คณะศิลปศาสตร์ | หลายรอบ | 31 ต.ค. 2569 |
+| พยาบาลศาสตร์ + ทันตะ | ตรวจสุขภาพและทำฟันฟรี วันพยาบาลแห่งชาติ | วัดความดัน น้ำตาล ไขมัน และทำฟัน | อาคารคณะทันตแพทยศาสตร์ | 21 ต.ค. | ปีล่าสุดไม่ระบุ |
+| เทคโนโลยีนวัตกรรมบูรณาการ | ประกวดนวัตกรรมนาโนเทคโนโลยีระดับประเทศ ชิงถ้วยพระราชทาน | แข่งนวัตกรรมนาโน ครั้งที่ 13 (2568) | KLLC | ก.ย. | 5–6 ก.ย. 2569 |
+| เทคโนโลยีการเกษตร | KMAC การประชุมวิชาการเกษตรพระจอมเกล้าลาดกระบัง | ประชุมวิชาการระดับประเทศ | คณะเกษตร | ก.พ. | ก.พ. 2568 (ครั้งที่ 8) |
+| เทคโนโลยีการเกษตร | Farming The Future With KMITL Forum | เวทีไทย–เนเธอร์แลนด์ด้านเกษตรและอาหาร | KLLC อาคาร B | ส.ค. | ส.ค. 2569 |
+| สถาปัตยกรรมฯ | Ladkrabang Animation Workshop | workshop แอนิเมชัน 4 วันสำหรับ ม.ปลาย/อาชีวะ | คณะสถาปัตย์ | ก.ค. | 11–19 ก.ค. 2569 |
+| IMSE | ประกวดดนตรี "รักสุดใจเลย" / คอนเสิร์ตการกุศล | ประกวดวงดนตรี / คอนเสิร์ตกับศิลปินรับเชิญ | หอประชุมวิศวะ / หอประชุมใหญ่ | ก.พ.–มี.ค. | 20 ก.พ. 2567 / 2 มี.ค. 2566 |
+| บริหารธุรกิจ | KBS Sport Day / แคแสดสัมพันธ์ (เชียร์ลีดเดอร์) | กีฬาคณะ / ประกวดเชียร์ลีดเดอร์คณะบริหารธุรกิจ ครั้งที่ 24 | — / สนามกีฬา สจล. | ส.ค. / ธ.ค. | 6 ส.ค. 2569 / 23 ธ.ค. 2567 |
+| ทั้งสถาบัน | ค่ายอาสา 3 พระจอมเกล้า | 3 สถาบันสร้างอาคารให้โรงเรียนชนบท | นอกวิทยาเขต (กาญจนบุรี 2568) | ธ.ค. | 20–22 ธ.ค. 2568 |
+
+ยังไม่พบ: กิจกรรมของคณะอุตสาหกรรมอาหาร (นอกจากเปิดบ้าน), CEIR, AMI (ข่าวระบุว่ารวมเข้ากับคณะเทคโนโลยีนวัตกรรมบูรณาการแล้ว), ค่ายของ SIET, วันสถาปนาคณะ และค่ายอาสาของคณะวิศวะ ข้อมูลส่วนใหญ่ของคณะเหล่านี้อยู่ใน Facebook ซึ่งเครื่องมือค้นหาอ่านไม่ได้
+
+แหล่งอ้างอิง: [K-ENGINEERING](https://www.kmitl.ac.th/article/กำหนดการ-k-engineering-2025), [ค่ายของภาควิชา (camphub)](https://www.camphub.in.th/tag/kmitl-king-mongkuts-institute-of-technology-ladkrabang/), [วันวิทยาศาสตร์](https://sciday.kmitl.ac.th/), [CS CAMP](https://www.camphub.in.th/cs-camp-18/), [สุนทรพจน์ภาษาจีน](https://la.kmitl.ac.th/ChineseSpeechContest), [LA Open House](https://la.kmitl.ac.th/article/LA-OpenHouse2025), [วันพยาบาล](https://nurse.kmitl.ac.th/5990/), [ประกวดนาโน](https://www.kmitl.ac.th/article/ประกวดนวัตกรรมนาโน), [KMAC](https://www.agri.kmitl.ac.th/kmac/assets/file/Proceedings-KMAC2025-18Feb2025.pdf), [Animation Workshop](https://www.camphub.in.th/ladkrabang-animation-workshop-2026/), [IMSE](https://imse.kmitl.ac.th/th/313204/), [KBS Sport Day](https://www.kbs.kmitl.ac.th/en/news/kbs-sport-day-2026/), [ค่ายอาสา 3 พระจอม](https://sa.op.kmutnb.ac.th/3k/)
 
 ## สิ่งที่ควรตรวจเพิ่ม (เข้าถึงจากเครื่องมือค้นหาไม่ได้)
 
