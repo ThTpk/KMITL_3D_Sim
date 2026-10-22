@@ -11,10 +11,13 @@
 import * as THREE from 'three';
 import { rng } from './builders.js';
 import { Path, chainRails } from './traffic.js';
-import { figure } from './students.js';
+import { Crowd } from './crowd.js';
+import { buildLoyKrathong } from './loykrathong.js';
 
+// speed: the default playback speed for the scene
 export const EVENTS = [
-  { id: 'firststep', th: '🎓 วันลูกพระจอม (ปลาย มิ.ย.)' },
+  { id: 'firststep', th: '🎓 วันลูกพระจอม (ปลาย มิ.ย.)', speed: 4 },
+  { id: 'loykrathong', th: '🪷 ลอยกระทง สจล. (พ.ย.)', speed: 1 },
 ];
 
 const G = 0.2;                                 // walking height on the roads
@@ -114,11 +117,9 @@ function car(spec) {
   return shadowed(g);
 }
 
-export function buildEvents({ data }) {
+function buildFirstStep({ data, say }) {
   const group = new THREE.Group();
-  group.visible = false;
-  let built = null, listener = () => {};
-  const st = { running: false, text: '', speed: 4 };
+  let built = null;
 
   function build() {
     const R = rng(1357);
@@ -154,10 +155,9 @@ export function buildEvents({ data }) {
     }
 
     // figures (one instanced mesh for everybody)
-    const members = [];
+    const crowd = new Crowd();
     const fresh = [], seniors = [], bearers = [];
-    let parts = 0;
-    const mk = (female, shirt) => { const P = figure(R, female, shirt); const m = { P, i0: parts, phase: R() * 6.28 }; parts += P.length; members.push(m); return m; };
+    const mk = (female, shirt) => crowd.add(R, female, shirt);
     const perDoor = Math.ceil(FRESHMEN / doors.length);
     for (let k = 0; k < FRESHMEN; k++) {
       const d = Math.floor(k / perDoor), i = k % perDoor;
@@ -183,33 +183,12 @@ export function buildEvents({ data }) {
     for (const [ds, o] of [[4.5, 1.3], [4.5, -1.3], [2, 1.3], [2, -1.3]]) { const u = chattra(); group.add(u); lead.push({ prop: u, ds, o, men: [[0, 0]] }); }
     for (const l of lead) l.men = l.men.map(([a, b]) => { const m = mk(false, '#f4f4f1'); m.a = a; m.b = b; bearers.push(m); return m; });
 
-    const mesh = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshStandardMaterial({ roughness: 0.8 }), parts);
-    mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-    mesh.castShadow = true; mesh.receiveShadow = true; mesh.frustumCulled = false;
-    for (const m of members) m.P.forEach((p, k) => mesh.setColorAt(m.i0 + k, p[0]));
-    mesh.instanceColor.needsUpdate = true;
-    group.add(mesh);
+    group.add(crowd.finish());
 
-    built = { route, L, train, doors, fresh, seniors, lead, bearers, members, mesh, P, Q };
+    built = { route, L, train, doors, fresh, seniors, lead, bearers, crowd, P, Q };
   }
 
-  // ---------- drawing ----------
-  const base = new THREE.Matrix4(), Mp = new THREE.Matrix4(), M = new THREE.Matrix4(), S = new THREE.Vector3(), ZERO = new THREE.Matrix4().makeScale(0, 0, 0);
-  // legs swing with `swing`; arms swing with the stride, or are held at `arm` (radians, negative = forwards)
-  function place(m, x, y, z, yaw, swing, arm = null) {
-    const { mesh } = built;
-    base.makeRotationY(yaw).setPosition(x, y, z);
-    for (let k = 0; k < m.P.length; k++) {
-      const [, px, py, cy, cz, w, h, d, sw] = m.P[k];
-      let ang = 0;
-      if (Math.abs(sw) === 1) ang = 0.42 * Math.sign(sw) * swing;
-      else if (sw) ang = arm ?? -0.36 * Math.sign(sw) * swing;
-      const c = Math.cos(ang), s = Math.sin(ang);
-      Mp.makeRotationX(ang).scale(S.set(w, h, d)).setPosition(px, py + cy * c - cz * s, cy * s + cz * c);
-      mesh.setMatrixAt(m.i0 + k, M.multiplyMatrices(base, Mp));
-    }
-  }
-  function hide(m) { for (let k = 0; k < m.P.length; k++) built.mesh.setMatrixAt(m.i0 + k, ZERO); }
+  const place = (...a) => built.crowd.place(...a), hide = (m) => built.crowd.hide(m);
   // a point on the route s metres along, o metres to the left; returns the heading too
   const A = {}, B = {};
   function onRoute(s, o, out) {
@@ -223,28 +202,22 @@ export function buildEvents({ data }) {
 
   // ---------- state ----------
   let t = 0, phase = 'idle', head = HEAD0, trainS = 0, trainV = 0, tDoors = 0, tReady = 0, entered = 0, tDone = 0;
-  const say = (text) => { if (text !== st.text) { st.text = text; listener({ ...st }); } };
 
   function start() {
     if (!built) build();
-    const { train, fresh, members } = built;
+    const { train, fresh } = built;
     t = 0; phase = 'arrive'; head = HEAD0; entered = 0; tDone = 0; tReady = 0;
     trainS = train.stopFront - train.dir * 650; trainV = 14;
     for (const m of fresh) m.state = 0;
-    for (const m of members) hide(m);
-    group.visible = true; st.running = true;
+    built.crowd.hideAll();
     say('รถไฟขบวนพิเศษจากหัวลำโพงกำลังเข้าสถานีพระจอมเกล้า');
   }
-  function stop() {
-    group.visible = false; st.running = false; phase = 'idle';
-    say('');
-  }
+  function stop() { phase = 'idle'; }
 
-  function update(dtReal) {
-    if (!st.running) return;
-    const dt = Math.min(dtReal, 0.1) * st.speed;
+  // dt: scene time (sped up), dtReal: wall-clock time
+  function update(dt, dtReal) {
     t += dt;
-    const { route, L, train, fresh, seniors, lead, mesh, P } = built;
+    const { L, train, fresh, seniors, lead, P } = built;
 
     // train: brake into the platform, wait, pull out east once everybody is off
     if (phase === 'arrive') {
@@ -325,16 +298,16 @@ export function buildEvents({ data }) {
       onRoute(m.s, m.o, P);
       const yaw = P.yaw + (m.o > 0 ? -Math.PI / 2 : Math.PI / 2);
       const clap = (phase === 'march' && m.s > tail - 12 && m.s < front + 30) || (phase === 'done' && t - tDone < 8 && m.s > L - 80);
-      m.phase += m.rate * dt / st.speed;                                     // claps at real speed
+      m.phase += m.rate * dtReal;                                     // claps at real speed
       place(m, P.x, P.y, P.z, yaw, 0, clap ? -1.25 + 0.2 * Math.sin(m.phase) : 0);
     }
-    mesh.instanceMatrix.needsUpdate = true;
+    built.crowd.flush();
   }
 
   // where the camera should look: the train coming in, the platform, then just ahead of the column
   const F = new THREE.Vector3(), FP = {};
   function focus() {
-    if (!st.running || !built) return null;
+    if (!built || phase === 'idle') return null;
     if (phase === 'arrive') { built.train.path.at(trainS - built.train.dir * 40, FP); return F.set(FP.x, 0, FP.z); }
     if (phase === 'alight') return F.set(-245, 0, -16);
     if (phase === 'done') return F.set(141, 0, 195);
@@ -342,8 +315,37 @@ export function buildEvents({ data }) {
     return F.set(FP.x, 0, FP.z);
   }
 
+  return { group, start, stop, update, focus, view: { dist: 260, polar: 58, az: -20 } };
+}
+
+// ---------- the event player: one scene at a time ----------
+const MAKERS = { firststep: buildFirstStep, loykrathong: buildLoyKrathong };
+// ctx: { data, setTime(h), getTime() } from app.js
+export function buildEvents(ctx) {
+  const group = new THREE.Group();
+  const scenes = {};
+  let cur = null, listener = () => {};
+  const st = { running: false, text: '', speed: 4, id: null };
+  const emit = () => listener({ ...st });
+  const say = (text) => { if (text !== st.text) { st.text = text; emit(); } };
+  function stop() {
+    if (cur) { cur.stop(); cur.group.visible = false; }
+    cur = null; st.running = false; st.id = null; st.text = '';
+    emit();
+  }
+  function start(id) {
+    stop();
+    if (!scenes[id]) { scenes[id] = MAKERS[id]({ ...ctx, say }); group.add(scenes[id].group); }
+    cur = scenes[id]; st.running = true; st.id = id;
+    cur.group.visible = true;
+    cur.start();
+    emit();
+  }
   return {
-    group, start, stop, update, focus, state: st,
+    group, start, stop, state: st,
+    update(dt) { if (cur) cur.update(Math.min(dt, 0.1) * st.speed, Math.min(dt, 0.1)); },
+    focus() { return cur ? cur.focus() : null; },
+    view() { return cur ? cur.view : null; },
     setSpeed(v) { st.speed = v; },
     onChange(fn) { listener = fn; },
   };

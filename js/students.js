@@ -43,7 +43,8 @@ const BAGS = ['#1f2a44', '#2d2d2f', '#6b2b2b', '#3d5a3a', '#7a6a55', '#3a5f8f', 
 const SHOP = ['#1f2f52', '#5a1f27', '#28452e', '#2a2f38'];   // faculty workshop shirts (เสื้อช็อป)
 // part: [colour, pivotX, pivotY, centreY (from the pivot), centreZ, w, h, d, swing]
 // swing: 1 / -1 = left / right leg, 2 / -2 = left / right arm, 0 = rigid with the body
-export function figure(R, female, shirtOverride) {
+// shirt / skirt: optional colours; a skirt colour also makes the skirt reach the ankle (Thai dress)
+export function figure(R, female, shirtOverride, skirt) {
   const k = (female ? 0.94 : 1) * (0.95 + R() * 0.1);
   const skin = SKIN[Math.floor(R() * SKIN.length)], hair = HAIR[Math.floor(R() * HAIR.length)];
   const shirt = shirtOverride ?? (!female && R() < 0.18 ? SHOP[Math.floor(R() * SHOP.length)] : '#f4f4f1');
@@ -55,7 +56,8 @@ export function figure(R, female, shirtOverride) {
     P.push([female ? skin : black, x, hip, -leg / 2, 0, female ? 0.12 : 0.15, leg, female ? 0.13 : 0.17, s]);
     P.push([shoe, x, hip, -leg - 0.02, 0.04, 0.12, 0.07, 0.26, s]);
   }
-  if (female) P.push([R() < 0.8 ? black : '#1e2740', 0, 0, 0.66, 0, 0.37, 0.48, 0.25, 0]);  // skirt to the knee
+  if (female && skirt) P.push([skirt, 0, 0, 0.5, 0, 0.36, 0.84, 0.26, 0]);                     // ankle-length skirt
+  else if (female) P.push([R() < 0.8 ? black : '#1e2740', 0, 0, 0.66, 0, 0.37, 0.48, 0.25, 0]);  // skirt to the knee
   else P.push([black, 0, 0, 0.86, 0, 0.36, 0.12, 0.2, 0]);                                    // trousers at the waist
   P.push([shirt, 0, 0, 1.15, 0, female ? 0.33 : 0.38, 0.5, female ? 0.19 : 0.21, 0]);       // shirt / blouse
   for (const s of [1, -1]) {

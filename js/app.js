@@ -410,7 +410,7 @@ const disasters = buildDisasters({ scene, group: layers.buildings, meta: buildin
 
 // ---------- campus events ----------
 // play a yearly event on the model (events.md); the camera follows it until the user moves the view
-const events = buildEvents({ data: DATA });
+const events = buildEvents({ data: DATA, getTime: () => +timeInput.value, setTime: (h) => { timeInput.value = h; setTime(h); } });
 scene.add(events.group);
 const eventFollow = document.getElementById('event-follow');
 {
@@ -419,13 +419,15 @@ const eventFollow = document.getElementById('event-follow');
   sel.innerHTML = EVENTS.map((e) => `<option value="${e.id}">${e.th}</option>`).join('');
   events.setSpeed(+speed.value);
   speed.addEventListener('change', () => events.setSpeed(+speed.value));
-  events.onChange((s) => { msg.textContent = s.text; go.disabled = s.running; stop.disabled = !s.running; });
+  events.onChange((s) => { msg.textContent = s.text; stop.disabled = !s.running; });   // starting another event switches to it
   go.addEventListener('click', () => {
     stopOrbit(); closeInfo();
+    speed.value = String(EVENTS.find((e) => e.id === sel.value).speed);
+    events.setSpeed(+speed.value);
     events.start(sel.value);
     eventFollow.checked = true;
-    const f = events.focus();
-    flyTo(f.x, f.z, 260, 58, THREE.MathUtils.degToRad(-20));
+    const f = events.focus(), v = events.view();
+    flyTo(f.x, f.z, v.dist, v.polar, THREE.MathUtils.degToRad(v.az));
   });
   stop.addEventListener('click', () => events.stop());
   controls.addEventListener('start', () => { if (events.state.running) eventFollow.checked = false; });
