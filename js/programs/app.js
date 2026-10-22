@@ -1,46 +1,54 @@
 // Programme page: a student walks term by term through one curriculum (data/programs/<id>.json, taken from the
-// programme's มคอ.2), picks up gear for the courses of each term, grows a PLO radar chart, graduates in a gown,
-// then tries on the careers the curriculum lists.
-import { createStage } from './avatar.js';
+// programme's มคอ.2). Each course group is an icon round the student that grows with the required courses taken;
+// a PLO radar chart grows alongside; the student graduates in the red KMITL gown, then stands small at the foot of
+// a fan of paths to the careers the curriculum lists (and to further study) and walks down whichever is picked.
+import { createStage } from './stage.js';
 import { createRadar } from './radar.js';
+import { GROUP_ICONS, CAREER_ICONS, iconURL, FONT } from './icons.js';
 
 const KINDS = {
-  math: ['คณิต-วิทย์', 'เครื่องคิดเลขวิทยาศาสตร์'], code: ['ซอฟต์แวร์', 'แล็ปท็อป'], hw: ['ฮาร์ดแวร์', 'กระเป๋าแผงวงจร'],
-  net: ['เครือข่าย-ระบบ', 'สายแลน'], sec: ['ไซเบอร์', 'โล่ไซเบอร์'], ai: ['AI-ข้อมูล', 'ลูกแก้ว AI'],
-  soc: ['สังคม-ความยั่งยืน', 'เข็มกลัดใบไม้'], lang: ['ภาษา-สื่อสาร', 'เฮดเซ็ต'], team: ['ทำงานเป็นทีม', 'ปลอกแขนทีม'],
-  proj: ['โครงงาน-ฝึกงาน', 'เข็มขัดเครื่องมือ'], ge: ['ศึกษาทั่วไป-เลือกเสรี', 'ดาวศึกษาทั่วไป'],
+  math: 'คณิต-วิทยาศาสตร์', code: 'ซอฟต์แวร์', hw: 'ฮาร์ดแวร์', net: 'เครือข่าย-ระบบ', sec: 'ความปลอดภัยไซเบอร์', ai: 'AI และข้อมูล',
+  soc: 'สังคม-ความยั่งยืน', lang: 'ภาษา-การสื่อสาร', team: 'ทำงานเป็นทีม', proj: 'โครงงาน-ฝึกงาน', ge: 'ศึกษาทั่วไป-เลือกเสรี',
 };
 const SLOT_KIND = { ge: 'ge', free: 'ge', lang: 'lang' };
-const level = (n) => (n >= 6 ? 3 : n >= 3 ? 2 : n >= 1 ? 1 : 0);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const $ = (id) => document.getElementById(id);
+const icon = (kind) => `<img class="gi" src="${iconURL(...GROUP_ICONS[kind])}" alt="">`;
 
 const id = new URLSearchParams(location.search).get('p') || 'cpe-2569';
-const D = await fetch(`data/programs/${id}.json`).then((r) => r.json());
+const [D] = await Promise.all([fetch(`data/programs/${id}.json`).then((r) => r.json()), document.fonts.load(`600 40px ${FONT}`).catch(() => {})]);
+const STUDY = { id: 'study', name: 'เรียนต่อ ป.โท / ป.เอก', en: 'Graduate study', desc: '', groups: [] };
+const CAREERS = [...D.careers, ...(D.further ? [STUDY] : [])];
 const stage = createStage($('stage'));
+stage.setCareers(CAREERS);
+stage.onPick((cid) => pickCareer(cid));
 const radar = createRadar($('radar'), D.plo, (p) => { $('plo-tip').textContent = p ? `PLO ${p.n} ${p.text}` : 'ชี้ที่ชื่อ PLO เพื่ออ่านผลลัพธ์การเรียนรู้เต็ม'; });
 
 const S = { track: 'academic', step: 0, picks: {}, career: null, playing: null };
 try { Object.assign(S, JSON.parse(localStorage.getItem('prog:' + id)) || {}); } catch {}
-S.playing = null;
+S.playing = null; S.career = null;
 const save = () => { try { localStorage.setItem('prog:' + id, JSON.stringify({ track: S.track, picks: S.picks, step: S.step })); } catch {} };
 
 const terms = () => [...D.plan, ...D.tracks[S.track].terms];
 const steps = () => [...terms().map((t, i) => ({ type: 'term', t, i })), { type: 'grad' }, { type: 'career' }];
 const slotKey = (ti, ii) => `${ti >= D.plan.length ? S.track + ':' : ''}${ti}-${ii}`;
-// resolve an item to a course record (or a slot with no course chosen / no course list)
+// resolve an item to a course record (or a slot with no course chosen / no course list); req = a required course
 function resolve(item, ti, ii) {
-  if (typeof item === 'string') return { ...D.courses[item] };
+  if (typeof item === 'string') return { ...D.courses[item], req: true };
   const pick = S.picks[slotKey(ti, ii)];
-  if (item.slot === 'elective' && pick && D.courses[pick]) return { ...D.courses[pick], slotName: item.name, slot: item.slot };
-  return { code: '', name: item.name, cr: item.cr, plo: [], kind: SLOT_KIND[item.slot] || 'ge', slot: item.slot, empty: item.slot === 'elective' };
+  if (item.slot === 'elective' && pick && D.courses[pick]) return { ...D.courses[pick], slotName: item.name, slot: item.slot, req: false };
+  return { code: '', name: item.name, cr: item.cr, plo: [], kind: SLOT_KIND[item.slot] || 'ge', slot: item.slot, empty: item.slot === 'elective', req: false };
 }
 function takenUpTo(n) { // courses of terms 0..n (inclusive)
   const out = [];
   terms().slice(0, n + 1).forEach((t, ti) => t.items.forEach((it, ii) => out.push(resolve(it, ti, ii))));
   return out;
 }
-function kindCounts(list) { const c = {}; for (const x of list) if (!x.empty) c[x.kind] = (c[x.kind] || 0) + 1; return c; }
+function groupStats(list) {
+  const s = {};
+  for (const x of list) { if (x.empty) continue; const g = (s[x.kind] ||= { req: 0, el: 0 }); x.req ? g.req++ : g.el++; }
+  return s;
+}
 const ploSums = (list) => D.plo.map((p) => list.reduce((a, x) => a + (x.plo.includes(p.n) ? Math.max(1, x.cr) : 0), 0));
 
 // ---------- timeline ----------
@@ -67,24 +75,25 @@ $('play').onclick = () => {
 addEventListener('keydown', (e) => { if (e.target.closest('select,input')) return; if (e.key === 'ArrowRight') go(S.step + 1); if (e.key === 'ArrowLeft') go(S.step - 1); });
 
 // ---------- step ----------
-let prevLevels = {};
+let prevStats = {};
 function go(i, quiet) {
   const st = steps(); i = Math.max(0, Math.min(st.length - 1, i));
   S.step = i; save();
   const s = st[i], lastTerm = terms().length - 1;
   const taken = takenUpTo(s.type === 'term' ? s.i : lastTerm);
-  const lv = {}; for (const [k, n] of Object.entries(kindCounts(taken))) lv[k] = level(n);
-  const fresh = Object.keys(lv).filter((k) => lv[k] > (prevLevels[k] || 0));
-  if (s.type === 'term') { stage.setOutfit('student', { spin: false }); stage.setLevels(lv, quiet ? null : fresh); S.career = null; }
-  else if (s.type === 'grad') { stage.setOutfit('gown'); S.career = null; }
-  else if (!S.career) stage.setOutfit('student', { spin: false }), stage.setLevels(lv, null, true);
-  else stage.setOutfit(S.career);
-  if (!quiet && s.type === 'term' && fresh.length) toast(fresh.map((k) => `${KINDS[k][1]} Lv${lv[k]}`).join(' · '));
-  prevLevels = lv;
+  const stats = groupStats(taken);
+  const grew = Object.keys(stats).filter((k) => stats[k].req + stats[k].el > ((prevStats[k]?.req || 0) + (prevStats[k]?.el || 0)));
+  stage.setGroups(stats, quiet || s.type !== 'term' ? [] : grew, KINDS);
+  if (s.type === 'term') stage.setMode('study');
+  else if (s.type === 'grad') stage.setMode('grad');
+  else stage.setMode('careers', { career: S.career });
+  if (!quiet && s.type === 'term' && grew.length) toast(grew.slice(0, 3).map((k) => KINDS[k]).join(' · ') + (grew.length > 3 ? ` และอีก ${grew.length - 3} กลุ่ม` : '') + ' โตขึ้น');
+  prevStats = stats;
   radar.set(ploSums(taken), ploSums(takenUpTo(lastTerm)));
   const credits = taken.reduce((a, x) => a + x.cr, 0);
   $('progress').textContent = `สะสม ${credits} / ${D.credits} หน่วยกิต`;
-  renderTimeline(); renderInventory(lv);
+  renderTimeline(); renderInventory(stats);
+  $('inventory').hidden = s.type === 'career';
   if (s.type === 'term') renderTerm(s);
   else if (s.type === 'grad') renderGrad();
   else renderCareers();
@@ -96,12 +105,12 @@ function renderTerm(s) {
   const list = t.items.map((it, ii) => resolve(it, ti, ii));
   const cr = list.reduce((a, x) => a + x.cr, 0);
   let h = `<h2>${esc(t.label)} <small>${cr} หน่วยกิต</small></h2>`;
-  h += `<p class="hint">วิชาในเทอมนี้คือไอเทมที่นักศึกษาได้รับ กดที่วิชาเพื่ออ่านคำอธิบายรายวิชา</p><div class="cards">`;
+  h += `<p class="hint">แต่ละวิชาเติมไอคอนกลุ่มวิชาของมัน ไอคอนรอบตัวนักศึกษาจะใหญ่ขึ้นตามจำนวนวิชาบังคับที่เรียนแล้ว กดที่วิชาเพื่ออ่านคำอธิบายรายวิชา</p><div class="cards">`;
   list.forEach((c, ii) => {
-    const it = t.items[ii], kind = KINDS[c.kind];
-    h += `<details class="card k-${c.kind}${c.empty ? ' empty' : ''}"><summary><span class="ico"></span><span class="nm"><b>${esc(c.name)}</b>`;
-    h += `<small>${c.code ? esc(c.code) + ' · ' : ''}${esc(c.en || (c.slot ? c.slotName || '' : ''))}</small></span><span class="cr">${c.cr} นก.</span></summary>`;
-    h += `<div class="body"><div class="tags"><span class="kind">${esc(kind[0])} → ${esc(kind[1])}</span>${ploChips(c.plo)}</div>`;
+    const it = t.items[ii];
+    h += `<details class="card${c.empty ? ' empty' : ''}"><summary>${icon(c.kind)}<span class="nm"><b>${esc(c.name)}</b>`;
+    h += `<small>${c.code ? esc(c.code) + ' · ' : ''}${esc(c.en || (c.slot ? c.slotName || '' : ''))}</small></span><span class="cr">${c.cr} นก.<em>${c.req ? 'บังคับ' : 'เลือก'}</em></span></summary>`;
+    h += `<div class="body"><div class="tags"><span class="kind">${esc(KINDS[c.kind])}</span>${ploChips(c.plo)}</div>`;
     if (typeof it !== 'string' && it.slot === 'elective') {
       const cur = S.picks[slotKey(ti, ii)] || '';
       h += `<label class="pick">${esc(it.name)}: <select data-k="${slotKey(ti, ii)}"><option value="">— เลือกวิชา —</option>`;
@@ -123,7 +132,7 @@ function renderTerm(s) {
 function renderGrad() {
   let h = `<h2>สำเร็จการศึกษา</h2><p class="lead">${esc(D.name)} · ${D.credits} หน่วยกิต</p>`;
   h += `<p class="hint">${esc(D.philosophy)}</p><div class="outcomes"><h3>ผลลัพธ์การเรียนรู้ระดับหลักสูตร (PLO)</h3><ol>${D.plo.map((p) => `<li><b>${esc(p.short)}</b> ${esc(p.text)}</li>`).join('')}</ol></div>`;
-  h += `<button class="primary" id="to-career">ไปเลือกอาชีพ →</button>`;
+  h += `<button class="primary" id="to-career">ไปดูเส้นทางอาชีพ →</button>`;
   $('panel-body').innerHTML = h; $('to-career').onclick = () => go(S.step + 1);
 }
 function chosenGroups() {
@@ -134,32 +143,42 @@ function chosenGroups() {
   }
   return set;
 }
+function pickCareer(cid) {
+  if (steps()[S.step].type !== 'career') go(steps().length - 1, true);
+  S.career = cid; stage.selectCareer(cid); renderCareers();
+}
 function renderCareers() {
   const groups = chosenGroups();
-  let h = `<h2>อาชีพหลังสำเร็จการศึกษา</h2><p class="hint">ตำแหน่งงานตามเล่ม มคอ.2 กดเพื่อเปลี่ยนชุดของนักศึกษา</p><div class="careers">`;
-  for (const c of D.careers) {
-    const hit = c.groups.filter((g) => groups.has(g)).map((g) => D.groups.find((x) => x.id === g).name);
-    h += `<button class="career ${S.career === c.id ? 'on' : ''}" data-id="${c.id}"><b>${esc(c.name)}</b><small>${esc(c.en)}</small>${hit.length ? `<span class="match">ตรงกับวิชาเลือกที่เลือก</span>` : ''}</button>`;
+  let h = `<h2>จบแล้วไปทางไหนได้บ้าง</h2><p class="hint">ตำแหน่งงานตามเล่ม มคอ.2 และหลักสูตรเรียนต่อในคณะ กดที่ทางบนเวทีหรือที่การ์ด แล้วนักศึกษาจะเดินไปตามทางนั้น</p><div class="careers">`;
+  for (const c of CAREERS) {
+    const hit = c.groups.some((g) => groups.has(g));
+    h += `<button class="career ${S.career === c.id ? 'on' : ''}" data-id="${c.id}"><img class="gi" src="${iconURL(...CAREER_ICONS[c.id])}" alt=""><span><b>${esc(c.name)}</b><small>${esc(c.en)}</small>${hit ? `<span class="match">ตรงกับวิชาเลือกที่เลือก</span>` : ''}</span></button>`;
   }
   h += `</div>`;
-  const c = D.careers.find((x) => x.id === S.career);
-  if (c) {
+  const c = CAREERS.find((x) => x.id === S.career);
+  if (c && c.id === 'study') {
+    h += `<div class="outcomes"><h3>${esc(c.name)}</h3><p class="hint">${esc(D.further.note)}</p><ul class="further">`;
+    for (const p of D.further.programs) h += `<li><span class="lvl">${esc(p.level)}</span> <a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.name)}</a> <small>${esc(p.version)}</small></li>`;
+    h += `</ul></div>`;
+  } else if (c) {
     const rel = c.groups.map((g) => D.groups.find((x) => x.id === g).name);
     h += `<div class="outcomes"><h3>${esc(c.name)}</h3><p>${esc(c.desc)}</p>`;
     h += rel.length ? `<p class="hint">กลุ่มวิชาเลือกที่เกี่ยวข้อง: ${rel.map(esc).join(', ')} (เราจับคู่จากชื่อกลุ่มวิชา เล่มหลักสูตรไม่ได้ระบุไว้)</p>` : `<p class="hint">ใช้ความรู้จากทุกกลุ่มวิชาของหลักสูตร</p>`;
     h += `</div>`;
   }
+  if (S.career) h += `<button class="secondary" id="back-start">กลับจุดเริ่มต้น</button>`;
   $('panel-body').innerHTML = h;
-  $('panel-body').querySelectorAll('.career').forEach((b) => (b.onclick = () => { S.career = b.dataset.id; stage.setOutfit(S.career); renderCareers(); }));
+  $('panel-body').querySelectorAll('.career').forEach((b) => (b.onclick = () => pickCareer(b.dataset.id)));
+  $('back-start')?.addEventListener('click', () => { S.career = null; stage.selectCareer(null); renderCareers(); });
 }
-function renderInventory(lv) {
-  $('inventory').innerHTML = Object.entries(KINDS).map(([k, [lab, item]]) => {
-    const n = lv[k] || 0;
-    return `<li class="k-${k} ${n ? '' : 'off'}" title="${esc(lab)}"><span class="ico"></span><span>${esc(item)}</span><span class="lv">${n ? '★'.repeat(n) + '☆'.repeat(3 - n) : '—'}</span></li>`;
+function renderInventory(stats) {
+  $('inventory').innerHTML = Object.entries(KINDS).map(([k, lab]) => {
+    const s = stats[k];
+    return `<li class="${s ? '' : 'off'}">${icon(k)}<span>${esc(lab)}</span><span class="lv">${s ? `${s.req}${s.el ? `+${s.el}` : ''}` : '—'}</span></li>`;
   }).join('');
 }
 let toastT = 0;
-function toast(msg) { const t = $('toast'); t.textContent = '+ ได้รับ: ' + msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2600); }
+function toast(msg) { const t = $('toast'); t.textContent = '+ ' + msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2600); }
 
 // ---------- header ----------
 $('prog-name').textContent = D.name;
@@ -167,6 +186,6 @@ $('prog-sub').textContent = `${D.version} · ${D.dept} ${D.faculty}`;
 $('source').href = D.source.url; $('source').title = D.source.title;
 $('track').innerHTML = Object.entries(D.tracks).map(([k, t]) => `<option value="${k}" ${k === S.track ? 'selected' : ''}>ปี 4: ${esc(t.name)}</option>`).join('');
 $('track').onchange = (e) => { S.track = e.target.value; go(Math.min(S.step, steps().length - 1), true); };
-$('gender').onclick = () => { const f = $('gender').dataset.f !== '1'; $('gender').dataset.f = f ? '1' : '0'; $('gender').textContent = f ? 'นักศึกษาหญิง' : 'นักศึกษาชาย'; stage.setFemale(f); go(S.step, true); };
+$('gender').onclick = () => { const f = $('gender').dataset.f !== '1'; $('gender').dataset.f = f ? '1' : '0'; $('gender').textContent = f ? 'นักศึกษาหญิง' : 'นักศึกษาชาย'; stage.setFemale(f); };
 document.title = `${D.name} | KMITL 3D`;
 go(S.step || 0, true);

@@ -43,8 +43,9 @@ button, select { font: inherit; color: var(--text); }
 #opts a:hover, #opts button:hover { border-color: var(--accent); }
 
 #inventory { position: absolute; left: 12px; bottom: 66px; list-style: none; margin: 0; padding: 6px; display: grid; gap: 2px; font-size: 12px; }
-#inventory li { display: grid; grid-template-columns: 14px 1fr auto; gap: 6px; align-items: center; padding: 2px 6px; border-radius: 6px; }
+#inventory li { display: grid; grid-template-columns: 20px 1fr auto; gap: 6px; align-items: center; padding: 2px 6px; border-radius: 6px; }
 #inventory li.off { opacity: 0.4; }
+#inventory[hidden] { display: none; }
 #inventory .lv { color: var(--accent); letter-spacing: 1px; font-size: 11px; }
 
 #steps { position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; gap: 6px; align-items: center; padding: 6px; }
@@ -83,14 +84,14 @@ button, select { font: inherit; color: var(--text); }
 .lead { font-size: 15px; margin: 2px 0 6px; }
 .cards { display: grid; gap: 6px; }
 .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
-.card summary { list-style: none; display: grid; grid-template-columns: 14px 1fr auto; gap: 10px; align-items: center; padding: 9px 10px; cursor: pointer; }
+.card summary { list-style: none; display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; align-items: center; padding: 9px 10px; cursor: pointer; }
 .card summary::-webkit-details-marker { display: none; }
 .card[open] { border-color: var(--accent); }
 .card.empty summary b { color: var(--muted); }
 .card .nm b { display: block; font-weight: 500; line-height: 1.35; }
 .card .nm small { color: var(--muted); font-size: 11px; }
 .card .cr { font-size: 12px; color: var(--muted); white-space: nowrap; }
-.card .body { padding: 0 12px 10px 34px; font-size: 12.5px; line-height: 1.6; }
+.card .body { padding: 0 12px 10px 48px; font-size: 12.5px; line-height: 1.6; }
 .card .body p { margin: 6px 0 0; }
 .tags { display: flex; flex-wrap: wrap; gap: 4px; }
 .kind, .plo { font-size: 11px; padding: 1px 7px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
@@ -113,13 +114,17 @@ button, select { font: inherit; color: var(--text); }
 @media (prefers-color-scheme: dark) { .career .match { color: #97c459; } }
 .note { color: var(--muted); font-size: 11px; line-height: 1.55; margin-top: 18px; }
 
-/* kind colours: the little square on cards and in the inventory */
-.ico { width: 12px; height: 12px; border-radius: 3px; background: var(--muted); }
-.k-math .ico { background: #2d2f36; } .k-code .ico { background: #1d9e75; } .k-hw .ico { background: #2f7a3a; }
-.k-net .ico { background: #378add; } .k-sec .ico { background: #534ab7; } .k-ai .ico { background: #d4537e; }
-.k-soc .ico { background: #639922; } .k-lang .ico { background: #ef9f27; } .k-team .ico { background: #ff6b00; }
-.k-proj .ico { background: #6b4a2b; } .k-ge .ico { background: #efb027; }
-@media (prefers-color-scheme: dark) { .k-math .ico { background: #b4b2a9; } }
+.gi { width: 28px; height: 28px; display: block; }
+#inventory .gi { width: 20px; height: 20px; }
+.card .cr em { display: block; font-style: normal; font-size: 10.5px; text-align: right; }
+.career { grid-template-columns: 30px 1fr; align-items: center; gap: 8px; }
+.career > span { display: grid; gap: 2px; }
+.secondary { margin-top: 10px; width: 100%; padding: 8px; border-radius: 9px; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+.further { list-style: none; padding: 0 !important; }
+.further li { padding: 4px 0; border-bottom: 1px solid var(--line); }
+.further a { color: var(--text); font-weight: 500; }
+.further small { color: var(--muted); }
+.lvl { font-size: 10.5px; padding: 1px 6px; border-radius: 999px; background: #a3171f; color: #fff; }
 
 @media (max-width: 900px) {
   html, body { height: auto; }

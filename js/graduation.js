@@ -2,8 +2,9 @@
 // Surawongwaiwat (Worn Bunnag) Convention Hall; see events.md). Only the outside is shown: graduates in gowns queue
 // on the car park aisles, file up a red carpet and the front steps into the hall, and come out again after the
 // ceremony to their families, who wait with flowers and cameras; then groups pose on photo risers. Flags line the
-// road in front and flower sellers set up by the road. The gown colour (black with an orange sash here) is not
-// confirmed by a source.
+// road in front and flower sellers set up by the road. The gown follows a photo of the KMITL ครุย supplied by the
+// user: a red-orange robe to mid-shin, open at the front over white, with a gold สำรด edged in black round the neck,
+// down both front edges and along the hem, and gold cuffs on the wrist-length sleeves; men wear white trousers.
 //
 // x = east, z = south, y = up. Hall front steps x 116..166 at z 189..192.6 (podium 1 m up), the door line at
 // z ~191; the road in front at z ~204; car park aisles x 71..131 between z 215 and 309.
@@ -15,7 +16,7 @@ import { tent, textBoard } from './props.js';
 const DOOR = [141, 190.5], AISLES = [71, 91, 111, 131], GRADS = 280;
 const RISERS = [[36, 60], [170, 194]];            // x ranges; three steps rising to the north at z 219..222.6, facing south
 const RISER_Z = 222.6;
-const GOWN = '#17171b', SASH = '#e8641e';
+const GOWN = '#e4402a', GOLD = '#e2b23a', EDGE = '#141414', WHITE = '#f2f2ee';
 const CLOTHES = ['#d94f70', '#e8a33d', '#6a4fb3', '#3f8fd1', '#2fa37a', '#f0e0b0', '#ffffff', '#c0392b', '#7a7f85'];
 const FLOWERS = ['#f4a7c0', '#f7d35c', '#e05a7a', '#ffffff', '#c58be0', '#f08a3c'];
 const stepY = (z) => (z < 189 ? 1.0 : z < 192.6 ? 1.0 - ((z - 189) / 3.6) * 0.8 : 0.2);
@@ -74,13 +75,33 @@ export function buildGraduation({ say, setTime, getTime }) {
       families.push({ x, z, members });
     }
 
-    // ===== graduates: gown, an orange sash down the front =====
-    const sash = [[SASH, 0, 0, 1.2, 0.12, 0.13, 0.55, 0.02, 0], [SASH, 0, 0, 1.38, 0.115, 0.36, 0.09, 0.02, 0]];
+    // ===== graduates: the KMITL gown over the uniform =====
+    // parts as in students.js figure(): [colour, pivotX, pivotY, centreY, centreZ, w, h, d, swing]
+    const gown = (female) => {
+      const P = [
+        [GOWN, 0, 0, 0.64, 0, 0.39, 0.58, 0.27, 0],                 // the robe below the waist, to mid-shin
+        [GOLD, 0, 0, 0.385, 0, 0.4, 0.06, 0.28, 0],                 // สำรด along the hem
+        [EDGE, 0, 0, 0.42, 0, 0.402, 0.01, 0.282, 0],
+        [WHITE, 0, 0, 1.08, 0.108, 0.09, 0.62, 0.01, 0],            // the uniform showing down the open front
+        [GOLD, 0, 0, 1.4, 0, 0.3, 0.05, 0.23, 0],                   // round the back of the neck
+      ];
+      for (const s of [1, -1]) {
+        P.push([GOLD, 0.075 * s, 0, 0.89, 0.112, 0.055, 1.04, 0.01, 0]);   // down each front edge
+        P.push([EDGE, 0.047 * s, 0, 0.89, 0.116, 0.008, 1.04, 0.01, 0]);
+        P.push([EDGE, 0.103 * s, 0, 0.89, 0.116, 0.008, 1.04, 0.01, 0]);
+        const x = (female ? 0.205 : 0.235) * s;
+        P.push([GOWN, x, 1.38, -0.4, 0, 0.13, 0.42, 0.14, 2 * s]);           // sleeve to the wrist
+        P.push([GOLD, x, 1.38, -0.55, 0, 0.135, 0.07, 0.145, 2 * s]);        // cuff band
+        P.push([EDGE, x, 1.38, -0.51, 0, 0.137, 0.012, 0.147, 2 * s]);
+        if (!female) P.push([WHITE, 0.1 * s, 0.86, -0.39, 0, 0.16, 0.74, 0.18, s]);  // white trousers
+      }
+      return P;
+    };
     const grads = [];
     for (let i = 0; i < GRADS; i++) {
       const female = R() < 0.5;
       const q = i % AISLES.length, rank = Math.floor(i / AISLES.length);
-      grads.push({ m: crowd.add(R, female, GOWN, GOWN, sash), q, rank, fam: families[i], x: 0, z: 0, yaw: 0, way: [], state: 'queue', v: 1.0 + R() * 0.15 });
+      grads.push({ m: crowd.add(R, female, GOWN, undefined, gown(female)), q, rank, fam: families[i], x: 0, z: 0, yaw: 0, way: [], state: 'queue', v: 1.0 + R() * 0.15 });
     }
     // photographers at the risers
     const photographers = RISERS.map(([x0, x1]) => ({ m: crowd.add(R, false, '#1f1f22'), x: (x0 + x1) / 2, z: RISER_Z + 7, yaw: Math.PI }));

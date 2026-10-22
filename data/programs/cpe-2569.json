@@ -1525,5 +1525,52 @@
     "data"
    ]
   }
- ]
+ ],
+ "further": {
+  "note": "หลักสูตรบัณฑิตศึกษาของคณะวิศวกรรมศาสตร์ สจล. ในสาขาที่เกี่ยวข้อง (คัดจากรายชื่อหลักสูตรของสำนักงานประกันคุณภาพ)",
+  "programs": [
+   {
+    "level": "ปริญญาโท",
+    "name": "วศ.ม. วิศวกรรมคอมพิวเตอร์",
+    "version": "หลักสูตรปรับปรุง พ.ศ. 2560",
+    "url": "https://drive.google.com/file/d/14gFdoR59MqA-cBihmyDSCUBNDgPQ_3mQ/view"
+   },
+   {
+    "level": "ปริญญาโท",
+    "name": "วศ.ม. เอไอโอทีและสารสนเทศ",
+    "version": "หลักสูตรใหม่ พ.ศ. 2568",
+    "url": "https://drive.google.com/file/d/17Cr1Pr2UA5CFrj59IzT3AmSAj3aKSIFm/view"
+   },
+   {
+    "level": "ปริญญาโท",
+    "name": "วศ.ม. วิศวกรรมไฟฟ้าและคอมพิวเตอร์",
+    "version": "หลักสูตรปรับปรุง พ.ศ. 2568",
+    "url": "https://drive.google.com/file/d/1UbkyWpQ66zfFnYcNwoT0rrIynwpka2on/view"
+   },
+   {
+    "level": "ปริญญาโท",
+    "name": "วศ.ม. วิศวกรรมสารสนเทศ",
+    "version": "หลักสูตรปรับปรุง พ.ศ. 2560",
+    "url": "https://drive.google.com/file/d/1rd3AaeVfQ0KcXiX9vKhHHM3Zdj71lgck/view"
+   },
+   {
+    "level": "ปริญญาโท",
+    "name": "วศ.ม. วิศวกรรมหุ่นยนต์และระบบอัจฉริยะเชิงคำนวณ",
+    "version": "หลักสูตรปรับปรุง พ.ศ. 2565",
+    "url": "https://drive.google.com/file/d/1UwbP-dSffLVKQPmIwFVu-YVNbhzFw8L3/view"
+   },
+   {
+    "level": "ปริญญาเอก",
+    "name": "ปร.ด. เอไอโอทีและสารสนเทศ",
+    "version": "หลักสูตรใหม่ พ.ศ. 2568",
+    "url": "https://drive.google.com/file/d/16r4SkgENrTD4TjJB5EYgHcaTzqGkHYHr/view"
+   },
+   {
+    "level": "ปริญญาเอก",
+    "name": "วศ.ด. วิศวกรรมหุ่นยนต์และระบบอัจฉริยะเชิงคำนวณ",
+    "version": "หลักสูตรปรับปรุง พ.ศ. 2565",
+    "url": "https://drive.google.com/file/d/1v0JsaguTs_Au8RjpBaKvLGyojBLo4NKO/view"
+   }
+  ]
+ }
 }
