@@ -7,8 +7,9 @@ const ZERO = new THREE.Matrix4().makeScale(0, 0, 0);
 
 export class Crowd {
   constructor() { this.members = []; this.parts = 0; this.mesh = null; }
-  add(R, female, shirt, skirt) {
-    const P = figure(R, female, shirt, skirt);
+  // extra: more parts in figure() form [colour, pivotX, pivotY, centreY, centreZ, w, h, d, swing] (a sash, a bouquet)
+  add(R, female, shirt, skirt, extra = []) {
+    const P = figure(R, female, shirt, skirt).concat(extra.map(([c, ...r]) => [new THREE.Color(c), ...r]));
     const m = { P, i0: this.parts, phase: R() * Math.PI * 2 };
     this.parts += P.length;
     this.members.push(m);

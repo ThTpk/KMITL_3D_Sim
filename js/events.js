@@ -13,11 +13,17 @@ import { rng } from './builders.js';
 import { Path, chainRails } from './traffic.js';
 import { Crowd } from './crowd.js';
 import { buildLoyKrathong } from './loykrathong.js';
+import { buildFootball } from './football.js';
+import { buildExpo } from './expo.js';
+import { buildGraduation } from './graduation.js';
 
 // speed: the default playback speed for the scene
-export const EVENTS = [
+export const EVENTS = [                         // in calendar order from the start of the academic year
   { id: 'firststep', th: '🎓 วันลูกพระจอม (ปลาย มิ.ย.)', speed: 4 },
+  { id: 'expo', th: '🔬 ลาดกระบังนิทรรศน์ / KMITL EXPO (ปลาย ส.ค.–ก.ย.)', speed: 2 },
   { id: 'loykrathong', th: '🪷 ลอยกระทง สจล. (พ.ย.)', speed: 1 },
+  { id: 'graduation', th: '🎓 พิธีพระราชทานปริญญาบัตร (พ.ย.–ก.พ.)', speed: 2 },
+  { id: 'football', th: '⚽ ฟุตบอลประเพณี 3 พระจอมเกล้า (ก.พ.–มี.ค.)', speed: 1 },
 ];
 
 const G = 0.2;                                 // walking height on the roads
@@ -319,7 +325,7 @@ function buildFirstStep({ data, say }) {
 }
 
 // ---------- the event player: one scene at a time ----------
-const MAKERS = { firststep: buildFirstStep, loykrathong: buildLoyKrathong };
+const MAKERS = { firststep: buildFirstStep, loykrathong: buildLoyKrathong, football: buildFootball, expo: buildExpo, graduation: buildGraduation };
 // ctx: { data, setTime(h), getTime() } from app.js
 export function buildEvents(ctx) {
   const group = new THREE.Group();

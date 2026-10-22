@@ -48,6 +48,9 @@
 
 - วันลูกพระจอม (`js/events.js`)
 - ลอยกระทง สจล. (`js/loykrathong.js`)
+- ลาดกระบังนิทรรศน์ / KMITL EXPO (`js/expo.js`)
+- พิธีพระราชทานปริญญาบัตร (`js/graduation.js`)
+- ฟุตบอลประเพณี 3 พระจอมเกล้า (`js/football.js`)
 
 ## สถานที่จัดกิจกรรมหลัก (เรียงตามจำนวนกิจกรรม)
 
@@ -57,6 +60,35 @@
 4. **หอประชุมวิศวะ** (`eaud`): Band Concert และ Innovation Expo
 5. **สถานีพระจอมเกล้าและทางเดินริมทางรถไฟ** (`railwalk`, `skywalk`): ขบวนรับน้องรถไฟ ใช้ทำแอนิเมชันขบวนคนเดินจากสถานีไปหอประชุมได้
 6. อาคารของแต่ละคณะ (`it`, `kbs`, `med`, `integ`, `lib`/KLLC): Open House ของคณะ
+
+## กิจกรรมของคณะ (ค้นเมื่อ 2026-10-22)
+
+ส่วนใหญ่มาจากข้อความย่อในผลค้นหา วันที่จึงเป็นข้อมูลตั้งต้น ควรตรวจกับเว็บของคณะอีกครั้ง ทุกคณะร่วมงาน KMITL EXPO (ก.ย.)
+
+| คณะ | กิจกรรม | ทำอะไร | สถานที่ | เดือน | วันที่ที่พบ |
+|---|---|---|---|---|---|
+| วิศวกรรมศาสตร์ | Engineering Open House + Workshop | workshop 60+ จาก 40 หลักสูตร บูธชมรม แข่งแขนกล DOBOT | คณะวิศวะ | ส.ค. | 1–3 ส.ค. 2568 |
+| วิศวกรรมศาสตร์ | RAI CAMP / BEAM CAMP | ค่ายหุ่นยนต์และ AI / ค่ายวิศวกรรมชีวการแพทย์ สำหรับนักเรียน ม.ปลาย | คณะวิศวะ | ม.ค. | ม.ค. 2568 |
+| สถาปัตยกรรม ศิลปะและการออกแบบ | AAD THESIS EXPO | วิทยานิพนธ์ปีสุดท้าย 300–400 ชิ้น | นอกวิทยาเขต (EMQuartier 2568) | พ.ค.–มิ.ย. | 23–25 พ.ค. 2568 |
+| สถาปัตยกรรม ศิลปะและการออกแบบ | ค่าย Pre-Bee | ค่ายแนะแนว 5 วัน 4 คืน 10 สาขา | คณะสถาปัตย์ | เม.ย. | 4–7 เม.ย. 2567 |
+| ครุศาสตร์อุตสาหกรรมฯ | SIET Open House | นิทรรศการ workshop แนะแนว | คณะครุศาสตร์ฯ | ก.ย. | 1 ก.ย. 2569 |
+| เทคโนโลยีการเกษตร | งานเกษตรเจ้าคุณทหารแฟร์ | ขายต้นไม้ ผลผลิต นิทรรศการ 10 วัน | พื้นที่คณะเกษตร | ก.พ.–มี.ค. | 6–15 ก.พ. 2568 |
+| วิทยาศาสตร์ | Science KMITL Open House | แนะนำหลักสูตร workshop ทดลองแล็บ | คณะวิทยาศาสตร์ | พ.ย.–ธ.ค. | 30 พ.ย. 2567 |
+| วิทยาศาสตร์ | Xcer-SCIENCE@KMITL | ค่ายทดลองชีวะ ฟิสิกส์ เคมี สำหรับโรงเรียน | คณะวิทยาศาสตร์ | หลายรุ่นต่อปี | 22 มี.ค. 2568 |
+| อุตสาหกรรมอาหาร | เปิดบ้านคณะอุตสาหกรรมอาหาร | บรรยายจากอาจารย์และรุ่นพี่ | อาคารของคณะ | ต.ค. | 21 ต.ค. 2566 |
+| เทคโนโลยีสารสนเทศ | ToBeIT@KMITL | ค่ายออนไลน์และ on-site เตรียมยื่นรอบ portfolio | คณะไอที | ก.ย.–พ.ย. | 8–16 พ.ย. 2568 |
+| เทคโนโลยีสารสนเทศ | IT Ladkrabang Open House | เปิดบ้าน แข่งตอบคำถาม เว็บ ความปลอดภัยเครือข่าย | คณะไอที | ส.ค.–ก.ย. | 4–5 ก.ย. 2569 |
+| บริหารธุรกิจ | THE KBS HACKATHON / KBS Open House | แข่งนวัตกรรมธุรกิจระดับประเทศ / เปิดบ้าน | KBS | ก.ค.–ก.ย. | 4–6 ก.ย. 2569 |
+| แพทยศาสตร์ | MDKMITL Open House / Sports Day | ชมแล็บและโรงพยาบาล KMCH / กีฬาคณะ | คณะแพทย์ / KMCH | ต.ค. / ส.ค. | 23 ต.ค. 2568 / 20 ส.ค. 2568 |
+| ทันตแพทยศาสตร์ | Open House DentKMITL | เปิดบ้าน รอบเช้า 50 ที่ | คณะทันตะ | พ.ย. | 23 พ.ย. 2567 |
+| วิทยาลัยอุตสาหกรรมการบินนานาชาติ (IAAI) | IAAI Open House / AERO Camp | เครื่องจำลองการบิน A320 อุโมงค์ลม / ค่ายเตรียมสอบ | อาคาร Terminal 2 | พ.ย.–ธ.ค. / มิ.ย., ก.ย. | 2 พ.ย. 2567 |
+| วิทยาลัยวิศวกรรมสังคีต (IMSE) | IMSE Open House / First Sound / คอนเสิร์ตประสานเสียง KMITL x KMUTT | workshop บันทึกเสียง / ต้อนรับน้องใหม่ / คอนเสิร์ต | IMSE / หอประชุมวิศวะ | ต.ค. / ส.ค. / มี.ค. | 2569 |
+| KOSEN-KMITL | KOSEN-KMITL Open House | แนะนำหลักสูตรสำหรับนักเรียน ม.3 | KOSEN-KMITL | ก.ค.–ส.ค. | 2 ส.ค. 2568 |
+| KMIDS | KMIDS Open House / Sports Day | ชมโรงเรียน / กีฬาสี | KMIDS, สนามกีฬา สจล. | ก.ย.–มี.ค. / พ.ย. | 8 มี.ค. 2568 / 19–20 พ.ย. 2569 |
+
+ยังไม่พบข้อมูล: ค่ายของคณะเกษตร คณะศิลปศาสตร์ (นอกจาก workshop ใน EXPO) วิทยาลัยนวัตกรรมการผลิตขั้นสูง (AMI) และวิทยาลัยเทคโนโลยีและนวัตกรรมวัสดุ
+
+แหล่งอ้างอิงหลัก: [expo.kmitl.ac.th](https://expo.kmitl.ac.th/en/activities), [Engineering Open House](https://dekuni.com/openhouse-engkmitl68/), [AAD Thesis Expo 2025](https://www.kmitl.ac.th/event/aad-thesis-expo-2025), [Pre-Bee](https://www.aad.kmitl.ac.th/pre-bee-camp-2024/), [SIET Open House](https://events.kmitl.ac.th/events/14/subevents/384), [เกษตรแฟร์](https://www.agri.kmitl.ac.th/main/?p=8524), [Science Open House](https://www.kmitl.ac.th/event/open-house-คณะวิทยาศาสตร์), [Food Industry](https://kmitl.ac.th/article/เปิดบ้านคณะอุตสาหกรรมอาหาร-kmitl), [ToBeIT](https://www.camphub.in.th/tobeit69/), [KBS Open House](https://www.kbs.kmitl.ac.th/en/open-house/), [MD Open House](https://md.kmitl.ac.th/mdkmitl-open-house-2025-2/), [DentKMITL](https://www.kmitl.ac.th/article/open-house-dentkmitl), [IAAI](https://kmitl.ac.th/article/iaai-open-house-2025), [IMSE](https://imse.kmitl.ac.th/en/2363/), [KOSEN](https://www.kmitl.ac.th/event/kosen-open-house-2025), [KMIDS](https://www.kmids.ac.th/open-house-2024/)
 
 ## สิ่งที่ควรตรวจเพิ่ม (เข้าถึงจากเครื่องมือค้นหาไม่ได้)
 
