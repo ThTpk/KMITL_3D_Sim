@@ -11,6 +11,7 @@ import { buildPlanes } from './planes.js';
 import { buildStudents } from './students.js';
 import { buildDisasters, DISASTERS } from './disaster.js';
 import { buildEvents, EVENTS } from './events.js';
+import { loadCurricula } from './curricula.js';
 import { slim } from './memory.js';
 
 const DATA = window.KMITL_DATA;
@@ -305,7 +306,8 @@ function nearestRoadPoint(x, z) {
 }
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-function select(idx, fly) {
+// pid: a programme to open and highlight in the faculty's list
+function select(idx, fly, pid = null) {
   selectedIdx = idx;
   setHighlight(idx);
   const { b, H, top } = buildingMeta[idx];
@@ -332,10 +334,12 @@ function select(idx, fly) {
   // t: 'x' = not in OpenStreetMap (outline added in overrides.json)
   if (b.t === 'x') rows.push(['ที่มา', 'ไม่มีใน OpenStreetMap (เพิ่มจากการสำรวจ)']);
   else rows.push(['OSM id', `<a href="https://www.openstreetmap.org/${osmType}/${b.id}" target="_blank" rel="noopener">${osmType}/${b.id}</a>`]);
+  const fac = curricula?.facultyOfModel(b.model);
   infoBody.innerHTML = `
     ${b.img ? `<img class="ref-img" src="${esc(b.img)}" alt="">` : ''}
     <h2>${esc(name)}</h2>
     <div class="en">${esc(b.en && b.en !== name ? b.en : inCampus(b.c[0], b.c[1]) ? 'ภายในพื้นที่ สจล.' : 'นอกเขตสถาบัน')}</div>
+    ${fac ? curricula.html(fac, pid) : ''}
     <table>${rows.map(([k, v]) => `<tr><td>${k}</td><td>${k === 'OSM id' ? v : esc(v)}</td></tr>`).join('')}</table>
     <div class="links">
       <a class="primary" target="_blank" rel="noopener" href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${svLat.toFixed(6)},${svLon.toFixed(6)}&heading=${heading.toFixed(0)}&pitch=10&fov=90">Street View</a>
@@ -345,8 +349,38 @@ function select(idx, fly) {
     </div>
     <div class="note">ความสูงและรูปทรงมาจาก OpenStreetMap หากไม่ตรงกับภาพจริง แก้ได้ที่ <code>data/overrides.json</code> ด้วย id <b>${b.id}</b></div>`;
   info.hidden = false;
+  showProgramme(pid);
   if (fly) flyTo(b.c[0], b.c[1], Math.max(140, Math.sqrt(b.a) * 3 + top * 3));
 }
+
+// ---------- programmes (data/programs.json) ----------
+let curricula = null;
+function showProgramme(pid) {
+  if (!pid) { info.scrollTop = 0; return; }
+  const li = infoBody.querySelector(`[data-pid="${CSS.escape(pid)}"]`);
+  if (li) li.scrollIntoView({ block: 'center' });
+}
+// a faculty whose building is not in the model yet: the panel without a building
+function showFaculty(fac, pid = null) {
+  selectedIdx = -1; setHighlight(-1);
+  infoBody.innerHTML = `<h2>${esc(fac.th)}</h2><div class="note">ยังไม่ได้ระบุอาคารของคณะนี้ในแบบจำลอง</div>${curricula.html(fac, pid)}`;
+  info.hidden = false;
+  showProgramme(pid);
+}
+loadCurricula().then((c) => {
+  curricula = c;
+  const idxOf = new Map();
+  buildingMeta.forEach((m, i) => { if (m.b.model && !idxOf.has(m.b.model)) idxOf.set(m.b.model, i); });
+  for (const fac of c.faculties) {
+    const i = fac.buildings.map((m) => idxOf.get(m)).find((v) => v != null);
+    const open = (pid) => (i != null ? select(i, true, pid) : showFaculty(fac, pid));
+    index.push({ name: fac.th, en: fac.en, kind: `คณะ · ${c.programsOf(fac.id).length} หลักสูตร`, campus: true, go: () => open(null) });
+    for (const p of c.programsOf(fac.id)) {
+      index.push({ name: p.field, en: p.name, kind: `หลักสูตร ป.${p.level} ฉบับ ${p.latest} · ${fac.th}`, campus: true, prog: p.latest, go: () => open(p.id) });
+    }
+  }
+  if (selectedIdx >= 0) select(selectedIdx, false);
+}).catch((e) => console.warn('programmes not loaded', e));
 
 // ---------- camera animation ----------
 let tween = null;
@@ -511,7 +545,7 @@ function renderResults() {
   const q = searchInput.value.trim().toLowerCase();
   if (!q) { results.hidden = true; return; }
   current = index.filter((e) => e.name.toLowerCase().includes(q) || (e.en || '').toLowerCase().includes(q))
-    .sort((a, b) => b.campus - a.campus).slice(0, 30);
+    .sort((a, b) => b.campus - a.campus || (b.prog ? 0 : 1) - (a.prog ? 0 : 1) || (b.prog || 0) - (a.prog || 0)).slice(0, 30);
   active = 0;
   results.innerHTML = current.length ? current.map((e, i) => `<li data-i="${i}" class="${i === 0 ? 'active' : ''}">${esc(e.name)}<small>${esc(e.kind)}${e.en ? ' · ' + esc(e.en) : ''}${e.campus ? ' · ใน สจล.' : ''}</small></li>`).join('')
     : '<li><small>ไม่พบผลลัพธ์</small></li>';

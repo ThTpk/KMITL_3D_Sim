@@ -1,0 +1,5375 @@
+{
+ "source": {
+  "title": "รายละเอียดหลักสูตร (มคอ.2) สำนักงานประกันคุณภาพ สจล.",
+  "url": "https://office.kmitl.ac.th/oaq/curriculum/",
+  "fetched": "2026-10-22",
+  "note": "Lat Krabang campus only: วิทยาเขตชุมพรฯ and the general-education section are left out. latest = the newest version on the list; a programme whose newest version is old may have been replaced or closed."
+ },
+ "faculties": [
+  {
+   "id": "engineering",
+   "th": "คณะวิศวกรรมศาสตร์",
+   "en": "School of Engineering",
+   "buildings": [
+    "e12",
+    "ecc",
+    "lbld",
+    "tel",
+    "abld",
+    "siie",
+    "eaud",
+    "ewing",
+    "engclub",
+    "control",
+    "ageng",
+    "mech",
+    "automation",
+    "indus",
+    "civil",
+    "elec",
+    "englab1",
+    "newlab",
+    "workshopw",
+    "workshope",
+    "cana",
+    "lcan"
+   ]
+  },
+  {
+   "id": "architecture",
+   "th": "คณะสถาปัตยกรรม ศิลปะและการออกแบบ",
+   "en": "School of Architecture, Art, and Design",
+   "buildings": [
+    "archaud",
+    "archlec",
+    "archsouth",
+    "integ"
+   ]
+  },
+  {
+   "id": "ietech",
+   "th": "คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี",
+   "en": "School of Industrial Education and Technology",
+   "buildings": [
+    "kruclub"
+   ]
+  },
+  {
+   "id": "agritech",
+   "th": "คณะเทคโนโลยีการเกษตร",
+   "en": "School of Agricultural Technology",
+   "buildings": [
+    "agri"
+   ]
+  },
+  {
+   "id": "science",
+   "th": "คณะวิทยาศาสตร์",
+   "en": "School of Science",
+   "buildings": [
+    "chula2",
+    "chula1",
+    "chaud",
+    "scican"
+   ]
+  },
+  {
+   "id": "foodindustry",
+   "th": "คณะอุตสาหกรรมอาหาร",
+   "en": "School of Food Industry",
+   "buildings": []
+  },
+  {
+   "id": "it",
+   "th": "คณะเทคโนโลยีสารสนเทศ",
+   "en": "School of Information Technology",
+   "buildings": [
+    "it",
+    "itcan"
+   ]
+  },
+  {
+   "id": "nano",
+   "th": "คณะเทคโนโลยีนวัตกรรมบูรณาการ",
+   "en": "School of Integrated Innovative Technology",
+   "buildings": [
+    "nano"
+   ]
+  },
+  {
+   "id": "ami",
+   "th": "วิทยาลัยนวัตกรรมการผลิตขั้นสูง",
+   "en": "College of Advanced Manufacturing Innovation",
+   "buildings": []
+  },
+  {
+   "id": "business",
+   "th": "คณะบริหารธุรกิจ",
+   "en": "KMITL Business School",
+   "buildings": [
+    "kbs"
+   ]
+  },
+  {
+   "id": "iaai",
+   "th": "วิทยาลัยอุตสาหกรรมการบินนานาชาติ",
+   "en": "International Academy of Aviation Industry",
+   "buildings": []
+  },
+  {
+   "id": "liberalarts",
+   "th": "คณะศิลปศาสตร์",
+   "en": "School of Liberal Arts",
+   "buildings": []
+  },
+  {
+   "id": "medicine",
+   "th": "คณะแพทยศาสตร์",
+   "en": "Faculty of Medicine",
+   "buildings": [
+    "med"
+   ]
+  },
+  {
+   "id": "ceir",
+   "th": "วิทยาลัยวิจัยนวัตกรรมทางการศึกษา",
+   "en": "College of Educational Innovation Research",
+   "buildings": []
+  },
+  {
+   "id": "imse",
+   "th": "วิทยาลัยวิศวกรรมสังคีต",
+   "en": "College of Music and Sound Engineering",
+   "buildings": []
+  },
+  {
+   "id": "dentistry",
+   "th": "คณะทันตแพทยศาสตร์",
+   "en": "Faculty of Dentistry",
+   "buildings": [
+    "dent"
+   ]
+  },
+  {
+   "id": "kosen",
+   "th": "สถาบันโคเซ็นแห่งสถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
+   "en": "KOSEN-KMITL",
+   "buildings": [
+    "kosen"
+   ]
+  },
+  {
+   "id": "nursing",
+   "th": "คณะพยาบาลศาสตร์",
+   "en": "Faculty of Nursing",
+   "buildings": []
+  }
+ ],
+ "programs": [
+  {
+   "id": "engineering-b1",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมอาหาร",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมอาหาร",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/16LRvCD7pGH9PTvbN_44V3IBwqN_aA-dB/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1q7namYZE56hLKpBUaCSPN5ZR0QZTNcCv/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1oBjS5s2UIbI9K6-BUij0Ev-uqbEWiPFT/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b2",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมสารสนเทศ",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมสารสนเทศ",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1fUgdxZCMx4hvsM8X00KuqRphUSsOg8ga/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b3",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมระบบไอโอทีและสารสนเทศ",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมระบบไอโอทีและสารสนเทศ",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1U8mm7DxtNpFDbuWFgt22wRNEKulB_OU3/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b4",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมไอโอทีและสารสนเทศ",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมไอโอทีและสารสนเทศ",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1QwCpsDUdwfdnNp4ZKYXeEyMoTk7DBRXQ/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b5",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมเกษตร",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมเกษตร",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1o69kVrZLPZZc3L9WFyVP7XZB15OSbRqE/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b6",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมเกษตรอัจฉริยะ",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมเกษตรอัจฉริยะ",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1OU1odVNraVkulhHxcrh_BPYX8jLDJs8L/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1BxttAH-OVXDPLdf_klTcwCzoGc9QkvGy/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b7",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมเครื่องกล",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมเครื่องกล",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1bRh6jHuV9IOtT4eEZBt5niwwOW9EPyJ8/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1RbZVFs04HooYDAheqzVDAc4bFigsdbWy/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b8",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมเคมี",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมเคมี",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1GrFoCHaW2KItO9KtP_0wh55LQjwXDQp0/view"
+    },
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1cGYcBjT4H8oO7RFg6epnjKRR_-DxlVMd/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1bdTwnGOauLYT9pi8cfrlHw5UxL4DODcb/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b9",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมการวัดคุม",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมการวัดคุม",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1ovlPvSWmZdBBhpoe5gj-mxsYsCipEooS/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b10",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมปิโตรเคมี",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมปิโตรเคมี",
+   "intl": false,
+   "latest": 2561,
+   "versions": [
+    {
+     "year": 2561,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1-Nd9-2RKKMEX0T-4HuQgZaveHHlRYTG_/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b11",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมโยธา",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมโยธา",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1wN3piCWRHC3xLsi3xmkdRSdkHw56qO0e/view"
+    },
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/14XtTROAWgZp2jkA2dT0qXZl42zJs5t-M/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1Npe7OLkd19HtsOdhhf0S3SxpNAG4P8HK/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b12",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมอุตสาหการ",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมอุตสาหการ",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1PCX6k6kfVEN7poOwrzVe_WUYWuCSC8hO/view"
+    },
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/11qYHlaxxOdp45ozSk3ljISbHMoqfJ47d/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1nh3T9p-FwoABzWNFHPsBDIUOVMkMEBd8/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b13",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมคอมพิวเตอร์",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมคอมพิวเตอร์",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1PdJoSmktHywsCPyYR02HeDK8N149b3nK/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1rk6smebCFClOQV3NBDgLhRcy2SViwN8Y/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1_8-ul6hKyhlt_clN4ZE_fl9aBw2PtW1B/view"
+    }
+   ],
+   "journey": "cpe-2569"
+  },
+  {
+   "id": "engineering-b14",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมไฟฟ้า",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมไฟฟ้า",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1OqlG18l_Db7PIEMvfbBWRbHe8HQb5pMk/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1iR5Mezuqs34NwwgzGpkcj6GGK4LijwE1/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b15",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมอิเล็กทรอนิกส์",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมอิเล็กทรอนิกส์",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1Bfd2fu5vCYVaUFZrGCoh7BaFv0XWV06X/view"
+    },
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1wZ67x0uhSDBcSlmllOudjKjCxap6orUD/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1HTrf47xqQI8Xdj9Wu2V57yCKibXgX2rQ/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b16",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมโทรคมนาคม",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมโทรคมนาคม",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1DihM43mORhfXc6V5gIUJ01ZX2V21iS0m/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b17",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมโทรคมนาคมและโครงข่าย",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมโทรคมนาคมและโครงข่าย",
+   "intl": false,
+   "latest": 2563,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/14IeLJwa7gJSFbwHLn_PihWYxxVcXZliP/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b18",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมไฟฟ้าสื่อสารและเครือข่าย",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมไฟฟ้าสื่อสารและเครือข่าย",
+   "intl": false,
+   "latest": 2566,
+   "versions": [
+    {
+     "year": 2566,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/18FQrKZzZDpgQ95Lmdb5uhBYby_5HeNE6/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b19",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมแมคคาทรอนิกส์",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมแมคคาทรอนิกส์",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1SR-yNciFVsRBE0zFiZeRaj9E90RKNEKJ/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b20",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมอัตโนมัติ",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมอัตโนมัติ",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/19KDlbbHcoy6lpe8jr-vanOjE8xp8buzE/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b21",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมออโตเมชัน",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมออโตเมชัน",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1E3weZHBYTtKyS5_Q4JCXQ5qkg99-q1Y4/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b22",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมขนส่งทางราง",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมขนส่งทางราง",
+   "intl": false,
+   "latest": 2566,
+   "versions": [
+    {
+     "year": 2561,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/18trOy4XJ5yoUur6vuPO2zvzi4jtAQPLz/view"
+    },
+    {
+     "year": 2566,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1QAQSok3YHpf6t3yaKAbnpZT_Ev5Hzjd-/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b23",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมการผลิตเชิงบูรณาการ",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมการผลิตเชิงบูรณาการ",
+   "intl": false,
+   "latest": 2566,
+   "versions": [
+    {
+     "year": 2566,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1i-7IuWDeof1_FDcBa8nZVClBZDzLF3ia/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b24",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมการวัดคุม (ต่อเนื่อง)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมการวัดคุม (ต่อเนื่อง)",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1m1sl0Kffc5BN62EcICUxM41DDS0TXune/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1C4gjbh0TW3xy26_bbkqNRZzNlaB2N5_f/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b25",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมออกแบบการผลิตและวัสดุ",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมออกแบบการผลิตและวัสดุ",
+   "intl": false,
+   "latest": 2558,
+   "versions": [
+    {
+     "year": 2558,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1CCgNtIbXz1R7oSw6Bm-jVev-U43vGxJE/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b26",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมอวกาศและภูมิสารสนเทศ",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมอวกาศและภูมิสารสนเทศ",
+   "intl": false,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2567,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/151WoAfNtip559nVQzz97wWJFL8Olhgv8/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b27",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมคอมพิวเตอร์และความปลอดภัยไซเบอร์",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมคอมพิวเตอร์และความปลอดภัยไซเบอร์",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/10OB1POT7al7wucoiAPpcuNcT7oks3CXe/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b28",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมคอมพิวเตอร์ (ต่อเนื่อง)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมคอมพิวเตอร์ (ต่อเนื่อง)",
+   "intl": false,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1MP9OUxRK93_Sqep6bWzZY_xz-7I2V2vi/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1V70o_TU7SiAKv-ZkLVnF_AdZx_sHwPX5/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b29",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมไฟฟ้าสื่อสารและอิเล็กทรอนิกส์ (ต่อเนื่อง)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมไฟฟ้าสื่อสารและอิเล็กทรอนิกส์ (ต่อเนื่อง)",
+   "intl": false,
+   "latest": 2566,
+   "versions": [
+    {
+     "year": 2566,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1LjV_U7fTRRApUmGSLmj_BGTVXpaIbyz0/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b30",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมโยธา (ต่อเนื่อง)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมโยธา (ต่อเนื่อง)",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1XUCGVfKp4tbprnapaLjGwOqiu9rggdQE/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1WM9kWad5u-mWfbYTy6IcxBEK8Ph_3miK/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b31",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมระบบอุตสาหกรรมการเกษตร (ต่อเนื่อง)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมระบบอุตสาหกรรมการเกษตร (ต่อเนื่อง)",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1dqQjsxeyDl6OO5vBFNvpPMXPFLwo42Ot/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1xJc0CJOZqZ4ikMiUopA8k5neFigbEEqs/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b32",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมไฟฟ้า (ต่อเนื่อง)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมไฟฟ้า (ต่อเนื่อง)",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1SFYRcUgN5nIJfY0kYR0w2e5rAeagrXgK/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b33",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมหุ่นยนต์และปัญญาประดิษฐ์ (นานาชาติ)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมหุ่นยนต์และปัญญาประดิษฐ์ (นานาชาติ)",
+   "intl": true,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2561,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1XEynHM-hJvD2m3509VcJ4iZkAXYMCOSb/view"
+    },
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1m4UWd5fGcpyhaaesU5xWkhyaVitwIUFG/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1E-9qUBH3RUVt6VltSUlPxrni7nsLaSA9/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b34",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมโยธา (นานาชาติ)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมโยธา (นานาชาติ)",
+   "intl": true,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1fVW2Mdiaw3e-UGSbMctqUixaBmrPDge7/view"
+    },
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1J0Ic7DI_TV9xdKTEFE4RkkD0aMkQjI2W/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1-vOZZ-W69AbHAS95Ue0kk69tOH0cr11I/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b35",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมไฟฟ้า (นานาชาติ)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมไฟฟ้า (นานาชาติ)",
+   "intl": true,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2562,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1CzH4UAemRkHH-i_14CqUnLtgrmD9yWbj/view"
+    },
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1k-4G1pFBi9jBbOH_S-CyE29YH-8T0DnR/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b36",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมพลังงาน (นานาชาติ)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมพลังงาน (นานาชาติ)",
+   "intl": true,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2562,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1m7RK26w4SWVEGMgwBlKrNzKW3okVigI4/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1VG11IHhTft6ArP_3UUQ-XjpyZnMoTxGI/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1YVku3bLl9PStIGWcgxID2cIjeium6B5o/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b37",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมนวัตกรรมคอมพิวเตอร์ (นานาชาติ)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมนวัตกรรมคอมพิวเตอร์ (นานาชาติ)",
+   "intl": true,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1Ip52ZoWRqfAdtFCYe2vqcTja7tt9WrxQ/view"
+    },
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1X7B3geUZXNIGuo9T4hSiIhiBqJUxJbCt/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b38",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมซอฟต์แวร์ (นานาชาติ)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมซอฟต์แวร์ (นานาชาติ)",
+   "intl": true,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1smz-zQfuLjGLOGP7ALI3A4zwzf99vWV_/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1wCOxWq4fzZR3Ao4JiiWHHGawoRt8mtGB/view"
+    },
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1CJIJJzop0wXLHLkfokWHMQVpYHUETRei/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b39",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมชีวการแพทย์ (นานาชาติ) (พหุวิทยาการ)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมชีวการแพทย์ (นานาชาติ) (พหุวิทยาการ)",
+   "intl": true,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2561,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1eNNY9CYknHXGjl46fJjuen-E8UN22QTf/view"
+    },
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1ECGBM-jEoiQPDmhbEtqTzEuXDlzGGUQ6/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/18tjO9SEWX7jJt9SgHgC942Q9mekIA00S/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1gzfpb9L9TRJJDzX0y0QR_lBDfNUVaFjj/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b40",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมเครื่องกล (นานาชาติ)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมเครื่องกล (นานาชาติ)",
+   "intl": true,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2562,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1P61FWMGuESOMF3eKOtE8VpeELqmmz6Hr/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/11H64puzXWcaW9B2Jg_2M8uNfopmnZ8-4/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b41",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมเคมี (นานาชาติ)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมเคมี (นานาชาติ)",
+   "intl": true,
+   "latest": 2563,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1q7oA7o8TfOFrNs0bimoAQabkZm1PSPfs/view"
+    },
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1hU3B5YLbwwO7v4SIz1n9Anem-B4zEVB8/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b42",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมคอมพิวเตอร์ (นานาชาติ)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมคอมพิวเตอร์ (นานาชาติ)",
+   "intl": true,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2565,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1gThGvF6RjtMENrn7dqHqR4sR3WDLyhTs/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b43",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมการเงิน (นานาชาติ) (พหุวิทยาการ)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมการเงิน (นานาชาติ) (พหุวิทยาการ)",
+   "intl": true,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2562,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1fBVJpLM7mVCzzLBr09cS5ELHW53pOKUE/view"
+    },
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1vMrZEeYhbq0Qp1xIRZ3DAgM8f8R__3IM/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b44",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. การจัดการวิศวกรรมและการเป็นผู้ประกอบการ (นานาชาติ)",
+   "degree": "วศ.บ.",
+   "field": "การจัดการวิศวกรรมและการเป็นผู้ประกอบการ (นานาชาติ)",
+   "intl": true,
+   "latest": 2563,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1hr0cd1M3GpHjpsFOdAlTRPqhL21a-4iL/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b45",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมปัญญาประดิษฐ์และการเป็นผู้ประกอบการ (นานาชาติ)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมปัญญาประดิษฐ์และการเป็นผู้ประกอบการ (นานาชาติ)",
+   "intl": true,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1TcoqqmLVuVQnhzkf0L-_mqZBofOPVIX6/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-b46",
+   "fac": "engineering",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมแมคคาทรอนิกส์ (นานาชาติ)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมแมคคาทรอนิกส์ (นานาชาติ)",
+   "intl": true,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1hJ82AYZUXigZ-Bp7uJyP_W7JI8zRujoC/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m1",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมอุตสาหการ",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมอุตสาหการ",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1ynq-F0IBtoaeeDOvRzvMBQqfCeF6uvas/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1cmKm5v45Clolx38_igV3hlarXVWv_zMj/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m2",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมอิเล็กทรอนิกส์",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมอิเล็กทรอนิกส์",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/10pjm0xlGg0nGqevDH86KEmaIh_rWUHHy/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m3",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมอาหาร",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมอาหาร",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2556,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1OEpvMYphy7Lhbg-CWiZqZ6cHvKMakKGX/view?pli=1"
+    },
+    {
+     "year": 2561,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1TIyhIU73YxQJQDNNw1SouK8RwFgfxwtF/view?pli=1"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1a_XsguEgQTYycTWRG0Y9AOUX_SwPkDcW/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m4",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมอาหารและเกษตรอัจฉริยะ",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมอาหารและเกษตรอัจฉริยะ",
+   "intl": false,
+   "latest": 2563,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1-HxKclAjGGl4mi7GbXMXzv3LzMPRmfJE/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m5",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม.วิศวกรรมหุ่นยนต์และระบบอัจฉริยะเชิงคำนวณ",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมหุ่นยนต์และระบบอัจฉริยะเชิงคำนวณ",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2562,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1mdB3HnVz-ZVCQRZaWt7PAno4NA_YcRHy/view?pli=1"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1UwbP-dSffLVKQPmIwFVu-YVNbhzFw8L3/view?pli=1"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m6",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมสิ่งแวดล้อมและพลังงานเพื่อความยั่งยืน",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมสิ่งแวดล้อมและพลังงานเพื่อความยั่งยืน",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1_NshpsSq2SNXo-cyhW3C5iGLulPOfR1Q/view?pli=1"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m7",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมสารสนเทศ",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมสารสนเทศ",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1rd3AaeVfQ0KcXiX9vKhHHM3Zdj71lgck/view?pli=1"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m8",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมโยธา",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมโยธา",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1y3iAKLXI3gTJ5IJ7McuNNS2WDlOrMCmo/view?pli=1"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m9",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมยานยนต์",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมยานยนต์",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1ZZ6gXH4hH2991G5cNrHi6T1UfYHod7Ud/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m10",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมยานยนต์และระบบขนส่งขั้นสูง (นานาชาติ)",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมยานยนต์และระบบขนส่งขั้นสูง (นานาชาติ)",
+   "intl": true,
+   "latest": 2563,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1serGWo98KtQPGssPye3fCb9CJr9sf3OU/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m11",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมไฟฟ้า",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมไฟฟ้า",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1powFGNbKnZRlOpuiLlnPbok-Ofm1-X00/view?pli=1"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m12",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมไฟฟ้าและคอมพิวเตอร์",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมไฟฟ้าและคอมพิวเตอร์",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1GAcT-FLOhwSbihpUlQD_T89fHprw9Uaw/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1UbkyWpQ66zfFnYcNwoT0rrIynwpka2on/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m13",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมโทรคมนาคม",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมโทรคมนาคม",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1i0rID39Biv57sQeL4m7m4uzARYQYUeAG/view?pli=1"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m14",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมชีวการแพทย์",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมชีวการแพทย์",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1BdUzb3VwQLZx53GDavy4Tc8Ru6Z_c9L8/view?pli=1"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1wIXuKubzohgqhYmpRYfwP6rxfJbL-1zh/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m15",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมเครื่องกล",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมเครื่องกล",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/16BarMgOs-J-IYEYmHCQYutyEE5Uhjc9J/view?pli=1"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1ePhWcFNL90hIbXDtu2QvA38AuHsKyDEU/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m16",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมเคมี",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมเคมี",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1_R9_t2aEa9myal4C3I8PRnZWOfzD-2It/view?pli=1"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1sv3DxyPI3IMSuwdVyTM3-McUSFsExC5u/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m17",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมเกษตร",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมเกษตร",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1pElpHDfZWbkRJTIr0FifcqqaSaWv2gaJ/view?pli=1"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m18",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมการวัดคุม",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมการวัดคุม",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1QEsipkX5SHamIerrvKwM32izDl-Ui9GS/view?pli=1"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m19",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมโยธาสิ่งแวดล้อมและการจัดการงานก่อสร้าง",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมโยธาสิ่งแวดล้อมและการจัดการงานก่อสร้าง",
+   "intl": false,
+   "latest": 2562,
+   "versions": [
+    {
+     "year": 2562,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1f0IM1Wbxxhnne9mh2pkS9lWr1tE8eMuh/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m20",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมโยธาและสิ่งแวดล้อม",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมโยธาและสิ่งแวดล้อม",
+   "intl": false,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1aCN0747PeuEVBaI_w4NU8B4qsztwSK12/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m21",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม. เอไอโอทีและสารสนเทศ",
+   "degree": "วศ.ม.",
+   "field": "เอไอโอทีและสารสนเทศ",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/17Cr1Pr2UA5CFrj59IzT3AmSAj3aKSIFm/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-m22",
+   "fac": "engineering",
+   "level": "โท",
+   "name": "วศ.ม.วิศวกรรมระบบชีวภาพ",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมระบบชีวภาพ",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1Te8DwNEpLr4VRqczde1-LVAfaf0z-keW/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-d1",
+   "fac": "engineering",
+   "level": "เอก",
+   "name": "วศ.ด. วิศวกรรมอุตสาหการ",
+   "degree": "วศ.ด.",
+   "field": "วิศวกรรมอุตสาหการ",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1PI7LdaAfItFYbJxnRuOW_-oGfo1NdPVQ/view?pli=1"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1fPAUw68KkLPeUGOGJZG-CqDW8_rd87ui/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-d2",
+   "fac": "engineering",
+   "level": "เอก",
+   "name": "วศ.ด. วิศวกรรมอาหาร",
+   "degree": "วศ.ด.",
+   "field": "วิศวกรรมอาหาร",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2561,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/18niY_SvK0uQvjcm69yU2wJ_DLqIw_dOB/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1nobpBOLx-nCGf-UHZtmwDdE582Xu1AmZ/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-d3",
+   "fac": "engineering",
+   "level": "เอก",
+   "name": "วศ.ด. วิศวกรรมไฟฟ้า",
+   "degree": "วศ.ด.",
+   "field": "วิศวกรรมไฟฟ้า",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1YoFl_l0c6CyF4fDXJh1o3vjUn6BCbgpt/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1OdhdjEMirspkuVe67kfQBYKvIIgEkmW6/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-d4",
+   "fac": "engineering",
+   "level": "เอก",
+   "name": "วศ.ด. วิศวกรรมโยธา",
+   "degree": "วศ.ด.",
+   "field": "วิศวกรรมโยธา",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1aMj4SfCe_2AEoB3-6Y_xhrN1JPVYUNAt/view?pli=1"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1cfUSDT4VwX0OPYLbInlceaB-WcRItNQp/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-d5",
+   "fac": "engineering",
+   "level": "เอก",
+   "name": "วศ.ด. วิศวกรรมชีวการแพทย์",
+   "degree": "วศ.ด.",
+   "field": "วิศวกรรมชีวการแพทย์",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1bISjZv12EpCyYg9LQimjxBkQJKAq5LTQ/view?pli=1"
+    }
+   ]
+  },
+  {
+   "id": "engineering-d6",
+   "fac": "engineering",
+   "level": "เอก",
+   "name": "วศ.ด. วิศวกรรมเคมี",
+   "degree": "วศ.ด.",
+   "field": "วิศวกรรมเคมี",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1sajhV6ZZDJpoQ0DhuPiOVQlBmb8h-ow6/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1QgGh3YBjqfK0TTT59kMXkI4e2stgmAkG/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-d7",
+   "fac": "engineering",
+   "level": "เอก",
+   "name": "วศ.ด. วิศวกรรมหุ่นยนต์และระบบอัจฉริยะเชิงคำนวณ",
+   "degree": "วศ.ด.",
+   "field": "วิศวกรรมหุ่นยนต์และระบบอัจฉริยะเชิงคำนวณ",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2562,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/19ssnEWzB5ndjIJQOhjLG6zrC5Uvk3hXv/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1v0JsaguTs_Au8RjpBaKvLGyojBLo4NKO/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-d8",
+   "fac": "engineering",
+   "level": "เอก",
+   "name": "ปร.ด. เอไอโอทีและสารสนเทศ",
+   "degree": "ปร.ด.",
+   "field": "เอไอโอทีและสารสนเทศ",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/16r4SkgENrTD4TjJB5EYgHcaTzqGkHYHr/view"
+    }
+   ]
+  },
+  {
+   "id": "engineering-d9",
+   "fac": "engineering",
+   "level": "เอก",
+   "name": "วศ.ด. วิศวกรรมระบบชีวภาพ",
+   "degree": "วศ.ด.",
+   "field": "วิศวกรรมระบบชีวภาพ",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/11jtr-6Y74hhaiAZIRCg3GbEj2Pirmb_a/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b1",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "ภ.สถ.บ. ภูมิสถาปัตยกรรมศาสตรบัณฑิต (5 ปี)",
+   "degree": "ภ.สถ.บ.",
+   "field": "ภูมิสถาปัตยกรรมศาสตรบัณฑิต (5 ปี)",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1TGv-kd1HmvrXtfq4zKyASRtHoEu2N1TS/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1sLwvba59l3aOClmU8pYbnqYTvPFVciZr/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b2",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "สถ.บ. สถาปัตยกรรมหลัก (5 ปี)",
+   "degree": "สถ.บ.",
+   "field": "สถาปัตยกรรมหลัก (5 ปี)",
+   "intl": false,
+   "latest": 2566,
+   "versions": [
+    {
+     "year": 2561,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1LtehBZhMATKx5dko-2jHPCIqMYERlzUe/view"
+    },
+    {
+     "year": 2566,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1bfPLSCDda-asGU3BUw8za4oIr9CVE-gz/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b3",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "สถ.บ.สถาปัตยกรรมภายใน (5 ปี)",
+   "degree": "สถ.บ.สถาปัตยกรรมภายใน",
+   "field": "(5 ปี)",
+   "intl": false,
+   "latest": 2566,
+   "versions": [
+    {
+     "year": 2561,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1H2m5wmLT_c9hyL0BgS6Rw-ML1EjJL253/view"
+    },
+    {
+     "year": 2566,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/16skbBPqyEZ3sB0S68gxCejzRl4q4neoC/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b4",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "สถ.บ. ศิลปอุตสาหกรรม",
+   "degree": "สถ.บ.",
+   "field": "ศิลปอุตสาหกรรม",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1O3ca7x30LUZBiZJNMnCLGejhrrLgc13H/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1tMU7gqDAw5S44jjb6sf2TPxejsjBZALS/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1EfJHg7E26ekGidJiYIxLf7IhULiYL7rx/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b5",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "ศป.บ. ศิลปกรรม มีเดียอาตส์ และอิลลัสเตชันอาร์ต",
+   "degree": "ศป.บ.",
+   "field": "ศิลปกรรม มีเดียอาตส์ และอิลลัสเตชันอาร์ต",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1vwSSH1MS_jSiNn3L1PpdPKGjkAuX4sk_/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1glKSdWi-L8aquVm1y3r41QHWhC1V1fVl/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b6",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "ศป.บ. ภาพยนตร์และดิจิทัล มีเดีย",
+   "degree": "ศป.บ.",
+   "field": "ภาพยนตร์และดิจิทัล มีเดีย",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1HVFJQGPfGCD5jShI9EHItvbMR2frFlwy/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1VTqO220hqSdhvEqP9UL10pqmepLd_Fok/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1PdnSNtd0I8EoEBkayJOcP9V6qgZCCYbM/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b7",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "ศป.บ. ภาพพิมพ์และอิลลัสเตชั่น",
+   "degree": "ศป.บ.",
+   "field": "ภาพพิมพ์และอิลลัสเตชั่น",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1JLtHCEchdum-Y7CnwWCG1adK28PhyKPq/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b8",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "ศป.บ. ประติมากรรมและประติมากรรมเพื่อสังคม",
+   "degree": "ศป.บ.",
+   "field": "ประติมากรรมและประติมากรรมเพื่อสังคม",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/146wdYwo_zSZqv0bk8Rq5Nc8a2fYkt5X1/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b9",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "ศป.บ. นิเทศศิลป์",
+   "degree": "ศป.บ.",
+   "field": "นิเทศศิลป์",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1O1xrBiBhtgSxGPu6THMCrYWrAD3E0up8/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1ro8mGHrEMVA2dMdT4LhA-RFcY-6Fx8gB/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1sm3CDX8HwFGqdYZ7REB3M8TKXlD9PCa2/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b10",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "ศป.บ. จิตรกรรมและมีเดียอาตส์",
+   "degree": "ศป.บ.",
+   "field": "จิตรกรรมและมีเดียอาตส์",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/14ACxem1JP9XmHCLssaAPPBi3tgPabnoK/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b11",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "ศป.บ. การออกแบบสนเทศสามมิติ",
+   "degree": "ศป.บ.",
+   "field": "การออกแบบสนเทศสามมิติ",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1k-fcQpWZC9sXCaWXet914OhoLN4i32H4/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1tMjcJSdACU6Sk4kXmeT8SGkkQK4a_Azl/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1aIutxzC3rmHFQniIrVh9a8Er_C3AdEui/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b12",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "ศป.บ. การถ่ายภาพ",
+   "degree": "ศป.บ.",
+   "field": "การถ่ายภาพ",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/12PhKXITnU6Ave3bdIecavKBmPmOe4Svv/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1KWiDOQjK5qf9d9NmKLYgEOxLJ0zr64xh/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1aH1Kp9-F0RfRNbG0RWaijkARaUPu5RtN/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b13",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "อ.บ. ปัญญาออกแบบเพื่อเศรษฐกิจสร้างสรรค์ (หลักสูตรนานาชาติ)",
+   "degree": "อ.บ.",
+   "field": "ปัญญาออกแบบเพื่อเศรษฐกิจสร้างสรรค์ (หลักสูตรนานาชาติ)",
+   "intl": true,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2567,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1zNEVtp65YY3kdMX6C-_LCWNlX5TOhsQq/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b14",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "วท.บ. สถาปัตยกรรม (หลักสูตรนานาชาติ)",
+   "degree": "วท.บ.",
+   "field": "สถาปัตยกรรม (หลักสูตรนานาชาติ)",
+   "intl": true,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1kgDA5zbCC_-cDSGPTOhHbayKeMGlI-E0/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1BGJbGh923eSct37K5CD5EJuxBFYQ-Xg-/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b15",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "ศล.บ. ศิลปะสร้างสรรค์และภัณฑารักษาศึกษา (หลักสูตรนานาชาติ)",
+   "degree": "ศล.บ.",
+   "field": "ศิลปะสร้างสรรค์และภัณฑารักษาศึกษา (หลักสูตรนานาชาติ)",
+   "intl": true,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2565,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1G-_Rz-d_TW8L_spOYAulxoCTpIVoeSRK/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-b16",
+   "fac": "architecture",
+   "level": "ตรี",
+   "name": "ศป.บ. การออกแบบประสบการณ์สำหรับสื่อบูรณาการ",
+   "degree": "ศป.บ.",
+   "field": "การออกแบบประสบการณ์สำหรับสื่อบูรณาการ",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1epGGigwZfwvVbQL072_BuH4orzRTOgZV/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-m1",
+   "fac": "architecture",
+   "level": "โท",
+   "name": "สถ.ม. เทคโนโลยีทางสถาปัตยกรรม",
+   "degree": "สถ.ม.",
+   "field": "เทคโนโลยีทางสถาปัตยกรรม",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1Hp-HtZGy2ibSR5p_sd10A_oA0kL969SW/view?pli=1"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1MLNcQqOpwJ3WzdeYDo_HEmc8oi7ryd_5/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-m2",
+   "fac": "architecture",
+   "level": "โท",
+   "name": "สถ.ม. เขตร้อน",
+   "degree": "สถ.ม.",
+   "field": "เขตร้อน",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1z9mSPLzsrZ_qlM8xOLsI4OdCR1qqN2kL/view?pli=1"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1K8dHTVgLRmaWuZUiWPBsfBdHgu6epHNJ/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-m3",
+   "fac": "architecture",
+   "level": "โท",
+   "name": "สถ.ม. การออกแบบอุตสาหกรรม",
+   "degree": "สถ.ม.",
+   "field": "การออกแบบอุตสาหกรรม",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1OqTM6Gp7ht_ZBG3URUfzpni7Lc8piJBp/view?pli=1"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1c1cPUo_plxQztfm4t10Sfe42-tp6MiZT/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-m4",
+   "fac": "architecture",
+   "level": "โท",
+   "name": "สถ.ม. ทัศนศิลป์",
+   "degree": "สถ.ม.",
+   "field": "ทัศนศิลป์",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1bPwGbZvmUgehz5H2yrZibQ1ZsZf0rjqE/view?pli=1"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1XTiAWxhwzKM92_aHPDGRSE9GFej9zz0J/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/11nH3Zy_8AR6aO3KYCRRdjTEcFvLfGVTY/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-m5",
+   "fac": "architecture",
+   "level": "โท",
+   "name": "ศศ.ม.การออกแบบสื่อดิจิทัลและการภาพยนตร์",
+   "degree": "ศศ.ม.",
+   "field": "การออกแบบสื่อดิจิทัลและการภาพยนตร์",
+   "intl": false,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2562,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1Yvhj3wI0t1eJaUpkh0ZB01yLu0fKgvEY/view?pli=1"
+    },
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1XOJOsLy4fnQHuCX8rqKN6dwCDiPBxwXi/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-m6",
+   "fac": "architecture",
+   "level": "โท",
+   "name": "สถ.ม. สถาปัตยกรรมภายใน",
+   "degree": "สถ.ม.",
+   "field": "สถาปัตยกรรมภายใน",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/17jtO5tI65Y1tK-J2pIwLZFFrWSE3z8wI/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1FEwl3ako5m0Ro5G_oo0QbC3EQqYaDpER/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-m7",
+   "fac": "architecture",
+   "level": "โท",
+   "name": "ผ.ม. การวางแผนชุมชนเมืองและสภาพแวดล้อม",
+   "degree": "ผ.ม.",
+   "field": "การวางแผนชุมชนเมืองและสภาพแวดล้อม",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1i76k4Eeq5C8DJvfYaGGQ5aHz_xkSZLOd/view?pli=1"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/19kLF51tWG9U3M6KxQaGYtu2ukuvFlXR2/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-m8",
+   "fac": "architecture",
+   "level": "โท",
+   "name": "ศป.ม. ออกแบบสื่อดิจิทัลและการภาพยนตร์",
+   "degree": "ศป.ม.",
+   "field": "ออกแบบสื่อดิจิทัลและการภาพยนตร์",
+   "intl": false,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2562,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1Z7DrAJ3Dibvv0geBs5udKUmbYLd7cv0v/view"
+    },
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1XOJOsLy4fnQHuCX8rqKN6dwCDiPBxwXi/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-d1",
+   "fac": "architecture",
+   "level": "เอก",
+   "name": "สถ.ด. สหวิทยาการการวิจัยเพื่อการออกแบบ",
+   "degree": "สถ.ด.",
+   "field": "สหวิทยาการการวิจัยเพื่อการออกแบบ",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1T_vx1M4MzzkB_0uvs7nzh9rjhQZ75Gve/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1teaYBDCmP8JwN4ipKcXdy-AD3dVnkpNL/view"
+    }
+   ]
+  },
+  {
+   "id": "architecture-d2",
+   "fac": "architecture",
+   "level": "เอก",
+   "name": "ปร.ด. การออกแบบสภาพแวดล้อม",
+   "degree": "ปร.ด.",
+   "field": "การออกแบบสภาพแวดล้อม",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1Ifxul9GX01FCXO6Xxc-5twlLOLGyOwev/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1Shsw8OENRFuIYGNVh9i73F-OFIOe_UEb/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-b1",
+   "fac": "ietech",
+   "level": "ตรี",
+   "name": "ค.อ.บ. สถาปัตกรรม",
+   "degree": "ค.อ.บ.",
+   "field": "สถาปัตกรรม",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1AowvoJj6c-1QVwUkmb1vkj3Qkzc1x24T/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1aM5OGRipjGUtd4ViwwsefBcMDQYS35w7/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1TxVjBKfGO62XANCff51wWoC3iY9aH53C/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-b2",
+   "fac": "ietech",
+   "level": "ตรี",
+   "name": "วท.บ. เทคโนโลยีสื่อสถาปัตยกรรม",
+   "degree": "วท.บ.",
+   "field": "เทคโนโลยีสื่อสถาปัตยกรรม",
+   "intl": false,
+   "latest": 2570,
+   "versions": [
+    {
+     "year": 2570,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/16Co70HaQ7XxeBA_9vCdvggvcwQVawKDX/view?usp=drive_open"
+    }
+   ]
+  },
+  {
+   "id": "ietech-b3",
+   "fac": "ietech",
+   "level": "ตรี",
+   "name": "ค.อ.บ. การออกแบบสภาพแวดล้อมภายใน",
+   "degree": "ค.อ.บ.",
+   "field": "การออกแบบสภาพแวดล้อมภายใน",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1AuEJxZQHTKf_Xh_ORsl5R6MWixXnKz2w/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1ZwKpCuOdwy3QTFWETUEy2VDHj6h0dCdB/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1QKEwVPxlYeZuarydljXRLyVezuwx0z5o/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-b4",
+   "fac": "ietech",
+   "level": "ตรี",
+   "name": "ค.อ.บ. ครุศาสตร์การออกแบบ",
+   "degree": "ค.อ.บ.",
+   "field": "ครุศาสตร์การออกแบบ",
+   "intl": false,
+   "latest": 2562,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1LdY-plMuN2UX-Iue8IzqiXRJGfrKKhZl/view"
+    },
+    {
+     "year": 2562,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1UORid4GjCBRuHYSXHgCLXKrjV1liFYf0/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-b5",
+   "fac": "ietech",
+   "level": "ตรี",
+   "name": "ค.อ.บ. นวัตกรรมและเทคโนโลยีการออกแบบ (4 ปี)",
+   "degree": "ค.อ.บ.",
+   "field": "นวัตกรรมและเทคโนโลยีการออกแบบ (4 ปี)",
+   "intl": false,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1XgMzwogE9gL5bBhXjeznGyM9t4W3QMVQ/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-b6",
+   "fac": "ietech",
+   "level": "ตรี",
+   "name": "ค.อ.บ. ครุศาสตร์วิศวกรรม",
+   "degree": "ค.อ.บ.",
+   "field": "ครุศาสตร์วิศวกรรม",
+   "intl": false,
+   "latest": 2562,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1-m3PEfTijKkXJ8-ppx3uSTFF91cNWhxU/view"
+    },
+    {
+     "year": 2562,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1FqEWDx_GYm73BKiCoudoikcaYGcLEziA/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-b7",
+   "fac": "ietech",
+   "level": "ตรี",
+   "name": "ค.อ.บ. ครุศาสตร์เกษตร",
+   "degree": "ค.อ.บ.",
+   "field": "ครุศาสตร์เกษตร",
+   "intl": false,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1EC4fneROxCsaXXiF7PgWSN-Vira_eZAC/view"
+    },
+    {
+     "year": 2562,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1vc215HDnh4amzP68HL17lhaWoqMGXvdA/view"
+    },
+    {
+     "year": 2567,
+     "kind": "",
+     "url": "https://drive.google.com/file/d/1fvWC55imIUj3159k6IqaFAUZyE-56hvk/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-b8",
+   "fac": "ietech",
+   "level": "ตรี",
+   "name": "ทล.บ. เทคโนโลยีอิเล็กทรอนิกส์ (ต่อเนื่อง)",
+   "degree": "ทล.บ.",
+   "field": "เทคโนโลยีอิเล็กทรอนิกส์ (ต่อเนื่อง)",
+   "intl": false,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/15uDsMtfV5AKLD9mgJkHUQmIWKot8BCok/view"
+    },
+    {
+     "year": 2562,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/17NWrL8aZZ9yobSHEKBaoEepqnO_Sd2V3/view"
+    },
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1MUn6Qk-t3zXwC3okFbfyxzaVSOjmjzrP/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-b9",
+   "fac": "ietech",
+   "level": "ตรี",
+   "name": "ทล.บ. เทคโนโลยีชีวภาพทางการเกษตร (ต่อเนื่อง)",
+   "degree": "ทล.บ.",
+   "field": "เทคโนโลยีชีวภาพทางการเกษตร (ต่อเนื่อง)",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1IQKJyQ1X3Occh6M7QZ-IvuyFmtsFXCj0/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-b10",
+   "fac": "ietech",
+   "level": "ตรี",
+   "name": "ทล.บ. บูรณาการนวัตกรรมเพื่อสินค้าและบริการ (ต่อเนื่อง)",
+   "degree": "ทล.บ.",
+   "field": "บูรณาการนวัตกรรมเพื่อสินค้าและบริการ (ต่อเนื่อง)",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/14-a4PtfbDXPknpkd27ZdtQGTLv8xt-9m/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1jBodq0Ij1UJD1ExbO3U7MCN6lEvkyfvq/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-b11",
+   "fac": "ietech",
+   "level": "ตรี",
+   "name": "ค.อ.บ. วิทยาการจัดการเรียนรู้ (4 ปี)",
+   "degree": "ค.อ.บ.",
+   "field": "วิทยาการจัดการเรียนรู้ (4 ปี)",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1O463GRS7pOxqa9KG-tdDAvXzNSxz7so-/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1al7ZmTjmv7fRxNOet3h6cAQUPmVnclsZ/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-b12",
+   "fac": "ietech",
+   "level": "ตรี",
+   "name": "ค.อ.บ. เทคโนโลยีคอมพิวเตอร์ (4 ปี)",
+   "degree": "ค.อ.บ.",
+   "field": "เทคโนโลยีคอมพิวเตอร์ (4 ปี)",
+   "intl": false,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1GlYZYV2rxoybtM6btSCZXuWzlHiucYvv/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-b13",
+   "fac": "ietech",
+   "level": "ตรี",
+   "name": "ค.อ.บ. อิเล็กทรอนิกส์และโทรคมนาคม",
+   "degree": "ค.อ.บ.",
+   "field": "อิเล็กทรอนิกส์และโทรคมนาคม",
+   "intl": false,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2567,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1pz6-lvzQoKL2wVdoJ-D_jeds3gSaUgYq/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-b14",
+   "fac": "ietech",
+   "level": "ตรี",
+   "name": "ทล.บ. อุตสาหกรรมดิจิทัลและระบบอัจฉริยะ (ต่อเนื่อง)",
+   "degree": "ทล.บ.",
+   "field": "อุตสาหกรรมดิจิทัลและระบบอัจฉริยะ (ต่อเนื่อง)",
+   "intl": false,
+   "latest": 2570,
+   "versions": [
+    {
+     "year": 2570,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1P7CFNFSThUeIRa4v7XmXAnSjiY8wK3mc/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-m1",
+   "fac": "ietech",
+   "level": "โท",
+   "name": "วท.ม.นวัตเกษตรเขตร้อน (หลักสูตรนานาชาติ)",
+   "degree": "วท.ม.นวัตเกษตรเขตร้อน",
+   "field": "(หลักสูตรนานาชาติ)",
+   "intl": true,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1FmAHKgrbQooD6EX-LrNxTM9zMBYj18Gl/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1WUX5noW68ZMpXMEbEaai91gZ8pOTbru3/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/12UEmyqztcwNoMgdXNoZVdgD84qWtT7_0/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-m2",
+   "fac": "ietech",
+   "level": "โท",
+   "name": "วท.ม.เทคโนโลยีเพื่อการเรียนรู็และนวัตกรรม (หลักสูตรนานาชาติ)",
+   "degree": "วท.ม.เทคโนโลยีเพื่อการเรียนรู็และนวัตกรรม",
+   "field": "(หลักสูตรนานาชาติ)",
+   "intl": true,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2562,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1RNOFS7xi-BrqbbxB_ISwY3AyV-OAddb7/view"
+    },
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1iXjPW9VKjNtBoq9XZRngQfRn4_gJaHTu/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-m3",
+   "fac": "ietech",
+   "level": "โท",
+   "name": "วท.ม.คอมพิวเตอร์ศึกษา",
+   "degree": "วท.ม.",
+   "field": "คอมพิวเตอร์ศึกษา",
+   "intl": false,
+   "latest": 2563,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1bQnbdQ9n_Ihk6_Tp_RHWi5G6GNk5-WmA/view"
+    },
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1lmvUcxGeI7Dk1U-cxQrANSamMTaeelBq/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-m4",
+   "fac": "ietech",
+   "level": "โท",
+   "name": "วท.ม.การศึกษาวิทยาศาสตรี",
+   "degree": "วท.ม.",
+   "field": "การศึกษาวิทยาศาสตรี",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1lrjgKIgutKNHFJ_iVuch0_uF9yk2zrAk/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-m5",
+   "fac": "ietech",
+   "level": "โท",
+   "name": "วท.ม.การศึกษาวิทยาศาสต์และเทคโนโลยี",
+   "degree": "วท.ม.",
+   "field": "การศึกษาวิทยาศาสต์และเทคโนโลยี",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1_l_SYpWzMpYoKlK1rkEvx-taLSmwe5BQ/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-m6",
+   "fac": "ietech",
+   "level": "โท",
+   "name": "วท.ม.การศึกษาเกษตร",
+   "degree": "วท.ม.",
+   "field": "การศึกษาเกษตร",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/13XOjZ-2HikUOL-985qubnqJiPS9WYe9V/view"
+    },
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1L4e5X0KzufST_TIAJsVrJ0A0aK9E-BA0/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1Q6ip9maplX0z3jFepL-qfWihNiOoYVz8/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-m7",
+   "fac": "ietech",
+   "level": "โท",
+   "name": "ค.อ.ม.อิเล็กทรอนิกส์",
+   "degree": "ค.อ.ม.",
+   "field": "อิเล็กทรอนิกส์",
+   "intl": false,
+   "latest": 2559,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/19Ws9S47lGGuSL3gzS-zPi3OB4MxXE5e_/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-m8",
+   "fac": "ietech",
+   "level": "โท",
+   "name": "ค.อ.ม.วิศวกรรมไฟฟ้าสื่อสาร",
+   "degree": "ค.อ.ม.",
+   "field": "วิศวกรรมไฟฟ้าสื่อสาร",
+   "intl": false,
+   "latest": 2559,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1b0m4hFa06gqJIyLItxjVP8vGGi8B03VF/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-m9",
+   "fac": "ietech",
+   "level": "โท",
+   "name": "ค.อ.ม.เทคโนโลยีการออกแบบผลิตภัณฑ์เพื่ออุตสาหกรรม",
+   "degree": "ค.อ.ม.",
+   "field": "เทคโนโลยีการออกแบบผลิตภัณฑ์เพื่ออุตสาหกรรม",
+   "intl": false,
+   "latest": 2566,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1o31iF1a96iphDv5lii3sGt1KrjsPTuuC/view"
+    },
+    {
+     "year": 2561,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1CuT-4OKh08MTXD5GG033dXetyGq5Vvs4/view"
+    },
+    {
+     "year": 2566,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1tIGKcqVZGDwFdXz27aApds5K8llEfQeu/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-m10",
+   "fac": "ietech",
+   "level": "โท",
+   "name": "ค.อ.ม.ครุศาสตร์อุตสาหกรรม",
+   "degree": "ค.อ.ม.",
+   "field": "ครุศาสตร์อุตสาหกรรม",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1IVj_xoGmfOYGSXZnXuGPChPttZknlpDK/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1Xqgs7gx6pt1Qlex53BQqqDGnlfK9nQgh/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-m11",
+   "fac": "ietech",
+   "level": "โท",
+   "name": "ค.อ.ม.นวัตกรรมและการวิจัยเพื่อการเรียนรู้",
+   "degree": "ค.อ.ม.",
+   "field": "นวัตกรรมและการวิจัยเพื่อการเรียนรู้",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1NgR_kMi6QQKEPeSTXQOfYcIHSwflWu32/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-m12",
+   "fac": "ietech",
+   "level": "โท",
+   "name": "ค.อ.ม.การบริหารการศึกษา",
+   "degree": "ค.อ.ม.",
+   "field": "การบริหารการศึกษา",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2557,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/14pt7zcNsWSUcON1XBPrZeMO7hK1hc-9u/view"
+    },
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1TKdQF9JRJb87-Twwrt2CKuYUvFHWt-ML/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1CpNGurB9xgzYGQF5g4etfHdlPI_XxFoX/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1mgNq0sXBXSh3bvh8lIorI8M8FQIHSX3E/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-m13",
+   "fac": "ietech",
+   "level": "โท",
+   "name": "ค.อ.ม.บริหารการศึกษาเพื่อความก้าวหน้าของมนุษยชาติ (หลักสูตรนานาชาติ)",
+   "degree": "ค.อ.ม.บริหารการศึกษาเพื่อความก้าวหน้าของมนุษยชาติ",
+   "field": "(หลักสูตรนานาชาติ)",
+   "intl": true,
+   "latest": 2563,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1YYYCnx6xXUhrcZFMbLRqFQHymqpV6A0B/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-m14",
+   "fac": "ietech",
+   "level": "โท",
+   "name": "ค.อ.ม.นวัตกรรมการบริหารการศึกษา (หลักสูตรนานาชาติ)",
+   "degree": "ค.อ.ม.นวัตกรรมการบริหารการศึกษา",
+   "field": "(หลักสูตรนานาชาติ)",
+   "intl": true,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/14oine4LDyNsM5u8bnHaRa7y7cr7WBv0x/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-d1",
+   "fac": "ietech",
+   "level": "เอก",
+   "name": "ปร.ด.วิศวกรรมไฟฟ้าศึกษา",
+   "degree": "ปร.ด.",
+   "field": "วิศวกรรมไฟฟ้าศึกษา",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1hMeAivFuiVBCLVbYaIpQGph_UfL5GLYq/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/14zeN0mFACHWiL6F50Q5xCSCtqCCWoHbv/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-d2",
+   "fac": "ietech",
+   "level": "เอก",
+   "name": "ปร.ด.นวัตเกษตรเขตร้อน",
+   "degree": "ปร.ด.",
+   "field": "นวัตเกษตรเขตร้อน",
+   "intl": false,
+   "latest": 2563,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1xPn1-Keces2ssZjvZBSbvGKYISUcpilW/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-d3",
+   "fac": "ietech",
+   "level": "เอก",
+   "name": "ปร.ด.เทคโนโลยีเพื่อการเรียนรู้และนวัตกรรม (นานาชาติ)",
+   "degree": "ปร.ด.เทคโนโลยีเพื่อการเรียนรู้และนวัตกรรม",
+   "field": "(นานาชาติ)",
+   "intl": true,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2562,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1kyUzPmCvvqcAnvODEsoSRdldBi3TH-r3/view"
+    },
+    {
+     "year": 2567,
+     "kind": "",
+     "url": "https://drive.google.com/file/d/1lSRqPW3lGu-oxSP10y0nqV1rN2E-wsPu/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-d4",
+   "fac": "ietech",
+   "level": "เอก",
+   "name": "ปร.ด.เทคโนโลยีการออกบบผลิตภัณฑ์อุตสาหกรรม",
+   "degree": "ปร.ด.",
+   "field": "เทคโนโลยีการออกบบผลิตภัณฑ์อุตสาหกรรม",
+   "intl": false,
+   "latest": 2562,
+   "versions": [
+    {
+     "year": 2562,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/19ahslu2Oyu5_MmB0TMRQvHMZwH69AaoA/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-d5",
+   "fac": "ietech",
+   "level": "เอก",
+   "name": "ปร.ด.คอมพิวเตอร์ศึกษา",
+   "degree": "ปร.ด.",
+   "field": "คอมพิวเตอร์ศึกษา",
+   "intl": false,
+   "latest": 2563,
+   "versions": [
+    {
+     "year": 2558,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/19L4AZ7QkI83jPLdVgfqFmnjbGtTqn0aH/view"
+    },
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1ZADG5e7AZgyZ24uFbJl2D9nyfgnq36EZ/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-d6",
+   "fac": "ietech",
+   "level": "เอก",
+   "name": "ปร.ด.คอมพิวเตอร์และการศึกษาดิจิทัล",
+   "degree": "ปร.ด.",
+   "field": "คอมพิวเตอร์และการศึกษาดิจิทัล",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/12j3PIPteP-DWAtAH0pjcetdsyEwGjA40/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-d7",
+   "fac": "ietech",
+   "level": "เอก",
+   "name": "ปร.ด.การศึกษาวิทยาศาสตร์เกษตร",
+   "degree": "ปร.ด.",
+   "field": "การศึกษาวิทยาศาสตร์เกษตร",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/19luLMqFrz2gHMAN-UKWywmKn0L-f1lc7/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-d8",
+   "fac": "ietech",
+   "level": "เอก",
+   "name": "ปร.ด.การศึกษาเกษตร",
+   "degree": "ปร.ด.",
+   "field": "การศึกษาเกษตร",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2555,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1p9VyZz-Mewl0lWK8muaaB3bSjqlgfyh4/view"
+    },
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1K5vijvLiN8tC5xNVjM6fWgvrQvD3eCA3/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1AidUorDssbNT8_TvSM7Te8PNpcfTVPuI/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-d9",
+   "fac": "ietech",
+   "level": "เอก",
+   "name": "ค.อ.ด.ครุศาสตร์อุตสาหกรรม",
+   "degree": "ค.อ.ด.",
+   "field": "ครุศาสตร์อุตสาหกรรม",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1d_XNElgj2p0EYZfEgipGOr7oILeEDHTX/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1rh4I6bBbNCQerF76RpP8ADz4-711Nt1e/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-d10",
+   "fac": "ietech",
+   "level": "เอก",
+   "name": "ค.อ.ด.การบริหารการศึกษาเพื่อความก้าหน้าของมนุษยชาติ (นานาชาติ)",
+   "degree": "ค.อ.ด.การบริหารการศึกษาเพื่อความก้าหน้าของมนุษยชาติ",
+   "field": "(นานาชาติ)",
+   "intl": true,
+   "latest": 2563,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1gXAO_f09VN0_5xX9mPZUPmMgXKl1kujd/view"
+    }
+   ]
+  },
+  {
+   "id": "ietech-d11",
+   "fac": "ietech",
+   "level": "เอก",
+   "name": "ค.อ.ด.การบริหารการศึกษา",
+   "degree": "ค.อ.ด.",
+   "field": "การบริหารการศึกษา",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2557,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1-ApHGV9ChuVR092_P6S618WajjIsSln8/view"
+    },
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1tdNYJexrPvMUrv-_LTy0uaXpjpAj6GGV/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1nIy_5Y3e-TChmXIWdP4zZvf68nYu9Evc/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-b1",
+   "fac": "agritech",
+   "level": "ตรี",
+   "name": "วท.บ. วิทยาศาสตร์การประมง",
+   "degree": "วท.บ.",
+   "field": "วิทยาศาสตร์การประมง",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1CY4SytJNEQcrs9OiZXQbIJyr6S7CcWG5/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-b2",
+   "fac": "agritech",
+   "level": "ตรี",
+   "name": "วท.บ. นวัตกรรมการผลิตสัตว์น้ำและการจัดการทรัพยากรประมง",
+   "degree": "วท.บ.",
+   "field": "นวัตกรรมการผลิตสัตว์น้ำและการจัดการทรัพยากรประมง",
+   "intl": false,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1mKaILwcfYSgdf7k3d7Nq8YVF681bl4K2/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-b3",
+   "fac": "agritech",
+   "level": "ตรี",
+   "name": "วท.บ. การอกแบบและการจัดการภูมิทัศน์เพื่อสิ่งแวดล้อม",
+   "degree": "วท.บ.",
+   "field": "การอกแบบและการจัดการภูมิทัศน์เพื่อสิ่งแวดล้อม",
+   "intl": false,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1jrg9WgSiPHGjSKGg32sUhgMonnwLscc6/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-b4",
+   "fac": "agritech",
+   "level": "ตรี",
+   "name": "วท.บ. พัฒนาการเกษตร",
+   "degree": "วท.บ.",
+   "field": "พัฒนาการเกษตร",
+   "intl": false,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1d4PQCLTTTqaJTniJ7fvdpITTgdGbKQda/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1mosLr9LE4mbAV2isMhjZ7NHx6vZ49U_3/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-b5",
+   "fac": "agritech",
+   "level": "ตรี",
+   "name": "วท.บ. การจัดการสมาร์ตฟาร์ม",
+   "degree": "วท.บ.",
+   "field": "การจัดการสมาร์ตฟาร์ม",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1zdsrObXnDj4TfqxE7-o3dN8szAv3Ddlr/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1PwK-0M9DM3akkIXTZ07YhD5ZT9MLqmju/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-b6",
+   "fac": "agritech",
+   "level": "ตรี",
+   "name": "วท.บ. สัตวศาสตร์",
+   "degree": "วท.บ.",
+   "field": "สัตวศาสตร์",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1oGVV7PaII_FNfk9id2BFQNrFBUEGx4JT/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-b7",
+   "fac": "agritech",
+   "level": "ตรี",
+   "name": "วท.บ. เทคโนโลยีการผลิตสัตว์และวิทยาศาสตร์เนื้อสัตว์",
+   "degree": "วท.บ.",
+   "field": "เทคโนโลยีการผลิตสัตว์และวิทยาศาสตร์เนื้อสัตว์",
+   "intl": false,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/10WQCfYDbAPkNvnE58m_EfWv5EYavNdBU/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-b8",
+   "fac": "agritech",
+   "level": "ตรี",
+   "name": "วท.บ. นิเทศศาสตร์เกษตร",
+   "degree": "วท.บ.",
+   "field": "นิเทศศาสตร์เกษตร",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1HHG9XoysDE5IEZpJrjFyaaFhrSlAsOHY/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1XHAZGzeXbaHzpNIBP7GkTcr1lxQfZI-M/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1V8LdjYt55UXAG5Hh_uq2YdwYWvqTys8E/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-b9",
+   "fac": "agritech",
+   "level": "ตรี",
+   "name": "วท.บ. เกษตรศาสตร์",
+   "degree": "วท.บ.",
+   "field": "เกษตรศาสตร์",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1-YKaN9kXoV8srhawT1svM_N7jERbTpGM/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-b10",
+   "fac": "agritech",
+   "level": "ตรี",
+   "name": "วท.บ. เทคโนโลยีการผลิตพืช",
+   "degree": "วท.บ.",
+   "field": "เทคโนโลยีการผลิตพืช",
+   "intl": false,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1zsWf682vpTg1aUWJEy0pddhl04pWJqJ6/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-b11",
+   "fac": "agritech",
+   "level": "ตรี",
+   "name": "วท.บ. นวัตกรรมพืชสวน",
+   "degree": "วท.บ.",
+   "field": "นวัตกรรมพืชสวน",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "",
+     "url": "https://drive.google.com/file/d/1n6Wy4da7F1ZmI1R2GnkAxXIs5D7u0m-K/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-b12",
+   "fac": "agritech",
+   "level": "ตรี",
+   "name": "วท.บ. การพยาบาลสัตว์และการจัดการ ธุรกิจสัตว์เลี้ยง",
+   "degree": "วท.บ.",
+   "field": "การพยาบาลสัตว์และการจัดการ ธุรกิจสัตว์เลี้ยง",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1LhfzEJaWx6VrIZdIr0PZXyayOzUCZWO9/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-m1",
+   "fac": "agritech",
+   "level": "โท",
+   "name": "วท.ม. สัตวศาสตร์",
+   "degree": "วท.ม.",
+   "field": "สัตวศาสตร์",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1gblZqKw9CHqWTL3CWRF5XHnDZMa4V_aH/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1Esux2H3zpjt8KcTy3CanG2MMjPJYPE1S/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-m2",
+   "fac": "agritech",
+   "level": "โท",
+   "name": "วท.ม. สัตวศาสตร์เพื่ออุตสาหกรรม",
+   "degree": "วท.ม.",
+   "field": "สัตวศาสตร์เพื่ออุตสาหกรรม",
+   "intl": false,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1XK0IlbXS8RBKZxtIWUV7xyZzRnH_ezld/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-m3",
+   "fac": "agritech",
+   "level": "โท",
+   "name": "วท.ม.พัฒนาการเกษตรและการจัดการทรัพยากร",
+   "degree": "วท.ม.",
+   "field": "พัฒนาการเกษตรและการจัดการทรัพยากร",
+   "intl": false,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/16vnUiQYPgHg0mvfKlAgs6DsSWRozM_BZ/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1wJatw296XObH77bYU4FPbTM5ktCqV2dE/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-m4",
+   "fac": "agritech",
+   "level": "โท",
+   "name": "วท.ม. นวัตกรรมพัฒนาการเกษตรและการจัดการทรัพยากร",
+   "degree": "วท.ม.",
+   "field": "นวัตกรรมพัฒนาการเกษตรและการจัดการทรัพยากร",
+   "intl": false,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1wJatw296XObH77bYU4FPbTM5ktCqV2dE/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-m5",
+   "fac": "agritech",
+   "level": "โท",
+   "name": "วท.ม. เกษตรศาสตร์และการจัดการทรัพยากร",
+   "degree": "วท.ม.",
+   "field": "เกษตรศาสตร์และการจัดการทรัพยากร",
+   "intl": false,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1gkD00Ur7cCW8T1Wa1ZqoavOOnUvlsXqJ/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-m6",
+   "fac": "agritech",
+   "level": "โท",
+   "name": "วท.ม. วิทยาศาสตร์การประมง",
+   "degree": "วท.ม.",
+   "field": "วิทยาศาสตร์การประมง",
+   "intl": false,
+   "latest": 2559,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1G_bW1Z7u0lpks2BQRDor_7pszHkZKJ_A/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-m7",
+   "fac": "agritech",
+   "level": "โท",
+   "name": "วท.ม. เทคโนโลยีการเพาะเลี้ยงสัตว์น้ำและการจัดการทรัพยากรทางน้ำ",
+   "degree": "วท.ม.",
+   "field": "เทคโนโลยีการเพาะเลี้ยงสัตว์น้ำและการจัดการทรัพยากรทางน้ำ",
+   "intl": false,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/17p5LNm1EFp3Ih5HYKMsX49bLhm6tw5p2/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-m8",
+   "fac": "agritech",
+   "level": "โท",
+   "name": "วท.ม. เทคโนโลยีชีวภาพทางการเกษตร",
+   "degree": "วท.ม.",
+   "field": "เทคโนโลยีชีวภาพทางการเกษตร",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1JiPOubn8ZZDT9llifUxdXoJ41ECP9Er5/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-m9",
+   "fac": "agritech",
+   "level": "โท",
+   "name": "วท.ม. พืชสวน",
+   "degree": "วท.ม.",
+   "field": "พืชสวน",
+   "intl": false,
+   "latest": 2550,
+   "versions": [
+    {
+     "year": 2550,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1V62pA5QLDl1Jibfnw-gF6VubQGbj-Glq/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-m10",
+   "fac": "agritech",
+   "level": "โท",
+   "name": "วท.ม. เกษตรศาสตร์",
+   "degree": "วท.ม.",
+   "field": "เกษตรศาสตร์",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1ak4wZ_aCCxc0c489hlHMZ0xAUOle7gNO/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1UhFtwsvQh3HZhcvpzQJGcbOVlifrNZJO/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1YrGmAYRhUEkh8hcedf1ofb918_SayvE8/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-m11",
+   "fac": "agritech",
+   "level": "โท",
+   "name": "วท.ม. การสื่อสารและวิทยาการสารสนเทศทางการเกษตร",
+   "degree": "วท.ม.",
+   "field": "การสื่อสารและวิทยาการสารสนเทศทางการเกษตร",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1a5QV61wf8eqYPtQV0ppF28-GqB9c4EKx/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1-349LuhiMHOkLa0Dw8imH4fZjbmM-i1M/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-d1",
+   "fac": "agritech",
+   "level": "เอก",
+   "name": "ปร.ด. เกษตรศาสตร์",
+   "degree": "ปร.ด.",
+   "field": "เกษตรศาสตร์",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1r4Ijz8pHeDgye2M1kE9zAnwnhRq1Gbav/view"
+    }
+   ]
+  },
+  {
+   "id": "agritech-d2",
+   "fac": "agritech",
+   "level": "เอก",
+   "name": "ปร.ด. เกษตรศาสตร์และการจัดการทรัพยากร",
+   "degree": "ปร.ด.",
+   "field": "เกษตรศาสตร์และการจัดการทรัพยากร",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1CpZ7OqRNsgGoze63iCPSbu5lOtSaBaiN/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1x7ZQJp2t9MiJ8TGsQRhRdoF_qYfi5k81/view"
+    }
+   ]
+  },
+  {
+   "id": "science-b1",
+   "fac": "science",
+   "level": "ตรี",
+   "name": "วท.บ. ฟิสิกส์ประยุกต์",
+   "degree": "วท.บ.",
+   "field": "ฟิสิกส์ประยุกต์",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1qeIXbT5sVwpKCKDSyyxP_bAQUvDTnYlC/view"
+    }
+   ]
+  },
+  {
+   "id": "science-b2",
+   "fac": "science",
+   "level": "ตรี",
+   "name": "วท.บ. ฟิสิกส์อุตสาหกรรม",
+   "degree": "วท.บ.",
+   "field": "ฟิสิกส์อุตสาหกรรม",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1RCHKJH6dIaqGlaIGGIlG_Ht7VFtdxMXf/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1nuAcXDOjLa35uTIj-_Ul57hwMCs8e_Nt/view"
+    }
+   ]
+  },
+  {
+   "id": "science-b3",
+   "fac": "science",
+   "level": "ตรี",
+   "name": "วท.บ. คณิตศาสตร์ประยุกต์",
+   "degree": "วท.บ.",
+   "field": "คณิตศาสตร์ประยุกต์",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1fQ70jDv4oi9HqVgeI5794XoagNpTr6Nh/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1pVmII7FESK25sdtw2KcUCBsNGmB72oYK/view"
+    }
+   ]
+  },
+  {
+   "id": "science-b4",
+   "fac": "science",
+   "level": "ตรี",
+   "name": "วท.บ. วิทยาการคอมพิวเตอร์",
+   "degree": "วท.บ.",
+   "field": "วิทยาการคอมพิวเตอร์",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/127QSPc553l2g8aEuxmWIyX7x8MO3OkSu/view?usp=sharing"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1i3qwMbv8PPHekx4LvDqHbsG7SNmJDDxI/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1BUmFaHHJx5eSZh7sIz0dzorBtY6GOMo7/view"
+    }
+   ]
+  },
+  {
+   "id": "science-b5",
+   "fac": "science",
+   "level": "ตรี",
+   "name": "วท.บ. สถิติประยุกต์",
+   "degree": "วท.บ.",
+   "field": "สถิติประยุกต์",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/156s6WaB99_98jwmLHyERCPJZH9sPhHCS/view"
+    }
+   ]
+  },
+  {
+   "id": "science-b6",
+   "fac": "science",
+   "level": "ตรี",
+   "name": "วท.บ. เคมีอุตสาหกรรม",
+   "degree": "วท.บ.",
+   "field": "เคมีอุตสาหกรรม",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1GBfPA2ZRNzm5vPmm73GPq4HdeypUocEm/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1TpyFJtMKFK711MQ3orLgDljlf0zp2mVa/view"
+    }
+   ]
+  },
+  {
+   "id": "science-b7",
+   "fac": "science",
+   "level": "ตรี",
+   "name": "วท.บ. เคมีสิ่งแวดล้อม",
+   "degree": "วท.บ.",
+   "field": "เคมีสิ่งแวดล้อม",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1A7qkVK8Y8WMQpS675GIl_M96xUDzqFx5/view"
+    }
+   ]
+  },
+  {
+   "id": "science-b8",
+   "fac": "science",
+   "level": "ตรี",
+   "name": "วท.บ. เทคโนโลยีสิ่งแวดล้อมและการจัดการอย่างยั่งยืน",
+   "degree": "วท.บ.",
+   "field": "เทคโนโลยีสิ่งแวดล้อมและการจัดการอย่างยั่งยืน",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1WjPEUTxK7cJXQyVYbvr30FLco0D_p9F2/view"
+    }
+   ]
+  },
+  {
+   "id": "science-b9",
+   "fac": "science",
+   "level": "ตรี",
+   "name": "วท.บ. เทคโนโลยีชีวภาพอุตสาหกรรม",
+   "degree": "วท.บ.",
+   "field": "เทคโนโลยีชีวภาพอุตสาหกรรม",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1CG-Y-MWPSlj4XlSHFN_i_9EaS-Idxz8V/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/16ZgWhLPXYC1ZV6TbMBJ1AAP1Uawmo5dy/view"
+    }
+   ]
+  },
+  {
+   "id": "science-b10",
+   "fac": "science",
+   "level": "ตรี",
+   "name": "วท.บ. เทคโนโลยีชีวภาพ",
+   "degree": "วท.บ.",
+   "field": "เทคโนโลยีชีวภาพ",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1-SFEc4Yjlo2i3Hd1Lc17T6CUiOGDjlCY/view"
+    }
+   ]
+  },
+  {
+   "id": "science-b11",
+   "fac": "science",
+   "level": "ตรี",
+   "name": "วท.บ. จุลชีววิทยาอุตสาหกรรม",
+   "degree": "วท.บ.",
+   "field": "จุลชีววิทยาอุตสาหกรรม",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/12WXMlCdqqs2sggEfVgUFxMmAgIEvX19m/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1iLOH0cHEJ304lkwtbI-_D2S0XCn92_TT/view"
+    }
+   ]
+  },
+  {
+   "id": "science-b12",
+   "fac": "science",
+   "level": "ตรี",
+   "name": "วท.บ. เคมีวิศวกรรมและอุตสาหกรรม (นานาชาติ)",
+   "degree": "วท.บ.",
+   "field": "เคมีวิศวกรรมและอุตสาหกรรม (นานาชาติ)",
+   "intl": true,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/141bE5wNQfPIFzudFWeEMTdtFAUymAFQa/view"
+    }
+   ]
+  },
+  {
+   "id": "science-b13",
+   "fac": "science",
+   "level": "ตรี",
+   "name": "วท.บ. เทคโนโลยีดิจิทัลและนวัตกรรมเชิงบูรณาการ (หลักสูตรนานาชาติ)",
+   "degree": "วท.บ.",
+   "field": "เทคโนโลยีดิจิทัลและนวัตกรรมเชิงบูรณาการ (หลักสูตรนานาชาติ)",
+   "intl": true,
+   "latest": 2566,
+   "versions": [
+    {
+     "year": 2566,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1WRoMqfyVTaApWl53j7RrzX8OjFltapiv/view"
+    }
+   ]
+  },
+  {
+   "id": "science-m1",
+   "fac": "science",
+   "level": "โท",
+   "name": "วท.ม. ฟิสิกส์ประยุกต์",
+   "degree": "วท.ม.",
+   "field": "ฟิสิกส์ประยุกต์",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1VtkHN2VoT__oW92Vqb0Vgba2pOm9d7UI/view"
+    }
+   ]
+  },
+  {
+   "id": "science-m2",
+   "fac": "science",
+   "level": "โท",
+   "name": "วท.ม. เทคโนโลยีชีวภาพ",
+   "degree": "วท.ม.",
+   "field": "เทคโนโลยีชีวภาพ",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1p_crVHAEkb7OCiFI38EMsup9Y1euAmvF/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1l8B2USSozAh0cJmh_-oC7OH4JtKMZxvH/view"
+    }
+   ]
+  },
+  {
+   "id": "science-m3",
+   "fac": "science",
+   "level": "โท",
+   "name": "วท.ม. เคมีประยุกต์",
+   "degree": "วท.ม.",
+   "field": "เคมีประยุกต์",
+   "intl": false,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1lwGRF6batymH4AaiOriuYOAAf6538k0y/view?usp=sharing"
+    },
+    {
+     "year": 2562,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1ZgeEJFjqoLAoEKLo3P6dU8604sJYyazN/view"
+    },
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1GSEr4cSPaG5Ul-SBMWCrVax08_1mbvyQ/view"
+    }
+   ]
+  },
+  {
+   "id": "science-m4",
+   "fac": "science",
+   "level": "โท",
+   "name": "วท.ม. เคมีสิ่งแวดล้อม",
+   "degree": "วท.ม.",
+   "field": "เคมีสิ่งแวดล้อม",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1czyc9M3SNOEjpIN-UB9T-X07BE0YTqSb/view?usp=sharing"
+    }
+   ]
+  },
+  {
+   "id": "science-m5",
+   "fac": "science",
+   "level": "โท",
+   "name": "วท.ม. เทคโนโลยีพอลิเมอร์",
+   "degree": "วท.ม.",
+   "field": "เทคโนโลยีพอลิเมอร์",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1LzsWt04IBlMXrKGUlRixJc8P5D6WvMMp/view?usp=sharing"
+    }
+   ]
+  },
+  {
+   "id": "science-m6",
+   "fac": "science",
+   "level": "โท",
+   "name": "วท.ม. คณิตศาสตร์ประยุกต์",
+   "degree": "วท.ม.",
+   "field": "คณิตศาสตร์ประยุกต์",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1toMzHosH8ZEDgCI2Xoxx3vqVskYc1EYA/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1LOKrmlOd46Ls1uH3GfQQ44fZ9mAXnSuO/view"
+    }
+   ]
+  },
+  {
+   "id": "science-m7",
+   "fac": "science",
+   "level": "โท",
+   "name": "วท.ม. วิทยาการคอมพิวเตอร์",
+   "degree": "วท.ม.",
+   "field": "วิทยาการคอมพิวเตอร์",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1Le_cDZH-6SCeGujXS0M84l-FQFx5ovRu/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/178HmOKUE96PHYirbZkqRmwuXw1YWEJB8/view"
+    }
+   ]
+  },
+  {
+   "id": "science-m8",
+   "fac": "science",
+   "level": "โท",
+   "name": "วท.ม. สถิติและการวิเคราะห์ธุรกิจ",
+   "degree": "วท.ม.",
+   "field": "สถิติและการวิเคราะห์ธุรกิจ",
+   "intl": false,
+   "latest": 2563,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1KRq9SchOu17nQ-PLgRopfm1tiE6-ERkt/view?usp=sharing"
+    },
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1Mzn7OB91J5Ul5oqWX_de5hhZQdaUlYtV/view"
+    }
+   ]
+  },
+  {
+   "id": "science-m9",
+   "fac": "science",
+   "level": "โท",
+   "name": "วท.ม. สถิติประยุกต์",
+   "degree": "วท.ม.",
+   "field": "สถิติประยุกต์",
+   "intl": false,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1DEKugV6hv2oQmbAqo7FNFbTGU84USHCO/view?usp=sharing"
+    }
+   ]
+  },
+  {
+   "id": "science-m10",
+   "fac": "science",
+   "level": "โท",
+   "name": "วท.ม. วิทยาการข้อมูลและการวิเคราะห์",
+   "degree": "วท.ม.",
+   "field": "วิทยาการข้อมูลและการวิเคราะห์",
+   "intl": false,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2562,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1Oc1Gzs3Uwt73Qu3MD3Qbgpww0uVgC_et/view"
+    },
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1d_qplZKstPzIpTGLOLpzj9TmGjNCadQM/view"
+    }
+   ]
+  },
+  {
+   "id": "science-m11",
+   "fac": "science",
+   "level": "โท",
+   "name": "วท.ม. วิทยาการประกันภัย (นานาชาติ)",
+   "degree": "วท.ม.",
+   "field": "วิทยาการประกันภัย (นานาชาติ)",
+   "intl": true,
+   "latest": 2563,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1r8tzv3Pd9OpDtzvv-YkIzVgLbWPsVaNv/view?usp=sharing"
+    }
+   ]
+  },
+  {
+   "id": "science-d1",
+   "fac": "science",
+   "level": "เอก",
+   "name": "ปร.ด. ฟิสิกส์ประยุกต์",
+   "degree": "ปร.ด.",
+   "field": "ฟิสิกส์ประยุกต์",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1PEBWUJj2gtpP0SQ4RmAINSmT29YBRtxY/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/16xiS1F6C-MF7iDdktF8WC7Ho6ijsyWvU/view"
+    }
+   ]
+  },
+  {
+   "id": "science-d2",
+   "fac": "science",
+   "level": "เอก",
+   "name": "ปร.ด. เคมีประยุกต์",
+   "degree": "ปร.ด.",
+   "field": "เคมีประยุกต์",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1KzAMSLHAk98pvpNnYx4cTunKYYf1341U/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1uOtB2C45FlbTSdQ2SSBzriR9LeeYCbfG/view"
+    }
+   ]
+  },
+  {
+   "id": "science-d3",
+   "fac": "science",
+   "level": "เอก",
+   "name": "ปร.ด. เทคโนโลยีชีวภาพ",
+   "degree": "ปร.ด.",
+   "field": "เทคโนโลยีชีวภาพ",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1E8B-XMzjJIsRl_UZvoEptcG3R0BbxYN_/view?usp=sharing"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/13NSnrfpAv67VchS5aZD0fm61GD6Sm4-c/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/17w8eXqq42HyPXhHiCA1BHQnhTyClWa9d/view"
+    }
+   ]
+  },
+  {
+   "id": "science-d4",
+   "fac": "science",
+   "level": "เอก",
+   "name": "ปร.ด. คณิตศาสตร์ประยุกต์",
+   "degree": "ปร.ด.",
+   "field": "คณิตศาสตร์ประยุกต์",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1nI8-dxvojw_RU2nJGZ-rWv1bok82tx5w/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1ISDmYwaK_1E8s57Se7VT8hUikCKencCu/view"
+    }
+   ]
+  },
+  {
+   "id": "science-d5",
+   "fac": "science",
+   "level": "เอก",
+   "name": "ปร.ด. วิทยาการคอมพิวเตอร์",
+   "degree": "ปร.ด.",
+   "field": "วิทยาการคอมพิวเตอร์",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/12RB8BBNME_C_tq1usQrETvxoXwc0nXV-/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1W1POauVYh-Qg8-8BL4dkRnG4IOfZTXyi/view"
+    }
+   ]
+  },
+  {
+   "id": "foodindustry-b1",
+   "fac": "foodindustry",
+   "level": "ตรี",
+   "name": "วท.บ. วิทยาศาสตร์และเทคโนโลยีการอาหาร",
+   "degree": "วท.บ.",
+   "field": "วิทยาศาสตร์และเทคโนโลยีการอาหาร",
+   "intl": false,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1gT3vmnh4THCR6ZyRpPK3-cJSy1lrgKP5/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1B8nO7Lp4FmNyRY7f5rAYSJjdG3d4nqQg/view"
+    },
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1fqAeA4x5Y1l_GC3pm0kg0Y8IgiJlahfd/view"
+    }
+   ]
+  },
+  {
+   "id": "foodindustry-b2",
+   "fac": "foodindustry",
+   "level": "ตรี",
+   "name": "วท.บ. เทคโนโลยีการหมักในอุตสาหกรรมอาหาร",
+   "degree": "วท.บ.",
+   "field": "เทคโนโลยีการหมักในอุตสาหกรรมอาหาร",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/181MCi1tDwdV5l1iKgH40XMOf9OZF7WBZ/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1EXHdIEDK1aTxYyNKzbP8IeYVEw_kXkBk/view"
+    }
+   ]
+  },
+  {
+   "id": "foodindustry-b3",
+   "fac": "foodindustry",
+   "level": "ตรี",
+   "name": "วท.บ. วิศวกรรมแปรรูปอาหาร",
+   "degree": "วท.บ.",
+   "field": "วิศวกรรมแปรรูปอาหาร",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1e5PflU94E9Ci_hyURDpZ7RuQs41wiB7C/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1K8S3V7pd-T-6pBeZ_Ug1O8wshuhmzlSX/view"
+    }
+   ]
+  },
+  {
+   "id": "foodindustry-b4",
+   "fac": "foodindustry",
+   "level": "ตรี",
+   "name": "วท.บ. วิทยาศาสตร์การประกอบอาหารและการจัดการการบริการอาหาร (นานาชาติ)",
+   "degree": "วท.บ.",
+   "field": "วิทยาศาสตร์การประกอบอาหารและการจัดการการบริการอาหาร (นานาชาติ)",
+   "intl": true,
+   "latest": 2562,
+   "versions": [
+    {
+     "year": 2562,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/12CRBL1BhTsh_FmohKbCnCn_yyAByfAkg/view?usp=sharing"
+    }
+   ]
+  },
+  {
+   "id": "foodindustry-m1",
+   "fac": "foodindustry",
+   "level": "โท",
+   "name": "วท.ม. การจัดการความปลอดภัยอาหาร",
+   "degree": "วท.ม.",
+   "field": "การจัดการความปลอดภัยอาหาร",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1S2opt_J56gVQ04OI8b5HCnnkxDLgFP3K/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1OrwtLzlo4U-kLV3M8e33dpwI1YTKvt0_/view"
+    }
+   ]
+  },
+  {
+   "id": "foodindustry-m2",
+   "fac": "foodindustry",
+   "level": "โท",
+   "name": "วท.ม. วิทยาศาสตร์การอาหาร",
+   "degree": "วท.ม.",
+   "field": "วิทยาศาสตร์การอาหาร",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1aY1lwX_CkDIvpRaHVnF9NHfVx07QCAXx/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1Rx2Dva9hyKuNWVppRUH5jbx7Ga1tg6z3/view"
+    }
+   ]
+  },
+  {
+   "id": "foodindustry-m3",
+   "fac": "foodindustry",
+   "level": "โท",
+   "name": "วท.ม. เทคโนโลยีการบริการอาหารและการจัดการ",
+   "degree": "วท.ม.",
+   "field": "เทคโนโลยีการบริการอาหารและการจัดการ",
+   "intl": false,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1RqjBRCidibw7LKg5IceOuNio55uWlrqN/view?usp=sharing"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/10DWbpEnjWgpnLWA2beF1wdtWmHtH58Ox/view"
+    }
+   ]
+  },
+  {
+   "id": "foodindustry-m4",
+   "fac": "foodindustry",
+   "level": "โท",
+   "name": "วท.ม.นวัตกรรมการประกอบอาหารและการจัดการบริการอาหาร",
+   "degree": "วท.ม.",
+   "field": "นวัตกรรมการประกอบอาหารและการจัดการบริการอาหาร",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1E8imuBaA4tcSSVSwNntJBEtkzhfdqICX/view"
+    }
+   ]
+  },
+  {
+   "id": "foodindustry-d1",
+   "fac": "foodindustry",
+   "level": "เอก",
+   "name": "ปร.ด. วิทยาศาสตร์การอาหาร (นานาชาติ)",
+   "degree": "ปร.ด.",
+   "field": "วิทยาศาสตร์การอาหาร (นานาชาติ)",
+   "intl": true,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1Skt9hETnHBClPum-2EbyhVCiUETA-f7o/view?usp=sharing"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1YN4Oss-aiUu6HeXmR-rQ37upBci10URw/view"
+    }
+   ]
+  },
+  {
+   "id": "it-b1",
+   "fac": "it",
+   "level": "ตรี",
+   "name": "วท.บ. เทคโนโลยีสารสนเทศ",
+   "degree": "วท.บ.",
+   "field": "เทคโนโลยีสารสนเทศ",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1id14uSDmBlD1jjKCtoor7nm1RjO1_ESp/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1yeQDz6pKEWblqI1fx9byrZBE_tCtsiQv/view"
+    }
+   ]
+  },
+  {
+   "id": "it-b2",
+   "fac": "it",
+   "level": "ตรี",
+   "name": "วท.บ. วิทยาการข้อมูลและการวิเคราะห์เชิงธุรกิจ",
+   "degree": "วท.บ.",
+   "field": "วิทยาการข้อมูลและการวิเคราะห์เชิงธุรกิจ",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1teHWM542GpKDVUsE39hn059a2NxAgvnA/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1x7rue8y5i0rWv-10vADekqvRP9TpaZcH/view"
+    }
+   ]
+  },
+  {
+   "id": "it-b3",
+   "fac": "it",
+   "level": "ตรี",
+   "name": "วท.บ. เทคโนโลยีสารสนเทศทางธุรกิจ (นานาชาติ)",
+   "degree": "วท.บ.",
+   "field": "เทคโนโลยีสารสนเทศทางธุรกิจ (นานาชาติ)",
+   "intl": true,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1CtgkCg-RbqFZ_EAuCmdYVlNYyoTN9wSj/view?usp=sharing"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1S299Qw_rYR-1B-E2_A0Go5SEhqS1xeKZ/view"
+    }
+   ]
+  },
+  {
+   "id": "it-b4",
+   "fac": "it",
+   "level": "ตรี",
+   "name": "วท.บ.เทคโนโลยีปัญญาประดิษฐ์",
+   "degree": "วท.บ.",
+   "field": "เทคโนโลยีปัญญาประดิษฐ์",
+   "intl": false,
+   "latest": 2566,
+   "versions": [
+    {
+     "year": 2566,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1xhVaRdyrpCKAmXDjFsLRFXCQH82NORZ1/view"
+    }
+   ]
+  },
+  {
+   "id": "it-m1",
+   "fac": "it",
+   "level": "โท",
+   "name": "วท.ม. เทคโนโลยีสารสนเทศ",
+   "degree": "วท.ม.",
+   "field": "เทคโนโลยีสารสนเทศ",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1XBF8KgO4Ous_3F9MWlBTeVRpUi2w4LqL/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1edt82pgFILQzJRhU0IULPGLRbOtRH0c0/view"
+    }
+   ]
+  },
+  {
+   "id": "it-m2",
+   "fac": "it",
+   "level": "โท",
+   "name": "วท.ม.(ปัญญาประดิษฐ์เพื่อการวิเคราะห์เชิงธุรกิจ",
+   "degree": "วท.ม.",
+   "field": "ปัญญาประดิษฐ์เพื่อการวิเคราะห์เชิงธุรกิจ",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1x_Nrr3kPrjz7EFN7WMKKJdUfDKfzlizZ/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1JRbnw_ofXIAwbXIxqddL7sYxH8Hlzr2y/view"
+    }
+   ]
+  },
+  {
+   "id": "it-d1",
+   "fac": "it",
+   "level": "เอก",
+   "name": "ปร.ด. เทคโนโลยีสารสนเทศ (นานาชาติ)",
+   "degree": "ปร.ด.",
+   "field": "เทคโนโลยีสารสนเทศ (นานาชาติ)",
+   "intl": true,
+   "latest": 2566,
+   "versions": [
+    {
+     "year": 2561,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1sJnfoQpXL2PJyhAH7NO3VU-DnCAWSweR/view?usp=sharing"
+    },
+    {
+     "year": 2566,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1cNt9TtwXkJUmyqLpxhIZBop5L8RqNdvI/view"
+    }
+   ]
+  },
+  {
+   "id": "it-d2",
+   "fac": "it",
+   "level": "เอก",
+   "name": "ปร.ด. ปัญญาประดิษฐ์เพื่อการวิเคราะห์เชิงธุรกิจ (หลักสูตรนานาชาติ)",
+   "degree": "ปร.ด.",
+   "field": "ปัญญาประดิษฐ์เพื่อการวิเคราะห์เชิงธุรกิจ (หลักสูตรนานาชาติ)",
+   "intl": true,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ใหม่",
+     "url": null
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1JRbnw_ofXIAwbXIxqddL7sYxH8Hlzr2y/view"
+    }
+   ]
+  },
+  {
+   "id": "nano-b1",
+   "fac": "nano",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมวัสดุนาโน",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมวัสดุนาโน",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1mAiRnLVDSeaNd7bUKfc7R3vANbDHb_AC/view"
+    },
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1XRQ9e8mVY0xRS_i9wJPcomC6knqhIRq5/view?usp=sharing"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1D3iQ2yQY29jMm5eadVS2-M2LuY34G0Rd/view"
+    }
+   ]
+  },
+  {
+   "id": "nano-b2",
+   "fac": "nano",
+   "level": "ตรี",
+   "name": "วศ.บ. เทคโนโลยีวัสดุชาญฉลาด (นานาชาติ)",
+   "degree": "วศ.บ.",
+   "field": "เทคโนโลยีวัสดุชาญฉลาด (นานาชาติ)",
+   "intl": true,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1ACr9XR-_TDJ7W0sv9L2V2dbNalfp7cLp/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1SfgnIeuSPm_5-4svjmG1EKpBM-xNUTtG/view"
+    }
+   ]
+  },
+  {
+   "id": "nano-m1",
+   "fac": "nano",
+   "level": "โท",
+   "name": "วท.ม. นาโนวิทยาและนาโนเทคโนโลยี",
+   "degree": "วท.ม.",
+   "field": "นาโนวิทยาและนาโนเทคโนโลยี",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1FYzkjEKOcZPQfuUKnfbDdKZ1PSBza0w8/view?usp=sharing"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1doSad7bqI3rN6MXp2zcJG7YFya3Rrr9t/view"
+    }
+   ]
+  },
+  {
+   "id": "nano-m2",
+   "fac": "nano",
+   "level": "โท",
+   "name": "วศ.ม.วิศวกรรมระบบการผลิตขั้นสูง (หลักสูตรนานาชาติ)",
+   "degree": "วศ.ม.วิศวกรรมระบบการผลิตขั้นสูง",
+   "field": "(หลักสูตรนานาชาติ)",
+   "intl": true,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/16sxuA7cfPsIBeRgrVtVE7_HbLcdclmxv/view"
+    }
+   ]
+  },
+  {
+   "id": "nano-d1",
+   "fac": "nano",
+   "level": "เอก",
+   "name": "ปร.ด.วิศวกรรมระบบการผลิตขั้นสูง",
+   "degree": "ปร.ด.",
+   "field": "วิศวกรรมระบบการผลิตขั้นสูง",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1IVC5JmN7rJ4K_HKup2bzKDtpQaV17OeG/view"
+    }
+   ]
+  },
+  {
+   "id": "nano-d2",
+   "fac": "nano",
+   "level": "เอก",
+   "name": "ปร.ด.วิศวกรรมระบบการผลิตขั้นสูง (หลักสูตรนานาชาติ)",
+   "degree": "ปร.ด.วิศวกรรมระบบการผลิตขั้นสูง",
+   "field": "(หลักสูตรนานาชาติ)",
+   "intl": true,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1VBx613FsG4tfmGPVrF2wcErJ8iUe8TQo/view"
+    }
+   ]
+  },
+  {
+   "id": "ami-b1",
+   "fac": "ami",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมระบบการผลิต",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมระบบการผลิต",
+   "intl": false,
+   "latest": 2554,
+   "versions": [
+    {
+     "year": 2554,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1swgs0EV4Rlb06L6Hpdtz_GEw540lvAmP/view"
+    }
+   ]
+  },
+  {
+   "id": "ami-b2",
+   "fac": "ami",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมระบบการผลิต (ต่อเนื่อง)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมระบบการผลิต (ต่อเนื่อง)",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2565,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/182zHJNSiI44pzhh8ii4ZNIqmnERasq1m/view"
+    }
+   ]
+  },
+  {
+   "id": "ami-m1",
+   "fac": "ami",
+   "level": "โท",
+   "name": "วศ.ม. วิศวกรรมระบบการผลิตขั้นสูง",
+   "degree": "วศ.ม.",
+   "field": "วิศวกรรมระบบการผลิตขั้นสูง",
+   "intl": false,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1D37L2P1aKxUo_7tQLkU1m8ZKJwWFzAbH/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1ofqihnqWNJ6CQRuMcjLczsY8-UUlgUlR/view"
+    }
+   ]
+  },
+  {
+   "id": "business-b1",
+   "fac": "business",
+   "level": "ตรี",
+   "name": "บธ.บ. บริหารธุรกิจบัณฑิต",
+   "degree": "บธ.บ.",
+   "field": "บริหารธุรกิจบัณฑิต",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1XUOfFD2ftGTmYJ0gPZWCAny40GvcUPhd/view"
+    },
+    {
+     "year": 2563,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1UoLS61DRrfYSXoul8AXui-PDkb6rAUK1/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1zLYtKOaBmZWRYxIRqtxyfDxDwRuc5U0K/view"
+    }
+   ]
+  },
+  {
+   "id": "business-b2",
+   "fac": "business",
+   "level": "ตรี",
+   "name": "วท.บ. เศรษฐศาสตร์ธุรกิจและการจัดการ",
+   "degree": "วท.บ.",
+   "field": "เศรษฐศาสตร์ธุรกิจและการจัดการ",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1UnfN4prgWyYf8ta50MaAFYVIfJmjpvYE/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1oq-CqeTHqfIbbbq_165RC_b3rVqnJvJC/view"
+    }
+   ]
+  },
+  {
+   "id": "business-b3",
+   "fac": "business",
+   "level": "ตรี",
+   "name": "ศ.บ. เศรษฐศาสตร์ธุรกิจและการจัดการ",
+   "degree": "ศ.บ.",
+   "field": "เศรษฐศาสตร์ธุรกิจและการจัดการ",
+   "intl": false,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1gY6p2ZyNWWb3nmKGxcA5qQRRxM9WI2nR/view"
+    }
+   ]
+  },
+  {
+   "id": "business-b4",
+   "fac": "business",
+   "level": "ตรี",
+   "name": "บธ.บ. บริหารธุรกิจบัณฑิต (นานาชาติ)",
+   "degree": "บธ.บ.",
+   "field": "บริหารธุรกิจบัณฑิต (นานาชาติ)",
+   "intl": true,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1CZIka9PovosjZ7fBVU-GhIEvUEjGNYeP/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1YhKmN7Nan7sntAfXMOXxR6a06bZOggGp/view"
+    }
+   ]
+  },
+  {
+   "id": "business-b5",
+   "fac": "business",
+   "level": "ตรี",
+   "name": "บธ.บ. การเป็นผู้ประกอบการระดับโลก (นานาชาติ)",
+   "degree": "บธ.บ.",
+   "field": "การเป็นผู้ประกอบการระดับโลก (นานาชาติ)",
+   "intl": true,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1cpPtxUl2P4O6__phcKuTmASJSeITiYiO/view"
+    },
+    {
+     "year": 2568,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1a6rsQ_H74RWvsQU9aOUUahFw9D6ILJif/view"
+    }
+   ]
+  },
+  {
+   "id": "business-b6",
+   "fac": "business",
+   "level": "ตรี",
+   "name": "บธ.บ. การเปลี่ยนแปลงทางดิจิทัลและการจัดการเทคโนโลยี",
+   "degree": "บธ.บ.",
+   "field": "การเปลี่ยนแปลงทางดิจิทัลและการจัดการเทคโนโลยี",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1RkTdl1ULgM3aPttAwbgIe4GTjzFCXHDv/view"
+    }
+   ]
+  },
+  {
+   "id": "business-m1",
+   "fac": "business",
+   "level": "โท",
+   "name": "บธ.ม. บริหารธุรกิจ",
+   "degree": "บธ.ม.",
+   "field": "บริหารธุรกิจ",
+   "intl": false,
+   "latest": 2566,
+   "versions": [
+    {
+     "year": 2558,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1zMBkDSGmB3B56VwGjxEYC8VgwzLWvfDa/view"
+    },
+    {
+     "year": 2561,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1DaNwXLbt-q7K0m8I05tBaGjoZB7p3NS5/view"
+    },
+    {
+     "year": 2566,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1s3F-7GbKOzjXSa2SotUdaIJvYW9rrlL8/view"
+    }
+   ]
+  },
+  {
+   "id": "business-m2",
+   "fac": "business",
+   "level": "โท",
+   "name": "บธ.ม. บริหารธุรกิจอุตสาหกรรม (นานาชาติ)",
+   "degree": "บธ.ม.",
+   "field": "บริหารธุรกิจอุตสาหกรรม (นานาชาติ)",
+   "intl": true,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1W9nOkh3taouvY4_JSUxE9EnaHWLnXW-9/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1GVPYgiCmCCHkHifkSfee5yMY8FER1irH/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/15B-STtoy5A14axaCtIMnR0CqLk9KMfkn/view"
+    }
+   ]
+  },
+  {
+   "id": "business-m3",
+   "fac": "business",
+   "level": "โท",
+   "name": "บธ.ม. การจัดการกีฬา สื่อและบังเทิง",
+   "degree": "บธ.ม.",
+   "field": "การจัดการกีฬา สื่อและบังเทิง",
+   "intl": false,
+   "latest": 2560,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1tsGn1S-4ajk4mzk6iq43FEYuNF1bRm70/view"
+    }
+   ]
+  },
+  {
+   "id": "business-m4",
+   "fac": "business",
+   "level": "โท",
+   "name": "บธ.ม. (หลักสูตรนานาชาติ) (การศึกษาทางไกล)",
+   "degree": "บธ.ม.",
+   "field": "(หลักสูตรนานาชาติ) (การศึกษาทางไกล)",
+   "intl": true,
+   "latest": 2563,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/13g_NnLnnFcNuYNQo4neopa9ElpKJHzhr/view"
+    }
+   ]
+  },
+  {
+   "id": "business-d1",
+   "fac": "business",
+   "level": "เอก",
+   "name": "ปร.ด. บริหารธุรกิจอุตสาหกรรม (นานาชาติ)",
+   "degree": "ปร.ด.",
+   "field": "บริหารธุรกิจอุตสาหกรรม (นานาชาติ)",
+   "intl": true,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1n1RRs_tuKurMtCik7A84Uvf6CFBuawcn/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1R1NMybdtja7H2BMJI_2XoHdR9f9iG3VB/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1h6ZXeWbiY8LMgde1G5ZmHNeiIM--gesx/view"
+    }
+   ]
+  },
+  {
+   "id": "iaai-b1",
+   "fac": "iaai",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมการบินและนักบินพาณิชย์ (นานาชาติ)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมการบินและนักบินพาณิชย์ (นานาชาติ)",
+   "intl": true,
+   "latest": 2566,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/161veBsBw6KuIrPK-9oZiAisHnVw3mYPr/view"
+    },
+    {
+     "year": 2566,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1Qign8ts0h9PGyyuymIiSZXKz6efW7TBA/view"
+    }
+   ]
+  },
+  {
+   "id": "iaai-b2",
+   "fac": "iaai",
+   "level": "ตรี",
+   "name": "วท.บ. การจัดการโลจิสติกส์ (นานาชาติ)",
+   "degree": "วท.บ.",
+   "field": "การจัดการโลจิสติกส์ (นานาชาติ)",
+   "intl": true,
+   "latest": 2566,
+   "versions": [
+    {
+     "year": 2561,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/13EiTLqEmvQ9ap6w0JlvmvI9qOwXxa8tg/view?usp=sharing"
+    },
+    {
+     "year": 2566,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1vsANnSUENU9EUtKUCfY-2AOe42svrpzA/view"
+    }
+   ]
+  },
+  {
+   "id": "iaai-b3",
+   "fac": "iaai",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมการบินและอวกาศ (นานาชาติ)",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมการบินและอวกาศ (นานาชาติ)",
+   "intl": true,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2565,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/14_edSLraSwUwc1tSO0BAOEZ3DRDvaHzl/view"
+    }
+   ]
+  },
+  {
+   "id": "iaai-m1",
+   "fac": "iaai",
+   "level": "โท",
+   "name": "วศ.ม. สาขาวิชานวัตกรรมสหการการบินและโลจิสติกส์(หลักสูตรนานาชาติ)",
+   "degree": "วศ.ม.",
+   "field": "สาขาวิชานวัตกรรมสหการการบินและโลจิสติกส์(หลักสูตรนานาชาติ)",
+   "intl": true,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2569,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1ZkHuqnlYBV_kbh7ccwl8ybPCpy_QiKg4/view"
+    }
+   ]
+  },
+  {
+   "id": "iaai-d1",
+   "fac": "iaai",
+   "level": "เอก",
+   "name": "ปร.ด. สาขาวิชานวัตกรรมสหการการบินและโลจิสติกส์ (หลักสูตร นานาชาติ)",
+   "degree": "ปร.ด.",
+   "field": "สาขาวิชานวัตกรรมสหการการบินและโลจิสติกส์ (หลักสูตร นานาชาติ)",
+   "intl": true,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2569,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1H0neQ4TVc_iC9pkXn_kQF_-LYaJtVhA2/view"
+    }
+   ]
+  },
+  {
+   "id": "liberalarts-b1",
+   "fac": "liberalarts",
+   "level": "ตรี",
+   "name": "ศศ.บ.ภาษาอังกฤษ",
+   "degree": "ศศ.บ.",
+   "field": "ภาษาอังกฤษ",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2559,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1XLG8ekOLNsapy33Gt4gP_g4xG6G4iDd5/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/14lC5pRTPiW537wNTTKcTvzN_uYqHtc5N/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/17ETpXfP_dQG2KLOV9A_uDGL0nuBw7A5c/view"
+    }
+   ]
+  },
+  {
+   "id": "liberalarts-b2",
+   "fac": "liberalarts",
+   "level": "ตรี",
+   "name": "ศศ.บ.ภาษาญี่ปุ่นธุรกิจ",
+   "degree": "ศศ.บ.",
+   "field": "ภาษาญี่ปุ่นธุรกิจ",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1cvVdWGMrKqKPIdCTuLJbki1mTuNKdDfI/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1ZleITYjKVrpyn206nOygEwPIpspFMvDO/view"
+    }
+   ]
+  },
+  {
+   "id": "liberalarts-b3",
+   "fac": "liberalarts",
+   "level": "ตรี",
+   "name": "ศศ.บ.ภาษาจีนเพื่ออุตสาหกรรม",
+   "degree": "ศศ.บ.",
+   "field": "ภาษาจีนเพื่ออุตสาหกรรม",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1XabwQXeMHQtVWQvJpcmNZRyR68OD7kMy/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1QRtxcRtv5AX8H0pc3oxOJRYMBsmpgKXL/view"
+    }
+   ]
+  },
+  {
+   "id": "liberalarts-b4",
+   "fac": "liberalarts",
+   "level": "ตรี",
+   "name": "ศ.บ.นวัตกรรมการท่องเที่ยวและการบริการ",
+   "degree": "ศ.บ.",
+   "field": "นวัตกรรมการท่องเที่ยวและการบริการ",
+   "intl": false,
+   "latest": 2566,
+   "versions": [
+    {
+     "year": 2561,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1CkAGoTWp1STaM6RyKUOmXo_Odklkv68L/view"
+    },
+    {
+     "year": 2566,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1GnZ5J1cWGG7d-e1pC4c5l-5Du6icPbRL/view"
+    }
+   ]
+  },
+  {
+   "id": "liberalarts-b5",
+   "fac": "liberalarts",
+   "level": "ตรี",
+   "name": "ศศ.บ. การจัดการบริการการบิน",
+   "degree": "ศศ.บ.",
+   "field": "การจัดการบริการการบิน",
+   "intl": false,
+   "latest": 2568,
+   "versions": [
+    {
+     "year": 2568,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1w1UI5cv0BpqzJIYH8Wc0XiW20GJ89BD8/view"
+    }
+   ]
+  },
+  {
+   "id": "liberalarts-m1",
+   "fac": "liberalarts",
+   "level": "โท",
+   "name": "ศศ.ม. ภาษาศาสตร์ประยุกต์ - ภาษาอังกฤษเพื่อวัตถุประสงค์ทางวิชาชีพ",
+   "degree": "ศศ.ม.",
+   "field": "ภาษาศาสตร์ประยุกต์ - ภาษาอังกฤษเพื่อวัตถุประสงค์ทางวิชาชีพ",
+   "intl": false,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/131AYjc20a5QAUzzHa5Mq1jMmZgRVCxTa/view"
+    },
+    {
+     "year": 2565,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1kI7e4R5IYq1ftGSlirzCSQjXM803oPWF/view"
+    }
+   ]
+  },
+  {
+   "id": "medicine-b1",
+   "fac": "medicine",
+   "level": "ตรี",
+   "name": "พ.บ. แพทยศาสตรบัณฑิต (หลักสูตรนานาชาติ)",
+   "degree": "พ.บ.",
+   "field": "แพทยศาสตรบัณฑิต (หลักสูตรนานาชาติ)",
+   "intl": true,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2561,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1qyW6fjXMP9vLRtTbLMqMTLjxHYFO5FDf/view?pli=1"
+    },
+    {
+     "year": 2567,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1Zaw2NqVg4kcbgiQ5bbT90Z5nvn7uL8pq/view?pli=1"
+    }
+   ]
+  },
+  {
+   "id": "medicine-m1",
+   "fac": "medicine",
+   "level": "โท",
+   "name": "วท.ม. การพัฒนาเทคโนโลยีสุขภาพ",
+   "degree": "วท.ม.",
+   "field": "การพัฒนาเทคโนโลยีสุขภาพ",
+   "intl": false,
+   "latest": 2570,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1_11ZzHVkwJekjzNFjG_ijXsNu6ciLirj/view?pli=1"
+    },
+    {
+     "year": 2570,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1FpqZLo-K1fWIM2RTGtcVijJjPotDEuPW/view"
+    }
+   ]
+  },
+  {
+   "id": "ceir-m1",
+   "fac": "ceir",
+   "level": "โท",
+   "name": "กจ.ม. การจัดการนวัตกรรมและอุตสาหกรรม",
+   "degree": "กจ.ม.",
+   "field": "การจัดการนวัตกรรมและอุตสาหกรรม",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2563,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1eUyfWXEbgMhNcklcfyAp1DVdkQB64x92/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1lo1oEJS9i34SSMn6s-0D-U_j2gzgv4oJ/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1lKYh8qTcLGM-NApErqNiPEvU8bTnwVEq/view"
+    }
+   ]
+  },
+  {
+   "id": "ceir-d1",
+   "fac": "ceir",
+   "level": "เอก",
+   "name": "ปร.ด. การจัดการนวัตกรรมและอุตสาหกรรม",
+   "degree": "ปร.ด.",
+   "field": "การจัดการนวัตกรรมและอุตสาหกรรม",
+   "intl": false,
+   "latest": 2569,
+   "versions": [
+    {
+     "year": 2560,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1heqyDT1hcNxYGw9g9Utvz8UPX6tmQmHB/view"
+    },
+    {
+     "year": 2564,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1_SDhidlXmJa2R5SvL9APyyZ96T9yBWd3/view"
+    },
+    {
+     "year": 2569,
+     "kind": "ปรับปรุง",
+     "url": null
+    }
+   ]
+  },
+  {
+   "id": "imse-b1",
+   "fac": "imse",
+   "level": "ตรี",
+   "name": "วศ.บ. วิศวกรรมดนตรีและสื่อประสม",
+   "degree": "วศ.บ.",
+   "field": "วิศวกรรมดนตรีและสื่อประสม",
+   "intl": false,
+   "latest": 2566,
+   "versions": [
+    {
+     "year": 2561,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1_8cjYUS9QpJcIG_HsqoBdTTVT_pxfyfM/view"
+    },
+    {
+     "year": 2566,
+     "kind": "ปรับปรุง",
+     "url": "https://drive.google.com/file/d/1WF15yC2XCmvOMJudgl8BbVEj70JgWxb2/view"
+    }
+   ]
+  },
+  {
+   "id": "imse-b2",
+   "fac": "imse",
+   "level": "ตรี",
+   "name": "ศศ.วท.บ เทคโนโลยีและศิลปะสร้างสรรค์",
+   "degree": "ศศ.วท.บ",
+   "field": "เทคโนโลยีและศิลปะสร้างสรรค์",
+   "intl": false,
+   "latest": 2567,
+   "versions": [
+    {
+     "year": 2567,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/1wkYxccnVX1P3ivkJkqPa_NLwc9UKQ9v4/view"
+    }
+   ]
+  },
+  {
+   "id": "imse-m1",
+   "fac": "imse",
+   "level": "โท",
+   "name": "วศ.ม. อะคูสติกส์และเทคโนโลยีสื่อประสม",
+   "degree": "วศ.ม.",
+   "field": "อะคูสติกส์และเทคโนโลยีสื่อประสม",
+   "intl": false,
+   "latest": 2564,
+   "versions": [
+    {
+     "year": 2564,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/19Zo8et9KLxmPDVcj-qJLa3JNL1o8H-Jj/view"
+    }
+   ]
+  },
+  {
+   "id": "dentistry-b1",
+   "fac": "dentistry",
+   "level": "ตรี",
+   "name": "ท.บ. ทันตแพทยศาสตรบัณฑิต (หลักสูตรนานาชาติ)",
+   "degree": "ท.บ.",
+   "field": "ทันตแพทยศาสตรบัณฑิต (หลักสูตรนานาชาติ)",
+   "intl": true,
+   "latest": 2565,
+   "versions": [
+    {
+     "year": 2565,
+     "kind": "ใหม่",
+     "url": "https://drive.google.com/file/d/16dYouipLQMIMZAsPZ3zm7G-KxyNudojN/view?pli=1"
+    }
+   ]
+  }
+ ]
+}
