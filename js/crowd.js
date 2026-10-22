@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 import { figure } from './students.js';
 
-const base = new THREE.Matrix4(), Mp = new THREE.Matrix4(), M = new THREE.Matrix4(), S = new THREE.Vector3();
+const base = new THREE.Matrix4(), Mp = new THREE.Matrix4(), M = new THREE.Matrix4(), S = new THREE.Vector3(), K = new THREE.Vector3();
 const ZERO = new THREE.Matrix4().makeScale(0, 0, 0);
 
 export class Crowd {
@@ -27,7 +27,9 @@ export class Crowd {
   }
   // legs swing with `swing`; arms swing with the stride, or are held at `arm` (radians, negative = forwards)
   place(m, x, y, z, yaw, swing, arm = null) {
-    base.makeRotationY(yaw).setPosition(x, y, z);
+    base.makeRotationY(yaw);
+    if (m.scale) base.scale(K.setScalar(m.scale));                                 // a child, say
+    base.setPosition(x, y, z);
     for (let k = 0; k < m.P.length; k++) {
       const [, px, py, cy, cz, w, h, d, sw] = m.P[k];
       let ang = 0;

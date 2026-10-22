@@ -52,6 +52,14 @@
 - พิธีพระราชทานปริญญาบัตร (`js/graduation.js`)
 - ฟุตบอลประเพณี 3 พระจอมเกล้า (`js/football.js`)
 - เกษตรเจ้าคุณทหารแฟร์ (`js/agrifair.js`)
+- สงกรานต์ รดน้ำขอพร (`js/songkran.js`)
+- วันคล้ายวันสถาปนาสถาบัน (`js/foundingday.js`)
+- Freshy Music (`js/freshymusic.js`)
+- นิทรรศการวันวิทยาศาสตร์ (`js/sciday.js`)
+- แคแสดสัมพันธ์ (`js/cheer.js`)
+- KMIDS Sports Day (`js/kmidssports.js`)
+- ตรวจสุขภาพฟรี วันพยาบาล (`js/nurseday.js`)
+- ตลาดหอใน (`js/dormmarket.js`)
 
 ## สถานที่จัดกิจกรรมหลัก (เรียงตามจำนวนกิจกรรม)
 

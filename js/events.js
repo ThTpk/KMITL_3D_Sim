@@ -17,15 +17,31 @@ import { buildFootball } from './football.js';
 import { buildExpo } from './expo.js';
 import { buildGraduation } from './graduation.js';
 import { buildAgriFair } from './agrifair.js';
+import { buildSongkran } from './songkran.js';
+import { buildFoundingDay } from './foundingday.js';
+import { buildFreshyMusic } from './freshymusic.js';
+import { buildSciDay } from './sciday.js';
+import { buildCheer } from './cheer.js';
+import { buildKmidsSports } from './kmidssports.js';
+import { buildNurseDay } from './nurseday.js';
+import { buildDormMarket } from './dormmarket.js';
 
 // speed: the default playback speed for the scene
 export const EVENTS = [                         // in calendar order from the start of the academic year
   { id: 'firststep', th: '🎓 วันลูกพระจอม (ปลาย มิ.ย.)', speed: 4 },
+  { id: 'sciday', th: '🔭 นิทรรศการวันวิทยาศาสตร์ (ส.ค.)', speed: 1 },
+  { id: 'foundingday', th: '🙏 วันคล้ายวันสถาปนาสถาบัน (22–24 ส.ค.)', speed: 2 },
   { id: 'expo', th: '🔬 ลาดกระบังนิทรรศน์ / KMITL EXPO (ปลาย ส.ค.–ก.ย.)', speed: 2 },
+  { id: 'freshymusic', th: '🎸 Freshy Music (ต.ค.)', speed: 1 },
+  { id: 'nurseday', th: '🩺 ตรวจสุขภาพฟรี วันพยาบาล (21 ต.ค.)', speed: 2 },
   { id: 'loykrathong', th: '🪷 ลอยกระทง สจล. (พ.ย.)', speed: 1 },
+  { id: 'kmidssports', th: '🏃 KMIDS Sports Day (พ.ย.)', speed: 1 },
   { id: 'graduation', th: '🎓 พิธีพระราชทานปริญญาบัตร (พ.ย.–ก.พ.)', speed: 2 },
+  { id: 'cheer', th: '📣 แคแสดสัมพันธ์ (ธ.ค.)', speed: 1 },
   { id: 'agrifair', th: '🌱 เกษตรเจ้าคุณทหารแฟร์ (ก.พ.)', speed: 1 },
   { id: 'football', th: '⚽ ฟุตบอลประเพณี 3 พระจอมเกล้า (ก.พ.–มี.ค.)', speed: 1 },
+  { id: 'songkran', th: '💦 สงกรานต์ รดน้ำขอพร (เม.ย.)', speed: 1 },
+  { id: 'dormmarket', th: '🍢 ตลาดหอใน (ทุกสัปดาห์)', speed: 1 },
 ];
 
 const G = 0.2;                                 // walking height on the roads
@@ -327,7 +343,9 @@ function buildFirstStep({ data, say }) {
 }
 
 // ---------- the event player: one scene at a time ----------
-const MAKERS = { firststep: buildFirstStep, loykrathong: buildLoyKrathong, football: buildFootball, expo: buildExpo, graduation: buildGraduation, agrifair: buildAgriFair };
+const MAKERS = { firststep: buildFirstStep, loykrathong: buildLoyKrathong, football: buildFootball, expo: buildExpo, graduation: buildGraduation, agrifair: buildAgriFair,
+  songkran: buildSongkran, foundingday: buildFoundingDay, freshymusic: buildFreshyMusic, sciday: buildSciDay, cheer: buildCheer,
+  kmidssports: buildKmidsSports, nurseday: buildNurseDay, dormmarket: buildDormMarket };
 // ctx: { data, setTime(h), getTime() } from app.js
 export function buildEvents(ctx) {
   const group = new THREE.Group();
