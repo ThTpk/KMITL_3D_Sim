@@ -10,6 +10,7 @@ import { buildTraffic } from './traffic.js';
 import { buildPlanes } from './planes.js';
 import { buildStudents } from './students.js';
 import { buildDisasters, DISASTERS } from './disaster.js';
+import { buildEvents, EVENTS } from './events.js';
 import { slim } from './memory.js';
 
 const DATA = window.KMITL_DATA;
@@ -407,6 +408,29 @@ const disasters = buildDisasters({ scene, group: layers.buildings, meta: buildin
   });
 }
 
+// ---------- campus events ----------
+// play a yearly event on the model (events.md); the camera follows it until the user moves the view
+const events = buildEvents({ data: DATA });
+scene.add(events.group);
+const eventFollow = document.getElementById('event-follow');
+{
+  const sel = document.getElementById('event-type'), speed = document.getElementById('event-speed');
+  const go = document.getElementById('event-go'), stop = document.getElementById('event-stop'), msg = document.getElementById('event-msg');
+  sel.innerHTML = EVENTS.map((e) => `<option value="${e.id}">${e.th}</option>`).join('');
+  events.setSpeed(+speed.value);
+  speed.addEventListener('change', () => events.setSpeed(+speed.value));
+  events.onChange((s) => { msg.textContent = s.text; go.disabled = s.running; stop.disabled = !s.running; });
+  go.addEventListener('click', () => {
+    stopOrbit(); closeInfo();
+    events.start(sel.value);
+    eventFollow.checked = true;
+    const f = events.focus();
+    flyTo(f.x, f.z, 260, 58, THREE.MathUtils.degToRad(-20));
+  });
+  stop.addEventListener('click', () => events.stop());
+  controls.addEventListener('start', () => { if (events.state.running) eventFollow.checked = false; });
+}
+
 // ---------- layer toggles ----------
 // defaults: buildings, satellite imagery and shadows; everything else can be switched on in the panel
 const layerState = { buildings: true, labels: false, roadLabels: false, traffic: false, students: false, satellite: true, shadows: true };
@@ -519,6 +543,10 @@ function loop(manual = false) {
   layers.water.userData.surface.material.uniforms.time.value += dt * 0.6;
   if (layers.traffic.visible) { traffic.update(dt); planes.update(dt); }
   if (layers.students.visible) students.update(dt);
+  events.update(dt);
+  // follow the event: slide the view along with it
+  const ef = eventFollow.checked && !tween ? events.focus() : null;
+  if (ef) { const d = ef.sub(controls.target).multiplyScalar(Math.min(1, dt * 1.5)); controls.target.add(d); camera.position.add(d); }
   if (orbiting && !tween) controls.target.lerp(new THREE.Vector3(campusCentre[0], 0, campusCentre[1]), 0.01);
   controls.update();
   disasters.update(dt, camera.position.distanceTo(controls.target));
@@ -568,4 +596,4 @@ renderer.setAnimationLoop(null);
 loop();
 document.getElementById('loading').classList.add('done');
 // debugging hook: advance n frames synchronously (useful when the tab is in the background)
-window.__kmitl = { renderer, scene, camera, controls, buildingMeta, select, flyTo, setTime, traffic, students, disasters, step: (n = 20) => { for (let i = 0; i < n; i++) loop(true); } };
+window.__kmitl = { renderer, scene, camera, controls, buildingMeta, select, flyTo, setTime, traffic, students, disasters, events, step: (n = 20) => { for (let i = 0; i < n; i++) loop(true); } };

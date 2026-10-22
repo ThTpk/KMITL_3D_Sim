@@ -60,6 +60,16 @@
       <button id="disaster-fix" class="heal" disabled>🛠️ ฟื้นฟู</button>
       <span id="disaster-msg"></span>
     </div>
+    <div class="row event">
+      <select id="event-type" autocomplete="off" title="เลือกกิจกรรม"></select>
+      <select id="event-speed" autocomplete="off" title="ความเร็ว">
+        <option value="1">×1</option><option value="2">×2</option><option value="4" selected>×4</option><option value="8">×8</option>
+      </select>
+      <button id="event-go" class="play">▶ เริ่ม</button>
+      <button id="event-stop" disabled>⏹ หยุด</button>
+      <label><input type="checkbox" id="event-follow" autocomplete="off" checked /> ติดตามขบวน</label>
+      <span id="event-msg"></span>
+    </div>
     <div class="row time">
       <span>🕒</span>
       <input id="time" type="range" min="5" max="23" step="0.25" value="15.5" />
@@ -82,6 +92,6 @@
   </footer>
 
   <script src="data/kmitl_data.js"></script>
-  <script type="module" src="js/app.js?v=20261020d"></script>
+  <script type="module" src="js/app.js?v=20261022a"></script>
 </body>
 </html>

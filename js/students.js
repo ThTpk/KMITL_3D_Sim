@@ -43,10 +43,10 @@ const BAGS = ['#1f2a44', '#2d2d2f', '#6b2b2b', '#3d5a3a', '#7a6a55', '#3a5f8f', 
 const SHOP = ['#1f2f52', '#5a1f27', '#28452e', '#2a2f38'];   // faculty workshop shirts (เสื้อช็อป)
 // part: [colour, pivotX, pivotY, centreY (from the pivot), centreZ, w, h, d, swing]
 // swing: 1 / -1 = left / right leg, 2 / -2 = left / right arm, 0 = rigid with the body
-export function figure(R, female) {
+export function figure(R, female, shirtOverride) {
   const k = (female ? 0.94 : 1) * (0.95 + R() * 0.1);
   const skin = SKIN[Math.floor(R() * SKIN.length)], hair = HAIR[Math.floor(R() * HAIR.length)];
-  const shirt = !female && R() < 0.18 ? SHOP[Math.floor(R() * SHOP.length)] : '#f4f4f1';
+  const shirt = shirtOverride ?? (!female && R() < 0.18 ? SHOP[Math.floor(R() * SHOP.length)] : '#f4f4f1');
   const black = '#1b1c1f', shoe = R() < 0.2 ? '#e9e9e6' : '#141416';
   const P = [];
   const hip = 0.86, leg = 0.8, sh = 1.38;

@@ -44,7 +44,7 @@ export function lift(way, base, extra) {
 }
 
 // Join track pieces that meet end-to-end (same line, no sharp turn) into long runs
-function chainRails(rails) {
+export function chainRails(rails) {
   const segs = rails.map((r) => ({ r, pts: lift(r, 0.3, 0.2), used: false, L: lenOf(r.p) }));
   const dirAt = (pts, end) => {
     const n = pts.length, a = end ? pts[n - 2] : pts[1], b = end ? pts[n - 1] : pts[0];
