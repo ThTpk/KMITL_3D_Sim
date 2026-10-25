@@ -6,7 +6,7 @@
   <title>KMITL 3D Campus</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20261022q" />
+  <link rel="stylesheet" href="css/style.css?v=20261025b" />
   <script type="importmap">
     {
       "imports": {
@@ -85,7 +85,19 @@
   </div>
 
   <div id="tooltip" hidden></div>
-  <div id="compass" class="panel" title="หันทิศเหนือ"><span>N</span></div>
+  <button id="ui-toggle" class="panel" title="ซ่อนเมนู (H)" aria-label="ซ่อนเมนู" aria-pressed="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path class="eye" d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle class="eye" cx="12" cy="12" r="3"/><path class="slash" d="M4 4l16 16"/></svg>
+  </button>
+  <div id="compass" class="panel" title="สลับมุมมอง หันทิศเหนือ / ทิศใต้" role="button" aria-label="เข็มทิศ: สลับมุมมองทิศเหนือ / ทิศใต้">
+    <svg viewBox="-24 -24 48 48" aria-hidden="true">
+      <g class="ticks"><path d="M0 -21v4M0 21v-4M-21 0h4M21 0h-4"/></g>
+      <path class="needle-n" d="M0 -15L4.5 0H-4.5Z"/>
+      <path class="needle-s" d="M0 15L4.5 0H-4.5Z"/>
+      <circle r="2"/>
+      <text class="lbl-n" y="-17.5">N</text>
+      <text class="lbl-s" y="21.5">S</text>
+    </svg>
+  </div>
   <div id="loading"><div class="spinner"></div><div>กำลังสร้างแบบจำลอง…</div></div>
   <footer id="attrib">
     ข้อมูลอาคารและถนน © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> (ODbL)
@@ -93,6 +105,6 @@
   </footer>
 
   <script src="data/kmitl_data.js"></script>
-  <script type="module" src="js/app.js?v=20261022o"></script>
+  <script type="module" src="js/app.js?v=20261025c"></script>
 </body>
 </html>

@@ -90,9 +90,26 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); c
 #legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -2px; border: 1px solid var(--line); }
 #info:not([hidden]) ~ #legend { display: none; }
 
-#compass { right: 12px; bottom: 112px; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; }
-#compass span { font-weight: 700; color: var(--accent); display: inline-block; transition: transform 0.05s linear; }
-#compass span::before { content: "▲"; display: block; font-size: 9px; line-height: 7px; text-align: center; }
+#compass { right: 12px; bottom: 112px; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; user-select: none; }
+#compass:hover { border-color: var(--accent); }
+#compass svg { width: 46px; height: 46px; display: block; overflow: visible; }
+#compass .ticks path { stroke: var(--muted); stroke-width: 1.4; stroke-linecap: round; }
+#compass .needle-n { fill: #e5322d; }
+#compass .needle-s { fill: var(--panel); stroke: var(--muted); stroke-width: 0.8; }
+#compass circle { fill: var(--text); }
+#compass text { font-size: 8px; font-weight: 700; text-anchor: middle; dominant-baseline: middle; }
+#compass .lbl-n { fill: #e5322d; }
+#compass .lbl-s { fill: var(--muted); }
+
+/* hide-the-menus button: everything but itself (and the data credit) goes */
+#ui-toggle { right: 18px; bottom: 172px; width: 40px; height: 40px; border-radius: 50%; padding: 0; display: grid; place-items: center; cursor: pointer; color: var(--text); }
+#ui-toggle:hover { border-color: var(--accent); color: var(--accent); }
+#ui-toggle svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+#ui-toggle .slash { display: none; }
+body.ui-hidden #ui-toggle .slash { display: inline; }
+body.ui-hidden #ui-toggle { opacity: 0.55; }
+body.ui-hidden #ui-toggle:hover { opacity: 1; }
+body.ui-hidden :is(#topbar, #info, #controls, #legend, #compass, #tooltip) { display: none !important; }
 
 #tooltip { position: fixed; pointer-events: none; z-index: 20; background: rgba(20, 22, 26, 0.88); color: #fff; padding: 5px 8px; border-radius: 6px; font-size: 12.5px; transform: translate(12px, 12px); white-space: nowrap; }
 
@@ -120,6 +137,7 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); c
   #legend { display: none; }
   #time { width: 140px; }
   #compass { bottom: auto; top: 128px; }
+  #ui-toggle { bottom: auto; top: 188px; }
 }
 #controls .disaster, #controls .event { gap: 6px 8px; }
 #controls select { font: inherit; font-size: 12.5px; padding: 5px 8px; border-radius: 7px; border: 1px solid var(--line); background: transparent; color: var(--text); cursor: pointer; }

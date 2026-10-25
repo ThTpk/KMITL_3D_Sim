@@ -395,8 +395,13 @@ function stepTween(dt) {
   if (!tween) return;
   tween.t = Math.min(1, tween.t + dt / 1.3);
   const k = tween.t < 0.5 ? 4 * tween.t ** 3 : 1 - (-2 * tween.t + 2) ** 3 / 2;
-  camera.position.lerpVectors(tween.from[0], tween.to[0], k);
-  controls.target.lerpVectors(tween.from[1], tween.to[1], k);
+  if (tween.spin) {                                  // swing round the target, keeping the distance and the tilt
+    const { off, a0, a1 } = tween.spin, a = a0 + (a1 - a0) * k, r = Math.hypot(off.x, off.z);
+    camera.position.set(controls.target.x + r * Math.sin(a), controls.target.y + off.y, controls.target.z + r * Math.cos(a));
+  } else {
+    camera.position.lerpVectors(tween.from[0], tween.to[0], k);
+    controls.target.lerpVectors(tween.from[1], tween.to[1], k);
+  }
   if (tween.t >= 1) tween = null;
 }
 
@@ -420,10 +425,26 @@ document.querySelectorAll('[data-view]').forEach((btn) => btn.addEventListener('
   if (v === 'top') flyTo(campusCentre[0], campusCentre[1], 1500, 0.5, 0);
   if (v === 'front') flyTo(campusCentre[0] - 150, campusCentre[1] + 250, 420, 70, THREE.MathUtils.degToRad(10));
 }));
+// hide every menu and panel (button or the H key), leaving just the model and this button
+{
+  const btn = document.getElementById('ui-toggle');
+  const setHidden = (on) => {
+    document.body.classList.toggle('ui-hidden', on);
+    btn.setAttribute('aria-pressed', on);
+    btn.title = on ? 'แสดงเมนู (H)' : 'ซ่อนเมนู (H)';
+    btn.setAttribute('aria-label', on ? 'แสดงเมนู' : 'ซ่อนเมนู');
+  };
+  btn.addEventListener('click', () => setHidden(!document.body.classList.contains('ui-hidden')));
+  document.addEventListener('keydown', (e) => {
+    if ((e.key === 'h' || e.key === 'H') && !e.ctrlKey && !e.metaKey && !e.altKey && !e.target.closest?.('input, select, textarea')) setHidden(!document.body.classList.contains('ui-hidden'));
+  });
+}
+// the compass flips the view between north-up and south-up: whichever way the camera faces more, it turns to the other
 document.getElementById('compass').addEventListener('click', () => {
-  const t = controls.target;
-  const d = camera.position.distanceTo(t);
-  flyTo(t.x, t.z, d, THREE.MathUtils.radToDeg(controls.getPolarAngle()), 0);
+  stopOrbit();
+  const a0 = controls.getAzimuthalAngle();
+  const a1 = Math.abs(a0) < Math.PI / 2 ? (a0 < 0 ? -Math.PI : Math.PI) : 0;
+  tween = { t: 0, spin: { off: camera.position.clone().sub(controls.target), a0, a1 } };
 });
 
 // ---------- disasters and recovery ----------
@@ -568,7 +589,7 @@ results.addEventListener('click', (e) => {
 document.addEventListener('click', (e) => { if (!e.target.closest('.search')) results.hidden = true; });
 
 // ---------- main loop ----------
-const compassNeedle = document.querySelector('#compass span');
+const compassNeedle = document.querySelector('#compass svg');
 const clock = new THREE.Clock();
 let frame = 0;
 const fallbackSunDir = new THREE.Vector3(0.3, 1, 0.2).normalize(), origin = new THREE.Vector3();
