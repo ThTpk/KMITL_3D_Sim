@@ -8,7 +8,7 @@
 // (x -592..-500, south face z -77) through (-435, -67) to the junction with the road up past the 7-Eleven (-315, -70);
 // the curve loops north round the hall's west lawn, (-597, -63) - (-611, -79) - (-636, -79) - (-645, -62) (OSM). The
 // stalls stand on the road's north side facing it, clear of the covered railway walk on the south side (z -64..-60
-// east of x -440), of dorm 12 (z -97..-80) and of the hall's entrance portico (x -590..-578); round the curve they
+// east of x -440) and of dorm 12 (z -97..-80), and run on in front of the hall's entrance portico; round the curve they
 // stand on its outer side, along the north stretch and the west leg (the east leg runs too close to the hall). The
 // paved island inside the curve (x -638..-604, z -77..-65) is filled with two rows back to back, one facing the road
 // in front of the hall and one facing the curve. The campus fence is only ~3 m south of the road, so no stalls there.
@@ -23,7 +23,7 @@ const CURVE = [[-608, -78.5], [-611, -79], [-636, -79], [-639, -78], [-641, -75]
 // each row: the road line, the side the stalls stand on (+1 left of the line's direction, -1 right), where along it to
 // start and stop (m), x ranges to leave open, and whether the shoppers walk that road
 const ROWS = [
-  { line: MAIN, side: 1, from: 10, to: 322, skip: [[-604.5, -575]], walk: true },   // across the island, then from past the portico
+  { line: MAIN, side: 1, from: 10, to: 322, skip: [[-604.5, -596]], walk: true },   // across the island and on, open only where the curve's east leg meets the road
   { line: CURVE, side: -1, from: 1, to: 43, skip: [], walk: true },                 // stops short of the road west along z -62
   { line: [[-608, -79], [-640, -79]], side: 1, from: 1.5, to: 28.5, skip: [] },    // the island's north edge, facing the curve
 ];
