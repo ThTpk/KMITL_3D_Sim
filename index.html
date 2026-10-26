@@ -6,7 +6,7 @@
   <title>KMITL 3D Campus</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20261025b" />
+  <link rel="stylesheet" href="css/style.css?v=20261026a" />
   <script type="importmap">
     {
       "imports": {
@@ -45,6 +45,7 @@
       <button data-view="top">มุมบน</button>
       <button data-view="front">ฝั่งถนนฉลองกรุง</button>
       <button data-view="orbit" id="orbit-btn">หมุนอัตโนมัติ</button>
+      <button id="walk-btn" title="เดินชมระดับสายตา: กดแล้วคลิกจุดบนแผนที่ที่จะยืน">🚶 Street View</button>
     </div>
     <div class="row toggles">
       <label><input type="checkbox" autocomplete="off" data-layer="buildings" checked /> อาคาร</label>
@@ -85,6 +86,7 @@
   </div>
 
   <div id="tooltip" hidden></div>
+  <div id="walk-hint" class="panel" hidden></div>
   <button id="ui-toggle" class="panel" title="ซ่อนเมนู (H)" aria-label="ซ่อนเมนู" aria-pressed="false">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path class="eye" d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle class="eye" cx="12" cy="12" r="3"/><path class="slash" d="M4 4l16 16"/></svg>
   </button>
@@ -105,6 +107,6 @@
   </footer>
 
   <script src="data/kmitl_data.js"></script>
-  <script type="module" src="js/app.js?v=20261025c"></script>
+  <script type="module" src="js/app.js?v=20261026b"></script>
 </body>
 </html>

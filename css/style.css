@@ -111,6 +111,12 @@ body.ui-hidden #ui-toggle { opacity: 0.55; }
 body.ui-hidden #ui-toggle:hover { opacity: 1; }
 body.ui-hidden :is(#topbar, #info, #controls, #legend, #compass, #tooltip) { display: none !important; }
 
+#walk-hint { top: 70px; left: 50%; transform: translateX(-50%); padding: 7px 12px; font-size: 12.5px; white-space: nowrap; max-width: calc(100vw - 24px); overflow: hidden; text-overflow: ellipsis; }
+#walk-hint kbd { font: inherit; font-weight: 600; padding: 0 5px; border: 1px solid var(--line); border-radius: 4px; }
+body.walk-pick #app canvas { cursor: crosshair !important; }
+body.walking #app canvas { cursor: grab; }
+body.walking #app canvas:active { cursor: grabbing; }
+body.walking #legend { display: none; }
 #tooltip { position: fixed; pointer-events: none; z-index: 20; background: rgba(20, 22, 26, 0.88); color: #fff; padding: 5px 8px; border-radius: 6px; font-size: 12.5px; transform: translate(12px, 12px); white-space: nowrap; }
 
 #attrib { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; font-size: 11px; padding: 4px 12px; color: var(--muted); background: linear-gradient(transparent, rgba(255,255,255,0.6)); }

@@ -283,6 +283,7 @@ let downAt = null;
 renderer.domElement.addEventListener('pointerdown', (e) => { downAt = [e.clientX, e.clientY]; stopOrbit(); });
 renderer.domElement.addEventListener('pointerup', (e) => {
   if (!downAt || Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]) > 5) return;
+  if (walk.click(e.clientX, e.clientY)) return;
   const idx = pick(e.clientX, e.clientY);
   if (idx >= 0) select(idx, false); else closeInfo();
 });
@@ -385,6 +386,7 @@ loadCurricula().then((c) => {
 // ---------- camera animation ----------
 let tween = null;
 function flyTo(x, z, dist, polar = 55, azimuth = null) {
+  if (walk.mode !== 'off') walk.exit(false);      // any other camera move leaves street view first
   const az = azimuth ?? controls.getAzimuthalAngle();
   const ph = THREE.MathUtils.degToRad(polar);
   const target = new THREE.Vector3(x, 0, z);
@@ -441,11 +443,151 @@ document.querySelectorAll('[data-view]').forEach((btn) => btn.addEventListener('
 }
 // the compass flips the view between north-up and south-up: whichever way the camera faces more, it turns to the other
 document.getElementById('compass').addEventListener('click', () => {
+  if (walk.mode === 'walk') { walk.yaw = Math.abs(walk.yaw) < Math.PI / 2 ? Math.PI : 0; return; }
   stopOrbit();
   const a0 = controls.getAzimuthalAngle();
   const a1 = Math.abs(a0) < Math.PI / 2 ? (a0 < 0 ? -Math.PI : Math.PI) : 0;
   tween = { t: 0, spin: { off: camera.position.clone().sub(controls.target), a0, a1 } };
 });
+
+// ---------- street view: walk around at eye level ----------
+// the button (or Esc) toggles it: first click a spot on the map, the camera drops to eye height there;
+// ↑/↓ walk along the view, ←/→ turn, dragging looks round (grab style, like Google Street View), the wheel zooms
+const walk = (() => {
+  const EYE = 1.7, SPEED = 5, RUN = 3, TURN = 1.7, R = 0.7, PITCH = THREE.MathUtils.degToRad(80);
+  const btn = document.getElementById('walk-btn'), hint = document.getElementById('walk-hint');
+  const groundPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0), hitP = new THREE.Vector3();
+  // footprints whose walls come down to the ground block the way; canopies, carports and skywalks you walk under
+  const OPEN = new Set(['roof', 'carport', 'bridge']), OPEN_MODELS = new Set(['skywalk', 'skywalkcmkl', 'railwalk', 'footbridge']);
+  const blockers = buildingMeta.filter((m) => m.b.o?.length > 2 && m.H.minH < 2.2 && !OPEN.has(m.b.bt) && !OPEN_MODELS.has(m.b.model)).map((m) => {
+    const xs = m.b.o.map((p) => p[0]), zs = m.b.o.map((p) => p[1]);
+    return { o: m.b.o, x0: Math.min(...xs) - R, x1: Math.max(...xs) + R, z0: Math.min(...zs) - R, z1: Math.max(...zs) + R };
+  });
+  const insideAt = (x, z) => blockers.some((k) => x > k.x0 && x < k.x1 && z > k.z0 && z < k.z1 && pointInRing(x, z, k.o));
+  // a body of radius R: probe the centre and four points round it
+  const blocked = (x, z) => [[0, 0], [R, 0], [-R, 0], [0, R], [0, -R]].some(([dx, dz]) => insideAt(x + dx, z + dz));
+  const keys = new Set();
+  const s = { mode: 'off', yaw: 0, pitch: 0, pos: new THREE.Vector3(), anim: null, drag: null };
+  const lookQ = (yaw, pitch) => new THREE.Quaternion().setFromEuler(new THREE.Euler(pitch, yaw, 0, 'YXZ'));
+  const groundAt = (cx, cy) => {
+    mouse.set((cx / innerWidth) * 2 - 1, -(cy / innerHeight) * 2 + 1);
+    raycaster.setFromCamera(mouse, camera);
+    return raycaster.ray.intersectPlane(groundPlane, hitP);
+  };
+  function setUI() {
+    document.body.classList.toggle('walk-pick', s.mode === 'pick');
+    document.body.classList.toggle('walking', s.mode === 'walk');
+    btn.classList.toggle('on', s.mode !== 'off');
+    btn.textContent = s.mode === 'walk' ? '✕ ออกจาก Street View' : s.mode === 'pick' ? '✕ ยกเลิก' : '🚶 Street View';
+    hint.hidden = s.mode === 'off';
+    hint.innerHTML = s.mode === 'pick' ? 'คลิกจุดบนแผนที่ที่ต้องการยืน · <kbd>Esc</kbd> ยกเลิก'
+      : '<kbd>↑</kbd><kbd>↓</kbd> เดิน · <kbd>←</kbd><kbd>→</kbd> หันซ้าย/ขวา · ลากเมาส์เพื่อมองรอบ · คลิกพื้นเพื่อเดินไปตรงนั้น · <kbd>Shift</kbd> วิ่ง · <kbd>Esc</kbd> ออก';
+  }
+  // glide the camera to a standing spot (and optionally a new heading)
+  function goTo(x, z, yaw = s.yaw, pitch = s.pitch, time = 1.2, force = false) {
+    if (blocked(x, z)) {                             // landed inside a building: step out onto the nearest road
+      const rp = nearestRoadPoint(x, z);
+      if (rp && !blocked(rp[0], rp[1])) [x, z] = rp; else if (!force) return;
+    }
+    s.yaw = yaw; s.pitch = pitch;
+    s.pos.set(x, EYE, z);
+    s.anim = { t: 0, time, p0: camera.position.clone(), q0: camera.quaternion.clone(), p1: s.pos.clone() };
+  }
+  function enter(x, z) {
+    s.mode = 'walk';
+    tween = null; controls.enabled = false;
+    if (eventFollow.checked && events.state.running) eventFollow.checked = false;
+    goTo(x, z, controls.getAzimuthalAngle(), 0, 1.6, true);
+    setUI();
+  }
+  // fly: back up to an orbit view over the spot where we stood, facing the same way
+  function exit(fly = true) {
+    const was = s.mode;
+    s.mode = 'off'; s.anim = null; s.drag = null; keys.clear();
+    controls.enabled = true;
+    if (camera.fov !== 45) { camera.fov = 45; camera.updateProjectionMatrix(); }
+    setUI();
+    if (was !== 'walk') return;
+    const fx = -Math.sin(s.yaw), fz = -Math.cos(s.yaw);
+    controls.target.set(camera.position.x + fx * 20, 0, camera.position.z + fz * 20);
+    camera.up.set(0, 1, 0);
+    if (fly) flyTo(controls.target.x, controls.target.z, 180, 58, s.yaw);
+  }
+  btn.addEventListener('click', () => {
+    btn.blur();                                      // keep Space/Enter from re-pressing it while walking
+    if (s.mode === 'off') { stopOrbit(); s.mode = 'pick'; setUI(); } else exit();
+  });
+  // a click (not a drag) on the canvas: choose where to stand, or walk to the clicked spot on the ground
+  function click(cx, cy) {
+    if (s.mode === 'pick') {
+      const p = groundAt(cx, cy);
+      if (p) enter(p.x, p.z);
+      return true;
+    }
+    if (s.mode !== 'walk') return false;
+    if (pick(cx, cy) >= 0) return false;              // buildings still open their info panel
+    const p = groundAt(cx, cy);
+    if (!p || p.distanceTo(camera.position) > 120) return true;
+    goTo(p.x, p.z, s.yaw, s.pitch, Math.min(1.5, 0.4 + p.distanceTo(camera.position) / 40));
+    return true;
+  }
+  const el = renderer.domElement;
+  el.addEventListener('pointerdown', (e) => { if (s.mode === 'walk') s.drag = [e.clientX, e.clientY]; });
+  addEventListener('pointerup', () => (s.drag = null));
+  el.addEventListener('pointermove', (e) => {
+    if (s.mode !== 'walk' || !s.drag || !e.buttons) return;
+    const k = THREE.MathUtils.degToRad(camera.fov) / innerHeight;
+    s.yaw += (e.clientX - s.drag[0]) * k;
+    s.pitch = THREE.MathUtils.clamp(s.pitch + (e.clientY - s.drag[1]) * k, -PITCH, PITCH);
+    s.drag = [e.clientX, e.clientY];
+  });
+  el.addEventListener('wheel', (e) => {
+    if (s.mode !== 'walk') return;
+    camera.fov = THREE.MathUtils.clamp(camera.fov * (e.deltaY > 0 ? 1.1 : 1 / 1.1), 20, 80);
+    camera.updateProjectionMatrix();
+  }, { passive: true });
+  const MOVE_KEYS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 's', 'a', 'd', 'W', 'S', 'A', 'D'];
+  document.addEventListener('keydown', (e) => {
+    if (s.mode === 'off' || e.target.closest?.('input, select, textarea')) return;
+    if (e.key === 'Escape') { exit(); return; }
+    if (e.key === 'Shift') keys.add('shift');
+    if (s.mode === 'walk' && MOVE_KEYS.includes(e.key)) { keys.add(e.key.toLowerCase()); e.preventDefault(); }
+  });
+  document.addEventListener('keyup', (e) => keys.delete(e.key.toLowerCase()));
+  addEventListener('blur', () => keys.clear());
+  // one frame of walking; runs in place of controls.update()
+  function update(dt) {
+    const k = (a, b) => keys.has(a) || keys.has(b);
+    const run = keys.has('shift');
+    if (k('arrowleft', 'a')) s.yaw += TURN * dt;
+    if (k('arrowright', 'd')) s.yaw -= TURN * dt;
+    s.yaw = Math.atan2(Math.sin(s.yaw), Math.cos(s.yaw));
+    const fwd = (k('arrowup', 'w') ? 1 : 0) - (k('arrowdown', 's') ? 1 : 0);
+    if (s.anim) {
+      const a = s.anim;
+      a.t = Math.min(1, a.t + dt / a.time);
+      const e = a.t < 0.5 ? 4 * a.t ** 3 : 1 - (-2 * a.t + 2) ** 3 / 2;
+      camera.position.lerpVectors(a.p0, a.p1, e);
+      camera.quaternion.slerpQuaternions(a.q0, lookQ(s.yaw, s.pitch), e);
+      if (a.t >= 1) s.anim = null;
+    } else {
+      if (fwd) {
+        const d = fwd * SPEED * (run ? RUN : 1) * dt, dx = -Math.sin(s.yaw) * d, dz = -Math.cos(s.yaw) * d;
+        const { x, z } = s.pos;
+        // slide along walls: try the full step, then each axis on its own
+        if (!blocked(x + dx, z + dz)) s.pos.set(x + dx, EYE, z + dz);
+        else if (!blocked(x + dx, z)) s.pos.x = x + dx;
+        else if (!blocked(x, z + dz)) s.pos.z = z + dz;
+      }
+      camera.position.copy(s.pos);
+      camera.quaternion.copy(lookQ(s.yaw, s.pitch));
+    }
+    // the shadows and labels centre on controls.target: keep it a little ahead of the walker
+    controls.target.set(camera.position.x - Math.sin(s.yaw) * 30, 0, camera.position.z - Math.cos(s.yaw) * 30);
+  }
+  setUI();
+  return Object.assign(s, { exit, click, update, blocked });
+})();
 
 // ---------- disasters and recovery ----------
 // pick a disaster to wreck random campus buildings; recovery sends crews of students to build them back
@@ -602,10 +744,10 @@ function loop(manual = false) {
   if (layers.students.visible) students.update(dt);
   events.update(dt);
   // follow the event: slide the view along with it
-  const ef = eventFollow.checked && !tween ? events.focus() : null;
+  const ef = eventFollow.checked && !tween && walk.mode !== 'walk' ? events.focus() : null;
   if (ef) { const d = ef.sub(controls.target).multiplyScalar(Math.min(1, dt * 1.5)); controls.target.add(d); camera.position.add(d); }
   if (orbiting && !tween) controls.target.lerp(new THREE.Vector3(campusCentre[0], 0, campusCentre[1]), 0.01);
-  controls.update();
+  if (walk.mode === 'walk') walk.update(dt); else controls.update();
   disasters.update(dt, camera.position.distanceTo(controls.target));
   camera.position.add(disasters.shakeOffset);   // camera shake, taken off again after rendering
   // keep the shadow frustum centred on what we're looking at
@@ -614,7 +756,7 @@ function loop(manual = false) {
   // the ground layers sit only a few cm apart: with a fixed 1 m near plane the depth buffer could not tell them
   // apart beyond a few hundred metres and they z-fought (flickered); pushing the near plane out with the
   // distance keeps the depth precision near the target at a few mm
-  const near = THREE.MathUtils.clamp(dist * 0.015, 1, 25);
+  const near = walk.mode === 'walk' ? 0.3 : THREE.MathUtils.clamp(dist * 0.015, 1, 25);
   if (Math.abs(camera.near - near) > 0.05 * near) { camera.near = near; camera.updateProjectionMatrix(); }
   // shadow frustum size in fixed steps (x1.25) so zooming does not keep resampling the shadow map
   const ext = 180 * 1.25 ** THREE.MathUtils.clamp(Math.round(Math.log(dist * 0.75 / 180) / Math.log(1.25)), 0, 7);
@@ -629,7 +771,7 @@ function loop(manual = false) {
   snapped.copy(t).addScaledVector(lightX, Math.round(tx / texel) * texel - tx).addScaledVector(lightY, Math.round(ty / texel) * texel - ty);
   sun.target.position.copy(snapped);
   sun.position.copy(snapped).addScaledVector(dir, 1800);
-  compassNeedle.style.transform = `rotate(${THREE.MathUtils.radToDeg(controls.getAzimuthalAngle())}deg)`;
+  compassNeedle.style.transform = `rotate(${THREE.MathUtils.radToDeg(walk.mode === 'walk' ? walk.yaw : controls.getAzimuthalAngle())}deg)`;
   if (frame++ % 6 === 0) updateLabels();
   renderer.render(scene, camera);
   labelRenderer.render(scene, camera);
@@ -653,4 +795,4 @@ renderer.setAnimationLoop(null);
 loop();
 document.getElementById('loading').classList.add('done');
 // debugging hook: advance n frames synchronously (useful when the tab is in the background)
-window.__kmitl = { renderer, scene, camera, controls, buildingMeta, select, flyTo, setTime, traffic, students, disasters, events, step: (n = 20) => { for (let i = 0; i < n; i++) loop(true); } };
+window.__kmitl = { renderer, scene, camera, controls, buildingMeta, select, flyTo, walk, setTime, traffic, students, disasters, events, step: (n = 20) => { for (let i = 0; i < n; i++) loop(true); } };
