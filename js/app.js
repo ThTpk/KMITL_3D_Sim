@@ -12,7 +12,7 @@ import { buildStudents } from './students.js';
 import { buildDisasters, DISASTERS } from './disaster.js';
 import { buildEvents, EVENTS } from './events.js';
 import { loadCurricula } from './curricula.js';
-import { slim } from './memory.js';
+import { slim, dropCanvases } from './memory.js';
 
 const DATA = window.KMITL_DATA;
 const [LAT0, LON0] = DATA.origin;
@@ -23,8 +23,11 @@ const toXZ = (lat, lon) => [((lon - LON0) * Math.PI / 180) * R_EARTH * COS0, -((
 
 // ---------- renderer / scene ----------
 const container = document.getElementById('app');
-const renderer = new THREE.WebGLRenderer({ antialias: true, logarithmicDepthBuffer: false });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+// on high-density screens the pixels are already small enough to hide jaggies, and 4x multisampling at 2x
+// resolution would need ~300 MB of video memory for a full-HD window: multisample only at 1x
+const DPR = Math.min(window.devicePixelRatio, 2);
+const renderer = new THREE.WebGLRenderer({ antialias: DPR < 1.5, logarithmicDepthBuffer: false });
+renderer.setPixelRatio(DPR);
 renderer.setSize(innerWidth, innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -791,6 +794,8 @@ flyTo(campusCentre[0], campusCentre[1], 1150, 52, THREE.MathUtils.degToRad(-35))
 tween.t = 0.999;
 applyLayers();
 if (layerState.satellite) ensureSatellite();
+// everything on the map is built by now: the canvases behind its textures can go once they are uploaded
+dropCanvases(scene);
 renderer.setAnimationLoop(null);
 loop();
 document.getElementById('loading').classList.add('done');

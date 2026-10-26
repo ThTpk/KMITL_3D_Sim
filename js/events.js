@@ -25,6 +25,7 @@ import { buildCheer } from './cheer.js';
 import { buildKmidsSports } from './kmidssports.js';
 import { buildNurseDay } from './nurseday.js';
 import { buildDormMarket } from './dormmarket.js';
+import { disposeTree } from './memory.js';
 
 // speed: the default playback speed for the scene
 export const EVENTS = [                         // in calendar order from the start of the academic year
@@ -354,8 +355,9 @@ export function buildEvents(ctx) {
   const st = { running: false, text: '', speed: 4, id: null };
   const emit = () => listener({ ...st });
   const say = (text) => { if (text !== st.text) { st.text = text; emit(); } };
+  // a finished event is thrown away (its meshes and textures freed) and built again if it is played again
   function stop() {
-    if (cur) { cur.stop(); cur.group.visible = false; }
+    if (cur) { cur.stop(); group.remove(cur.group); disposeTree(cur.group); delete scenes[st.id]; }
     cur = null; st.running = false; st.id = null; st.text = '';
     emit();
   }

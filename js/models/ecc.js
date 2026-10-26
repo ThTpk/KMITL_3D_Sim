@@ -150,7 +150,17 @@ export function textTex(text, { w = 2048, h = 160, color = '#5d5b57', bg = null,
   g.font = `${weight} ${size}px "${font}", sans-serif`;
   while (g.measureText(text).width > w * 0.96 && size > 10) { size -= 4; g.font = `${weight} ${size}px "${font}", sans-serif`; }
   g.fillText(text, w / 2, h * 0.54);
-  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+  // most of a wide sign canvas is empty: keep only the strip with the text, and stretch the uvs so it still sits
+  // where it did on the full width (clamped edges repeat the empty or background column outside it)
+  const cw = Math.min(w, Math.ceil(g.measureText(text).width) + 16 & ~1);
+  let src = cv;
+  if (cw < w - 32) {
+    src = document.createElement('canvas'); src.width = cw; src.height = h;
+    src.getContext('2d').drawImage(cv, (w - cw) / 2, 0, cw, h, 0, 0, cw, h);
+    cv.width = cv.height = 1;
+  }
+  const t = new THREE.CanvasTexture(src); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+  if (src !== cv) { t.repeat.set(w / cw, 1); t.offset.set(-(w - cw) / 2 / cw, 0); }
   return t;
 }
 
