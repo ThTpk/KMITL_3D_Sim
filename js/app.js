@@ -454,7 +454,7 @@ const disasters = buildDisasters({ scene, group: layers.buildings, meta: buildin
   const sel = document.getElementById('disaster-type'), go = document.getElementById('disaster-go');
   const fix = document.getElementById('disaster-fix'), msg = document.getElementById('disaster-msg');
   sel.innerHTML = '<option value="random">🎲 สุ่ม</option>' + DISASTERS.map((d) => `<option value="${d.id}">${d.th}</option>`).join('');
-  go.addEventListener('click', () => { stopOrbit(); closeInfo(); disasters.trigger(sel.value); });
+  go.addEventListener('click', () => { stopOrbit(); const lead = selectedIdx; closeInfo(); disasters.trigger(sel.value, lead); });
   fix.addEventListener('click', () => { stopOrbit(); disasters.recover(); });
   disasters.onChange((s) => {
     go.disabled = s.busy || s.rebuilding;

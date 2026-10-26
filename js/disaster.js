@@ -141,11 +141,14 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
     candidates.push(idx);
   });
   const alive = () => candidates.filter((i) => !states.get(i)?.destroyed);
+  // the building selected when the disaster was triggered (-1: none); it is hit first, then random ones round it
+  let focus = -1;
+  const isLead = (st) => st.idx === focus;
   // n random buildings near each other (within r of a random first one), so the action stays in one view
   const pickTargets = (n, r = 300) => {
     const all = alive();
     if (!all.length) return [];
-    const s0 = pick(all), [x0, z0] = meta[s0].b.c;
+    const s0 = all.includes(focus) ? focus : pick(all), [x0, z0] = meta[s0].b.c;
     const close = shuffle(all.filter((i) => i !== s0 && Math.hypot(meta[i].b.c[0] - x0, meta[i].b.c[1] - z0) < r));
     return [s0, ...close.slice(0, n - 1)].map(stateOf);
   };
@@ -627,8 +630,10 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
   function route(n, r) {
     const sts = pickTargets(n, r);
     if (!sts.length) return null;
-    const a = rnd() * 6.28, d = [Math.cos(a), Math.sin(a)];
-    sts.sort((p, q) => p.cx * d[0] + p.cz * d[1] - (q.cx * d[0] + q.cz * d[1]));
+    let a = rnd() * 6.28;
+    if (isLead(sts[0]) && sts.length > 1) { const c = centroid(sts.slice(1)); a = Math.atan2(c[1] - sts[0].cz, c[0] - sts[0].cx); }
+    const d = [Math.cos(a), Math.sin(a)], u = (s) => s.cx * d[0] + s.cz * d[1];
+    sts.sort((p, q) => (isLead(q) - isLead(p)) || u(p) - u(q));
     return { sts, d };
   }
 
@@ -823,7 +828,7 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
     const last = sts.pop();
     const K = makeKaiju();
     root.add(K.g);
-    const first = sts[0] || last;
+    const first = sts[0] || last, lead = isLead(first);
     const way = [[first.cx - d[0] * 120, first.cz - d[1] * 120], ...sts.map((s) => [s.cx, s.cz]), [last.cx - d[0] * 75, last.cz - d[1] * 75]];
     const pos = new THREE.Vector2(...way[0]);
     let wi = 1, yaw = Math.atan2(d[0], d[1]), phase = 0, mode = 'walk', mt = 0, t = 0, smashed = 0, beam = null;
@@ -849,7 +854,7 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
         if (mode === 'walk') {
           if (walkTo(way[wi][0], way[wi][1], dt)) { wi++; if (wi >= way.length) { mode = 'charge'; mt = 0; } }
           // stomp what is underfoot
-          if (smashed < 14) for (const st of near(pos.x, pos.y, 20)) if (st !== last) {
+          if (smashed < 14) for (const st of near(pos.x, pos.y, 20)) if (st !== last && (!lead || first.destroyed || st === first)) {
             collapse(st, { dir: [Math.sin(yaw), Math.cos(yaw)], tilt: 0.4 + rnd() * 0.4, push: [Math.sin(yaw) * 10, Math.cos(yaw) * 10], fire: rnd() < 0.3 });
             smashed++;
           }
@@ -1001,7 +1006,7 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
     view(victims, 1.5, 60);
     const shaken = shuffle(alive().filter((i) => !victims.some((v) => v.idx === i))).slice(0, 30).map(stateOf);
     shaken.forEach((st) => { st.ph = rnd() * 6.28; active.add(st); });
-    victims.forEach((st) => { st.at = 1 + rnd() * 5; st.ph = rnd() * 6.28; active.add(st); });
+    victims.forEach((st) => { st.at = isLead(st) ? 1 : 1.6 + rnd() * 4.4; st.ph = rnd() * 6.28; active.add(st); });
     for (let k = 0; k < 4; k++) { const v = pick(victims); crack(v.cx, v.cz, rnd() * 6.28, 60 + rnd() * 100); }
     crack(c[0], c[1], rnd() * 6.28, 160);
     let t = 0;
@@ -1054,7 +1059,7 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
     }
     g.add(junk);
     root.add(g);
-    const first = sts[0], last = sts[sts.length - 1];
+    const first = sts[0], last = sts[sts.length - 1], lead = isLead(first);
     const way = [[first.cx - d[0] * 160, first.cz - d[1] * 160], ...sts.map((s) => [s.cx, s.cz]), [last.cx + d[0] * 180, last.cz + d[1] * 180]];
     let wi = 1, t = 0, ripped = 0;
     const pos = new THREE.Vector2(...way[0]);
@@ -1083,7 +1088,7 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
           puff('dust', gx + Math.cos(a) * 8, 1, gz + Math.sin(a) * 8, -Math.sin(a) * 14 + Math.cos(a) * 4, 3 + rnd() * 5, Math.cos(a) * 14 + Math.sin(a) * 4, { s0: 7, s1: 22, life: 3 });
         }
         shake(0.5);
-        if (ripped < 12) for (const st of near(gx, gz, 20)) {
+        if (ripped < 12) for (const st of near(gx, gz, 20)) if (!lead || first.destroyed || st === first) {
           const a = Math.atan2(st.cz - gz, st.cx - gx);
           collapse(st, { spin: (rnd() < 0.5 ? -1 : 1) * (1 + rnd()), tilt: 0.25, dur: 1.5, lift: 4, push: [-Math.sin(a) * 18, Math.cos(a) * 18] });
           ripped++;
@@ -1097,10 +1102,14 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
   // ---- tsunami ----
   function tsunami() {
     // the wave sweeps a strip over a cluster of buildings, about 700 m across
-    const victims = pickTargets(11, 350);
+    let victims = pickTargets(11, 350);
     if (!victims.length) return null;
-    const a = rnd() * 6.28, d = [Math.cos(a), Math.sin(a)], p = [-d[1], d[0]];
+    let a = rnd() * 6.28;
+    const lead = isLead(victims[0]) && victims[0];
+    if (lead && victims.length > 1) { const c = centroid(victims.slice(1)); a = Math.atan2(c[1] - lead.cz, c[0] - lead.cx); }
+    const d = [Math.cos(a), Math.sin(a)], p = [-d[1], d[0]];
     const U = (s) => s.cx * d[0] + s.cz * d[1], Vv = (s) => s.cx * p[0] + s.cz * p[1];
+    if (lead) victims = victims.filter((s) => s === lead || U(s) - s.R * 0.3 > U(lead) - lead.R * 0.3 + 4);
     const umin = Math.min(...victims.map(U)), umax = Math.max(...victims.map(U)), vmin = Math.min(...victims.map(Vv)) - 120, vmax = Math.max(...victims.map(Vv)) + 120;
     view(victims, 1.4, 60);
     const W = vmax - vmin + 300;
@@ -1177,11 +1186,15 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
       else if (toRebuild) text = `ฟื้นฟูครบ ${toRebuild} อาคารแล้ว 🎉`;
       return { busy, rebuilding: rec, destroyed: n, text };
     },
-    trigger(id) {
+    trigger(id, lead = -1) {
       if (script || api.rebuilding()) return false;
       ensureFx();
       if (id === 'random' || !SCRIPTS[id]) id = pick(DISASTERS).id;
+      // a selected building that is too small for the random pool still counts, so recovery rebuilds it too
+      if (lead >= 0 && runs.has(lead) && meta[lead].b.c && !candidates.includes(lead)) candidates.push(lead);
+      focus = lead;
       const s = SCRIPTS[id]();
+      focus = -1;
       if (!s) return false;
       script = s; scriptId = id; toRebuild = 0;
       notify();
