@@ -1,9 +1,9 @@
-// CE Skill Tree: B.Eng. Computer Engineering 2569 drawn as a game skill tree. Freshy on the left, one line per
-// skill area, required courses placed by the study plan (มคอ.2), electives taken from the registrar's timetables
-// (2568/1–2569/1), careers from the มคอ.2 at the right. Every course counts as taken; clicking one shows what it
-// adds to the 8-skill radar, and Play walks a career path term by term. Skill points per course are our estimate.
+// Skill Tree: one bachelor programme of the Computer Engineering department drawn as a game skill tree
+// (data/skilltree/<id>.json, chosen with ?p=). Freshy on the left, one lane per skill area, required courses placed
+// by the study plan (มคอ.2), electives taken from the registrar's timetables, careers from the มคอ.2 at the right.
+// Every course counts as taken; clicking one shows what it adds to the 8-skill radar against the skill profile of the
+// chosen career, and Play walks that career's path term by term. Skill points and career profiles are our estimate.
 
-const SVGNS = 'http://www.w3.org/2000/svg';
 const $ = (id) => document.getElementById(id);
 const ACC = '#ff6b00';
 
@@ -22,149 +22,110 @@ const IC = {
   start: 'M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21c1-4.5 4-6.5 8-6.5s7 2 8 6.5',
   grad: 'M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5',
 };
-const ROWS = [
-  { name: 'คณิตศาสตร์', en: 'MATHEMATICS', c: '#f5a524', ic: 'math' },
-  { name: 'ปัญญาประดิษฐ์', en: 'MACHINE INTELLIGENCE', c: '#8b5cf6', ic: 'ai' },
-  { name: 'วิศวกรรมข้อมูล', en: 'DATA', c: '#0ea5e9', ic: 'data' },
-  { name: 'การพัฒนาซอฟต์แวร์', en: 'SOFTWARE', c: '#22c55e', ic: 'code' },
-  { name: 'เครือข่ายและระบบ', en: 'NETWORK & SYSTEMS', c: '#14b8a6', ic: 'net' },
-  { name: 'ความปลอดภัยไซเบอร์', en: 'CYBERSECURITY', c: '#ef4444', ic: 'sec' },
-  { name: 'ฮาร์ดแวร์และสถาปัตยกรรม', en: 'HARDWARE', c: '#ec4899', ic: 'hw' },
-  { name: 'โครงงานและการฝึกงาน', en: 'PROJECTS', c: '#ff6b00', ic: 'proj' },
-  { name: 'ภาษาและสังคม', en: 'COMMUNICATION', c: '#6366f1', ic: 'ge' },
-];
-const TERM = ['ปี 1 ภาค 1', 'ปี 1 ภาค 2', 'ปี 2 ภาค 1', 'ปี 2 ภาค 2', 'ปี 3 ภาค 1', 'ปี 3 ภาค 2', 'ปี 3 ภาคฤดูร้อน', 'ปี 4'];
-const RY = (r) => 170 + r * 92;
-const TX = (t, s) => (t === 6 ? 1006 : t === 7 ? 1090 + s * 60 : 190 + t * 136 + s * 62);
 
-// [code, row, term, slot, abbr, th, en, credits, skill points, optional]
-const CORE = [
-  ['01076140', 0, 0, 0, 'CAL 1', 'แคลคูลัส 1', 'Calculus 1', 3, 'math3'],
-  ['01076143', 0, 1, 0, 'DISC', 'โครงสร้างแบบดิสครีต', 'Discrete Structures', 3, 'math2 algo2'],
-  ['01076141', 0, 1, 1, 'CAL 2', 'แคลคูลัส 2', 'Calculus 2', 3, 'math3'],
-  ['01076142', 0, 2, 0, 'LINALG', 'พีชคณิตเชิงเส้น', 'Linear Algebra', 3, 'math3 ai1'],
-  ['01076253', 0, 3, 0, 'STAT', 'ความน่าจะเป็นและสถิติ', 'Probability and Statistics', 3, 'math3 ai2'],
-  ['01076121', 0, 5, 0, 'TOC', 'ทฤษฎีการคำนวณ', 'Theory of Computation', 3, 'math2 algo3'],
-  ['01076641', 1, 4, 0, 'ML/DL', 'การเรียนรู้ของเครื่องและการเรียนรู้เชิงลึกเบื้องต้น', 'Introduction to Machine Learning and Deep Learning', 3, 'ai4 math1'],
-  ['01076002', 3, 0, 0, 'PROG', 'พื้นฐานการเขียนโปรแกรมคอมพิวเตอร์', 'Programming Fundamental', 3, 'sw2 algo2'],
-  ['01076045', 3, 1, 0, 'OOP', 'การเขียนโปรแกรมเชิงวัตถุ', 'Object Oriented Programming', 3, 'sw3 algo1'],
-  ['01076046', 3, 2, 0, 'DSA', 'โครงสร้างข้อมูลและอัลกอริทึม', 'Data Structures and Algorithms', 4, 'algo4 sw1'],
-  ['01076263', 3, 2, 1, 'DB', 'ระบบฐานข้อมูล', 'Database Systems', 3, 'sw3 ai1'],
-  ['01076047', 3, 3, 0, 'WEB', 'การพัฒนาโปรแกรมบนเว็บ', 'Web Application Development', 4, 'sw4'],
-  ['01076048', 3, 3, 1, 'SW DES', 'การออกแบบซอฟต์แวร์', 'Software Design', 3, 'sw3 soft1'],
-  ['01076034', 3, 4, 0, 'SW PROC', 'หลักการของกระบวนการพัฒนาซอฟต์แวร์', 'Principles of Software Development Process', 3, 'sw3 soft2'],
-  ['01076033', 4, 1, 0, 'COMM', 'พื้นฐานของระบบการสื่อสาร', 'Fundamentals of Communication Systems', 3, 'net3 math1'],
-  ['01076054', 4, 2, 0, 'NET', 'เครือข่ายคอมพิวเตอร์', 'Computer Networks', 4, 'net4'],
-  ['01076055', 4, 3, 0, 'INET', 'มาตรฐานและเทคโนโลยีเครือข่าย', 'Internetworking Standards and Technologies', 4, 'net4'],
-  ['01076011', 4, 4, 0, 'OS', 'ระบบปฏิบัติการ', 'Operating Systems', 3, 'net2 hw1 sw1'],
-  ['01076118', 4, 4, 1, 'SYS ADM', 'การดูแลแพลทฟอร์มระบบ', 'System Platform Administration', 3, 'net3 sec1'],
-  ['01076056', 5, 5, 0, 'CYBER', 'ความรู้เบื้องต้นเกี่ยวกับความมั่นคงปลอดภัยไซเบอร์', 'Introduction to Cyber Security', 3, 'sec3 net1'],
-  ['01006020', 6, 0, 0, 'PHY 1', 'ฟิสิกส์ทั่วไป 1', 'General Physics 1', 3, 'math2 hw1'],
-  ['01076003', 6, 1, 0, 'CIRCUIT', 'วงจรไฟฟ้าและอิเล็กทรอนิกส์', 'Circuits and Electronics', 4, 'hw4'],
-  ['01076006', 6, 2, 0, 'DIGITAL', 'พื้นฐานระบบดิจิตอล', 'Digital System Fundamentals', 4, 'hw4'],
-  ['01076114', 6, 3, 0, 'COMP ARCH', 'องค์ประกอบและสถาปัตยกรรมคอมพิวเตอร์', 'Computer Organization and Architecture', 3, 'hw4'],
-  ['01076049', 6, 4, 0, 'MCU', 'การประยุกต์และพัฒนาไมโครคอนโทรลเลอร์', 'Microcontroller Application and Development', 4, 'hw3 sw1'],
-  ['01076020', 7, 0, 0, 'INTRO CE', 'วิศวกรรมคอมพิวเตอร์เบื้องต้น', 'Introduction to Computer Engineering', 3, 'soft1 sw1 hw1'],
-  ['90642036', 7, 0, 1, 'PRE-ENG', 'เตรียมความพร้อมสำหรับวิศวกร', 'Pre-Activities for Engineers', 1, 'soft2'],
-  ['90641004', 7, 1, 0, 'TEAM 1', 'โครงงานกลุ่ม 1', 'Team-Project 1', 1, 'soft2'],
-  ['90641005', 7, 3, 0, 'TEAM 2', 'โครงงานกลุ่ม 2', 'Team-Project 2', 1, 'soft2'],
-  ['01076016', 7, 4, 0, 'PREP', 'การเตรียมโครงงานวิศวกรรมคอมพิวเตอร์', 'Computer Engineering Project Preparation', 2, 'soft2 sw1'],
-  ['90641006', 7, 5, 0, 'TEAM 3', 'โครงงานกลุ่ม 3', 'Team-Project 3', 1, 'soft2'],
-  ['01076311', 7, 5, 1, 'PROJ 1', 'โครงงาน 1', 'Project 1', 3, 'soft2 sw2'],
-  ['01006004', 7, 6, 0, 'INTERN', 'การฝึกงานอุตสาหกรรม', 'Industrial Training', 0, 'soft3 sw1'],
-  ['01076312', 7, 7, 0, 'PROJ 2', 'โครงงาน 2', 'Project 2', 3, 'soft2 sw2'],
-  ['01006029', 7, 7, 1, 'CO-OP', 'สหกิจศึกษา', 'Co-operative Education', 6, 'soft3 sw2', true],
-  ['90641007', 8, 0, 0, 'DIGI CIT', 'พลเมืองดิจิทัล', 'Digital Citizen', 3, 'soft2 sec1'],
-  ['90642118', 8, 1, 0, 'BIZ APP', 'โปรแกรมคอมพิวเตอร์ประยุกต์ทางธุรกิจ', 'Application Software for Business', 2, 'soft1 sw1'],
-  ['90641009', 8, 2, 0, 'ENG 1', 'ทักษะการสื่อสารภาษาอังกฤษระหว่างวัฒนธรรม 1', 'Intercultural Communication Skills in English 1', 3, 'soft3'],
-  ['90641010', 8, 3, 0, 'ENG 2', 'ทักษะการสื่อสารภาษาอังกฤษระหว่างวัฒนธรรม 2', 'Intercultural Communication Skills in English 2', 3, 'soft3'],
-  ['01076038', 8, 5, 0, 'SOCIETY', 'วิศวกรรมคอมพิวเตอร์กับสังคมและความยั่งยืน', 'Computer Engineering, Society and Sustainability', 3, 'soft3'],
-];
+const params = new URLSearchParams(location.search);
+const PID = /^[a-z0-9-]+$/.test(params.get('p') || '') ? params.get('p') : 'cpe-2569';
+let P;
+try {
+  P = await fetch(`data/skilltree/${PID}.json`).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); });
+} catch {
+  document.body.innerHTML = '<p style="padding:24px">ไม่พบข้อมูลหลักสูตรนี้ <a href="programs.html">กลับไปเลือกหลักสูตร</a></p>';
+  throw new Error(`no skill tree for ${PID}`);
+}
+Object.assign(IC, P.icons || {});
+const ROWS = P.rows, TERM = P.terms;
 
-// [code, row, index, abbr, th, en, credits, points, timetable terms, enrolled, note]
-const ELECTIVES = [
-  ['01076582', 1, 0, 'AI', 'ปัญญาประดิษฐ์', 'Artificial Intelligence', 3, 'ai3 algo1', '2568/2, 2569/1', 39, ''],
-  ['01076533', 1, 1, 'DEEP L', 'การเรียนรู้เชิงลึก', 'Deep Learning', 3, 'ai4 math1', '2568/2', 12, 'หลักสูตร 2569 ใช้รหัส 01076642'],
-  ['01076567', 1, 2, 'IMG PROC', 'การประมวลผลภาพ', 'Image Processing', 3, 'ai3 math1', '2568/1, 2568/2, 2569/1', 28, 'หลักสูตร 2569 ใช้รหัส 01076643'],
-  ['01076646', 1, 3, 'LLM', 'แบบจำลองภาษาขนาดใหญ่', 'Large Language Model', 3, 'ai4 sw1', '2568/1, 2568/2, 2569/1', 10, ''],
-  ['01076645', 1, 4, 'EDGE AI', 'ปัญญาประดิษฐ์สำหรับการประมวลผลแบบ Edge Computing', 'Artificial Intelligence for Edge Computing', 3, 'ai3 hw1', '2568/1, 2569/1', 4, 'หลักสูตร 2569 ใช้รหัส 01076648'],
-  ['01076598', 2, 0, 'ANALYTICS', 'การวิเคราะห์ข้อมูลเบื้องต้น', 'Introduction to Data Analytics', 3, 'ai3 math1', '2569/1', 42, ''],
-  ['01076595', 2, 1, 'SEARCH', 'การสืบค้นสารสนเทศและการค้นหาเว็บ', 'Information Storage and Web Search', 3, 'ai2 algo1 sw1', '2568/1, 2568/2, 2569/1', 123, ''],
-  ['01076566', 2, 2, 'MEDIA', 'ระบบสื่อผสม', 'Multimedia Systems', 3, 'ai2 sw1 hw1', '2568/2', 27, ''],
-  ['01076564', 3, 0, 'ALGO', 'การออกแบบและวิเคราะห์อัลกอริทึม', 'Design and Analysis of Algorithms', 3, 'algo4 math1', '2569/1', 19, ''],
-  ['01076568', 3, 1, 'HCI', 'การปฏิสัมพันธ์ระหว่างมนุษย์และคอมพิวเตอร์', 'Human Computer Interaction', 3, 'sw2 soft2', '2568/1, 2568/2, 2569/1', 56, ''],
-  ['01076583', 3, 2, 'GRAPHICS', 'คอมพิวเตอร์กราฟิกส์', 'Computer Graphics', 3, 'sw2 math2', '2569/1', 21, ''],
-  ['01076597', 3, 3, 'AR', 'โลกเสมือนผสานโลกจริง', 'Augmented Reality', 3, 'sw2 hw1 ai1', '2568/2', 26, ''],
-  ['01076422', 3, 4, 'IT BIZ', 'การประกอบการและการจัดการด้านเทคโนโลยีสารสนเทศ', 'IT Entrepreneurship and Management', 3, 'soft3 sw1', '2568/2', 15, ''],
-  ['01076616', 4, 0, 'CLOUD', 'สถาปัตยกรรมคลาวด์เบื้องต้น', 'Introduction to Cloud Architecture', 3, 'net3 sw1', '2568/1, 2568/2', 208, 'ในตารางสอนใช้รหัส 01076043 + 01076044 (ปฏิบัติ)'],
-  ['01076627', 5, 0, 'SEC ARCH', 'สถาปัตยกรรมและการบริหารความมั่นคงไอซีที', 'ICT Security Architecture and Management', 3, 'sec4', '2568/1, 2569/1', 96, ''],
-  ['01076628', 5, 1, 'SEC AUDIT', 'การประเมินความมั่นคงเทคโนโลยีสารสนเทศ', 'Information Technology Security Assessment', 3, 'sec4', '2568/2', 14, ''],
-  ['01076629', 5, 2, 'PENTEST', 'การทดสอบเจาะระบบและการแฮกแบบมีจริยธรรมเบื้องต้น', 'Basic Penetration Testing and Ethical Hacking', 3, 'sec4 net1', '2568/2', 63, ''],
-  ['01076420', 6, 0, 'HDL', 'การออกแบบดิจิตอลขั้นสูงโดยใช้เฮชดีแอล', 'Advanced Digital Design using HDL', 3, 'hw4', '2568/2', 4, ''],
-  ['01076411', 6, 1, 'ROBOT', 'การพัฒนาหุ่นยนต์ขนาดเล็ก', 'Micro Robot Development', 3, 'hw3 sw1', '2568/1', 10, ''],
-  ['01076418', 6, 2, 'HPC', 'การประมวลผลสมรรถนะสูง', 'High Performance Computing', 3, 'hw2 algo2', '2569/1', 42, ''],
-];
-
-// [id, x, y, label, th, en, icon, electives on this path, desc]
-const CAREERS = [
-  ['software', 1440, 446, 'นักพัฒนาซอฟต์แวร์', 'ผู้พัฒนาซอฟต์แวร์ / วิศวกรซอฟต์แวร์', 'Software Developer / Software Engineer', 'code', ['01076564', '01076568', '01076583', '01076597', '01076422'], 'วิเคราะห์ความต้องการ ออกแบบ เขียนโค้ด ทดสอบ แก้ข้อบกพร่อง และดูแลซอฟต์แวร์ให้ทำงานได้ดี'],
-  ['ai', 1440, 308, 'วิศวกร AI', 'วิศวกรปัญญาประดิษฐ์', 'AI Engineer', 'ai', ['01076582', '01076533', '01076567', '01076646', '01076645', '01076598', '01076595', '01076566'], 'พัฒนาและฝึกโมเดล Machine Learning ประมวลผลภาษาและภาพ แล้วนำระบบ AI ไปใช้แก้ปัญหาจริง'],
-  ['devops', 1526, 492, 'DevOps / Cloud', 'วิศวกร DevOps / วิศวกร Cloud', 'DevOps Engineer / Cloud Engineer', 'net', ['01076616', '01076564', '01076568', '01076583', '01076597', '01076422'], 'สร้างและดูแล CI/CD pipeline โครงสร้างพื้นฐานบนคลาวด์ container และระบบอัตโนมัติ'],
-  ['network', 1440, 538, 'วิศวกรเครือข่าย', 'วิศวกรเครือข่าย', 'Network Engineer', 'net', ['01076616'], 'ออกแบบ ติดตั้ง และบริหารเครือข่ายคอมพิวเตอร์ แก้ปัญหาการเชื่อมต่อ และดูแลความปลอดภัยของเครือข่าย'],
-  ['system', 1526, 584, 'วิศวกรระบบ', 'วิศวกรควบคุมดูแลระบบคอมพิวเตอร์', 'System Engineer', 'hw', ['01076616'], 'ดูแลเซิร์ฟเวอร์และระบบปฏิบัติการขององค์กร สำรองและกู้คืนข้อมูล จัดการสิทธิ์การเข้าถึง'],
-  ['cyber', 1440, 630, 'วิศวกรความปลอดภัย', 'วิศวกรระบบความปลอดภัยคอมพิวเตอร์', 'Cybersecurity Engineer', 'sec', ['01076627', '01076628', '01076629'], 'ประเมินช่องโหว่ ติดตั้งระบบป้องกันการโจมตี ตรวจจับการบุกรุก และสอบสวนเหตุการณ์ด้านความมั่นคงปลอดภัย'],
-  ['hardware', 1440, 722, 'วิศวกรฮาร์ดแวร์ / ฝังตัว', 'วิศวกรฮาร์ดแวร์ / วิศวกรระบบฝังตัว', 'Hardware Engineer / Embedded Systems Engineer', 'hw', ['01076420', '01076411', '01076418'], 'ออกแบบวงจรอิเล็กทรอนิกส์ เขียนโปรแกรมไมโครคอนโทรลเลอร์ และผสานฮาร์ดแวร์กับซอฟต์แวร์ในอุปกรณ์ IoT'],
-  ['computer', 1440, 814, 'วิศวกรคอมพิวเตอร์', 'วิศวกรคอมพิวเตอร์', 'Computer Engineer', 'grad', [], 'ออกแบบ พัฒนา และบำรุงรักษาระบบคอมพิวเตอร์ทั้งฮาร์ดแวร์และซอฟต์แวร์ ครอบคลุมวิชาบังคับทั้งหลักสูตร'],
-];
+// ---------- layout ----------
+// lanes share the height around Freshy; a term column is as wide as its busiest lane, then come the elective zone
+// and two career columns; everything narrows together when a long plan would run into the panel
+const GAP = Math.min(92, 736 / Math.max(1, ROWS.length - 1));
+const RY = (r) => 538 - (GAP * (ROWS.length - 1)) / 2 + r * GAP;
+const slots = TERM.map((_, t) => Math.max(1, ...ROWS.map((_, r) => P.core.filter((c) => c.row === r && c.term === t).length)));
+const maxEl = Math.max(1, ...ROWS.map((_, r) => P.electives.filter((e) => e.row === r).length));
+const span = slots.reduce((s, n) => s + n * 62 + 12, 0) - 74;
+const K = Math.min(1, 1066 / (span + (maxEl - 1) * 60));
+const SP = 62 * K, ESP = 60 * K;
+const NS = Math.min(1, K / 0.9); // course nodes shrink a little on long plans so neighbours keep a gap
+const colW = slots.map((n) => (n * 62 + 12) * K);
+const colX = [];
+TERM.reduce((x, _, t) => { colX.push(x); return x + colW[t]; }, 190);
+const EL0 = 190 + span * K + 84;
+const CA = EL0 + (maxEl - 1) * ESP + 110, CB = CA + 86, JOIN = CA - 45;
 
 // ---------- build the graph ----------
 const pts = (s) => {
   const o = Object.fromEntries(AX.map((k) => [k, 0]));
-  for (const p of s.split(' ')) { const m = p.match(/^([a-z]+)(\d+)$/); if (m) o[m[1]] = +m[2]; }
+  for (const p of (s || '').split(' ')) { const m = p.match(/^([a-z]+)(\d+)$/); if (m && m[1] in o) o[m[1]] = +m[2]; }
   return o;
 };
 const N = {};
 const ids = [];
 const add = (o) => { N[o.id] = o; ids.push(o.id); };
-add({ id: 'start', kind: 'start', row: 4, x: 62, y: 538, ab: 'FRESHY', th: 'Freshy — นักศึกษาปี 1', en: 'Freshman, Computer Engineering', cr: 0, p: pts(''), code: 'START' });
-for (const a of CORE) add({ id: a[0], code: a[0], kind: 'core', row: a[1], t: a[2], s: a[3], x: TX(a[2], a[3]), y: RY(a[1]), ab: a[4], th: a[5], en: a[6], cr: a[7], p: pts(a[8]), opt: !!a[9] });
-for (const a of ELECTIVES) add({ id: a[0], code: a[0], kind: 'elec', row: a[1], idx: a[2], x: 1090 + a[2] * 60, y: RY(a[1]), ab: a[3], th: a[4], en: a[5], cr: a[6], p: pts(a[7]), terms: a[8], n: a[9], note: a[10] });
+add({ id: 'start', kind: 'start', x: 62, y: 538, ab: 'FRESHY', th: 'Freshy — นักศึกษาปี 1', en: `Freshman, ${P.en}`, cr: 0, p: pts(''), code: 'START' });
+const seen = {};
+for (const c of P.core) {
+  const k = `${c.row}:${c.term}`, s = (seen[k] = (seen[k] ?? -1) + 1);
+  add({ ...c, id: c.code, kind: 'core', t: c.term, s, x: colX[c.term] + s * SP, y: RY(c.row), ab: c.abbr, p: pts(c.pts), opt: !!c.optional });
+}
+const elIdx = {};
+for (const e of P.electives) {
+  const idx = (elIdx[e.row] = (elIdx[e.row] ?? -1) + 1);
+  add({ ...e, id: e.code, kind: 'elec', idx, x: EL0 + idx * ESP, y: RY(e.row), ab: e.abbr, p: pts(e.pts) });
+}
 const coreIds = ids.filter((id) => N[id].kind === 'core' && !N[id].opt);
-for (const a of CAREERS) add({ id: a[0], code: 'CAREER', kind: 'career', x: a[1], y: a[2], ab: a[3], th: a[4], en: a[5], ic: a[6], plan: a[7], desc: a[8], cr: 0, p: pts('') });
+
+// careers sit level with the lanes they come from, in two columns so close ones don't collide
+const taken = [];
+const careerIds = P.careers.map((c) => c.id);
+for (const c of P.careers.map((c, i) => ({ ...c, i, ty: (c.rows || []).reduce((s, r) => s + RY(r), 0) / Math.max(1, (c.rows || []).length) || 538 }))
+  .sort((a, b) => a.ty - b.ty || a.i - b.i)) {
+  const free = (x, y) => !taken.some((o) => o.x === x && Math.abs(o.y - y) < 84);
+  let x = CA, y = Math.min(906, Math.max(170, c.ty));
+  if (!free(CA, y)) { if (free(CB, y)) x = CB; else while (!free(CA, y)) y += 46; }
+  taken.push({ x, y });
+  const need = pts(c.profile);
+  add({ ...c, code: 'CAREER', kind: 'career', x, y, ab: c.label, ic: c.icon, plan: c.electives || [], cr: 0, p: pts(''),
+    need: c.profile ? AX.map((k) => need[k]) : null });
+}
 
 const rowCore = {}, rowEl = {};
 for (let r = 0; r < ROWS.length; r++) {
   rowCore[r] = ids.filter((id) => N[id].kind === 'core' && N[id].row === r).sort((a, b) => N[a].x - N[b].x);
-  rowEl[r] = ids.filter((id) => N[id].kind === 'elec' && N[id].row === r).sort((a, b) => N[a].idx - N[b].idx);
+  rowEl[r] = ids.filter((id) => N[id].kind === 'elec' && N[id].row === r);
 }
 
-// lines: rows start at Freshy's trunk or branch off a course in another row; elective rails hang off a row's base course
-const BASE = { 1: '01076641', 2: '01076263', 3: '01076034', 4: '01076118', 5: '01076056', 6: '01076049' };
-const half = (n) => (n.kind === 'career' ? 32 : n.kind === 'elec' ? 22 : n.kind === 'start' ? 38 : 24);
-const E = [{ d: 'M100 538 H130 M130 170 V906', always: true }];
-for (const r of [0, 3, 4, 6, 7, 8]) { const f = N[rowCore[r][0]]; E.push({ d: `M130 ${f.y} H${f.x - half(f)}`, t: f.id }); }
+// lines: lanes start at Freshy's trunk unless a link leads into them; elective rails hang off the lane's last course
+const size = (n) => (n.kind === 'career' ? 64 : n.kind === 'start' ? 76 : (n.kind === 'elec' ? 44 : 48) * NS);
+const half = (n) => size(n) / 2;
+const ys = ROWS.map((_, r) => RY(r));
+const E = [{ d: `M100 538 H130 M130 ${Math.min(...ys, 538)} V${Math.max(...ys, 538)}`, always: true }];
+const linked = new Set();
+for (const [a, b] of P.links || []) {
+  const f = N[a], t = N[b];
+  if (!f || !t) continue;
+  linked.add(b);
+  E.push({ d: `M${f.x} ${f.y + (t.y > f.y ? half(f) : -half(f))} V${t.y} H${t.x - half(t)}`, t: b, any: t.kind === 'elec' ? rowEl[t.row] : null });
+}
 for (let r = 0; r < ROWS.length; r++) {
-  const c = rowCore[r];
+  const c = rowCore[r], els = rowEl[r].map((id) => N[id]);
+  if (c.length && !linked.has(c[0])) { const f = N[c[0]]; E.push({ d: `M130 ${f.y} H${f.x - half(f)}`, t: f.id }); }
   for (let i = 1; i < c.length; i++) { const a = N[c[i - 1]], b = N[c[i]]; E.push({ d: `M${a.x + half(a)} ${a.y} H${b.x - half(b)}`, a: a.id, b: b.id }); }
+  if (!els.length) continue;
+  if (!linked.has(els[0].id)) {
+    const from = c.length ? N[c[c.length - 1]] : null;
+    E.push({ d: `M${from ? from.x + half(from) : 130} ${els[0].y} H${els[0].x - half(els[0])}`, any: els.map((n) => n.id) });
+  }
+  for (let i = 1; i < els.length; i++) E.push({ d: `M${els[i - 1].x + half(els[i])} ${els[i].y} H${els[i].x - half(els[i])}`, any: els.slice(i).map((n) => n.id) });
 }
-{
-  const st = N['01076253'], ml = N['01076641'], nt = N['01076054'], cy = N['01076056'];
-  E.push({ d: `M${st.x} ${st.y + 24} V${ml.y} H${ml.x - 24}`, t: ml.id });
-  E.push({ d: `M${nt.x} ${nt.y + 24} V${cy.y} H${cy.x - 24}`, t: cy.id });
+for (const cid of careerIds) {
+  const c = N[cid];
+  for (const r of c.rows || []) {
+    const list = rowEl[r].length ? rowEl[r] : rowCore[r];
+    if (!list.length) continue;
+    const from = N[list[list.length - 1]], x0 = from.x + half(from);
+    E.push({ d: from.y === c.y && c.x === CA ? `M${x0} ${from.y} H${c.x - 32}` : `M${x0} ${from.y} H${JOIN} V${c.y} H${c.x - 32}`, t: cid });
+  }
 }
-for (const r of [1, 2, 3, 4, 5, 6]) {
-  const els = rowEl[r].map((id) => N[id]), b = N[BASE[r]];
-  E.push({ d: r === 2 ? `M${b.x} ${b.y - 24} V${els[0].y} H${els[0].x - 22}` : `M${b.x + 24} ${b.y} H${els[0].x - 22}`, any: els.map((n) => n.id) });
-  for (let i = 1; i < els.length; i++) E.push({ d: `M${els[i - 1].x + 22} ${els[i].y} H${els[i].x - 22}`, any: els.slice(i).map((n) => n.id) });
-}
-const lastOf = (r) => N[rowEl[r][rowEl[r].length - 1]];
-const toCareer = (from, cid) => {
-  const c = N[cid], x0 = from.x + half(from);
-  return from.y === c.y ? `M${x0} ${from.y} H${c.x - 32}` : `M${x0} ${from.y} H1395 V${c.y} H${c.x - 32}`;
-};
-for (const [r, cid] of [[1, 'ai'], [2, 'ai'], [3, 'software'], [3, 'devops'], [4, 'devops'], [4, 'network'], [4, 'system'], [5, 'cyber'], [6, 'hardware']]) E.push({ d: toCareer(lastOf(r), cid), t: cid });
-E.push({ d: toCareer(N['01006029'], 'computer'), t: 'computer' });
-E.push({ d: toCareer(N['01076038'], 'computer'), t: 'computer' });
 
 // an axis is full at all core courses plus the three strongest electives for it
 const MAX = Object.fromEntries(AX.map((k) => {
@@ -183,23 +144,31 @@ const planFor = (cid) => ['start'].concat(
 // courses before `id` on the path; an elective off the path comes after all core courses
 const before = (id, plan) => { const i = plan.indexOf(id); return i >= 0 ? plan.slice(0, i) : coreIds.slice(); };
 const after = (id, plan) => (N[id].kind === 'career' ? vec(plan) : N[id].kind === 'start' ? vec([]) : vec(before(id, plan).concat([id])));
+// what the job asks for; a career without a profile falls back to what its path gives
+const needOf = (cid) => N[cid].need || vec(planFor(cid));
 
 // ---------- static DOM ----------
 const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
 const svgIcon = (d, cls = '') => `<svg class="${cls}" width="24" height="24" aria-hidden="true"><path d="${d}"/></svg>`;
 const colorOf = (n) => (n.kind === 'career' || n.kind === 'start' ? ACC : ROWS[n.row].c);
-const iconOf = (n) => (n.kind === 'career' ? IC[n.ic] : n.kind === 'start' ? IC.start : IC[ROWS[n.row].ic]);
+const iconOf = (n) => IC[n.kind === 'career' ? n.ic : n.kind === 'start' ? 'start' : ROWS[n.row].ic] || IC.grad;
 
-const bands = [];
-for (let t = 0; t < 6; t++) bands.push([190 + t * 136 - 36, 136, TERM[t], 'band']);
-bands.push([970, 80, 'ฤดูร้อน', 'band'], [1050, 335, 'ปี 3–4 · วิชาเลือก', 'band el'], [1385, 195, 'สายอาชีพ', 'band ca']);
+document.title = `${P.th} · Skill Tree | KMITL 3D`;
+$('h-th').textContent = `Skill Tree · ${P.th}`;
+$('h-sub').textContent = `เส้นทางจาก Freshy สู่สายอาชีพ · ${P.degree} ${P.kind} พ.ศ. ${P.year}`;
+const src = $('src'), link = el('a');
+link.href = P.source.url; link.target = '_blank'; link.rel = 'noopener'; link.textContent = P.source.label;
+src.append('วิชาบังคับ: ', link, ` จัดวางตามแผนการศึกษา · วิชาเลือก: ${P.timetable ? `คัดจากตารางสอนสำนักทะเบียน สจล. ภาค ${P.timetable}` : 'จาก มคอ.2'} · อาชีพจาก มคอ.2 · เส้นเชื่อมเรียงตามแผนการเรียน ไม่ใช่วิชาบังคับก่อนอย่างเป็นทางการ · คะแนนทักษะของวิชาและโปรไฟล์ทักษะของอาชีพเป็นการประมาณเพื่อการแสดงผล`);
+
+const endX = colX[TERM.length - 1] + colW[TERM.length - 1] - 36;
+const bands = TERM.map((label, t) => [colX[t] - 36, colW[t], label.includes('ฤดูร้อน') ? 'ฤดูร้อน' : label, 'band']);
+bands.push([endX, EL0 - 40 - endX, '', 'band'], [EL0 - 40, JOIN - 10 - (EL0 - 40), 'วิชาเลือก', 'band el'], [JOIN - 10, 1585 - JOIN, 'สายอาชีพ', 'band ca']);
 for (const [l, w, label, cls] of bands) { const b = el('div', cls, `<span>${label}</span>`); b.style.left = `${l}px`; b.style.width = `${w}px`; $('bands').append(b); }
 
-const LX = { 1: 710, 2: 540, 5: 846 };
 ROWS.forEach((r, i) => {
-  const first = rowCore[i].length ? N[rowCore[i][0]] : N[rowEl[i][0]];
+  const first = rowCore[i].length ? N[rowCore[i][0]] : null;
   const lab = el('div', 'rl', `${r.name}<i>${r.en}</i>`);
-  Object.assign(lab.style, { left: `${LX[i] || first.x - 24}px`, top: `${RY(i) - 52}px` });
+  Object.assign(lab.style, { left: `${first ? first.x - 24 : 160}px`, top: `${RY(i) - Math.min(50, GAP - 40)}px` });
   lab.style.setProperty('--c', r.c);
   $('rowlabels').append(lab);
 });
@@ -207,7 +176,7 @@ ROWS.forEach((r, i) => {
 const nodeEl = {};
 for (const id of ids) {
   const n = N[id];
-  const w = n.kind === 'career' ? 64 : n.kind === 'elec' ? 44 : n.kind === 'start' ? 76 : 48;
+  const w = size(n);
   const b = el('button', `nd ${n.kind} on`, `<span class="fr">${svgIcon(iconOf(n), 'ico')}</span><span class="burst"></span><span class="ab"></span>`);
   b.querySelector('.ab').textContent = n.ab;
   b.title = n.th;
@@ -219,8 +188,8 @@ for (const id of ids) {
   nodeEl[id] = b;
 }
 
-for (const id of ids.filter((k) => N[k].kind === 'career')) {
-  const o = el('option'); o.value = id; o.textContent = id === 'computer' ? 'วิศวกรคอมพิวเตอร์ (วิชาบังคับครบหลักสูตร)' : N[id].th; $('goal').append(o);
+for (const id of careerIds) {
+  const o = el('option'); o.value = id; o.textContent = N[id].plan.length ? N[id].th : `${N[id].th} (วิชาบังคับครบหลักสูตร)`; $('goal').append(o);
 }
 
 const angle = (i) => ((-90 + i * 45) * Math.PI) / 180;
@@ -240,35 +209,35 @@ const barEls = AXN.map((name) => {
 });
 
 // ---------- state ----------
-const params = new URLSearchParams(location.search);
-const S = { sel: 'start', career: N[params.get('career')]?.kind === 'career' ? params.get('career') : 'software', cursor: -1, timer: 0 };
+const S = { sel: 'start', career: N[params.get('career')]?.kind === 'career' ? params.get('career') : careerIds.find((id) => N[id].plan.length) || careerIds[0], cursor: -1, timer: 0 };
 let shown = vec([]), raf = 0;
 
-function draw(v, bef, tg) {
+// v: main polygon and bars; gain: per-axis part of the bar drawn blue; tg: the grey target marks
+function draw(v, gain, tg) {
   $('r-cur').setAttribute('points', poly(v));
   barEls.forEach((b, i) => {
-    const c = v[i];
-    let al = c, aw = 0;
-    if (bef) { aw = Math.min(Math.max(0, after(S.sel, planFor(S.career))[i] - bef[i]), c); al = Math.max(0, c - aw); }
+    const c = v[i], aw = gain ? Math.min(gain[i], c) : 0;
     b.c.style.width = `${c.toFixed(1)}%`;
-    b.a.style.left = `${al.toFixed(1)}%`;
+    b.a.style.left = `${(c - aw).toFixed(1)}%`;
     b.a.style.width = `${aw.toFixed(1)}%`;
     b.g.style.left = `${Math.min(99, tg[i]).toFixed(1)}%`;
   });
 }
 
-function tweenTo(target, bef, tg) {
+function tweenTo(target, gain, tg) {
   cancelAnimationFrame(raf);
   const from = shown.slice(), t0 = performance.now();
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const step = (now) => {
     const k = reduce ? 1 : Math.min(1, (now - t0) / 520), e = 1 - (1 - k) ** 3;
     shown = from.map((v, i) => v + (target[i] - v) * e);
-    draw(shown, bef, tg);
+    draw(shown, gain, tg);
     if (k < 1) raf = requestAnimationFrame(step);
   };
   raf = requestAnimationFrame(step);
 }
+
+const top3 = (v) => AX.map((_, i) => [AXN[i], v[i]]).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([nm]) => nm).join(', ');
 
 function render() {
   const plan = planFor(S.career);
@@ -298,55 +267,62 @@ function render() {
   $('play-lbl').textContent = playing ? 'หยุด' : 'เล่นเส้นทาง';
   $('play-ico').setAttribute('d', playing ? 'M8 5v14M16 5v14' : 'M7 4l13 8-13 8z');
 
-  // panel
+  // panel: a course shows skills after it (orange) and before it (blue) against the chosen career's profile (grey);
+  // a career shows the skills the job asks for (orange) against what its path gives by graduation (blue)
   const n = N[S.sel];
   const isCourse = n.kind === 'core' || n.kind === 'elec';
+  const isCareer = n.kind === 'career';
   const aft = after(S.sel, plan);
   const bef = isCourse ? vec(before(S.sel, plan)) : null;
-  const tg = vec(plan);
+  const need = needOf(isCareer ? S.sel : S.career);
+  const main = isCareer ? need : aft, alt = isCareer ? aft : bef;
   $('p-pic').style.setProperty('--c', colorOf(n));
   $('p-ico').setAttribute('d', iconOf(n));
-  $('p-code').textContent = n.kind === 'career' ? n.en : n.code;
+  $('p-code').textContent = isCareer ? n.en : n.code;
   $('p-th').textContent = n.th;
-  $('p-en').textContent = n.kind === 'career' ? 'สายอาชีพปลายทาง' : n.en;
+  $('p-en').textContent = isCareer ? 'สายอาชีพปลายทาง' : n.en;
   const gains = bef ? AX.map((k, i) => [AXN[i], aft[i] - bef[i]]).filter(([, d]) => d > 0.05).sort((a, b) => b[1] - a[1]) : [];
   const gainTxt = gains.length ? `เพิ่มทักษะ: ${gains.map(([nm, d]) => `${nm} +${Math.round(d)}%`).join(' · ')}` : '';
   let meta, status = '', req = [], hint;
   if (n.kind === 'start') {
-    meta = 'จุดเริ่มต้นของทุกเส้นทาง เส้นจาก Freshy แตกออกเป็นสายทักษะ 9 สาย ปลายสุดของแต่ละสายคืออาชีพที่หลักสูตรระบุไว้ใน มคอ.2';
+    meta = `จุดเริ่มต้นของทุกเส้นทาง เส้นจาก Freshy แตกออกเป็นสายทักษะ ${ROWS.length} สาย ปลายสุดของแต่ละสายคืออาชีพที่หลักสูตรระบุไว้ใน มคอ.2`;
     status = 'เลือกเส้นทางอาชีพด้านบน แล้วกด “เล่นเส้นทาง” เพื่อดูทักษะเติบโตทีละภาคเรียน หรือคลิกวิชาใดก็ได้เพื่อดูว่าเพิ่มทักษะด้านใด';
-    hint = 'เรดาร์แสดงทักษะ 8 ด้านที่สะสมตามลำดับการเรียน เส้นประสีเทาคือโปรไฟล์ทักษะเมื่อจบตามเส้นทางอาชีพที่เลือก';
-  } else if (n.kind === 'career') {
+    hint = 'เรดาร์แสดงทักษะ 8 ด้านที่สะสมตามลำดับการเรียน เส้นประสีเทาคือทักษะที่อาชีพเป้าหมายต้องการ';
+  } else if (isCareer) {
     meta = n.desc;
-    status = n.plan.length ? `เส้นทางนี้ = วิชาบังคับทั้งหลักสูตร + วิชาเลือก ${n.plan.length} วิชา` : 'เส้นทางนี้ = วิชาบังคับทั้งหลักสูตร';
+    status = `ทักษะหลักของอาชีพนี้: ${top3(need)} · เส้นทางนี้ = วิชาบังคับทั้งหลักสูตร${n.plan.length ? ` + วิชาเลือก ${n.plan.length} วิชา` : ''}`;
     req = n.plan.map((id) => `• ${N[id].th}`);
-    hint = 'อาชีพและกลุ่มวิชาเลือกที่เกี่ยวข้องอ้างอิงจาก มคอ.2';
+    hint = 'อาชีพและกลุ่มวิชาเลือกที่เกี่ยวข้องอ้างอิงจาก มคอ.2 ระดับทักษะที่อาชีพต้องการเป็นการประมาณ';
   } else if (n.kind === 'core') {
-    meta = `วิชาบังคับ · ${n.cr} หน่วยกิต · ${TERM[n.t]} · ที่มา มคอ.2 ปรับปรุง 2569${n.opt ? ' · เส้นทางเลือกในภาคการศึกษาสุดท้าย' : ''}`;
+    meta = `วิชาบังคับ · ${n.cr} หน่วยกิต · ${TERM[n.t]} · ที่มา มคอ.2 ${P.kind} ${P.year}${n.opt ? ' · เส้นทางเลือกในภาคการศึกษาสุดท้าย' : ''}`;
     status = gainTxt;
-    hint = 'แถบสีฟ้าคือส่วนที่วิชานี้เพิ่มจากทักษะที่สะสมมาก่อนหน้า';
+    hint = 'แถบสีฟ้าคือส่วนที่วิชานี้เพิ่มจากทักษะที่สะสมมาก่อนหน้า ขีดดำคือระดับที่อาชีพเป้าหมายต้องการ';
   } else {
-    meta = `วิชาเลือกเฉพาะสาขา · ${n.cr} หน่วยกิต · ตารางสอนภาค ${n.terms} · ผู้ลงทะเบียนรวม ${n.n} คน${n.note ? ` · ${n.note}` : ''}`;
+    meta = `วิชาเลือกเฉพาะสาขา · ${n.cr} หน่วยกิต${n.terms ? ` · ตารางสอนภาค ${n.terms}` : ''}${n.n ? ` · ผู้ลงทะเบียนรวม ${n.n} คน` : ''}${n.note ? ` · ${n.note}` : ''}`;
     status = gainTxt;
-    hint = 'แถบสีฟ้าคือส่วนที่วิชานี้เพิ่มจากทักษะที่สะสมมาก่อนหน้า';
+    hint = 'แถบสีฟ้าคือส่วนที่วิชานี้เพิ่มจากทักษะที่สะสมมาก่อนหน้า ขีดดำคือระดับที่อาชีพเป้าหมายต้องการ';
   }
   $('p-meta').textContent = meta;
   $('p-status').textContent = status;
   $('p-req').replaceChildren(...req.map((t) => { const s = el('span'); s.textContent = t; return s; }));
   $('p-hint').textContent = hint;
-  $('k-cur').textContent = isCourse ? 'หลังเรียนวิชานี้' : 'ทักษะสะสม';
-  $('r-tg').setAttribute('points', poly(tg));
-  $('r-alt').setAttribute('points', poly(bef || aft));
-  $('r-alt').style.display = bef ? '' : 'none';
+  $('k-cur').textContent = isCareer ? 'อาชีพนี้ต้องการ' : isCourse ? 'หลังเรียนวิชานี้' : 'ทักษะสะสม';
+  $('k-alt').textContent = isCareer ? 'เมื่อจบเส้นทางนี้' : 'ก่อนเรียนวิชานี้';
+  $('k-alt').parentElement.style.display = alt ? '' : 'none';
+  $('k-tg').parentElement.style.display = isCareer ? 'none' : '';
+  $('r-tg').setAttribute('points', poly(need));
+  $('r-tg').style.display = isCareer ? 'none' : '';
+  $('r-alt').setAttribute('points', poly(alt || aft));
+  $('r-alt').style.display = alt ? '' : 'none';
   barEls.forEach((b, i) => {
     const d = bef ? aft[i] - bef[i] : 0;
-    b.v.textContent = bef ? (d > 0.05 ? `+${Math.round(d)}%` : '') : `${Math.round(aft[i])}%`;
+    b.v.textContent = bef ? (d > 0.05 ? `+${Math.round(d)}%` : '') : `${Math.round(main[i])}%`;
   });
-  tweenTo(aft, bef, tg);
+  tweenTo(main, bef ? aft.map((v, i) => Math.max(0, v - bef[i])) : null, isCareer ? aft : need);
 }
 
 function stop() { clearInterval(S.timer); S.timer = 0; }
-function pick(id) { stop(); S.sel = id; S.cursor = -1; render(); }
+function pick(id) { stop(); S.sel = id; S.cursor = -1; if (N[id].kind === 'career') S.career = id; render(); }
 function play() {
   stop();
   const plan = planFor(S.career);

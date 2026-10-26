@@ -242,7 +242,8 @@
      "kind": "ปรับปรุง",
      "url": "https://drive.google.com/file/d/1QwCpsDUdwfdnNp4ZKYXeEyMoTk7DBRXQ/view"
     }
-   ]
+   ],
+   "journey": "iot-2569"
   },
   {
    "id": "engineering-b5",
@@ -709,7 +710,8 @@
      "kind": "ใหม่",
      "url": "https://drive.google.com/file/d/10OB1POT7al7wucoiAPpcuNcT7oks3CXe/view"
     }
-   ]
+   ],
+   "journey": "cce-2568"
   },
   {
    "id": "engineering-b28",
@@ -731,7 +733,8 @@
      "kind": "ปรับปรุง",
      "url": "https://drive.google.com/file/d/1V70o_TU7SiAKv-ZkLVnF_AdZx_sHwPX5/view"
     }
-   ]
+   ],
+   "journey": "cpe-cont-2564"
   },
   {
    "id": "engineering-b29",
@@ -961,7 +964,8 @@
      "kind": "ปรับปรุง",
      "url": "https://drive.google.com/file/d/1CJIJJzop0wXLHLkfokWHMQVpYHUETRei/view"
     }
-   ]
+   ],
+   "journey": "se-intl-2567"
   },
   {
    "id": "engineering-b39",
@@ -1054,7 +1058,8 @@
      "kind": "ใหม่",
      "url": "https://drive.google.com/file/d/1gThGvF6RjtMENrn7dqHqR4sR3WDLyhTs/view"
     }
-   ]
+   ],
+   "journey": "cpe-intl-2565"
   },
   {
    "id": "engineering-b43",
