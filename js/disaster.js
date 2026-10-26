@@ -639,7 +639,7 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
 
   // ---- meteors ----
   function meteor() {
-    const sts = pickTargets(3);
+    const sts = pickTargets(5 + Math.floor(rnd() * 3));
     if (!sts.length) return null;
     view(sts, 2.2, 60);
     const items = sts.map((st, i) => {
@@ -651,7 +651,7 @@ export function buildDisasters({ scene, group, meta, inCampus, flyTo, camera }) 
       glow.scale.set(45, 45, 1);
       rock.visible = glow.visible = false;
       root.add(rock, glow);
-      return { st, t: -i * 1.6 - 0.8, start, end, rock, glow, hit: false };
+      return { st, t: -i * 1.1 - 0.8, start, end, rock, glow, hit: false };
     });
     let tEnd = Infinity, t = 0;
     return {
