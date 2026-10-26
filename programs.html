@@ -5,52 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>เส้นทางหลักสูตร | KMITL 3D</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/programs.css?v=20261022b" />
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-      }
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/programs.css?v=20261026a" />
 </head>
 <body>
-  <main id="layout">
-    <section id="stage-wrap">
-      <div id="stage"></div>
-      <div id="top">
-        <header id="head">
-          <a class="logo" href="index.html" title="กลับไปแผนที่">KMITL</a>
-          <div>
-            <div id="prog-name" class="title"></div>
-            <div id="prog-sub" class="subtitle"></div>
-          </div>
-        </header>
-        <div id="opts">
-          <button id="gender" data-f="0">นักศึกษาชาย</button>
-          <select id="track" aria-label="แนวทางการศึกษาปี 4"></select>
-          <a id="source" target="_blank" rel="noopener">เล่ม มคอ.2</a>
+  <header class="hdr">
+    <a class="logo" href="index.html" title="กลับไปแผนที่">KMITL</a>
+    <div class="ttl"><b>เส้นทางหลักสูตร</b><span>ภาควิชาวิศวกรรมคอมพิวเตอร์ · คณะวิศวกรรมศาสตร์</span></div>
+  </header>
+
+  <main class="wrap">
+    <h1>เลือกหลักสูตร</h1>
+    <p class="lead">หลักสูตรระดับปริญญาตรีของภาควิชาวิศวกรรมคอมพิวเตอร์ เลือกหลักสูตรเพื่อดู Skill Tree ตั้งแต่ Freshy จนถึงสายอาชีพ</p>
+
+    <!-- programmes the registrar's timetable lists under the department; years and มคอ.2 links from data/programs.json -->
+    <ul class="cards">
+      <li>
+        <a class="card on" href="skilltree.html">
+          <span class="ic"><svg width="24" height="24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></svg></span>
+          <span class="tx"><b>วิศวกรรมคอมพิวเตอร์</b><i>Computer Engineering · วศ.บ. · หลักสูตรปรับปรุง พ.ศ. 2569</i></span>
+          <span class="go">ดู Skill Tree ▶</span>
+        </a>
+      </li>
+      <li>
+        <div class="card" aria-disabled="true">
+          <span class="ic"><svg width="24" height="24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4" /></svg></span>
+          <span class="tx"><b>วิศวกรรมคอมพิวเตอร์และความปลอดภัยไซเบอร์</b><i>Computer and Cybersecurity Engineering · วศ.บ. · หลักสูตรใหม่ พ.ศ. 2568</i></span>
+          <span class="soon">เร็วๆ นี้</span>
         </div>
-      </div>
-      <div id="toast" role="status"></div>
-      <ul id="inventory" aria-label="ไอเทมที่ได้รับ"></ul>
-      <nav id="steps">
-        <button id="prev" aria-label="เทอมก่อนหน้า">‹</button>
-        <div id="timeline"></div>
-        <button id="next" aria-label="เทอมถัดไป">›</button>
-        <button id="play">▶ เล่นอัตโนมัติ</button>
-      </nav>
-    </section>
-    <aside id="panel">
-      <div id="progress"></div>
-      <div id="radar"></div>
-      <p id="plo-tip" class="tip">ชี้ที่ชื่อ PLO เพื่ออ่านผลลัพธ์การเรียนรู้เต็ม</p>
-      <div id="panel-body"></div>
-      <p class="note">ข้อมูลจากเล่มรายละเอียดหลักสูตร (มคอ.2) ที่รวบรวมไว้ในหน้าหลักสูตรของสำนักงานประกันคุณภาพ สจล. แกนของเรดาร์คือหน่วยกิตสะสมของรายวิชาที่ตาราง Curriculum Mapping ระบุว่ารับผิดชอบ PLO นั้น ไอคอนกลุ่มวิชาเป็นการจัดกลุ่มของเราเพื่อการนำเสนอ ขนาดไอคอนตามจำนวนวิชาบังคับที่เรียนแล้ว ชุดครุยทำตามรูปชุดครุย สจล. (สีแดงส้ม สำรดสีทองขอบดำ)</p>
-    </aside>
+      </li>
+      <li>
+        <div class="card" aria-disabled="true">
+          <span class="ic"><svg width="24" height="24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></svg></span>
+          <span class="tx"><b>วิศวกรรมคอมพิวเตอร์ (หลักสูตรนานาชาติ)</b><i>Computer Engineering, International Program · B.Eng. · พ.ศ. 2565</i></span>
+          <span class="soon">เร็วๆ นี้</span>
+        </div>
+      </li>
+      <li>
+        <div class="card" aria-disabled="true">
+          <span class="ic"><svg width="24" height="24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+          <span class="tx"><b>วิศวกรรมคอมพิวเตอร์ (ต่อเนื่อง)</b><i>Computer Engineering, Continuing Program · วศ.บ. · หลักสูตรปรับปรุง พ.ศ. 2564</i></span>
+          <span class="soon">เร็วๆ นี้</span>
+        </div>
+      </li>
+      <li>
+        <div class="card" aria-disabled="true">
+          <span class="ic"><svg width="24" height="24" aria-hidden="true"><path d="M4 5h16v11H4zM9 20h6M12 16v4M8 9l-2 2 2 2M16 9l2 2-2 2" /></svg></span>
+          <span class="tx"><b>วิศวกรรมซอฟต์แวร์ (หลักสูตรนานาชาติ)</b><i>Software Engineering, International Program · B.Eng. · หลักสูตรปรับปรุง พ.ศ. 2567</i></span>
+          <span class="soon">เร็วๆ นี้</span>
+        </div>
+      </li>
+      <li>
+        <div class="card" aria-disabled="true">
+          <span class="ic"><svg width="24" height="24" aria-hidden="true"><path d="M7 7h10v10H7zM10 10h4v4h-4zM10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4" /></svg></span>
+          <span class="tx"><b>วิศวกรรมไอโอทีและสารสนเทศ</b><i>IoT and Information Engineering · วศ.บ. · หลักสูตรปรับปรุง พ.ศ. 2569</i></span>
+          <span class="soon">เร็วๆ นี้</span>
+        </div>
+      </li>
+      <li>
+        <div class="card" aria-disabled="true">
+          <span class="ic"><svg width="24" height="24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5" /></svg></span>
+          <span class="tx"><b>วิศวกรรมระบบไอโอทีและสารสนเทศ และฟิสิกส์อุตสาหกรรม</b><i>หลักสูตรสองปริญญา · วศ.บ. และ วท.บ.</i></span>
+          <span class="soon">เร็วๆ นี้</span>
+        </div>
+      </li>
+    </ul>
+    <p class="src">รายชื่อหลักสูตรจากตารางสอนสำนักทะเบียน สจล. (ภาควิชาวิศวกรรมคอมพิวเตอร์) · ปีของหลักสูตรจากรายการเล่ม มคอ.2 ของสำนักงานประกันคุณภาพ สจล.</p>
   </main>
-  <script type="module" src="js/programs/app.js?v=20261022c"></script>
 </body>
 </html>

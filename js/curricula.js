@@ -28,7 +28,7 @@ export async function loadCurricula(url = 'data/programs.json') {
         return `<li data-pid="${esc(p.id)}" class="${p.id === pid ? 'hl' : ''}${old ? ' old' : ''}">
           <div class="pn">${esc(p.field)}</div>
           <div class="pm">${esc(p.degree)}${p.intl ? ' <span class="tag">นานาชาติ</span>' : ''} <span class="yr">ฉบับ พ.ศ. ${p.latest}</span></div>
-          <div class="pl">${url ? `<a target="_blank" rel="noopener" href="${esc(url)}">มคอ.2</a>` : ''}${p.journey ? `<a class="go" href="programs.html?p=${esc(p.journey)}">เส้นทางการเรียน ▶</a>` : ''}</div>
+          <div class="pl">${url ? `<a target="_blank" rel="noopener" href="${esc(url)}">มคอ.2</a>` : ''}${p.journey ? `<a class="go" href="skilltree.html">Skill Tree ▶</a>` : ''}</div>
         </li>`;
       };
       const sel = list.find((p) => p.id === pid);

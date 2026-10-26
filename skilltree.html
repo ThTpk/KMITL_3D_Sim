@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CE Skill Tree | KMITL 3D</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/skilltree.css?v=20261026a" />
+</head>
+<body>
+  <div id="fit">
+    <main id="stage">
+      <svg class="gear" width="1590" height="1080" aria-hidden="true">
+        <circle cx="700" cy="540" r="210" /><circle class="d" cx="700" cy="540" r="300" /><circle cx="700" cy="540" r="410" />
+        <circle class="d" cx="700" cy="540" r="470" /><circle cx="700" cy="540" r="120" />
+      </svg>
+      <div id="bands"></div>
+      <div id="rowlabels"></div>
+      <svg class="edges" width="1590" height="1080" aria-hidden="true">
+        <path class="e-sh" id="e-all" /><path class="e-off" id="e-off" /><path class="e-onb" id="e-onb" /><path class="e-on" id="e-on" />
+      </svg>
+      <div id="nodes"></div>
+
+      <header class="hdr">
+        <a class="logo" href="index.html" title="กลับไปแผนที่">KMITL</a>
+        <div class="ttl"><b>Skill Tree · วิศวกรรมคอมพิวเตอร์</b><span>เส้นทางจาก Freshy สู่สายอาชีพ · หลักสูตรปรับปรุง พ.ศ. 2569</span></div>
+        <a class="nav" href="programs.html">เลือกหลักสูตรอื่น</a>
+        <div class="sp"></div>
+        <div class="stat"><b id="st-courses"></b>วิชาในเส้นทาง</div>
+        <div class="stat"><b id="st-credits"></b>หน่วยกิตในเส้นทาง</div>
+        <div class="stat"><b id="st-elec"></b>วิชาเลือกของสายนี้</div>
+        <div class="ctl">
+          <label class="lbl" for="goal">เส้นทางอาชีพ</label>
+          <select id="goal" class="goal"></select>
+          <button id="play" class="btn pri"><svg width="24" height="24" aria-hidden="true"><path id="play-ico" /></svg><span id="play-lbl"></span></button>
+          <button id="all" class="btn"><svg width="24" height="24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v4h4" /></svg>ดูทั้งหมด</button>
+        </div>
+      </header>
+
+      <footer class="ft">
+        <div class="lg">
+          <span><i class="sw"></i>วิชาบังคับ (มคอ.2) · สีตามสายทักษะ</span>
+          <span><i class="sw el"></i>วิชาเลือก (ตารางสอน)</span>
+          <span><i class="sw ca"></i>อาชีพปลายทาง</span>
+          <span><i class="sw dm"></i>วิชาเลือก/อาชีพนอกเส้นทางที่เลือก</span>
+          <span>คลิกแต่ละวิชาเพื่อดูว่าเพิ่มทักษะด้านใดบ้าง</span>
+        </div>
+        <div class="src">วิชาบังคับ: <a href="https://drive.google.com/file/d/1_8-ul6hKyhlt_clN4ZE_fl9aBw2PtW1B/view" target="_blank" rel="noopener">มคอ.2 หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์ (หลักสูตรปรับปรุง พ.ศ. 2569)</a> จัดวางตามแผนการศึกษา · วิชาเลือก: คัดจากตารางสอนสำนักทะเบียน สจล. ภาค 2568/1, 2568/2 และ 2569/1 · อาชีพจาก มคอ.2 · เส้นเชื่อมเรียงตามแผนการเรียน ไม่ใช่วิชาบังคับก่อนอย่างเป็นทางการ · คะแนนทักษะเป็นการประมาณเพื่อการแสดงผล</div>
+      </footer>
+
+      <aside class="pn" aria-live="polite">
+        <div class="ph">
+          <div class="pic" id="p-pic"><svg width="24" height="24" aria-hidden="true"><path id="p-ico" /></svg></div>
+          <div class="pt"><span class="code" id="p-code"></span><b id="p-th"></b><span id="p-en"></span></div>
+        </div>
+        <div class="meta" id="p-meta"></div>
+        <div class="status" id="p-status"></div>
+        <div class="rq" id="p-req"></div>
+        <div class="rw">
+          <svg class="radar" width="276" height="240" aria-hidden="true">
+            <path class="r-grid" id="r-grid" /><path class="r-ax" id="r-ax" />
+            <polygon class="r-tg" id="r-tg" /><polygon class="r-cur" id="r-cur" /><polygon class="r-alt" id="r-alt" />
+          </svg>
+          <div id="r-labels"></div>
+        </div>
+        <div class="rk"><span><i></i><em id="k-cur"></em></span><span><i class="a"></i>ก่อนเรียนวิชานี้</span><span><i class="t"></i>เมื่อจบสายนี้</span></div>
+        <div class="bars" id="bars"></div>
+        <div class="hint" id="p-hint"></div>
+      </aside>
+    </main>
+  </div>
+  <script type="module" src="js/skilltree.js?v=20261026a"></script>
+</body>
+</html>
