@@ -6,7 +6,7 @@
   <title>Skill Tree | KMITL 3D</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/skilltree.css?v=20261026d" />
+  <link rel="stylesheet" href="css/skilltree.css?v=20261027a" />
 </head>
 <body>
   <div id="fit">
@@ -27,24 +27,23 @@
         <div class="ttl"><b id="h-th">Skill Tree</b><span id="h-sub"></span></div>
         <a class="nav" href="programs.html">เลือกหลักสูตรอื่น</a>
         <div class="sp"></div>
-        <div class="stat"><b id="st-courses"></b>วิชาในเส้นทาง</div>
-        <div class="stat"><b id="st-credits"></b>หน่วยกิตในเส้นทาง</div>
-        <div class="stat"><b id="st-elec"></b>วิชาเลือกของสายนี้</div>
+        <div class="stat"><b id="st-credits"></b>หน่วยกิตสะสม</div>
+        <div class="stat"><b id="st-elec"></b>วิชาเลือกที่เลือก</div>
+        <div class="stat"><b id="st-car"></b>อาชีพที่ปลดล็อก</div>
         <div class="ctl">
-          <label class="lbl" for="goal">เส้นทางอาชีพ</label>
-          <select id="goal" class="goal"></select>
+          <button id="prev" class="btn sq" aria-label="ย้อนกลับหนึ่งภาคเรียน"><svg width="24" height="24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
+          <div class="term"><span>ภาคเรียนที่เรียนแล้ว</span><b id="term-lbl"></b></div>
+          <button id="next" class="btn sq" aria-label="เรียนภาคเรียนถัดไป"><svg width="24" height="24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
           <button id="play" class="btn pri"><svg width="24" height="24" aria-hidden="true"><path id="play-ico" /></svg><span id="play-lbl"></span></button>
-          <button id="all" class="btn"><svg width="24" height="24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v4h4" /></svg>ดูทั้งหมด</button>
+          <button id="reset" class="btn"><svg width="24" height="24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v4h4" /></svg>เริ่มใหม่</button>
         </div>
       </header>
 
       <footer class="ft">
         <div class="lg">
-          <span><i class="sw"></i>วิชาบังคับ (มคอ.2) · สีตามสายทักษะ</span>
-          <span><i class="sw el"></i>วิชาเลือก (ตารางสอน)</span>
-          <span><i class="sw ca"></i>อาชีพปลายทาง</span>
-          <span><i class="sw dm"></i>วิชาเลือก/อาชีพนอกเส้นทางที่เลือก</span>
-          <span>คลิกแต่ละวิชาเพื่อดูว่าเพิ่มทักษะด้านใดบ้าง</span>
+          <span><i class="sw"></i>วิชาบังคับ (มคอ.2): กดหัวคอลัมน์หรือ ‹ › เพื่อเรียนทีละภาคเรียน</span>
+          <span><i class="sw el"></i>วิชาเลือก: กดเพื่อเลือก กดซ้ำเพื่อยกเลิก หรือกด “ทั้งแทร็ก”</span>
+          <span><i class="sw ca"></i>อาชีพ: ปลดล็อกเมื่อทักษะถึงเกณฑ์ กดเพื่อเลือกวิชาเลือกที่แนะนำ</span>
         </div>
         <div class="src" id="src"></div>
       </footer>
@@ -64,12 +63,12 @@
           </svg>
           <div id="r-labels"></div>
         </div>
-        <div class="rk"><span><i></i><em id="k-cur"></em></span><span><i class="a"></i><em id="k-alt"></em></span><span><i class="t"></i><em id="k-tg">อาชีพต้องการ</em></span></div>
+        <div class="rk"><span><i></i><em id="k-cur"></em></span><span><i class="a"></i><em id="k-alt"></em></span><span><i class="t"></i><em id="k-tg"></em></span></div>
         <div class="bars" id="bars"></div>
         <div class="hint" id="p-hint"></div>
       </aside>
     </main>
   </div>
-  <script type="module" src="js/skilltree.js?v=20261026c"></script>
+  <script type="module" src="js/skilltree.js?v=20261027a"></script>
 </body>
 </html>

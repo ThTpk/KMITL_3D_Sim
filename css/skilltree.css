@@ -128,3 +128,27 @@ a { color: #d9561a; } a:hover { color: #ff6b00; }
 @media (prefers-reduced-motion: reduce) {
   .e-on, .nd.on .fr, .nd.on .burst { animation: none; }
 }
+
+/* interactive tree: term headers take a term, chips take a whole elective track, careers show readiness */
+.band .tb { position: absolute; left: 4px; top: 0; max-width: calc(100% - 8px); padding: 2px 8px; border-radius: 999px; border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #fff; color: #6a6f76; font: inherit; font-size: 11.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
+.band .tb:hover { border-color: #ff6b00; color: #c2410c; }
+.band .tb.done { background: #ff6b00; border-color: #ff6b00; color: #fff; }
+.band .tb.next { border-color: #ff6b00; color: #c2410c; animation: nudge 1.6s ease-in-out infinite; }
+.band .tb.sel { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #1f2328; }
+@keyframes nudge { 50% { box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.18); } }
+.chip { position: absolute; z-index: 1; height: 22px; padding: 0 8px; border-radius: 999px; border: 1.5px solid var(--c); background: #fff; color: var(--c);
+  font: inherit; font-size: 10.5px; font-weight: 600; white-space: nowrap; cursor: pointer; }
+.chip:hover { background: #fff1e6; }
+.chip.on { background: var(--c); color: #fff; }
+.nd .pg { position: absolute; left: 6px; right: 6px; bottom: -7px; height: 5px; border-radius: 3px; background: #eee9e1; overflow: hidden; }
+.nd .pg i { display: block; height: 100%; background: #ff6b00; transition: width 0.4s ease; }
+.nd.career .ab { margin-top: 9px; }
+.nd.career.on .pg { display: none; }
+.nd.career.todo .fr { opacity: 0.75; background: #fff; color: var(--c); }
+.nd.goal .fr { box-shadow: 0 0 0 3px #fff, 0 0 0 6px #ff6b00; }
+.btn.sq { width: 44px; padding: 0; justify-content: center; }
+.btn:disabled { opacity: 0.4; cursor: default; background: #fff; border-color: rgba(0, 0, 0, 0.14); }
+.term { display: flex; flex-direction: column; align-items: center; min-width: 150px; font-size: 11px; color: #6a6f76; line-height: 1.2; }
+.term b { font-size: 15px; color: #1f2328; font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { .band .tb.next { animation: none; } }

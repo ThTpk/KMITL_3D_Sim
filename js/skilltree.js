@@ -1,8 +1,10 @@
 // Skill Tree: one bachelor programme of the Computer Engineering department drawn as a game skill tree
 // (data/skilltree/<id>.json, chosen with ?p=). Freshy on the left, one lane per skill area, required courses placed
 // by the study plan (มคอ.2), electives taken from the registrar's timetables, careers from the มคอ.2 at the right.
-// Every course counts as taken; clicking one shows what it adds to the 8-skill radar against the skill profile of the
-// chosen career, and Play walks that career's path term by term. Skill points and career profiles are our estimate.
+// Required courses are taken a whole term at a time; electives are picked one by one or a track (lane) at a time,
+// and a click on a picked one drops it. Careers stand apart from the courses: each unlocks once the 8-axis skills
+// reach what the job asks for, and clicking one picks its recommended electives. Skill points and career profiles
+// are our estimate.
 
 const $ = (id) => document.getElementById(id);
 const ACC = '#ff6b00';
@@ -37,7 +39,7 @@ const ROWS = P.rows, TERM = P.terms;
 
 // ---------- layout ----------
 // lanes share the height around Freshy; a term column is as wide as its busiest lane, then come the elective zone
-// and two career columns; everything narrows together when a long plan would run into the panel
+// and the career board; everything narrows together when a long plan would run into the panel
 const GAP = Math.min(92, 736 / Math.max(1, ROWS.length - 1));
 const RY = (r) => 538 - (GAP * (ROWS.length - 1)) / 2 + r * GAP;
 const slots = TERM.map((_, t) => Math.max(1, ...ROWS.map((_, r) => P.core.filter((c) => c.row === r && c.term === t).length)));
@@ -50,7 +52,7 @@ const colW = slots.map((n) => (n * 62 + 12) * K);
 const colX = [];
 TERM.reduce((x, _, t) => { colX.push(x); return x + colW[t]; }, 190);
 const EL0 = 190 + span * K + 84;
-const CA = EL0 + (maxEl - 1) * ESP + 110, CB = CA + 86, JOIN = CA - 45;
+const CA = EL0 + (maxEl - 1) * ESP + 100, CB = CA + 82, BOARD = CA - 50;
 
 // ---------- build the graph ----------
 const pts = (s) => {
@@ -72,21 +74,18 @@ for (const e of P.electives) {
   const idx = (elIdx[e.row] = (elIdx[e.row] ?? -1) + 1);
   add({ ...e, id: e.code, kind: 'elec', idx, x: EL0 + idx * ESP, y: RY(e.row), ab: e.abbr, p: pts(e.pts) });
 }
+// optional core courses (alternative final-year tracks) are picked like electives
+const pickable = (id) => N[id].kind === 'elec' || N[id].opt;
 const coreIds = ids.filter((id) => N[id].kind === 'core' && !N[id].opt);
+const termCourses = TERM.map((_, t) => coreIds.filter((id) => N[id].t === t));
 
-// careers sit level with the lanes they come from, in two columns so close ones don't collide
-const taken = [];
+// careers: a zig-zag board of their own, not tied to any lane
 const careerIds = P.careers.map((c) => c.id);
-for (const c of P.careers.map((c, i) => ({ ...c, i, ty: (c.rows || []).reduce((s, r) => s + RY(r), 0) / Math.max(1, (c.rows || []).length) || 538 }))
-  .sort((a, b) => a.ty - b.ty || a.i - b.i)) {
-  const free = (x, y) => !taken.some((o) => o.x === x && Math.abs(o.y - y) < 84);
-  let x = CA, y = Math.min(906, Math.max(170, c.ty));
-  if (!free(CA, y)) { if (free(CB, y)) x = CB; else while (!free(CA, y)) y += 46; }
-  taken.push({ x, y });
-  const need = pts(c.profile);
-  add({ ...c, code: 'CAREER', kind: 'career', x, y, ab: c.label, ic: c.icon, plan: c.electives || [], cr: 0, p: pts(''),
-    need: c.profile ? AX.map((k) => need[k]) : null });
-}
+const cstep = careerIds.length > 1 ? Math.min(120, 736 / (careerIds.length - 1)) : 0;
+P.careers.forEach((c, i) => {
+  const y = 538 - (cstep * (careerIds.length - 1)) / 2 + i * cstep;
+  add({ ...c, code: 'CAREER', kind: 'career', x: i % 2 ? CB : CA, y, ab: c.label, ic: c.icon, rec: c.electives || [], cr: 0, p: pts('') });
+});
 
 const rowCore = {}, rowEl = {};
 for (let r = 0; r < ROWS.length; r++) {
@@ -117,16 +116,8 @@ for (let r = 0; r < ROWS.length; r++) {
   }
   for (let i = 1; i < els.length; i++) E.push({ d: `M${els[i - 1].x + half(els[i])} ${els[i].y} H${els[i].x - half(els[i])}`, any: els.slice(i).map((n) => n.id) });
 }
-for (const cid of careerIds) {
-  const c = N[cid];
-  for (const r of c.rows || []) {
-    const list = rowEl[r].length ? rowEl[r] : rowCore[r];
-    if (!list.length) continue;
-    const from = N[list[list.length - 1]], x0 = from.x + half(from);
-    E.push({ d: from.y === c.y && c.x === CA ? `M${x0} ${from.y} H${c.x - 32}` : `M${x0} ${from.y} H${JOIN} V${c.y} H${c.x - 32}`, t: cid });
-  }
-}
 
+// ---------- skills ----------
 // an axis is full at all core courses plus the three strongest electives for it
 const MAX = Object.fromEntries(AX.map((k) => {
   const core = coreIds.reduce((s, id) => s + N[id].p[k], 0);
@@ -138,14 +129,21 @@ const vec = (list) => {
   for (const id of list) if (N[id]) AX.forEach((k, i) => { v[i] += N[id].p[k]; });
   return v.map((x, i) => Math.min(100, (x / MAX[AX[i]]) * 100));
 };
-// a career's journey: Freshy, every core course by term, its electives, the career itself
-const planFor = (cid) => ['start'].concat(
-  coreIds.slice().sort((a, b) => N[a].t - N[b].t || N[a].row - N[b].row || N[a].s - N[b].s), N[cid].plan, [cid]);
-// courses before `id` on the path; an elective off the path comes after all core courses
-const before = (id, plan) => { const i = plan.indexOf(id); return i >= 0 ? plan.slice(0, i) : coreIds.slice(); };
-const after = (id, plan) => (N[id].kind === 'career' ? vec(plan) : N[id].kind === 'start' ? vec([]) : vec(before(id, plan).concat([id])));
-// what the job asks for; a career without a profile falls back to what its path gives
-const needOf = (cid) => N[cid].need || vec(planFor(cid));
+// what a career asks for, measured against the whole core plus its recommended electives: the job's main axes
+// (profile 85+) need all of that, so those electives or others as strong; minor axes need their profile share,
+// which the required courses already give
+for (const cid of careerIds) {
+  const c = N[cid], full = vec(coreIds.concat(c.rec));
+  const prof = c.profile ? pts(c.profile) : null;
+  c.key = AX.map((k, i) => (prof ? prof[k] >= 85 : full[i] === Math.max(...full)));
+  c.need = full.map((v, i) => Math.floor(c.key[i] ? v : v * (prof ? prof[AX[i]] / 100 : 0.6)));
+}
+const short = (have, need) => AX.map((_, i) => [AXN[i], need[i] - have[i]]).filter(([, d]) => d > 0.5);
+// readiness bar: how far the main axes are towards the need
+const readiness = (have, c) => {
+  const axes = c.need.map((v, i) => [v, i]).filter(([v, i]) => v > 0 && c.key[i]);
+  return axes.length ? axes.reduce((s, [v, i]) => s + Math.min(1, have[i] / v), 0) / axes.length : 1;
+};
 
 // ---------- static DOM ----------
 const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
@@ -158,12 +156,25 @@ $('h-th').textContent = `Skill Tree · ${P.th}`;
 $('h-sub').textContent = `เส้นทางจาก Freshy สู่สายอาชีพ · ${P.degree} ${P.kind} พ.ศ. ${P.year}`;
 const src = $('src'), link = el('a');
 link.href = P.source.url; link.target = '_blank'; link.rel = 'noopener'; link.textContent = P.source.label;
-src.append('วิชาบังคับ: ', link, ` จัดวางตามแผนการศึกษา · วิชาเลือก: ${P.timetable ? `คัดจากตารางสอนสำนักทะเบียน สจล. ภาค ${P.timetable}` : 'จาก มคอ.2'} · อาชีพจาก มคอ.2 · เส้นเชื่อมเรียงตามแผนการเรียน ไม่ใช่วิชาบังคับก่อนอย่างเป็นทางการ · คะแนนทักษะของวิชาและโปรไฟล์ทักษะของอาชีพเป็นการประมาณเพื่อการแสดงผล`);
+src.append('วิชาบังคับ: ', link, ` จัดวางตามแผนการศึกษา · วิชาเลือก: ${P.timetable ? `คัดจากตารางสอนสำนักทะเบียน สจล. ภาค ${P.timetable}` : 'จาก มคอ.2'} · อาชีพจาก มคอ.2 · เส้นเชื่อมเรียงตามแผนการเรียน ไม่ใช่วิชาบังคับก่อนอย่างเป็นทางการ · คะแนนทักษะของวิชาและเกณฑ์ทักษะของอาชีพเป็นการประมาณเพื่อการแสดงผล`);
 
+// term columns: the header of each is the button that takes (or drops) that term
+const termBtn = [];
+TERM.forEach((label, t) => {
+  const b = el('div', 'band');
+  Object.assign(b.style, { left: `${colX[t] - 36}px`, width: `${colW[t]}px` });
+  const btn = el('button', 'tb');
+  btn.textContent = label.includes('ฤดูร้อน') ? 'ฤดูร้อน' : label;
+  btn.title = `เรียน${label}`;
+  btn.addEventListener('click', () => pickTerm(t));
+  b.append(btn);
+  $('bands').append(b);
+  termBtn.push(btn);
+});
 const endX = colX[TERM.length - 1] + colW[TERM.length - 1] - 36;
-const bands = TERM.map((label, t) => [colX[t] - 36, colW[t], label.includes('ฤดูร้อน') ? 'ฤดูร้อน' : label, 'band']);
-bands.push([endX, EL0 - 40 - endX, '', 'band'], [EL0 - 40, JOIN - 10 - (EL0 - 40), 'วิชาเลือก', 'band el'], [JOIN - 10, 1585 - JOIN, 'สายอาชีพ', 'band ca']);
-for (const [l, w, label, cls] of bands) { const b = el('div', cls, `<span>${label}</span>`); b.style.left = `${l}px`; b.style.width = `${w}px`; $('bands').append(b); }
+for (const [l, w, label, cls] of [[endX, EL0 - 40 - endX, '', 'band'], [EL0 - 40, BOARD - (EL0 - 40), 'วิชาเลือก', 'band el'], [BOARD, 1585 - BOARD, 'อาชีพ', 'band ca']]) {
+  const b = el('div', cls, `<span>${label}</span>`); b.style.left = `${l}px`; b.style.width = `${w}px`; $('bands').append(b);
+}
 
 ROWS.forEach((r, i) => {
   const first = rowCore[i].length ? N[rowCore[i][0]] : null;
@@ -173,23 +184,33 @@ ROWS.forEach((r, i) => {
   $('rowlabels').append(lab);
 });
 
+// a "whole track" chip in front of each lane's electives
+const chips = {};
+ROWS.forEach((r, i) => {
+  if (!rowEl[i].length) return;
+  const c = el('button', 'chip');
+  c.textContent = 'ทั้งแทร็ก';
+  c.title = `เลือก/ยกเลิกวิชาเลือกทั้งแทร็ก${r.name}`;
+  Object.assign(c.style, { left: `${EL0 - 34 - 62}px`, top: `${RY(i) - 11}px` });
+  c.style.setProperty('--c', r.c);
+  c.addEventListener('click', () => pickTrack(i));
+  $('nodes').append(c);
+  chips[i] = c;
+});
+
 const nodeEl = {};
 for (const id of ids) {
   const n = N[id];
   const w = size(n);
-  const b = el('button', `nd ${n.kind} on`, `<span class="fr">${svgIcon(iconOf(n), 'ico')}</span><span class="burst"></span><span class="ab"></span>`);
+  const b = el('button', `nd ${n.kind}`, `<span class="fr">${svgIcon(iconOf(n), 'ico')}</span><span class="burst"></span><span class="ab"></span>${n.kind === 'career' ? '<span class="pg"><i></i></span>' : ''}`);
   b.querySelector('.ab').textContent = n.ab;
   b.title = n.th;
   b.setAttribute('aria-label', n.th);
   Object.assign(b.style, { left: `${n.x - w / 2}px`, top: `${n.y - w / 2}px`, width: `${w}px`, height: `${w}px` });
   b.style.setProperty('--c', colorOf(n));
-  b.addEventListener('click', () => pick(id));
+  b.addEventListener('click', () => click(id));
   $('nodes').append(b);
   nodeEl[id] = b;
-}
-
-for (const id of careerIds) {
-  const o = el('option'); o.value = id; o.textContent = N[id].plan.length ? N[id].th : `${N[id].th} (วิชาบังคับครบหลักสูตร)`; $('goal').append(o);
 }
 
 const angle = (i) => ((-90 + i * 45) * Math.PI) / 180;
@@ -209,10 +230,12 @@ const barEls = AXN.map((name) => {
 });
 
 // ---------- state ----------
-const S = { sel: 'start', career: N[params.get('career')]?.kind === 'career' ? params.get('career') : careerIds.find((id) => N[id].plan.length) || careerIds[0], cursor: -1, timer: 0 };
+// term: the last term taken (-1 = Freshy); picked: electives and optional courses; sel: what the panel shows
+// (a node id or 'term:<t>'); goal: the career whose bar marks and grey outline are shown
+const S = { term: -1, picked: new Set(), sel: 'start', goal: null, timer: 0 };
+const takenIds = () => coreIds.filter((id) => N[id].t <= S.term).concat([...S.picked]);
 let shown = vec([]), raf = 0;
 
-// v: main polygon and bars; gain: per-axis part of the bar drawn blue; tg: the grey target marks
 function draw(v, gain, tg) {
   $('r-cur').setAttribute('points', poly(v));
   barEls.forEach((b, i) => {
@@ -220,10 +243,10 @@ function draw(v, gain, tg) {
     b.c.style.width = `${c.toFixed(1)}%`;
     b.a.style.left = `${(c - aw).toFixed(1)}%`;
     b.a.style.width = `${aw.toFixed(1)}%`;
-    b.g.style.left = `${Math.min(99, tg[i]).toFixed(1)}%`;
+    b.g.style.display = tg ? '' : 'none';
+    if (tg) b.g.style.left = `${Math.min(99, tg[i]).toFixed(1)}%`;
   });
 }
-
 function tweenTo(target, gain, tg) {
   cancelAnimationFrame(raf);
   const from = shown.slice(), t0 = performance.now();
@@ -238,105 +261,162 @@ function tweenTo(target, gain, tg) {
 }
 
 const top3 = (v) => AX.map((_, i) => [AXN[i], v[i]]).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([nm]) => nm).join(', ');
+const gainText = (d) => {
+  const g = AX.map((_, i) => [AXN[i], d[i]]).filter(([, x]) => x > 0.05).sort((a, b) => b[1] - a[1]);
+  return g.length ? g.map(([nm, x]) => `${nm} +${Math.round(x)}%`).join(' · ') : '';
+};
+const termLabel = (t) => (t < 0 ? 'ยังไม่เริ่ม (Freshy)' : TERM[t]);
 
 function render() {
-  const plan = planFor(S.career);
-  const onPlan = new Set(plan);
-  // everything counts as taken; during playback only the courses reached so far are filled in
-  const V = new Set(S.cursor < 0 ? ids : plan.slice(0, S.cursor + 1));
+  const taken = new Set(takenIds());
+  const have = vec([...taken]);
+  const unlocked = new Set(careerIds.filter((cid) => short(have, N[cid].need).length === 0));
   for (const id of ids) {
     const n = N[id], b = nodeEl[id];
-    b.classList.toggle('on', V.has(id));
-    b.classList.toggle('todo', !V.has(id));
+    const on = n.kind === 'start' || (n.kind === 'career' ? unlocked.has(id) : taken.has(id));
+    b.classList.toggle('on', on);
+    b.classList.toggle('todo', !on);
     b.classList.toggle('sel', S.sel === id);
-    b.classList.toggle('dim', (n.kind === 'elec' || n.kind === 'career') && !onPlan.has(id));
+    b.classList.toggle('goal', S.goal === id);
+    if (n.kind === 'career') b.querySelector('.pg i').style.width = `${Math.round(readiness(have, n) * 100)}%`;
   }
+  for (const [r, c] of Object.entries(chips)) c.classList.toggle('on', rowEl[r].every((id) => S.picked.has(id)));
+  termBtn.forEach((b, t) => { b.classList.toggle('done', t <= S.term); b.classList.toggle('next', t === S.term + 1); b.classList.toggle('sel', S.sel === `term:${t}`); });
+
   let on = '', off = '', all = '';
   for (const e of E) {
-    const lit = e.always || (e.t && V.has(e.t)) || (e.a && V.has(e.a) && V.has(e.b)) || (e.any && e.any.some((k) => V.has(k)));
+    const lit = e.always || (e.t && taken.has(e.t)) || (e.a && taken.has(e.a) && taken.has(e.b)) || (e.any && e.any.some((k) => taken.has(k)));
     all += `${e.d} `;
     if (lit) on += `${e.d} `; else off += `${e.d} `;
   }
   $('e-all').setAttribute('d', all); $('e-off').setAttribute('d', off); $('e-onb').setAttribute('d', on); $('e-on').setAttribute('d', on);
 
-  $('st-courses').textContent = plan.filter((id) => N[id].kind === 'core' || N[id].kind === 'elec').length;
-  $('st-credits').textContent = plan.reduce((s, id) => s + N[id].cr, 0);
-  $('st-elec').textContent = N[S.career].plan.length;
-  $('goal').value = S.career;
+  $('st-credits').textContent = [...taken].reduce((s, id) => s + N[id].cr, 0);
+  $('st-elec').textContent = [...S.picked].filter((id) => N[id].kind === 'elec').length;
+  $('st-car').textContent = `${unlocked.size}/${careerIds.length}`;
+  $('term-lbl').textContent = termLabel(S.term);
+  $('prev').disabled = S.term < 0;
+  $('next').disabled = S.term >= TERM.length - 1;
   const playing = !!S.timer;
-  $('play-lbl').textContent = playing ? 'หยุด' : 'เล่นเส้นทาง';
+  $('play-lbl').textContent = playing ? 'หยุด' : 'เล่นทีละเทอม';
   $('play-ico').setAttribute('d', playing ? 'M8 5v14M16 5v14' : 'M7 4l13 8-13 8z');
 
-  // panel: a course shows skills after it (orange) and before it (blue) against the chosen career's profile (grey);
-  // a career shows the skills the job asks for (orange) against what its path gives by graduation (blue)
-  const n = N[S.sel];
-  const isCourse = n.kind === 'core' || n.kind === 'elec';
-  const isCareer = n.kind === 'career';
-  const aft = after(S.sel, plan);
-  const bef = isCourse ? vec(before(S.sel, plan)) : null;
-  const need = needOf(isCareer ? S.sel : S.career);
-  const main = isCareer ? need : aft, alt = isCareer ? aft : bef;
-  $('p-pic').style.setProperty('--c', colorOf(n));
-  $('p-ico').setAttribute('d', iconOf(n));
-  $('p-code').textContent = isCareer ? n.en : n.code;
-  $('p-th').textContent = n.th;
-  $('p-en').textContent = isCareer ? 'สายอาชีพปลายทาง' : n.en;
-  const gains = bef ? AX.map((k, i) => [AXN[i], aft[i] - bef[i]]).filter(([, d]) => d > 0.05).sort((a, b) => b[1] - a[1]) : [];
-  const gainTxt = gains.length ? `เพิ่มทักษะ: ${gains.map(([nm, d]) => `${nm} +${Math.round(d)}%`).join(' · ')}` : '';
-  let meta, status = '', req = [], hint;
-  if (n.kind === 'start') {
-    meta = `จุดเริ่มต้นของทุกเส้นทาง เส้นจาก Freshy แตกออกเป็นสายทักษะ ${ROWS.length} สาย ปลายสุดของแต่ละสายคืออาชีพที่หลักสูตรระบุไว้ใน มคอ.2`;
-    status = 'เลือกเส้นทางอาชีพด้านบน แล้วกด “เล่นเส้นทาง” เพื่อดูทักษะเติบโตทีละภาคเรียน หรือคลิกวิชาใดก็ได้เพื่อดูว่าเพิ่มทักษะด้านใด';
-    hint = 'เรดาร์แสดงทักษะ 8 ด้านที่สะสมตามลำดับการเรียน เส้นประสีเทาคือทักษะที่อาชีพเป้าหมายต้องการ';
-  } else if (isCareer) {
+  // panel: the radar is always the skills so far (orange); a course or term adds a blue outline of the skills
+  // without it (or with it, if not taken yet); the grey outline and the bar marks are the goal career's need
+  const goalNeed = S.goal ? N[S.goal].need : null;
+  let alt = null, gain = null, meta, status = '', req = [], hint, pic, ico, code, th, en, kAlt = '';
+  const term = typeof S.sel === 'string' && S.sel.startsWith('term:') ? +S.sel.slice(5) : null;
+  const n = term == null ? N[S.sel] : null;
+  if (term != null) {
+    const list = termCourses[term], done = term <= S.term;
+    const other = vec([...taken].filter((id) => !list.includes(id)).concat(done ? [] : list));
+    alt = other; gain = (done ? have.map((v, i) => v - other[i]) : null); kAlt = done ? 'ก่อนภาคเรียนนี้' : 'ถ้าเรียนภาคเรียนนี้';
+    pic = ACC; ico = IC.grad; code = 'TERM'; th = TERM[term]; en = `วิชาบังคับ ${list.length} วิชา · ${list.reduce((s, id) => s + N[id].cr, 0)} หน่วยกิต`;
+    meta = done ? 'เรียนภาคเรียนนี้แล้ว กดหัวคอลัมน์อีกครั้งเพื่อย้อนกลับไปก่อนภาคเรียนนี้' : 'กดหัวคอลัมน์เพื่อเรียนถึงภาคเรียนนี้';
+    status = `${done ? 'ภาคเรียนนี้เพิ่ม' : 'ภาคเรียนนี้จะเพิ่ม'}: ${gainText(done ? have.map((v, i) => v - other[i]) : other.map((v, i) => v - have[i]))}`;
+    req = list.map((id) => `• ${N[id].th}`);
+    hint = 'วิชาบังคับเรียนทีละภาคเรียนตามแผนการศึกษาใน มคอ.2';
+  } else if (n.kind === 'start') {
+    pic = ACC; ico = IC.start; code = n.code; th = n.th; en = n.en;
+    meta = `จุดเริ่มต้นของทุกเส้นทาง เส้นจาก Freshy แตกออกเป็นสายทักษะ ${ROWS.length} สาย`;
+    status = 'กด › หรือหัวคอลัมน์เพื่อเรียนวิชาบังคับทีละภาคเรียน แล้วเลือกวิชาเลือกที่สนใจ อาชีพทางขวาจะปลดล็อกเมื่อทักษะถึงเกณฑ์ หรือกดอาชีพเพื่อเลือกวิชาเลือกที่แนะนำ';
+    hint = 'เรดาร์แสดงทักษะ 8 ด้านที่สะสมจากวิชาที่เรียนแล้ว เส้นประสีเทาคือเกณฑ์ของอาชีพที่เลือกไว้';
+  } else if (n.kind === 'career') {
+    pic = ACC; ico = iconOf(n); code = n.en; th = n.th; en = unlocked.has(n.id) ? 'ปลดล็อกแล้ว' : `ความพร้อม ${Math.round(readiness(have, n) * 100)}%`;
     meta = n.desc;
-    status = `ทักษะหลักของอาชีพนี้: ${top3(need)} · เส้นทางนี้ = วิชาบังคับทั้งหลักสูตร${n.plan.length ? ` + วิชาเลือก ${n.plan.length} วิชา` : ''}`;
-    req = n.plan.map((id) => `• ${N[id].th}`);
-    hint = 'อาชีพและกลุ่มวิชาเลือกที่เกี่ยวข้องอ้างอิงจาก มคอ.2 ระดับทักษะที่อาชีพต้องการเป็นการประมาณ';
-  } else if (n.kind === 'core') {
-    meta = `วิชาบังคับ · ${n.cr} หน่วยกิต · ${TERM[n.t]} · ที่มา มคอ.2 ${P.kind} ${P.year}${n.opt ? ' · เส้นทางเลือกในภาคการศึกษาสุดท้าย' : ''}`;
-    status = gainTxt;
-    hint = 'แถบสีฟ้าคือส่วนที่วิชานี้เพิ่มจากทักษะที่สะสมมาก่อนหน้า ขีดดำคือระดับที่อาชีพเป้าหมายต้องการ';
+    const miss = short(have, n.need);
+    status = `ทักษะหลักของอาชีพนี้: ${top3(n.need)} · ${miss.length ? `ยังขาด: ${miss.map(([nm, d]) => `${nm} ${Math.ceil(d)}%`).join(' · ')}` : 'ทักษะถึงเกณฑ์แล้ว'}`;
+    req = n.rec.map((id) => `${S.picked.has(id) ? '✓' : '○'} ${N[id].th}`);
+    hint = n.rec.length
+      ? `วิชาเลือกที่แนะนำ ${n.rec.length} วิชา กดอาชีพเพื่อเลือกทั้งหมด กดอีกครั้งเพื่อยกเลิก เกณฑ์ทักษะต้องเรียนวิชาบังคับครบทุกภาคเรียนด้วย`
+      : 'อาชีพนี้ใช้วิชาบังคับครบทุกภาคเรียน ไม่มีวิชาเลือกที่แนะนำเฉพาะ';
   } else {
-    meta = `วิชาเลือกเฉพาะสาขา · ${n.cr} หน่วยกิต${n.terms ? ` · ตารางสอนภาค ${n.terms}` : ''}${n.n ? ` · ผู้ลงทะเบียนรวม ${n.n} คน` : ''}${n.note ? ` · ${n.note}` : ''}`;
-    status = gainTxt;
-    hint = 'แถบสีฟ้าคือส่วนที่วิชานี้เพิ่มจากทักษะที่สะสมมาก่อนหน้า ขีดดำคือระดับที่อาชีพเป้าหมายต้องการ';
+    const isTaken = taken.has(n.id);
+    const other = vec(isTaken ? [...taken].filter((id) => id !== n.id) : [...taken, n.id]);
+    alt = other; kAlt = isTaken ? 'ไม่รวมวิชานี้' : 'ถ้าเรียนวิชานี้';
+    gain = isTaken ? have.map((v, i) => v - other[i]) : null;
+    pic = colorOf(n); ico = iconOf(n); code = n.code; th = n.th; en = n.en;
+    const d = isTaken ? have.map((v, i) => v - other[i]) : other.map((v, i) => v - have[i]);
+    status = gainText(d) ? `${isTaken ? 'เพิ่มทักษะ' : 'จะเพิ่มทักษะ'}: ${gainText(d)}` : '';
+    if (n.kind === 'core' && !n.opt) {
+      meta = `วิชาบังคับ · ${n.cr} หน่วยกิต · ${TERM[n.t]} · ที่มา มคอ.2 ${P.kind} ${P.year}`;
+      hint = 'วิชาบังคับเรียนทีละภาคเรียน กดหัวคอลัมน์ภาคเรียนเพื่อเรียนหรือย้อนกลับ';
+    } else {
+      meta = n.kind === 'core'
+        ? `วิชาในแนวทางเลือกของภาคการศึกษาสุดท้าย · ${n.cr} หน่วยกิต · ${TERM[n.t]}`
+        : `วิชาเลือกเฉพาะสาขา · ${n.cr} หน่วยกิต${n.terms ? ` · ตารางสอนภาค ${n.terms}` : ''}${n.n ? ` · ผู้ลงทะเบียนรวม ${n.n} คน` : ''}${n.note ? ` · ${n.note}` : ''}`;
+      hint = isTaken ? 'เลือกวิชานี้แล้ว กดอีกครั้งเพื่อยกเลิก' : 'กดอีกครั้งเพื่อเลือกวิชานี้';
+      const uses = careerIds.filter((cid) => N[cid].rec.includes(n.id)).map((cid) => N[cid].label);
+      if (uses.length) req = [`แนะนำสำหรับ: ${uses.join(', ')}`];
+    }
   }
+  $('p-pic').style.setProperty('--c', pic);
+  $('p-ico').setAttribute('d', ico);
+  $('p-code').textContent = code;
+  $('p-th').textContent = th;
+  $('p-en').textContent = en;
   $('p-meta').textContent = meta;
   $('p-status').textContent = status;
   $('p-req').replaceChildren(...req.map((t) => { const s = el('span'); s.textContent = t; return s; }));
   $('p-hint').textContent = hint;
-  $('k-cur').textContent = isCareer ? 'อาชีพนี้ต้องการ' : isCourse ? 'หลังเรียนวิชานี้' : 'ทักษะสะสม';
-  $('k-alt').textContent = isCareer ? 'เมื่อจบเส้นทางนี้' : 'ก่อนเรียนวิชานี้';
+  $('k-cur').textContent = 'ทักษะตอนนี้';
+  $('k-alt').textContent = kAlt;
   $('k-alt').parentElement.style.display = alt ? '' : 'none';
-  $('k-tg').parentElement.style.display = isCareer ? 'none' : '';
-  $('r-tg').setAttribute('points', poly(need));
-  $('r-tg').style.display = isCareer ? 'none' : '';
-  $('r-alt').setAttribute('points', poly(alt || aft));
+  $('k-tg').textContent = S.goal ? `เกณฑ์ ${N[S.goal].label}` : '';
+  $('k-tg').parentElement.style.display = goalNeed ? '' : 'none';
+  $('r-tg').setAttribute('points', poly(goalNeed || AX.map(() => 0)));
+  $('r-tg').style.display = goalNeed ? '' : 'none';
+  $('r-alt').setAttribute('points', poly(alt || have));
   $('r-alt').style.display = alt ? '' : 'none';
   barEls.forEach((b, i) => {
-    const d = bef ? aft[i] - bef[i] : 0;
-    b.v.textContent = bef ? (d > 0.05 ? `+${Math.round(d)}%` : '') : `${Math.round(main[i])}%`;
+    const d = gain ? gain[i] : 0;
+    b.v.textContent = d > 0.05 ? `+${Math.round(d)}%` : `${Math.round(have[i])}%`;
   });
-  tweenTo(main, bef ? aft.map((v, i) => Math.max(0, v - bef[i])) : null, isCareer ? aft : need);
+  tweenTo(have, gain, goalNeed);
 }
 
+// ---------- actions ----------
 function stop() { clearInterval(S.timer); S.timer = 0; }
-function pick(id) { stop(); S.sel = id; S.cursor = -1; if (N[id].kind === 'career') S.career = id; render(); }
+function setTerm(t) { S.term = Math.max(-1, Math.min(TERM.length - 1, t)); }
+// clicking the last term taken drops it; any other term takes everything up to it
+function pickTerm(t) { stop(); setTerm(t === S.term ? t - 1 : t); S.sel = `term:${t}`; render(); }
+function toggle(id) { if (S.picked.has(id)) S.picked.delete(id); else S.picked.add(id); }
+function pickTrack(r) {
+  stop();
+  const els = rowEl[r], allOn = els.every((id) => S.picked.has(id));
+  for (const id of els) if (allOn) S.picked.delete(id); else S.picked.add(id);
+  S.sel = els[0];
+  render();
+}
+function click(id) {
+  stop();
+  const n = N[id];
+  if (n.kind === 'career') {
+    // a career picks its recommended electives; clicking it again while they are all picked drops them
+    const allOn = n.rec.length && n.rec.every((e) => S.picked.has(e));
+    for (const e of n.rec) if (allOn) S.picked.delete(e); else S.picked.add(e);
+    S.goal = allOn ? null : id;
+  } else if (pickable(id)) {
+    toggle(id);                          // a second click on a picked course drops it
+  }
+  S.sel = id;
+  render();
+}
 function play() {
   stop();
-  const plan = planFor(S.career);
-  S.cursor = 0; S.sel = 'start';
-  const ms = matchMedia('(prefers-reduced-motion: reduce)').matches ? 700 : 420;
+  if (S.term >= TERM.length - 1) setTerm(-1);
+  S.sel = 'start';
+  const ms = matchMedia('(prefers-reduced-motion: reduce)').matches ? 900 : 650;
   S.timer = setInterval(() => {
-    if (S.cursor + 1 >= plan.length) { stop(); render(); return; }
-    S.cursor += 1; S.sel = plan[S.cursor]; render();
+    if (S.term >= TERM.length - 1) { stop(); render(); return; }
+    setTerm(S.term + 1); S.sel = `term:${S.term}`; render();
   }, ms);
   render();
 }
+$('prev').addEventListener('click', () => { stop(); setTerm(S.term - 1); S.sel = S.term < 0 ? 'start' : `term:${S.term}`; render(); });
+$('next').addEventListener('click', () => { stop(); setTerm(S.term + 1); S.sel = `term:${S.term}`; render(); });
 $('play').addEventListener('click', () => { if (S.timer) { stop(); render(); } else play(); });
-$('all').addEventListener('click', () => { stop(); S.sel = 'start'; S.cursor = -1; render(); });
-$('goal').addEventListener('change', (e) => { stop(); S.career = e.target.value; S.sel = S.career; S.cursor = -1; render(); });
+$('reset').addEventListener('click', () => { stop(); S.term = -1; S.picked.clear(); S.goal = null; S.sel = 'start'; render(); });
 
 // fit the 1920×1080 stage to the window; on a tall narrow screen fit the width and scroll
 function fit() {
@@ -352,5 +432,5 @@ function fit() {
 }
 addEventListener('resize', fit);
 fit();
-render();
-setTimeout(play, 900);
+const want = params.get('career');
+if (N[want]?.kind === 'career') { setTerm(TERM.length - 1); click(want); } else { render(); setTimeout(play, 900); }
